@@ -2,7 +2,46 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
-@use './assets/themes/themes.scss';
+@use './assets/themes/blue.scss' as ocean-theme;
+@use './assets/themes/green.scss' as nature-theme;
+@use './assets/themes/red.scss' as fire-theme;
+
+.blue-theme {
+  @include mat.theme((
+    color: (
+      primary: ocean-theme.$primary-palette,
+      tertiary: ocean-theme.$tertiary-palette,
+      theme-type: light,
+    ),
+    typography: Roboto,
+    density: 0
+  ));
+}
+
+.green-theme {
+  @include mat.theme((
+    color: (
+      primary: nature-theme.$primary-palette,
+      tertiary: nature-theme.$tertiary-palette,
+      theme-type: light,
+    ),
+    typography: Roboto,
+    density: 0
+  ));
+}
+
+.red-theme {
+  @include mat.theme((
+    color: (
+      primary: fire-theme.$primary-palette,
+      tertiary: fire-theme.$tertiary-palette,
+      theme-type: light,
+    ),
+    typography: Roboto,
+    density: 0
+  ));
+}
+
 
 html {
   height: 100%;

@@ -32,7 +32,6 @@
               }
             ],
             "styles": [
-              "src/assets/themes/themes.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -92,7 +91,6 @@
               }
             ],
             "styles": [
-              "src/assets/themes/themes.scss",
               "src/styles.scss"
             ],
             "scripts": []
