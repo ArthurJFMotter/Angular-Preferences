@@ -12,6 +12,10 @@ export interface Theme {
 export class ThemeService {
     private readonly themes: Theme[] = [
         { id: 'blue', primary: '#0047AB', displayName: 'Azul' },
+        { id: 'teal', primary: '#006A6A', displayName: 'Ciano' },
+        { id: 'orange', primary: '#894A00', displayName: 'Laranja' },
+        { id: 'pink', primary: '#9C405C', displayName: 'Rosa' },
+        { id: 'purple', primary: '#6750A4', displayName: 'Roxo' },
         { id: 'green', primary: '#028A0F', displayName: 'Verde' },
         { id: 'red', primary: '#A91B0D', displayName: 'Vermelho' },
     ];
@@ -44,17 +48,17 @@ export class ThemeService {
 
         document.body.classList.remove(...themeClasses);
         document.body.classList.add(`${theme.id}-theme`);
-        console.log("Current color theme class: ", `${theme.id}-theme`);
+        /*DEBUG*/ //console.log("Current color theme class: ", `${theme.id}-theme`);
     });
 
     updateDarkModeClass = effect(() => {
         const isDark = this.isDarkMode();
         if (isDark) {
             document.body.classList.add('dark-mode');
-            console.log("Dark mode enabled");
+            /*DEBUG*/ //console.log("Dark mode enabled");
         } else {
             document.body.classList.remove('dark-mode');
-            console.log("Dark mode disabled");
+            /*DEBUG*/ //console.log("Dark mode disabled");
         }
     });
 }
