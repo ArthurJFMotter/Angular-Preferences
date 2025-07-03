@@ -1,3 +1,4 @@
+<!-- will be moved to navbar component -->
 <mat-toolbar>
   <span>Angular Custom Themes</span>
 
@@ -24,3 +25,80 @@
     }
   </mat-menu>
 </mat-toolbar>
+
+<!-- will be moved to router outlet -->
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Buttons & Indicators</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Primary Color Buttons -->
+    <div class="button-row">
+      <button mat-button color="primary">Basic</button>
+      <button mat-raised-button color="primary">Raised</button>
+      <button mat-stroked-button color="primary">Stroked</button>
+      <button mat-fab color="primary" matBadge="4" matBadgeColor="warn">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </div>
+    <!-- Accent Color Buttons -->
+    <div class="button-row">
+       <button mat-raised-button color="accent">Raised Accent</button>
+       ...
+    </div>
+    <!-- Warn Color Buttons -->
+    <div class="button-row">
+       <button mat-raised-button color="warn">Raised Warn</button>
+       ...
+    </div>
+    <!-- Indicators -->
+    <p>Progress Bar</p>
+    <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    <p>Progress Spinner</p>
+    <mat-progress-spinner [diameter]="50" mode="indeterminate" color="accent"></mat-progress-spinner>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Form Controls</mat-card-title>
+  <mat-card-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Sample Input</mat-label>
+      <input matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choose an option</mat-label>
+      <mat-select>
+        <mat-option value="1">Option 1</mat-option>
+        <mat-option value="2">Option 2</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="row">
+      <mat-checkbox color="primary">Check me</mat-checkbox>
+      <mat-slide-toggle color="accent">Toggle me</mat-slide-toggle>
+    </div>
+    
+    <mat-slider discrete>
+        <input matSliderThumb>
+    </mat-slider>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Tabs & Chips</mat-card-title>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="First"> Content 1 </mat-tab>
+      <mat-tab label="Second"> Content 2 </mat-tab>
+      <mat-tab label="Third"> Content 3 </mat-tab>
+    </mat-tab-group>
+
+    <mat-chip-listbox aria-label="Fish selection">
+      <mat-chip-option color="primary" selected>Primary Chip</mat-chip-option>
+      <mat-chip-option color="accent">Accent Chip</mat-chip-option>
+    </mat-chip-listbox>
+  </mat-card-content>
+</mat-card>
