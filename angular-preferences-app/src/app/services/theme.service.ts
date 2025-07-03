@@ -11,21 +11,21 @@ export interface Theme {
 })
 export class ThemeService {
     private readonly themes: Theme[] = [
-    {
-      id: 'blue',
-      primary: '#0047AB',
-      displayName: 'Azul',
-    },
-    { id: 'green', primary: '#028A0F', displayName: 'Verde' },
-    { id: 'red', primary: '#A91B0D', displayName: 'Vermelho' },
-  ];
+        { id: 'blue', primary: '#0047AB', displayName: 'Azul' },
+        { id: 'green', primary: '#028A0F', displayName: 'Verde' },
+        { id: 'red', primary: '#A91B0D', displayName: 'Vermelho' },
+    ];
 
+    // --- STATE ---
     currentTheme = signal<Theme>(this.themes[0]);
+    isDarkMode = signal<boolean>(false);
 
+    // --- GETTERS ---
     getThemes(): Theme[] {
         return this.themes;
     }
 
+    // --- ACTIONS ---
     setTheme(id: string): void {
         const theme = this.themes.find((t) => t.id === id);
         if (theme) {
@@ -33,10 +33,28 @@ export class ThemeService {
         }
     }
 
-    updateThemeClass = effect(() => {
-         const theme = this.currentTheme();
-         document.body.classList.remove(...this.themes.map((t) => `${t.id}-theme`));
-         document.body.classList.add(`${theme.id}-theme`);
-         console.log("current theme: ", `${theme.id}-theme`);
-    })
+    toggleDarkMode(): void {
+        this.isDarkMode.update(value => !value);
+    }
+
+    // --- EFFECTS ---
+    updateColorThemeClass = effect(() => {
+        const theme = this.currentTheme();
+        const themeClasses = this.themes.map((t) => `${t.id}-theme`);
+
+        document.body.classList.remove(...themeClasses);
+        document.body.classList.add(`${theme.id}-theme`);
+        console.log("Current color theme class: ", `${theme.id}-theme`);
+    });
+
+    updateDarkModeClass = effect(() => {
+        const isDark = this.isDarkMode();
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            console.log("Dark mode enabled");
+        } else {
+            document.body.classList.remove('dark-mode');
+            console.log("Dark mode disabled");
+        }
+    });
 }

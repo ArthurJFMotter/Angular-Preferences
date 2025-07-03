@@ -1,19 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-// Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
+// 1. Imports
 @use '@angular/material' as mat;
 @use './assets/themes/blue.scss' as ocean-theme;
 @use './assets/themes/green.scss' as nature-theme;
 @use './assets/themes/red.scss' as fire-theme;
 
+// 2. Core styles (include only once)
+@include mat.core();
+
+// 3. Define the LIGHT themes (default)
 .blue-theme {
   @include mat.theme((
     color: (
       primary: ocean-theme.$primary-palette,
       tertiary: ocean-theme.$tertiary-palette,
-      theme-type: light,
+      theme-type: light, 
     ),
-    typography: Roboto,
+    //typography: mat.define-typography-config(), //will change later
     density: 0
   ));
 }
@@ -25,7 +27,7 @@
       tertiary: nature-theme.$tertiary-palette,
       theme-type: light,
     ),
-    typography: Roboto,
+    //typography: mat.define-typography-config(), //will change later
     density: 0
   ));
 }
@@ -37,20 +39,60 @@
       tertiary: fire-theme.$tertiary-palette,
       theme-type: light,
     ),
-    typography: Roboto,
+    //typography: mat.define-typography-config(), //will change later
     density: 0
   ));
 }
 
+// 4. Define the DARK theme overrides
+.dark-mode {
 
-html {
+  &.blue-theme {
+    @include mat.theme((
+      color: (
+        primary: ocean-theme.$primary-palette,
+        tertiary: ocean-theme.$tertiary-palette,
+        theme-type: dark, 
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0
+    ));
+  }
+
+  &.green-theme {
+    @include mat.theme((
+      color: (
+        primary: nature-theme.$primary-palette,
+        tertiary: nature-theme.$tertiary-palette,
+        theme-type: dark,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0
+    ));
+  }
+
+  &.red-theme {
+    @include mat.theme((
+      color: (
+        primary: fire-theme.$primary-palette,
+        tertiary: fire-theme.$tertiary-palette,
+        theme-type: dark,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0
+    ));
+  }
+}
+
+/* Global styles */
+html, body {
   height: 100%;
 }
 
 body {
-  height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: var(--mat-sys-background);
-  color: var(--mat-sys-on-background);
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  transition: background-color 0.3s, color 0.3s;
 }
