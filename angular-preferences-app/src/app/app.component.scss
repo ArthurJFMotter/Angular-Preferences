@@ -1,6 +1,25 @@
-.test{
+mat-toolbar {
+    justify-content: space-between;
     background-color: var(--mat-sys-primary);
-    color: var(--mat-sys-on-primary);
-    height: 2.5rem;
-    padding: 1rem;
+    border: 1px solid var(--mat-sys-outline);
+    /*
+
+    @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary),
+            container-text-color: var(--mat-sys-on-primary),
+        ));
+
+    @include mat.icon-button-overrides((icon-color: var(--mat-sys-on-primary),
+        ));*/
+}
+
+.theme-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.color-preview {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
 }

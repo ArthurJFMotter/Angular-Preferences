@@ -10,7 +10,15 @@ export interface Theme {
     providedIn: 'root',
 })
 export class ThemeService {
-    private readonly themes: Theme[] = []
+    private readonly themes: Theme[] = [
+    {
+      id: 'blue',
+      primary: '#0047AB',
+      displayName: 'Azul',
+    },
+    { id: 'green', primary: '#028A0F', displayName: 'Verde' },
+    { id: 'red', primary: '#A91B0D', displayName: 'Vermelho' },
+  ];
 
     currentTheme = signal<Theme>(this.themes[0]);
 
@@ -29,5 +37,6 @@ export class ThemeService {
          const theme = this.currentTheme();
          document.body.classList.remove(...this.themes.map((t) => `${t.id}-theme`));
          document.body.classList.add(`${theme.id}-theme`);
+         console.log("current theme: ", `${theme.id}-theme`);
     })
 }
