@@ -18,6 +18,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ThemeService } from './services/theme.service';
 import { NgIf } from '@angular/common';
+import { TypographyService } from './services/typography.service';
+import { MatDividerModule } from '@angular/material/divider';
 /* will be moved to an module */
 
 @Component({
@@ -29,6 +31,7 @@ import { NgIf } from '@angular/common';
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -49,5 +52,16 @@ import { NgIf } from '@angular/common';
 export class AppComponent {
   title = 'angular-preferences-app';
 
+  // --- SERVICES ---
   themeService = inject(ThemeService);
+  typographyService = inject(TypographyService);
+
+  // --- HANDLERS ---
+  onFontSizeChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    const newSize = parseFloat(value);
+    if (!isNaN(newSize)) {
+      this.typographyService.setBaseFontSize(newSize);
+    }
+  }
 }

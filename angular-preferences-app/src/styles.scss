@@ -9,9 +9,12 @@
 // 3. Import filter definitions
 @use './assets/filters/filters';
 
+// 4. Import Typography definitions
+@use './assets/typography/typography.scss';
+
 @include mat.core();
 
-// 4. Global styles
+// 5. Global styles
 // These styles are not theme-dependent and apply everywhere.
 html, body {
   height: 100%;

@@ -6,7 +6,7 @@
 
   <!-- Dark Mode Toggle Button -->
   <button mat-icon-button (click)="themeService.toggleDarkMode()" aria-label="Toggle dark mode">
-      <mat-icon> {{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }} </mat-icon>
+    <mat-icon> {{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }} </mat-icon>
   </button>
 
   <!-- High Contrast Toggle Button -->
@@ -22,7 +22,8 @@
     @for (filter of themeService.getDaltonicFilters(); track filter.id) {
     <button mat-menu-item (click)="themeService.setColorFilter(filter.id)">
       <mat-icon *ngIf="themeService.activeColorFilter() === filter.id">check</mat-icon>
-      <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '8px' : '32px'">{{ filter.displayName }}</span>
+      <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '8px' : '32px'">{{ filter.displayName
+        }}</span>
     </button>
     }
   </mat-menu>
@@ -46,31 +47,55 @@
 <!-- will be moved to router outlet -->
 <mat-card>
   <mat-card-header>
+    <mat-card-title>Dynamic Typography Control</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Use the slider to change the application's base font size.
+    </p>
+
+    <div class="slider-container">
+      <label id="font-size-label" class="slider-label">
+        Base Font Size: <strong>{{ typographyService.fontSize() }}px</strong>
+      </label>
+      <mat-slider class="font-slider" [min]="typographyService.minFontSize" [max]="typographyService.maxFontSize"
+        step="0.5" discrete>
+        <input matSliderThumb [value]="typographyService.fontSize()" (input)="onFontSizeChange($event)"
+          aria-labelledby="font-size-label">
+      </mat-slider>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card>
+  <mat-card-header>
     <mat-card-title>Buttons & Indicators</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <!-- Primary Color Buttons -->
     <div class="button-row">
-      <button mat-button color="primary">Basic</button>
-      <button mat-raised-button color="primary">Raised</button>
-      <button mat-stroked-button color="primary">Stroked</button>
-      <button mat-fab color="primary" matBadge="4" matBadgeColor="warn">
+      <button mat-button>Basic</button>
+      <button mat-raised-button>Raised</button>
+      <button mat-stroked-button>Stroked</button>
+      <button mat-fab matBadge="4" matBadgeColor="warn">
         <mat-icon>favorite</mat-icon>
       </button>
     </div>
     <!-- Accent Color Buttons -->
     <div class="button-row">
-       <button mat-raised-button color="accent">Raised Accent</button>
+      <button mat-raised-button>Raised Accent</button>
     </div>
     <!-- Warn Color Buttons -->
     <div class="button-row">
-       <button mat-raised-button color="warn">Raised Warn</button>
+      <button mat-raised-button color="warn">Raised Warn</button>
     </div>
     <!-- Indicators -->
     <p>Progress Bar</p>
-    <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     <p>Progress Spinner</p>
-    <mat-progress-spinner [diameter]="50" mode="indeterminate" color="accent"></mat-progress-spinner>
+    <mat-progress-spinner [diameter]="50" mode="indeterminate"></mat-progress-spinner>
   </mat-card-content>
 </mat-card>
 
@@ -91,12 +116,12 @@
     </mat-form-field>
 
     <div class="row">
-      <mat-checkbox color="primary">Check me</mat-checkbox>
-      <mat-slide-toggle color="accent">Toggle me</mat-slide-toggle>
+      <mat-checkbox>Check me</mat-checkbox>
+      <mat-slide-toggle>Toggle me</mat-slide-toggle>
     </div>
-    
+
     <mat-slider discrete>
-        <input matSliderThumb>
+      <input matSliderThumb>
     </mat-slider>
   </mat-card-content>
 </mat-card>
@@ -111,8 +136,8 @@
     </mat-tab-group>
 
     <mat-chip-listbox aria-label="Fish selection">
-      <mat-chip-option color="primary" selected>Primary Chip</mat-chip-option>
-      <mat-chip-option color="accent">Accent Chip</mat-chip-option>
+      <mat-chip-option selected>Primary Chip</mat-chip-option>
+      <mat-chip-option>Accent Chip</mat-chip-option>
     </mat-chip-listbox>
   </mat-card-content>
 </mat-card>

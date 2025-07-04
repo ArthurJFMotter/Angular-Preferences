@@ -1,0 +1,13 @@
+:root {
+  // 1. Define the CSS custom property with a fallback value.
+  // This fallback is important in case JavaScript is disabled or fails to load.
+  --app-typography: 16px; //1rem
+}
+
+html {
+  // 2. Use the variable to set the root font size.
+  // All `rem` units throughout the application will now be relative
+  // to this value, making the entire UI scalable.
+  font-size: var(--app-typography);
+  transition: font-size 0.1s ease-in-out;
+}
