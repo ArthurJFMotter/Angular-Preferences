@@ -1,0 +1,19 @@
+// Apply a CSS filter to the entire body when a filter class is present.
+// The filter property is inherited by all children.
+// The URL points to our SVG file and references the specific filter by its ID.
+
+.filter-protanopia {
+    filter: url('./daltonic.svg#protanopia');
+}
+
+.filter-deuteranopia {
+    filter: url('./daltonic.svg#deuteranopia');
+}
+
+.filter-tritanopia {
+    filter: url('./daltonic.svg#tritanopia');
+}
+
+.filter-achromatopsia {
+    filter: url('./daltonic.svg#achromatopsia');
+}

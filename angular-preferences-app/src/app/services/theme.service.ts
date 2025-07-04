@@ -6,10 +6,18 @@ export interface Theme {
     displayName: string;
 }
 
+export type DaltonicFilterType = 'none' | 'protanopia' | 'deuteranopia' | 'tritanopia' | 'achromatopsia';
+
+export interface DaltonicFilter {
+    id: DaltonicFilterType;
+    displayName: string;
+}
+
 @Injectable({
     providedIn: 'root',
 })
 export class ThemeService {
+
     private readonly themes: Theme[] = [
         { id: 'blue', primary: '#0047AB', displayName: 'Azul' },
         { id: 'teal', primary: '#006A6A', displayName: 'Ciano' },
@@ -20,14 +28,27 @@ export class ThemeService {
         { id: 'red', primary: '#A91B0D', displayName: 'Vermelho' },
     ];
 
+     private readonly daltonicFilters: DaltonicFilter[] = [
+        { id: 'none', displayName: 'Padrão' },
+        { id: 'protanopia', displayName: 'Protanopia' },
+        { id: 'deuteranopia', displayName: 'Deuteranopia' },
+        { id: 'tritanopia', displayName: 'Tritanopia' },
+        { id: 'achromatopsia', displayName: 'Acromatopsia' },
+    ];
+
     // --- STATE ---
     currentTheme = signal<Theme>(this.themes[0]);
     isDarkMode = signal<boolean>(false);
     isHighContrastMode = signal<boolean>(false);
+    activeColorFilter = signal<DaltonicFilterType>('none');
 
     // --- GETTERS ---
     getThemes(): Theme[] {
         return this.themes;
+    }
+
+    getDaltonicFilters(): DaltonicFilter[] {
+        return this.daltonicFilters;
     }
 
     // --- ACTIONS ---
@@ -36,6 +57,10 @@ export class ThemeService {
         if (theme) {
             this.currentTheme.set(theme);
         }
+    }
+
+    setColorFilter(filterId: DaltonicFilterType): void {
+        this.activeColorFilter.set(filterId);
     }
 
     toggleDarkMode(): void {
@@ -70,6 +95,17 @@ export class ThemeService {
             document.body.classList.add('high-contrast-mode');
         } else {
             document.body.classList.remove('high-contrast-mode');
+        }
+    });
+
+    updateColorFilterClass = effect(() => {
+        const activeFilter = this.activeColorFilter();
+        
+        const allFilterClasses = this.daltonicFilters.map(f => `filter-${f.id}`);
+        document.body.classList.remove(...allFilterClasses);
+
+        if (activeFilter !== 'none') {
+            document.body.classList.add(`filter-${activeFilter}`);
         }
     });
 }

@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ThemeService, Theme } from './services/theme.service';
+import { NgIf } from '@angular/common';
 /* will be moved to an module */
 
 @Component({
@@ -39,6 +40,7 @@ import { ThemeService, Theme } from './services/theme.service';
     MatSlideToggleModule,
     MatTabsModule,
     MatToolbarModule,
+    NgIf,
   ],
   /* will be moved to an module */
   templateUrl: './app.component.html',

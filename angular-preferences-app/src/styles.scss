@@ -6,9 +6,12 @@
 @use './assets/themes/main-themes/light-themes';
 @use './assets/themes/main-themes/dark-themes';
 
+// 3. Import filter definitions
+@use './assets/filters/filters';
+
 @include mat.core();
 
-// 3. Global styles
+// 4. Global styles
 // These styles are not theme-dependent and apply everywhere.
 html, body {
   height: 100%;

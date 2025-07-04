@@ -14,7 +14,20 @@
     <mat-icon>contrast</mat-icon>
   </button>
 
-  <!-- Existing Theme Color Picker Button -->
+  <!-- Color Filter Picker Button -->
+  <button mat-icon-button [matMenuTriggerFor]="filterMenu" aria-label="Select a color filter">
+    <mat-icon>visibility</mat-icon>
+  </button>
+  <mat-menu #filterMenu="matMenu">
+    @for (filter of themeService.getDaltonicFilters(); track filter.id) {
+    <button mat-menu-item (click)="themeService.setColorFilter(filter.id)">
+      <mat-icon *ngIf="themeService.activeColorFilter() === filter.id">check</mat-icon>
+      <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '8px' : '32px'">{{ filter.displayName }}</span>
+    </button>
+    }
+  </mat-menu>
+
+  <!-- Theme Color Picker Button -->
   <button mat-icon-button [matMenuTriggerFor]="themeMenu" aria-label="Select a theme color">
     <mat-icon>format_color_fill</mat-icon>
   </button>
@@ -31,7 +44,6 @@
 </mat-toolbar>
 
 <!-- will be moved to router outlet -->
-
 <mat-card>
   <mat-card-header>
     <mat-card-title>Buttons & Indicators</mat-card-title>
@@ -49,12 +61,10 @@
     <!-- Accent Color Buttons -->
     <div class="button-row">
        <button mat-raised-button color="accent">Raised Accent</button>
-       ...
     </div>
     <!-- Warn Color Buttons -->
     <div class="button-row">
        <button mat-raised-button color="warn">Raised Warn</button>
-       ...
     </div>
     <!-- Indicators -->
     <p>Progress Bar</p>
