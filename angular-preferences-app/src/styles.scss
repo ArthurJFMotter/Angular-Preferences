@@ -13,179 +13,202 @@
 
 // 3. Define the LIGHT themes (default)
 .blue-theme {
-  @include mat.theme((
-    color: (
-      primary: ocean-theme.$primary-palette,
-      tertiary: ocean-theme.$tertiary-palette,
-      theme-type: light, 
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: ocean-theme.$primary-palette,
+        tertiary: ocean-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 .green-theme {
-  @include mat.theme((
-    color: (
-      primary: nature-theme.$primary-palette,
-      tertiary: nature-theme.$tertiary-palette,
-      theme-type: light,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: nature-theme.$primary-palette,
+        tertiary: nature-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 .orange-theme {
-  @include mat.theme((
-    color: (
-      primary: sunset-theme.$primary-palette,
-      tertiary: sunset-theme.$tertiary-palette,
-      theme-type: light,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: sunset-theme.$primary-palette,
+        tertiary: sunset-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 .pink-theme {
-  @include mat.theme((
-    color: (
-      primary: candy-theme.$primary-palette,
-      tertiary: candy-theme.$tertiary-palette,
-      theme-type: light,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: candy-theme.$primary-palette,
+        tertiary: candy-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 .purple-theme {
-  @include mat.theme((
-    color: (
-      primary: noon-theme.$primary-palette,
-      tertiary: noon-theme.$tertiary-palette,
-      theme-type: light,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: noon-theme.$primary-palette,
+        tertiary: noon-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 .red-theme {
-  @include mat.theme((
-    color: (
-      primary: fire-theme.$primary-palette,
-      tertiary: fire-theme.$tertiary-palette,
-      theme-type: light,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: fire-theme.$primary-palette,
+        tertiary: fire-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 .teal-theme {
-  @include mat.theme((
-    color: (
-      primary: river-theme.$primary-palette,
-      tertiary: river-theme.$tertiary-palette,
-      theme-type: light,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+  @include mat.theme((color: (primary: river-theme.$primary-palette,
+        tertiary: river-theme.$tertiary-palette,
+        theme-type: light,
+      ),
+      //typography: mat.define-typography-config(), //will change later
+      density: 0));
 }
 
 // 4. Define the DARK theme overrides
 .dark-mode {
 
   &.blue-theme {
-  @include mat.theme((
-    color: (
-      primary: ocean-theme.$primary-palette,
-      tertiary: ocean-theme.$tertiary-palette,
-      theme-type: dark, 
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
+    @include mat.theme((color: (primary: ocean-theme.$primary-palette,
+          tertiary: ocean-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
+
+  &.green-theme {
+    @include mat.theme((color: (primary: nature-theme.$primary-palette,
+          tertiary: nature-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
+
+  &.orange-theme {
+    @include mat.theme((color: (primary: sunset-theme.$primary-palette,
+          tertiary: sunset-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
+
+  &.pink-theme {
+    @include mat.theme((color: (primary: candy-theme.$primary-palette,
+          tertiary: candy-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
+
+  &.purple-theme {
+    @include mat.theme((color: (primary: noon-theme.$primary-palette,
+          tertiary: noon-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
+
+  &.red-theme {
+    @include mat.theme((color: (primary: fire-theme.$primary-palette,
+          tertiary: fire-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
+
+  &.teal-theme {
+    @include mat.theme((color: (primary: river-theme.$primary-palette,
+          tertiary: river-theme.$tertiary-palette,
+          theme-type: dark,
+        ),
+        //typography: mat.define-typography-config(), //will change later
+        density: 0));
+  }
 }
 
-&.green-theme {
-  @include mat.theme((
-    color: (
-      primary: nature-theme.$primary-palette,
-      tertiary: nature-theme.$tertiary-palette,
-      theme-type: dark,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
-}
+// 5. Define HIGH CONTRAST Overrides
+.high-contrast-mode {
 
-&.orange-theme {
-  @include mat.theme((
-    color: (
-      primary: sunset-theme.$primary-palette,
-      tertiary: sunset-theme.$tertiary-palette,
-      theme-type: dark,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
-}
+  // --- High Contrast Light Themes ---
+  &.blue-theme {
+    @include ocean-theme.high-contrast-overrides(light);
+  }
 
-&.pink-theme {
-  @include mat.theme((
-    color: (
-      primary: candy-theme.$primary-palette,
-      tertiary: candy-theme.$tertiary-palette,
-      theme-type: dark,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
-}
+  &.green-theme {
+    @include nature-theme.high-contrast-overrides(light);
+  }
 
-&.purple-theme {
-  @include mat.theme((
-    color: (
-      primary: noon-theme.$primary-palette,
-      tertiary: noon-theme.$tertiary-palette,
-      theme-type: dark,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
-}
+  &.orange-theme {
+    @include sunset-theme.high-contrast-overrides(light);
+  }
 
-&.red-theme {
-  @include mat.theme((
-    color: (
-      primary: fire-theme.$primary-palette,
-      tertiary: fire-theme.$tertiary-palette,
-      theme-type: dark,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
-}
+  &.pink-theme {
+    @include candy-theme.high-contrast-overrides(light);
+  }
 
-&.teal-theme {
-  @include mat.theme((
-    color: (
-      primary: river-theme.$primary-palette,
-      tertiary: river-theme.$tertiary-palette,
-      theme-type: dark,
-    ),
-    //typography: mat.define-typography-config(), //will change later
-    density: 0
-  ));
-}
+  &.purple-theme {
+    @include noon-theme.high-contrast-overrides(light);
+  }
+
+  &.red-theme {
+    @include fire-theme.high-contrast-overrides(light);
+  }
+
+  &.teal-theme {
+    @include river-theme.high-contrast-overrides(light);
+  }
+
+  // --- High Contrast Dark Themes (when .dark-mode is also present) ---
+  &.dark-mode {
+    &.blue-theme {
+      @include ocean-theme.high-contrast-overrides(dark);
+    }
+
+    &.green-theme {
+      @include nature-theme.high-contrast-overrides(dark);
+    }
+
+    &.orange-theme {
+      @include sunset-theme.high-contrast-overrides(dark);
+    }
+
+    &.pink-theme {
+      @include candy-theme.high-contrast-overrides(dark);
+    }
+
+    &.purple-theme {
+      @include noon-theme.high-contrast-overrides(dark);
+    }
+
+    &.red-theme {
+      @include fire-theme.high-contrast-overrides(dark);
+    }
+
+    &.teal-theme {
+      @include river-theme.high-contrast-overrides(dark);
+    }
+  }
 }
 
 /* Global styles */
-html, body {
+html,
+body {
   height: 100%;
 }
 

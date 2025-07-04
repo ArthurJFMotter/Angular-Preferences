@@ -7,7 +7,11 @@
   <!-- Dark Mode Toggle Button -->
   <button mat-icon-button (click)="themeService.toggleDarkMode()" aria-label="Toggle dark mode">
       <mat-icon> {{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }} </mat-icon>
-      <mat-icon></mat-icon>
+  </button>
+
+  <!-- High Contrast Toggle Button -->
+  <button mat-icon-button (click)="themeService.toggleHighContrastMode()" aria-label="Toggle high contrast mode">
+    <mat-icon>contrast</mat-icon>
   </button>
 
   <!-- Existing Theme Color Picker Button -->

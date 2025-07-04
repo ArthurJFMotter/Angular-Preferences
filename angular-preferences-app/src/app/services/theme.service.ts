@@ -23,6 +23,7 @@ export class ThemeService {
     // --- STATE ---
     currentTheme = signal<Theme>(this.themes[0]);
     isDarkMode = signal<boolean>(false);
+    isHighContrastMode = signal<boolean>(false);
 
     // --- GETTERS ---
     getThemes(): Theme[] {
@@ -41,6 +42,10 @@ export class ThemeService {
         this.isDarkMode.update(value => !value);
     }
 
+    toggleHighContrastMode(): void {
+        this.isHighContrastMode.update(value => !value);
+    }
+
     // --- EFFECTS ---
     updateColorThemeClass = effect(() => {
         const theme = this.currentTheme();
@@ -48,17 +53,23 @@ export class ThemeService {
 
         document.body.classList.remove(...themeClasses);
         document.body.classList.add(`${theme.id}-theme`);
-        /*DEBUG*/ //console.log("Current color theme class: ", `${theme.id}-theme`);
     });
 
     updateDarkModeClass = effect(() => {
         const isDark = this.isDarkMode();
         if (isDark) {
             document.body.classList.add('dark-mode');
-            /*DEBUG*/ //console.log("Dark mode enabled");
         } else {
             document.body.classList.remove('dark-mode');
-            /*DEBUG*/ //console.log("Dark mode disabled");
+        }
+    });
+
+    updateHighContrastClass = effect(() => {
+        const isHighContrast = this.isHighContrastMode();
+        if (isHighContrast) {
+            document.body.classList.add('high-contrast-mode');
+        } else {
+            document.body.classList.remove('high-contrast-mode');
         }
     });
 }
