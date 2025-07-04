@@ -1,29 +1,40 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 @use 'theme-definitions' as defs;
+@use '../../typography/font-definitions' as fonts;
 
-.dark-mode {
-  // 1. Generate standard dark themes for each density level
-  @each $theme-name, $theme-config in defs.$themes {
-    @for $i from 0 through 5 {
-      &.#{$theme-name}-theme.density-#{$i} {
-        @include mat.theme((
-          color: (
-            primary: map.get($theme-config, 'primary'),
-            tertiary: map.get($theme-config, 'tertiary'),
-            theme-type: dark
-          ),
-          density: -$i
-        ));
+// 1. Loop through each font first, as its class is on the outer <html> element.
+@each $font-class, $font-config in fonts.$fonts {
+  
+  // 2. Scope everything within the font's class.
+  .#{$font-class} {
+
+    // 3. Now, target the .dark-mode class, which is on the descendant <body> element.
+    .dark-mode {
+      // Generate standard dark themes for each density level
+      @each $theme-name, $theme-config in defs.$themes {
+        @for $i from 0 through 5 {
+          &.#{$theme-name}-theme.density-#{$i} {
+            @include mat.theme((
+              color: (
+                primary: map.get($theme-config, 'primary'),
+                tertiary: map.get($theme-config, 'tertiary'),
+                theme-type: dark
+              ),
+              typography: fonts.get-typography-config($font-class),
+              density: -$i
+            ));
+          }
+        }
       }
-    }
-  }
 
-  // 2. Generate high-contrast dark theme overrides using the new central mixin.
-  &.high-contrast-mode {
-    @each $theme-name, $theme-config in defs.$themes {
-      &.#{$theme-name}-theme {
-        @include defs.apply-high-contrast($theme-name, dark);
+      // Generate high-contrast dark theme overrides
+      &.high-contrast-mode {
+        @each $theme-name, $theme-config in defs.$themes {
+          &.#{$theme-name}-theme {
+            @include defs.apply-high-contrast($theme-name, dark);
+          }
+        }
       }
     }
   }

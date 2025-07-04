@@ -54,7 +54,7 @@
       Use the slider to change the application's base font size.
     </p>
 
-    <div class="slider-container">
+    <div>
       <label id="font-size-label" class="slider-label">
         Base Font Size: <strong>{{ typographyService.fontSize() }}px</strong>
       </label>
@@ -64,6 +64,20 @@
           aria-labelledby="font-size-label">
       </mat-slider>
     </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="fontMenu" aria-label="Select a font family">
+      <mat-icon>font_download</mat-icon>
+    </button>
+    <mat-menu #fontMenu="matMenu">
+      @for (font of typographyService.getFonts(); track font.id) {
+      <button mat-menu-item (click)="typographyService.setFont(font.id)">
+        <mat-icon *ngIf="typographyService.activeFont().id === font.id">check</mat-icon>
+        <span [style.margin-left]="typographyService.activeFont().id === font.id ? '8px' : '32px'">{{ font.displayName
+          }}</span>
+      </button>
+      }
+    </mat-menu>
+
   </mat-card-content>
 </mat-card>
 
@@ -74,18 +88,9 @@
     Densidade: {{ currentDensity().displayName }}
   </label>
 
-  <mat-slider
-    [min]="min"
-    [max]="max"
-    [step]="1"
-    [discrete]="true"
-    aria-labelledby="density-slider-label">
+  <mat-slider [min]="min" [max]="max" [step]="1" [discrete]="true" aria-labelledby="density-slider-label">
 
-    <input
-      matSliderThumb
-      [value]="sliderIndex()"
-      (input)="onDensityChange($event)"
-      #slider>
+    <input matSliderThumb [value]="sliderIndex()" (input)="onDensityChange($event)" #slider>
   </mat-slider>
 
 </div>

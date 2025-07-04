@@ -1,8 +1,7 @@
-// 1. Core styles (include only once in the entire application)
+// 1. Core styles
 @use '@angular/material' as mat;
 
 // 2. Import theme definitions
-// The main themes partially handles the mode and high-contrast styles.
 @use './assets/themes/main-themes/light-themes';
 @use './assets/themes/main-themes/dark-themes';
 
@@ -15,14 +14,13 @@
 @include mat.core();
 
 // 5. Global styles
-// These styles are not theme-dependent and apply everywhere.
+// These styles apply everywhere.
 html, body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   transition: background-color 0.3s, color 0.3s;
