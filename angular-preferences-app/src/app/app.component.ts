@@ -16,7 +16,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ThemeService, Theme } from './services/theme.service';
+import { ThemeService } from './services/theme.service';
 import { NgIf } from '@angular/common';
 /* will be moved to an module */
 

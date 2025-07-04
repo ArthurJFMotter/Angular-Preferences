@@ -1,17 +1,6 @@
 import { effect, Injectable, signal } from "@angular/core";
-
-export interface Theme {
-    id: string;
-    primary: string;
-    displayName: string;
-}
-
-export type DaltonicFilterType = 'none' | 'protanopia' | 'deuteranopia' | 'tritanopia' | 'achromatopsia';
-
-export interface DaltonicFilter {
-    id: DaltonicFilterType;
-    displayName: string;
-}
+import { Theme } from "../models/theme.model";
+import { DaltonicFilter, DaltonicFilterType } from "../models/filter.model";
 
 @Injectable({
     providedIn: 'root',
