@@ -1,0 +1,34 @@
+// 1. Imports for palettes and Material theming functions
+@use '@angular/material' as mat;
+@use '../color-themes/blue.scss' as ocean-theme;
+@use '../color-themes/green.scss' as nature-theme;
+@use '../color-themes/orange.scss' as sunset-theme;
+@use '../color-themes/pink.scss' as candy-theme;
+@use '../color-themes/purple.scss' as noon-theme;
+@use '../color-themes/red.scss' as fire-theme;
+@use '../color-themes/teal.scss' as river-theme;
+
+// 2. Apply all dark themes inside the .dark-mode scope
+.dark-mode {
+  
+  // A. Standard Dark Themes
+  &.blue-theme   { @include mat.theme((color: (primary: ocean-theme.$primary-palette,  tertiary: ocean-theme.$tertiary-palette,  theme-type: dark))); }
+  &.green-theme  { @include mat.theme((color: (primary: nature-theme.$primary-palette, tertiary: nature-theme.$tertiary-palette, theme-type: dark))); }
+  &.orange-theme { @include mat.theme((color: (primary: sunset-theme.$primary-palette, tertiary: sunset-theme.$tertiary-palette, theme-type: dark))); }
+  &.pink-theme   { @include mat.theme((color: (primary: candy-theme.$primary-palette,  tertiary: candy-theme.$tertiary-palette,  theme-type: dark))); }
+  &.purple-theme { @include mat.theme((color: (primary: noon-theme.$primary-palette,  tertiary: noon-theme.$tertiary-palette,  theme-type: dark))); }
+  &.red-theme    { @include mat.theme((color: (primary: fire-theme.$primary-palette,   tertiary: fire-theme.$tertiary-palette,   theme-type: dark))); }
+  &.teal-theme   { @include mat.theme((color: (primary: river-theme.$primary-palette,  tertiary: river-theme.$tertiary-palette,  theme-type: dark))); }
+
+  // B. High-Contrast Dark Theme Overrides
+  // These apply when .dark-mode, .high-contrast-mode, AND a theme class are present.
+  &.high-contrast-mode {
+    &.blue-theme   { @include ocean-theme.high-contrast-overrides(dark); }
+    &.green-theme  { @include nature-theme.high-contrast-overrides(dark); }
+    &.orange-theme { @include sunset-theme.high-contrast-overrides(dark); }
+    &.pink-theme   { @include candy-theme.high-contrast-overrides(dark); }
+    &.purple-theme { @include noon-theme.high-contrast-overrides(dark); }
+    &.red-theme    { @include fire-theme.high-contrast-overrides(dark); }
+    &.teal-theme   { @include river-theme.high-contrast-overrides(dark); }
+  }
+}
