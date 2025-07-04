@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 /* will be moved to an module */
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,8 @@ import { ThemeService } from './services/theme.service';
 import { NgIf } from '@angular/common';
 import { TypographyService } from './services/typography.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { DensityService } from './services/density.service';
+import { Density } from './models/density.model';
 /* will be moved to an module */
 
 @Component({
@@ -53,6 +55,7 @@ export class AppComponent {
   title = 'angular-preferences-app';
 
   // --- SERVICES ---
+  densityService = inject(DensityService);
   themeService = inject(ThemeService);
   typographyService = inject(TypographyService);
 
@@ -63,5 +66,49 @@ export class AppComponent {
     if (!isNaN(newSize)) {
       this.typographyService.setBaseFontSize(newSize);
     }
+  }
+
+  // --- Signals from the Service ---
+  densities: Density[] = this.densityService.getDensities();
+  currentDensity: WritableSignal<Density> = this.densityService.currentDensity;
+
+  // --- Component's Internal UI State ---
+  sliderIndex: WritableSignal<number> = signal(
+    this.densities.findIndex(d => d.value === this.currentDensity().value)
+  );
+
+  // --- Computed Properties for the Template ---
+  min = 0;
+  max = this.densities.length - 1;
+
+  currentDensityDisplayName = computed(() => this.currentDensity().displayName);
+
+  constructor() {
+    // --- Effect to Update the Service ---
+    effect(() => {
+      const index = this.sliderIndex();
+      const selectedDensity = this.densities[index];
+      if (selectedDensity) {
+
+        if (selectedDensity.value !== this.currentDensity().value) {
+           this.densityService.setDensity(selectedDensity.value);
+        }
+      }
+    });
+
+    // --- Effect to Sync Slider from External Changes ---
+    effect(() => {
+        const newIndex = this.densities.findIndex(d => d.value === this.currentDensity().value);
+        if (newIndex > -1 && newIndex !== this.sliderIndex()) {
+            this.sliderIndex.set(newIndex);
+        }
+    });
+  }
+
+  // --- Event Handler for the Template ---
+  onDensityChange(event: Event): void {
+    const slider = event.target as HTMLInputElement;
+    const newIndex = Number(slider.value);
+    this.sliderIndex.set(newIndex); 
   }
 }

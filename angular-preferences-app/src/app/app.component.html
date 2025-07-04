@@ -44,7 +44,7 @@
   </mat-menu>
 </mat-toolbar>
 
-<!-- will be moved to router outlet -->
+<!-- will be moved to router outlet / repurposed -->
 <mat-card>
   <mat-card-header>
     <mat-card-title>Dynamic Typography Control</mat-card-title>
@@ -66,6 +66,29 @@
     </div>
   </mat-card-content>
 </mat-card>
+
+<mat-divider></mat-divider>
+
+<div>
+  <label id="density-slider-label">
+    Densidade: {{ currentDensity().displayName }}
+  </label>
+
+  <mat-slider
+    [min]="min"
+    [max]="max"
+    [step]="1"
+    [discrete]="true"
+    aria-labelledby="density-slider-label">
+
+    <input
+      matSliderThumb
+      [value]="sliderIndex()"
+      (input)="onDensityChange($event)"
+      #slider>
+  </mat-slider>
+
+</div>
 
 <mat-divider></mat-divider>
 

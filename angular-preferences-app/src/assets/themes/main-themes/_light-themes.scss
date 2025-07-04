@@ -1,33 +1,28 @@
-// 1. Imports for palettes and Material theming functions
+@use 'sass:map';
 @use '@angular/material' as mat;
-@use '../color-themes/blue.scss' as ocean-theme;
-@use '../color-themes/green.scss' as nature-theme;
-@use '../color-themes/orange.scss' as sunset-theme;
-@use '../color-themes/pink.scss' as candy-theme;
-@use '../color-themes/purple.scss' as noon-theme;
-@use '../color-themes/red.scss' as fire-theme;
-@use '../color-themes/teal.scss' as river-theme;
+@use 'theme-definitions' as defs;
 
+// 1. Generate standard light themes for each density level
+@each $theme-name, $theme-config in defs.$themes {
+  @for $i from 0 through 5 {
+    .#{$theme-name}-theme.density-#{$i} {
+      @include mat.theme((
+        color: (
+          primary: map.get($theme-config, 'primary'),
+          tertiary: map.get($theme-config, 'tertiary'),
+          theme-type: light
+        ),
+        density: -$i
+      ));
+    }
+  }
+}
 
-// 2. Standard Light Themes
-// These apply when no .dark-mode class is present.
-.blue-theme   { @include mat.theme((color: (primary: ocean-theme.$primary-palette,  tertiary: ocean-theme.$tertiary-palette,  theme-type: light))); }
-.green-theme  { @include mat.theme((color: (primary: nature-theme.$primary-palette, tertiary: nature-theme.$tertiary-palette, theme-type: light))); }
-.orange-theme { @include mat.theme((color: (primary: sunset-theme.$primary-palette, tertiary: sunset-theme.$tertiary-palette, theme-type: light))); }
-.pink-theme   { @include mat.theme((color: (primary: candy-theme.$primary-palette,  tertiary: candy-theme.$tertiary-palette,  theme-type: light))); }
-.purple-theme { @include mat.theme((color: (primary: noon-theme.$primary-palette,  tertiary: noon-theme.$tertiary-palette,  theme-type: light))); }
-.red-theme    { @include mat.theme((color: (primary: fire-theme.$primary-palette,   tertiary: fire-theme.$tertiary-palette,   theme-type: light))); }
-.teal-theme   { @include mat.theme((color: (primary: river-theme.$primary-palette,  tertiary: river-theme.$tertiary-palette,  theme-type: light))); }
-
-
-// 3. High-Contrast Light Theme Overrides
-// These apply when BOTH .high-contrast-mode and a theme class are present.
+// 2. Generate high-contrast overrides using the new central mixin.
 .high-contrast-mode {
-  &.blue-theme   { @include ocean-theme.high-contrast-overrides(light); }
-  &.green-theme  { @include nature-theme.high-contrast-overrides(light); }
-  &.orange-theme { @include sunset-theme.high-contrast-overrides(light); }
-  &.pink-theme   { @include candy-theme.high-contrast-overrides(light); }
-  &.purple-theme { @include noon-theme.high-contrast-overrides(light); }
-  &.red-theme    { @include fire-theme.high-contrast-overrides(light); }
-  &.teal-theme   { @include river-theme.high-contrast-overrides(light); }
+  @each $theme-name, $theme-config in defs.$themes {
+    &.#{$theme-name}-theme {
+      @include defs.apply-high-contrast($theme-name, light);
+    }
+  }
 }

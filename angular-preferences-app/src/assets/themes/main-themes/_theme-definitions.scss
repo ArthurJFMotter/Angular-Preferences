@@ -1,0 +1,61 @@
+@use 'sass:map';
+
+// 1. Import all your individual color theme files
+@use '../color-themes/blue.scss' as ocean-theme;
+@use '../color-themes/green.scss' as nature-theme;
+@use '../color-themes/orange.scss' as sunset-theme;
+@use '../color-themes/pink.scss' as candy-theme;
+@use '../color-themes/purple.scss' as noon-theme;
+@use '../color-themes/red.scss' as fire-theme;
+@use '../color-themes/teal.scss' as river-theme;
+
+// 2. Define a map that holds the palette configurations for each theme.
+$themes: (
+  'blue': (
+    'primary': ocean-theme.$primary-palette,
+    'tertiary': ocean-theme.$tertiary-palette
+  ),
+  'green': (
+    'primary': nature-theme.$primary-palette,
+    'tertiary': nature-theme.$tertiary-palette
+  ),
+  'orange': (
+    'primary': sunset-theme.$primary-palette,
+    'tertiary': sunset-theme.$tertiary-palette
+  ),
+  'pink': (
+    'primary': candy-theme.$primary-palette,
+    'tertiary': candy-theme.$tertiary-palette
+  ),
+  'purple': (
+    'primary': noon-theme.$primary-palette,
+    'tertiary': noon-theme.$tertiary-palette
+  ),
+  'red': (
+    'primary': fire-theme.$primary-palette,
+    'tertiary': fire-theme.$tertiary-palette
+  ),
+  'teal': (
+    'primary': river-theme.$primary-palette,
+    'tertiary': river-theme.$tertiary-palette
+  )
+);
+
+// 3. Central mixin to apply the high-contrast override.
+@mixin apply-high-contrast($theme-name, $mode) {
+  @if $theme-name == 'blue' {
+    @include ocean-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'green' {
+    @include nature-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'orange' {
+    @include sunset-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'pink' {
+    @include candy-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'purple' {
+    @include noon-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'red' {
+    @include fire-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'teal' {
+    @include river-theme.high-contrast-overrides($mode);
+  }
+}
