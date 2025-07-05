@@ -1,0 +1,29 @@
+.preferences-fab-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+}
+
+.theme-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.color-preview {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--mat-sys-outline-variant);
+}
+
+button[mat-menu-item] {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    mat-icon:not(:first-child) {
+        margin-left: 0 !important;
+    }
+}

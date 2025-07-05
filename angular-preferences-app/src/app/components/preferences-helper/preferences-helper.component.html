@@ -1,0 +1,55 @@
+<div class="preferences-fab-container">
+    <button mat-fab [matMenuTriggerFor]="preferencesMenu"
+        aria-label="Open accessibility and theme preferences">
+        <mat-icon>settings</mat-icon>
+    </button>
+</div>
+
+<mat-menu #preferencesMenu="matMenu" xPosition="before">
+    <!-- Dark Mode Toggle Button -->
+    <button mat-menu-item (click)="preferencesService.toggleDarkMode()">
+        <mat-icon>{{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+        <span>{{ themeService.isDarkMode() ? 'Light Mode' : 'Dark Mode' }}</span>
+    </button>
+
+    <!-- High Contrast Toggle Button -->
+    <button mat-menu-item (click)="preferencesService.toggleHighContrastMode()">
+        <mat-icon>contrast</mat-icon>
+        <span>High Contrast</span>
+    </button>
+
+    <!-- Color Filter Picker -->
+    <button mat-menu-item [matMenuTriggerFor]="filterMenu">
+        <mat-icon>visibility</mat-icon>
+        <span>Color Filter</span>
+    </button>
+
+    <!-- Theme Color Picker -->
+    <button mat-menu-item [matMenuTriggerFor]="themeMenu">
+        <mat-icon>format_color_fill</mat-icon>
+        <span>Theme Color</span>
+    </button>
+</mat-menu>
+
+<!-- Sub-menu for Color Filters -->
+<mat-menu #filterMenu="matMenu">
+    @for (filter of themeService.getDaltonicFilters(); track filter.id) {
+    <button mat-menu-item (click)="preferencesService.setColorFilter(filter.id)">
+        <mat-icon *ngIf="themeService.activeColorFilter() === filter.id">check</mat-icon>
+        <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '0' : '40px'">
+            {{ filter.displayName }}</span>
+    </button>
+    }
+</mat-menu>
+
+<!-- Sub-menu for Themes -->
+<mat-menu #themeMenu="matMenu">
+    @for (theme of themeService.getThemes(); track theme.id) {
+    <button mat-menu-item (click)="preferencesService.setTheme(theme.id)">
+        <div class="theme-menu-item">
+            <div class="color-preview" [style.background-color]="theme.primary"></div>
+            <span>{{ theme.displayName }}</span>
+        </div>
+    </button>
+    }
+</mat-menu>

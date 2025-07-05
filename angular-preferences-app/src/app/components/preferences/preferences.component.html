@@ -1,1 +1,118 @@
-<p>preferences works!</p>
+<div class="content-wrapper">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="item-title">Dynamic Typography & Density Control</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <!-- Font Family -->
+            <div class="control-section">
+                <mat-form-field appearance="outline" class="full-width-field">
+                    <mat-label>Font Family</mat-label>
+                    <mat-select [value]="typographyService.activeFont().id" (selectionChange)="onFontChange($event)"
+                        aria-label="Select a font family">
+                        @for (font of typographyService.getFonts(); track font.id) {
+                        <mat-option [value]="font.id">{{ font.displayName }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Font Size -->
+            <div class="control-section">
+                <label id="font-size-label" class="slider-label">
+                    Base Font Size: <strong>{{ typographyService.activeFontSize().displayName }} ({{
+                        typographyService.activeFontSize().pixelValue }}px)</strong>
+                </label>
+                <mat-slider class="control-slider" [min]="minFontSizeIndex" [max]="maxFontSizeIndex" step="1" discrete>
+                    <input matSliderThumb [value]="fontSizeSliderIndex()" (input)="onFontSizeChange($event)"
+                        aria-labelledby="font-size-label">
+                </mat-slider>
+            </div>
+
+            <!-- Density -->
+            <div class="control-section">
+                <label id="density-slider-label" class="slider-label">
+                    Density: <strong>{{ currentDensity().displayName }}</strong>
+                </label>
+                <mat-slider class="control-slider" [min]="minDensityIndex" [max]="maxDensityIndex" step="1" discrete>
+                    <input matSliderThumb [value]="densitySliderIndex()" (input)="onDensityChange($event)"
+                        aria-labelledby="density-slider-label">
+                </mat-slider>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="item-title">Buttons & Indicators</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="button-row">
+                <button mat-button>Basic</button>
+                <button mat-raised-button>Raised</button>
+                <button mat-stroked-button>Stroked</button>
+                <button mat-fab matBadge="4" matBadgeColor="warn">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+            </div>
+            <div class="button-row">
+                <button mat-raised-button>Raised Accent</button>
+            </div>
+            <div class="button-row">
+                <button mat-raised-button>Raised Warn</button>
+            </div>
+            <p>Progress Bar</p>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            <p>Progress Spinner</p>
+            <mat-progress-spinner [diameter]="50" mode="indeterminate"></mat-progress-spinner>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="item-title">Form Controls</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Sample Input</mat-label>
+                <input matInput placeholder="Placeholder">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Choose an option</mat-label>
+                <mat-select>
+                    <mat-option value="1">Option 1</mat-option>
+                    <mat-option value="2">Option 2</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="row">
+                <mat-checkbox>Check me</mat-checkbox>
+                <mat-slide-toggle>Toggle me</mat-slide-toggle>
+            </div>
+
+            <mat-slider discrete>
+                <input matSliderThumb>
+            </mat-slider>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="item-title">Tabs & Chips</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group>
+                <mat-tab label="First"> Content 1 </mat-tab>
+                <mat-tab label="Second"> Content 2 </mat-tab>
+                <mat-tab label="Third"> Content 3 </mat-tab>
+            </mat-tab-group>
+
+            <mat-chip-listbox aria-label="Fish selection">
+                <mat-chip-option selected>Primary Chip</mat-chip-option>
+                <mat-chip-option>Accent Chip</mat-chip-option>
+            </mat-chip-listbox>
+        </mat-card-content>
+    </mat-card>
+</div>

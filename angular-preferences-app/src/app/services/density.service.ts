@@ -1,4 +1,4 @@
-import { effect, Injectable, signal } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Density } from "../models/density.model";
 
 @Injectable({
@@ -31,13 +31,4 @@ export class DensityService {
         }
     }
 
-    // --- EFFECTS ---
-    updateDensityClass = effect(() => {
-        const density = this.currentDensity();
-        const allDensityClasses = this.densities.map(d => d.id);
-
-        document.body.classList.remove(...allDensityClasses);
-
-        document.body.classList.add(density.id);
-    });
 }

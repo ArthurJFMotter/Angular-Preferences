@@ -1,4 +1,4 @@
-import { effect, Injectable, signal } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Theme } from "../models/theme.model";
 import { DaltonicFilter, DaltonicFilterType } from "../models/filter.model";
 
@@ -59,42 +59,4 @@ export class ThemeService {
     toggleHighContrastMode(): void {
         this.isHighContrastMode.update(value => !value);
     }
-
-    // --- EFFECTS ---
-    updateColorThemeClass = effect(() => {
-        const theme = this.currentTheme();
-        const themeClasses = this.themes.map((t) => `${t.id}-theme`);
-
-        document.body.classList.remove(...themeClasses);
-        document.body.classList.add(`${theme.id}-theme`);
-    });
-
-    updateDarkModeClass = effect(() => {
-        const isDark = this.isDarkMode();
-        if (isDark) {
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
-        }
-    });
-
-    updateHighContrastClass = effect(() => {
-        const isHighContrast = this.isHighContrastMode();
-        if (isHighContrast) {
-            document.body.classList.add('high-contrast-mode');
-        } else {
-            document.body.classList.remove('high-contrast-mode');
-        }
-    });
-
-    updateColorFilterClass = effect(() => {
-        const activeFilter = this.activeColorFilter();
-        
-        const allFilterClasses = this.daltonicFilters.map(f => `filter-${f.id}`);
-        document.body.classList.remove(...allFilterClasses);
-
-        if (activeFilter !== 'none') {
-            document.body.classList.add(`filter-${activeFilter}`);
-        }
-    });
 }
