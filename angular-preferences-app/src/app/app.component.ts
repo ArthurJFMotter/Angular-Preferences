@@ -22,6 +22,7 @@ import { TypographyService } from './services/typography.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { DensityService } from './services/density.service';
 import { Density } from './models/density.model';
+import { FontSizeConfig } from './models/typography.model';
 /* will be moved to an module */
 
 @Component({
@@ -59,13 +60,19 @@ export class AppComponent {
   themeService = inject(ThemeService);
   typographyService = inject(TypographyService);
 
-  // --- HANDLERS ---
+  // --- FONT SIZE STATE & HANDLERS ---
+  fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
+  activeFontSize = this.typographyService.activeFontSize;
+  fontSizeSliderIndex = signal(
+    this.fontSizes.findIndex(s => s.id === this.activeFontSize().id)
+  );
+  minFontSizeIndex = 0;
+  maxFontSizeIndex = this.fontSizes.length - 1;
+
   onFontSizeChange(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    const newSize = parseFloat(value);
-    if (!isNaN(newSize)) {
-      this.typographyService.setBaseFontSize(newSize);
-    }
+    const slider = event.target as HTMLInputElement;
+    const newIndex = Number(slider.value);
+    this.fontSizeSliderIndex.set(newIndex);
   }
 
   // --- Signals from the Service ---
@@ -84,7 +91,24 @@ export class AppComponent {
   currentDensityDisplayName = computed(() => this.currentDensity().displayName);
 
   constructor() {
-    // --- Effect to Update the Service ---
+    // --- Effect to update Font Size Service ---
+    effect(() => {
+      const index = this.fontSizeSliderIndex();
+      const selectedSize = this.fontSizes[index];
+      if (selectedSize && selectedSize.id !== this.activeFontSize().id) {
+        this.typographyService.setFontSize(selectedSize.id);
+      }
+    });
+    
+    // --- Effect to sync Font Size Slider from Service ---
+    effect(() => {
+      const newIndex = this.fontSizes.findIndex(s => s.id === this.activeFontSize().id);
+      if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
+        this.fontSizeSliderIndex.set(newIndex);
+      }
+    });
+    
+    // --- Effect to Update the Density Service ---
     effect(() => {
       const index = this.sliderIndex();
       const selectedDensity = this.densities[index];

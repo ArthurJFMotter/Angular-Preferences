@@ -5,3 +5,9 @@ export interface FontConfig {
   brandFamily: string; 
   cssClass: string; 
 }
+
+export interface FontSizeConfig {
+  id: string;
+  displayName: string;
+  pixelValue: number;
+}

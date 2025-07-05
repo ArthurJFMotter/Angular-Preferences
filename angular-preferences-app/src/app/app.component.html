@@ -56,11 +56,11 @@
 
     <div>
       <label id="font-size-label" class="slider-label">
-        Base Font Size: <strong>{{ typographyService.fontSize() }}px</strong>
+        Base Font Size: <strong>{{ typographyService.activeFontSize().displayName }} ({{
+          typographyService.activeFontSize().pixelValue }}px)</strong>
       </label>
-      <mat-slider class="font-slider" [min]="typographyService.minFontSize" [max]="typographyService.maxFontSize"
-        step="0.5" discrete>
-        <input matSliderThumb [value]="typographyService.fontSize()" (input)="onFontSizeChange($event)"
+      <mat-slider class="font-slider" [min]="minFontSizeIndex" [max]="maxFontSizeIndex" step="1" discrete>
+        <input matSliderThumb [value]="fontSizeSliderIndex()" (input)="onFontSizeChange($event)"
           aria-labelledby="font-size-label">
       </mat-slider>
     </div>

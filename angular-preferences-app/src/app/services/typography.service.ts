@@ -1,6 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, signal, inject, PLATFORM_ID } from '@angular/core';
-import { FontConfig } from '../models/typography.model';
+import { FontConfig, FontSizeConfig } from '../models/typography.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,37 +16,52 @@ export class TypographyService {
     { id: 'montserrat-lato', displayName: 'Montserrat / Lato', plainFamily: 'Montserrat', brandFamily: 'Lato', cssClass: 'font-montserrat-lato' },
     { id: 'source-serif-sans', displayName: 'Source Serif / Source Sans', plainFamily: 'Source Serif Pro', brandFamily: 'Source Sans Pro', cssClass: 'font-source-serif-sans' }
   ];
-  public readonly defaultFont = this.availableFonts[0];
+  public readonly defaultFont = this.availableFonts[0]; // Roboto / Open Sans
 
   // --- Font State Management ---
   private readonly _activeFont = signal<FontConfig>(this.defaultFont);
   public readonly activeFont = this._activeFont.asReadonly();
 
   // --- Font Size Configuration ---
-  public readonly defaultFontSize = 16;
-  public readonly minFontSize = 12;
-  public readonly maxFontSize = 24;
+  private readonly availableFontSizes: FontSizeConfig[] = [
+    { id: 'x-small', displayName: 'Minúscula', pixelValue: 12 },
+    { id: 'small',   displayName: 'Pequena',   pixelValue: 14 },
+    { id: 'medium',  displayName: 'Média',  pixelValue: 16 },
+    { id: 'large',   displayName: 'Grande',   pixelValue: 18 },
+    { id: 'x-large', displayName: 'Gigante', pixelValue: 20 },
+  ];
+  public readonly defaultFontSize = this.availableFontSizes[2]; // Medium (16px)
 
   // --- Font Size State Management with Signals ---
-  private readonly _fontSize = signal<number>(this.defaultFontSize);
-  public readonly fontSize = this._fontSize.asReadonly();
+  private readonly _activeFontSize = signal<FontSizeConfig>(this.defaultFontSize);
+  public readonly activeFontSize = this._activeFontSize.asReadonly();
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       // Set initial font size
-      this.setBaseFontSize(this.defaultFontSize);
+      this.setFontSize(this.defaultFontSize.id);
       // Set initial font family
       this.setFont(this.defaultFont.id);
     }
   }
 
   // --- Font Size Methods ---
-  public setBaseFontSize(sizeInPx: number): void {
-    const newSize = Math.max(this.minFontSize, Math.min(sizeInPx, this.maxFontSize));
-    this._fontSize.set(newSize);
+  public getFontSizes(): FontSizeConfig[] {
+    return this.availableFontSizes;
+  }
+
+  public setFontSize(sizeId: string): void {
+    const newSize = this.availableFontSizes.find(s => s.id === sizeId);
+    if (!newSize) {
+      console.warn(`Font size with id "${sizeId}" not found. Reverting to default.`);
+      this.setFontSize(this.defaultFontSize.id);
+      return;
+    }
+
+    this._activeFontSize.set(newSize);
 
     if (isPlatformBrowser(this.platformId)) {
-      this.document.documentElement.style.setProperty('--app-typography', `${newSize}px`);
+      this.document.documentElement.style.setProperty('--app-typography', `${newSize.pixelValue}px`);
     }
   }
 
