@@ -8,17 +8,17 @@ import { DaltonicFilter, DaltonicFilterType } from "../models/filter.model";
 export class ThemeService {
 
     private readonly themes: Theme[] = [
-        { id: 'blue', primary: '#0047AB', displayName: 'Azul' },
-        { id: 'teal', primary: '#006A6A', displayName: 'Ciano' },
-        { id: 'orange', primary: '#894A00', displayName: 'Laranja' },
-        { id: 'pink', primary: '#9C405C', displayName: 'Rosa' },
-        { id: 'purple', primary: '#6750A4', displayName: 'Roxo' },
-        { id: 'green', primary: '#028A0F', displayName: 'Verde' },
-        { id: 'red', primary: '#A91B0D', displayName: 'Vermelho' },
+        { id: 'blue', primary: '#0047AB', displayName: 'Blue' },
+        { id: 'teal', primary: '#006A6A', displayName: 'Teal' },
+        { id: 'orange', primary: '#894A00', displayName: 'Orange' },
+        { id: 'pink', primary: '#9C405C', displayName: 'Pink' },
+        { id: 'purple', primary: '#6750A4', displayName: 'Purple' },
+        { id: 'green', primary: '#028A0F', displayName: 'Green' },
+        { id: 'red', primary: '#A91B0D', displayName: 'Red' },
     ];
 
      private readonly daltonicFilters: DaltonicFilter[] = [
-        { id: 'none', displayName: 'Padrão' },
+        { id: 'none', displayName: 'Default' },
         { id: 'protanopia', displayName: 'Protanopia' },
         { id: 'deuteranopia', displayName: 'Deuteranopia' },
         { id: 'tritanopia', displayName: 'Tritanopia' },

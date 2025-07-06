@@ -4,24 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatBadgeModule } from '@angular/material/badge';
 import { TypographyService } from '../../services/typography.service';
 import { DensityService } from '../../services/density.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { FontSizeConfig } from '../../models/typography.model';
 import { Density } from '../../models/density.model';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-preferences',
@@ -29,22 +24,16 @@ import { Density } from '../../models/density.model';
   imports: [
     CommonModule,
     FormsModule,
-    MatBadgeModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatChipsModule,
-    MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatMenuModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
     MatSelectModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatTabsModule,
   ],
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
@@ -54,6 +43,7 @@ export class PreferencesComponent {
   densityService = inject(DensityService);
   typographyService = inject(TypographyService);
   preferencesService = inject(PreferencesService);
+  themeService = inject(ThemeService);
 
   // --- FONT SIZE STATE ---
   private readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();

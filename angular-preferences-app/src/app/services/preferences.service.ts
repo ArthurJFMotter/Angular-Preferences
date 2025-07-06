@@ -1,4 +1,4 @@
-import { effect, Injectable, signal, inject, PLATFORM_ID } from "@angular/core";
+import { effect, Injectable, inject, PLATFORM_ID } from "@angular/core";
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { DensityService } from "./density.service";
 import { ThemeService } from "./theme.service";
@@ -100,6 +100,7 @@ export class PreferencesService {
     // --- Centralized DOM Effects ---
     private updateColorThemeClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         const theme = this.themeService.currentTheme();
         const themeClasses = this.themeService.getThemes().map((t) => `${t.id}-theme`);
         this.document.body.classList.remove(...themeClasses);
@@ -108,16 +109,19 @@ export class PreferencesService {
 
     private updateDarkModeClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         this.document.body.classList.toggle('dark-mode', this.themeService.isDarkMode());
     });
 
     private updateHighContrastClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         this.document.body.classList.toggle('high-contrast-mode', this.themeService.isHighContrastMode());
     });
 
     private updateColorFilterClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         const activeFilter = this.themeService.activeColorFilter();
         const allFilterClasses = this.themeService.getDaltonicFilters().map(f => `filter-${f.id}`);
         this.document.body.classList.remove(...allFilterClasses);
@@ -128,6 +132,7 @@ export class PreferencesService {
 
     private updateDensityClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         const density = this.densityService.currentDensity();
         const allDensityClasses = this.densityService.getDensities().map(d => d.id);
         this.document.body.classList.remove(...allDensityClasses);
@@ -136,12 +141,14 @@ export class PreferencesService {
 
     private updateFontSize = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         const newSize = this.typographyService.activeFontSize();
         this.document.documentElement.style.setProperty('--app-typography', `${newSize.pixelValue}px`);
     });
 
     private updateFontFamily = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
+
         const newFont = this.typographyService.activeFont();
         this.typographyService.getFonts().forEach(font => {
             this.document.documentElement.classList.remove(font.cssClass);

@@ -19,11 +19,11 @@ export class TypographyService {
 
   // --- Font Size Configuration ---
   private readonly availableFontSizes: FontSizeConfig[] = [
-    { id: 'x-small', displayName: 'Minúscula', pixelValue: 12 },
-    { id: 'small',   displayName: 'Pequena',   pixelValue: 14 },
-    { id: 'medium',  displayName: 'Média',  pixelValue: 16 },
-    { id: 'large',   displayName: 'Grande',   pixelValue: 18 },
-    { id: 'x-large', displayName: 'Gigante', pixelValue: 20 },
+    { id: 'x-small', displayName: 'Tiny', pixelValue: 12 },
+    { id: 'small',   displayName: 'Small',   pixelValue: 14 },
+    { id: 'medium',  displayName: 'Medium',  pixelValue: 16 },
+    { id: 'large',   displayName: 'Large',   pixelValue: 18 },
+    { id: 'x-large', displayName: 'Giant', pixelValue: 20 },
   ];
   public readonly defaultFontSize = this.availableFontSizes[2];
 

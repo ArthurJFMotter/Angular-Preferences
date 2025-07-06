@@ -1,35 +1,40 @@
 .content-wrapper {
-    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 1.5rem;
 }
 
 .control-section {
-    margin-bottom: 1.5rem;
+
+    &.row{ flex-direction: row; }
+
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
+    margin-bottom: 1.5rem;
 
-.slider-label {
-    margin-bottom: -10px; // Adjust layout for mat-slider
+    @media(max-width: 900px){
+        flex-direction: column !important;
+    }
+
+    .full-width-field{
+        width: 100%;
+    }
+
+    .short-width-field{
+        min-width: 8rem;
+        max-width: 12rem;
+        width: 100%;
+    }
 }
 
 .control-slider {
     width: 100%;
 }
 
-.item-title{
-    margin-bottom: 1rem;
-}
-
-.button-row, .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    align-items: center;
+.item-title {
+    padding-bottom: 1.5rem;
 }
