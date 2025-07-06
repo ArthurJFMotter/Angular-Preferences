@@ -1,6 +1,6 @@
 <div class="preferences-fab-container">
     <button mat-fab [matMenuTriggerFor]="preferencesMenu"
-        aria-label="Open accessibility and theme preferences">
+        i18n-aria-label="@@prefsHelperAriaOpenMenu" aria-label="Open accessibility and theme preferences">
         <mat-icon>settings</mat-icon>
     </button>
 </div>
@@ -9,25 +9,27 @@
     <!-- Dark Mode Toggle Button -->
     <button mat-menu-item (click)="preferencesService.toggleDarkMode()">
         <mat-icon>{{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
-        <span>{{ themeService.isDarkMode() ? 'Light Mode' : 'Dark Mode' }}</span>
+        <!-- Use *ngIf to handle dynamic translation -->
+        <span *ngIf="themeService.isDarkMode()" i18n="@@prefsHelperLightMode">Light Mode</span>
+        <span *ngIf="!themeService.isDarkMode()" i18n="@@prefsHelperDarkMode">Dark Mode</span>
     </button>
 
     <!-- High Contrast Toggle Button -->
     <button mat-menu-item (click)="preferencesService.toggleHighContrastMode()">
         <mat-icon>contrast</mat-icon>
-        <span>High Contrast</span>
+        <span i18n="@@prefsHelperHighContrast">High Contrast</span>
     </button>
 
     <!-- Color Filter Picker -->
     <button mat-menu-item [matMenuTriggerFor]="filterMenu">
         <mat-icon>visibility</mat-icon>
-        <span>Color Filter</span>
+        <span i18n="@@prefsHelperColorFilter">Color Filter</span>
     </button>
 
     <!-- Theme Color Picker -->
     <button mat-menu-item [matMenuTriggerFor]="themeMenu">
         <mat-icon>format_color_fill</mat-icon>
-        <span>Theme Color</span>
+        <span i18n="@@prefsHelperThemeColor">Theme Color</span>
     </button>
 </mat-menu>
 
@@ -37,6 +39,7 @@
     <button mat-menu-item (click)="preferencesService.setColorFilter(filter.id)">
         <mat-icon *ngIf="themeService.activeColorFilter() === filter.id">check</mat-icon>
         <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '0' : '40px'">
+            <!-- This is already translated from the service, so no i18n tag is needed here -->
             {{ filter.displayName }}</span>
     </button>
     }
@@ -48,6 +51,7 @@
     <button mat-menu-item (click)="preferencesService.setTheme(theme.id)">
         <div class="theme-menu-item">
             <div class="color-preview" [style.background-color]="theme.primary"></div>
+            <!-- This is already translated from the service, so no i18n tag is needed here -->
             <span>{{ theme.displayName }}</span>
         </div>
     </button>

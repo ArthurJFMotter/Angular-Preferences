@@ -356,6 +356,54 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
+            <trans-unit id="prefsHelperAriaOpenMenu" datatype="html">
+        <source>Open accessibility and theme preferences</source>
+        <target>Abrir preferências de acessibilidade e tema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperLightMode" datatype="html">
+        <source>Light Mode</source>
+        <target>Modo Claro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperDarkMode" datatype="html">
+        <source>Dark Mode</source>
+        <target>Modo Escuro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperHighContrast" datatype="html">
+        <source>High Contrast</source>
+        <target>Alto Contraste</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperColorFilter" datatype="html">
+        <source>Color Filter</source>
+        <target>Filtro de Cor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperThemeColor" datatype="html">
+        <source>Theme Color</source>
+        <target>Cor do Tema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
