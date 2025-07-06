@@ -13,6 +13,12 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "es": "src/locale/messages.es.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -57,6 +63,9 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "es": {
+              "localize": ["es"]
             }
           },
           "defaultConfiguration": "production"
@@ -69,6 +78,9 @@
             },
             "development": {
               "buildTarget": "angular-preferences-app:build:development"
+            },
+            "es": {
+              "buildTarget": "angular-preferences-app:build:development,es"
             }
           },
           "defaultConfiguration": "development"

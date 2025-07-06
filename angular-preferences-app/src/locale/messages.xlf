@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="prefsLanguageTitle" datatype="html">
+        <source>Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsLanguageLabel" datatype="html">
+        <source>Select Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsAriaSelectLanguage" datatype="html">
+        <source>Select a language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsAppearanceTitle" datatype="html">
+        <source>Appearance &amp; Accessibility</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsThemeLabel" datatype="html">
+        <source>Theme Color</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsAriaSelectThemeColor" datatype="html">
+        <source>Select a theme color</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsColorFilterLabel" datatype="html">
+        <source>Color Vision Filter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsAriaSelectColorVisionFilter" datatype="html">
+        <source>Select a color vision filter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsDarkModeToggle" datatype="html">
+        <source>Dark Mode</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHighContrastToggle" datatype="html">
+        <source>High Contrast Mode</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsTypographyTitle" datatype="html">
+        <source>Typography</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsFontFamilyLabel" datatype="html">
+        <source>Font Family</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">83,84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsAriaSelectFontFamily" datatype="html">
+        <source>Select a font family</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsBaseFontSizeLabel" datatype="html">
+        <source> Base Font Size: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
+                        typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">96,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsBaseDensityLabel" datatype="html">
+        <source> Density: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="densityDefault" datatype="html">
+        <source>Default</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/density.service.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="densityCompact1" datatype="html">
+        <source>Compact (-1)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/density.service.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="densityCompact2" datatype="html">
+        <source>Compact (-2)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/density.service.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="densityCompact3" datatype="html">
+        <source>Compact (-3)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/density.service.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="densityCompact4" datatype="html">
+        <source>Compact (-4)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/density.service.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="densityMax" datatype="html">
+        <source>Max (-5)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/density.service.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="localeEnglish" datatype="html">
+        <source>English</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/i18n.service.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="localeSpanish" datatype="html">
+        <source>Español</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/i18n.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themeBlue" datatype="html">
+        <source>Blue</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themeTeal" datatype="html">
+        <source>Teal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themeOrange" datatype="html">
+        <source>Orange</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themePink" datatype="html">
+        <source>Pink</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themePurple" datatype="html">
+        <source>Purple</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themeGreen" datatype="html">
+        <source>Green</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="themeRed" datatype="html">
+        <source>Red</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filterNone" datatype="html">
+        <source>Default</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filterProtanopia" datatype="html">
+        <source>Protanopia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filterDeuteranopia" datatype="html">
+        <source>Deuteranopia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filterTritanopia" datatype="html">
+        <source>Tritanopia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filterAcromatopsia" datatype="html">
+        <source>Acromatopsia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/theme.service.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontRobotoOpenSans" datatype="html">
+        <source>Roboto / Open Sans</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontMontserratLato" datatype="html">
+        <source>Montserrat / Lato</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontSourceSerifSans" datatype="html">
+        <source>Source Serif / Source Sans</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontSizeTiny" datatype="html">
+        <source>Tiny</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontSizeSmall" datatype="html">
+        <source>Small</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontSizeMedium" datatype="html">
+        <source>Medium</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontSizeLarge" datatype="html">
+        <source>Large</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontSizeGiant" datatype="html">
+        <source>Giant</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

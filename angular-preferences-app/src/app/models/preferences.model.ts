@@ -1,6 +1,7 @@
 import { DaltonicFilterType } from "./filter.model";
 
 export interface UserPreferences {
+    localeId: string;
     themeId: string;
     isDarkMode: boolean;
     isHighContrastMode: boolean;

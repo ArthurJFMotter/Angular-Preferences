@@ -8,21 +8,21 @@ import { DaltonicFilter, DaltonicFilterType } from "../models/filter.model";
 export class ThemeService {
 
     private readonly themes: Theme[] = [
-        { id: 'blue', primary: '#0047AB', displayName: 'Blue' },
-        { id: 'teal', primary: '#006A6A', displayName: 'Teal' },
-        { id: 'orange', primary: '#894A00', displayName: 'Orange' },
-        { id: 'pink', primary: '#9C405C', displayName: 'Pink' },
-        { id: 'purple', primary: '#6750A4', displayName: 'Purple' },
-        { id: 'green', primary: '#028A0F', displayName: 'Green' },
-        { id: 'red', primary: '#A91B0D', displayName: 'Red' },
+        { id: 'blue', primary: '#0047AB', displayName: $localize`:@@themeBlue:Blue` },
+        { id: 'teal', primary: '#006A6A', displayName: $localize`:@@themeTeal:Teal` },
+        { id: 'orange', primary: '#894A00', displayName: $localize`:@@themeOrange:Orange` },
+        { id: 'pink', primary: '#9C405C', displayName: $localize`:@@themePink:Pink` },
+        { id: 'purple', primary: '#6750A4', displayName: $localize`:@@themePurple:Purple` },
+        { id: 'green', primary: '#028A0F', displayName: $localize`:@@themeGreen:Green` },
+        { id: 'red', primary: '#A91B0D', displayName: $localize`:@@themeRed:Red` },
     ];
 
-     private readonly daltonicFilters: DaltonicFilter[] = [
-        { id: 'none', displayName: 'Default' },
-        { id: 'protanopia', displayName: 'Protanopia' },
-        { id: 'deuteranopia', displayName: 'Deuteranopia' },
-        { id: 'tritanopia', displayName: 'Tritanopia' },
-        { id: 'achromatopsia', displayName: 'Acromatopsia' },
+    private readonly daltonicFilters: DaltonicFilter[] = [
+        { id: 'none', displayName: $localize`:@@filterNone:Default` },
+        { id: 'protanopia', displayName: $localize`:@@filterProtanopia:Protanopia` },
+        { id: 'deuteranopia', displayName: $localize`:@@filterDeuteranopia:Deuteranopia` },
+        { id: 'tritanopia', displayName: $localize`:@@filterTritanopia:Tritanopia` },
+        { id: 'achromatopsia', displayName: $localize`:@@filterAcromatopsia:Acromatopsia` },
     ];
 
     // --- STATE ---

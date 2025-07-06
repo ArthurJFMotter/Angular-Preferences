@@ -5,6 +5,7 @@ import { ThemeService } from "./theme.service";
 import { TypographyService } from "./typography.service";
 import { DaltonicFilterType } from "../models/filter.model";
 import { UserPreferences } from "../models/preferences.model";
+import { I18nService } from "./i18n.service";
 
 const STORAGE_KEY = 'user-app-preferences';
 
@@ -17,6 +18,7 @@ export class PreferencesService {
 
     // Inject the individual services
     private densityService = inject(DensityService);
+    private i18nService = inject(I18nService);
     private themeService = inject(ThemeService);
     private typographyService = inject(TypographyService);
 
@@ -32,6 +34,12 @@ export class PreferencesService {
             const savedPrefs = localStorage.getItem(STORAGE_KEY);
             if (savedPrefs) {
                 const prefs: UserPreferences = JSON.parse(savedPrefs);
+                // If saved locale is different from current, redirect
+                if (prefs.localeId && prefs.localeId !== this.i18nService.currentLocale) {
+                    this.setLocale(prefs.localeId);
+                    return; // Stop loading other prefs, as page will reload
+                }
+
                 // Apply loaded preferences to services
                 this.themeService.setTheme(prefs.themeId ?? this.themeService.getThemes()[0].id);
                 this.themeService.isDarkMode.set(prefs.isDarkMode ?? false);
@@ -46,9 +54,10 @@ export class PreferencesService {
         }
     }
 
-    private savePreferences(): void {
+    private savePreferences(localeOverride?: string): void {
         if (isPlatformBrowser(this.platformId)) {
             const prefs: UserPreferences = {
+                localeId: localeOverride ?? this.i18nService.currentLocale,
                 themeId: this.themeService.currentTheme().id,
                 isDarkMode: this.themeService.isDarkMode(),
                 isHighContrastMode: this.themeService.isHighContrastMode(),
@@ -62,23 +71,13 @@ export class PreferencesService {
     }
 
     // --- Public Actions ---
-    public setTheme(themeId: string): void {
-        this.themeService.setTheme(themeId);
-        this.savePreferences();
-    }
-
-    public toggleDarkMode(): void {
-        this.themeService.toggleDarkMode();
-        this.savePreferences();
-    }
-
-    public toggleHighContrastMode(): void {
-        this.themeService.toggleHighContrastMode();
-        this.savePreferences();
-    }
-
-    public setColorFilter(filterId: DaltonicFilterType): void {
+     public setColorFilter(filterId: DaltonicFilterType): void {
         this.themeService.setColorFilter(filterId);
+        this.savePreferences();
+    }
+
+    public setDensity(value: number): void {
+        this.densityService.setDensity(value);
         this.savePreferences();
     }
 
@@ -92,8 +91,34 @@ export class PreferencesService {
         this.savePreferences();
     }
 
-    public setDensity(value: number): void {
-        this.densityService.setDensity(value);
+    public setLocale(localeId: string): void {
+        if (isPlatformBrowser(this.platformId) && localeId !== this.i18nService.currentLocale) {
+            this.savePreferences(localeId); // Save before redirecting
+            
+            const currentPath = this.document.location.pathname;
+            // Replace the current locale prefix with the new one
+            const newPath = currentPath.replace(
+                `/${this.i18nService.currentLocale}/`, 
+                `/${localeId}/`
+            );
+
+            // Redirect to the new locale's URL
+            this.document.location.href = newPath + this.document.location.search;
+        }
+    }
+
+    public setTheme(themeId: string): void {
+        this.themeService.setTheme(themeId);
+        this.savePreferences();
+    }
+
+    public toggleDarkMode(): void {
+        this.themeService.toggleDarkMode();
+        this.savePreferences();
+    }
+
+    public toggleHighContrastMode(): void {
+        this.themeService.toggleHighContrastMode();
         this.savePreferences();
     }
 

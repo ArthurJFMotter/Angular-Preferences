@@ -17,6 +17,7 @@ import { PreferencesService } from '../../services/preferences.service';
 import { FontSizeConfig } from '../../models/typography.model';
 import { Density } from '../../models/density.model';
 import { ThemeService } from '../../services/theme.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-preferences',
@@ -41,9 +42,10 @@ import { ThemeService } from '../../services/theme.service';
 export class PreferencesComponent {
   // --- SERVICES ---
   densityService = inject(DensityService);
-  typographyService = inject(TypographyService);
+  i18nService = inject(I18nService);
   preferencesService = inject(PreferencesService);
   themeService = inject(ThemeService);
+  typographyService = inject(TypographyService);
 
   // --- FONT SIZE STATE ---
   private readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
@@ -64,6 +66,11 @@ export class PreferencesComponent {
   }
 
   // --- EVENT HANDLERS ---
+  onDensityChange(event: Event): void {
+    const newIndex = Number((event.target as HTMLInputElement).value);
+    this.densitySliderIndex.set(newIndex);
+  }
+
   onFontChange(event: MatSelectChange): void {
     this.preferencesService.setFont(event.value);
   }
@@ -73,9 +80,8 @@ export class PreferencesComponent {
     this.fontSizeSliderIndex.set(newIndex);
   }
 
-  onDensityChange(event: Event): void {
-    const newIndex = Number((event.target as HTMLInputElement).value);
-    this.densitySliderIndex.set(newIndex);
+  onLocaleChange(localeId: string): void {
+    this.preferencesService.setLocale(localeId);
   }
 
   private setupEffects(): void {
