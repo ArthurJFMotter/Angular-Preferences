@@ -34,11 +34,6 @@ export class PreferencesService {
             const savedPrefs = localStorage.getItem(STORAGE_KEY);
             if (savedPrefs) {
                 const prefs: UserPreferences = JSON.parse(savedPrefs);
-                // If saved locale is different from current, redirect
-                if (prefs.localeId && prefs.localeId !== this.i18nService.currentLocale) {
-                    this.setLocale(prefs.localeId);
-                    return; // Stop loading other prefs, as page will reload
-                }
 
                 // Apply loaded preferences to services
                 this.themeService.setTheme(prefs.themeId ?? this.themeService.getThemes()[0].id);
@@ -71,7 +66,7 @@ export class PreferencesService {
     }
 
     // --- Public Actions ---
-     public setColorFilter(filterId: DaltonicFilterType): void {
+    public setColorFilter(filterId: DaltonicFilterType): void {
         this.themeService.setColorFilter(filterId);
         this.savePreferences();
     }
@@ -92,19 +87,43 @@ export class PreferencesService {
     }
 
     public setLocale(localeId: string): void {
-        if (isPlatformBrowser(this.platformId) && localeId !== this.i18nService.currentLocale) {
-            this.savePreferences(localeId); // Save before redirecting
-            
-            const currentPath = this.document.location.pathname;
-            // Replace the current locale prefix with the new one
-            const newPath = currentPath.replace(
-                `/${this.i18nService.currentLocale}/`, 
-                `/${localeId}/`
-            );
-
-            // Redirect to the new locale's URL
-            this.document.location.href = newPath + this.document.location.search;
+        if (!isPlatformBrowser(this.platformId)) {
+            return;
         }
+
+        this.savePreferences(localeId);
+
+        const sourceLocale = 'en-US'; 
+
+        const localeUrlPrefixes = this.i18nService.supportedLocales
+            .map(l => l.id)
+            .filter(id => id !== sourceLocale)
+            .map(id => `/${id}`);
+
+        let currentPath = this.document.location.pathname;
+
+        // --- AGGRESSIVELY CLEAN THE CURRENT PATH ---
+        let wasStripped;
+        do {
+            wasStripped = false;
+            for (const prefix of localeUrlPrefixes) {
+                if (currentPath.startsWith(prefix + '/') || currentPath === prefix) {
+                    currentPath = currentPath.substring(prefix.length);
+                    if (currentPath === '') {
+                        currentPath = '/'; 
+                    }
+                    wasStripped = true;
+                    break; 
+                }
+            }
+        } while (wasStripped);
+
+        const newPrefix = localeId === sourceLocale ? '' : `/${localeId}`;
+        const newPath = newPrefix + currentPath;
+
+        // Reconstruct the final URL and redirect
+        const finalUrl = this.document.location.origin + newPath + this.document.location.search;
+        this.document.location.href = finalUrl;
     }
 
     public setTheme(themeId: string): void {

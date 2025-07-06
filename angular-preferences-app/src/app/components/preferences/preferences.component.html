@@ -1,12 +1,12 @@
 <div class="content-wrapper">
-    <!-- NEW: Language Card -->
+    <!-- Language Card -->
     <mat-card>
         <mat-card-header>
             <mat-card-title class="item-title" i18n="@@prefsLanguageTitle">Language</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <section class="control-section">
-                <!-- bugged, do not use [will be fixed later]-->
+                <!-- need prod testing -->
                 <mat-form-field appearance="outline" class="full-width-field">
                     <mat-label i18n="@@prefsLanguageLabel">Select Language</mat-label>
                     <mat-select [value]="i18nService.currentLocale" (selectionChange)="onLocaleChange($event.value)"
@@ -20,6 +20,7 @@
         </mat-card-content>
     </mat-card>
 
+    <!-- Appearance/Accessibility Card -->
     <mat-card>
         <mat-card-header>
             <mat-card-title class="item-title" i18n="@@prefsAppearanceTitle">Appearance & Accessibility</mat-card-title>
@@ -72,6 +73,7 @@
         </mat-card-content>
     </mat-card>
 
+    <!-- Typography Card -->
     <mat-card>
         <mat-card-header>
             <mat-card-title class="item-title" i18n="@@prefsTypographyTitle">Typography</mat-card-title>
