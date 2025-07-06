@@ -38,12 +38,13 @@ describe('PreferencesComponent', () => {
     activeColorFilter: signal('none'),
   };
 
-  // NEW: Mock for the I18nService
+  // Mock for the I18nService
   const mockI18nService = {
     currentLocale: 'en-US',
     supportedLocales: [
       { id: 'en-US', displayName: 'English' },
       { id: 'es', displayName: 'Español' },
+      { id: 'pt', displayName: 'Português (Brasil)' },
     ],
   };
 
@@ -57,7 +58,7 @@ describe('PreferencesComponent', () => {
       'setFont',
       'setFontSize',
       'setDensity',
-      'setLocale' // Add the new method
+      'setLocale'
     ]);
 
     await TestBed.configureTestingModule({
@@ -67,7 +68,7 @@ describe('PreferencesComponent', () => {
         { provide: TypographyService, useValue: mockTypographyService },
         { provide: ThemeService, useValue: mockThemeService },
         { provide: PreferencesService, useValue: preferencesServiceSpy },
-        { provide: I18nService, useValue: mockI18nService }, // Provide the new mock
+        { provide: I18nService, useValue: mockI18nService },
       ]
     })
       .compileComponents();
@@ -94,7 +95,7 @@ describe('PreferencesComponent', () => {
     expect(displayedValue.trim()).toBe('English');
   });
 
-  it('should call preferencesService.setLocale when a new language is selected', () => {
+  it('should call preferencesService.setLocale when Spanish is selected', () => {
     const newLocaleId = 'es';
 
     // Find the select trigger and click it to open the options panel
@@ -117,6 +118,29 @@ describe('PreferencesComponent', () => {
     expect(mockPreferencesService.setLocale).toHaveBeenCalledTimes(1);
   });
   
+  it('should call preferencesService.setLocale when Portuguese (Brazil) is selected', () => {
+    const newLocaleId = 'pt';
+
+    // Find the select trigger and click it to open the options panel
+    const selectTrigger = fixture.nativeElement.querySelector('mat-select[aria-label="Select a language"]');
+    selectTrigger.click();
+    fixture.detectChanges();
+
+    // Mat-option elements are in an overlay attached to the document body
+    const options = document.querySelectorAll('mat-option');
+    const portugueseOption = Array.from(options).find(opt => opt.textContent?.trim() === 'Português (Brasil)');
+    
+    expect(portugueseOption).withContext('The "Português (Brasil)" option should be found').toBeTruthy();
+
+    // Click the Portuguese option
+    (portugueseOption as HTMLElement).click();
+    fixture.detectChanges();
+
+    // Verify that the service method was called with the correct locale ID
+    expect(mockPreferencesService.setLocale).toHaveBeenCalledWith(newLocaleId);
+    expect(mockPreferencesService.setLocale).toHaveBeenCalledTimes(1);
+  });
+
   it('should call preferencesService.toggleDarkMode on slide toggle change', () => {
     const darkModeToggle = fixture.nativeElement.querySelector('mat-slide-toggle[i18n="@@prefsDarkModeToggle"] input');
     darkModeToggle.click();

@@ -13,6 +13,7 @@ export class I18nService {
     // Use $localize so these names are also translated
     { id: 'en-US', displayName: $localize`:@@localeEnglish:English` },
     { id: 'es', displayName: $localize`:@@localeSpanish:Español` },
+    { id: 'pt', displayName: $localize`:@@localePortuguese:Português (Brasil)` },
   ];
 
   constructor() {

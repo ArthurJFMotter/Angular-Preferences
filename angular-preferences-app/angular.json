@@ -16,7 +16,8 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "es": "src/locale/messages.es.xlf"
+          "es": "src/locale/messages.es.xlf",
+          "pt": "src/locale/messages.pt.xlf"
         }
       },
       "architect": {
@@ -70,6 +71,12 @@
                 "es"
               ],
               "baseHref": "/es/"
+            },
+            "pt": {
+              "localize": [
+                "pt"
+              ],
+              "baseHref": "/pt/"
             }
           },
           "defaultConfiguration": "production"
@@ -85,6 +92,9 @@
             },
             "es": {
               "buildTarget": "angular-preferences-app:build:development,es"
+            },
+            "pt": {
+              "buildTarget": "angular-preferences-app:build:development,pt"
             }
           },
           "defaultConfiguration": "development"

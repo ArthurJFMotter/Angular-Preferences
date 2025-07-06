@@ -10,7 +10,7 @@
                 <mat-form-field appearance="outline" class="full-width-field">
                     <mat-label i18n="@@prefsLanguageLabel">Select Language</mat-label>
                     <mat-select [value]="i18nService.currentLocale" (selectionChange)="onLocaleChange($event.value)"
-                        i18n-aria-label="@@prefsAriaSelectLanguage" aria-label="Select a language">
+                        i18n-aria-label="@@prefsAriaSelectLanguage" aria-label="Select a language" disabled="true">
                         @for (locale of i18nService.supportedLocales; track locale.id) {
                         <mat-option [value]="locale.id">{{ locale.displayName }}</mat-option>
                         }

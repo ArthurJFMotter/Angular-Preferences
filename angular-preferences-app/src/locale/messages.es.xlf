@@ -188,6 +188,14 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="localePortuguese" datatype="html">
+        <source>Português (Brasil)</source>
+        <target>Portugués (Brasil)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/i18n.service.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="themeBlue" datatype="html">
         <source>Blue</source>
         <target>Azul</target>
