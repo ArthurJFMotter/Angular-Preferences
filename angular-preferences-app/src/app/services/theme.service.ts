@@ -26,10 +26,11 @@ export class ThemeService {
     ];
 
     // --- STATE ---
+    activeColorFilter = signal<DaltonicFilterType>('none');
     currentTheme = signal<Theme>(this.themes[0]);
     isDarkMode = signal<boolean>(false);
     isHighContrastMode = signal<boolean>(false);
-    activeColorFilter = signal<DaltonicFilterType>('none');
+    isReducedMotion = signal<boolean>(false);
 
     // --- GETTERS ---
     getThemes(): Theme[] {
@@ -58,5 +59,9 @@ export class ThemeService {
 
     toggleHighContrastMode(): void {
         this.isHighContrastMode.update(value => !value);
+    }
+
+    toggleReducedMotion(): void {
+        this.isReducedMotion.update(value => !value);
     }
 }

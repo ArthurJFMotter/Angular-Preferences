@@ -114,38 +114,46 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="prefsReducedMotionToggle" datatype="html">
+        <source>Reduced Motion</source>
+        <target>Movimento Reduzido</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="prefsTypographyTitle" datatype="html">
         <source>Typography</source>
         <target>Tipografia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">79,80</context>
+          <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsFontFamilyLabel" datatype="html">
         <source>Font Family</source>
-        <target>Família da Fonte</target>
+        <target>Família da fonte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">86,87</context>
+          <context context-type="linenumber">90,91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAriaSelectFontFamily" datatype="html">
         <source>Select a font family</source>
-        <target>Selecione uma família de fonte</target>
+        <target>Selecione uma família de fontes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">88,89</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsBaseFontSizeLabel" datatype="html">
         <source> Base Font Size: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
                         typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></source>
-        <target> Tamanho da Fonte Base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
+        <target> Tamanho da fonte base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
                         typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">99,101</context>
+          <context context-type="linenumber">103,105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsBaseDensityLabel" datatype="html">
@@ -153,7 +161,7 @@
         <target> Densidade: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">111,112</context>
+          <context context-type="linenumber">115,116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="densityDefault" datatype="html">

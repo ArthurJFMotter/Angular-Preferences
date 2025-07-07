@@ -68,6 +68,10 @@
                     (change)="preferencesService.toggleHighContrastMode()">
                     <span i18n="@@prefsHighContrastToggle">High Contrast Mode</span>
                 </mat-slide-toggle>
+                <mat-slide-toggle [checked]="themeService.isReducedMotion()"
+                    (change)="preferencesService.toggleReducedMotion()">
+                    <span i18n="@@prefsReducedMotionToggle">Reduced Motion</span>
+                </mat-slide-toggle>
             </div>
 
         </mat-card-content>

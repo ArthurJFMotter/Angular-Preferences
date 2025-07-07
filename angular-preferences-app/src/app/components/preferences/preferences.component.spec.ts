@@ -34,6 +34,7 @@ describe('PreferencesComponent', () => {
     currentTheme: signal({ id: 'default', displayName: 'Default', primary: '#673ab7' }),
     isDarkMode: signal(false),
     isHighContrastMode: signal(false),
+    isReducedMotion: signal(false),
     getDaltonicFilters: () => [{ id: 'none', displayName: 'None' }],
     activeColorFilter: signal('none'),
   };
@@ -54,6 +55,7 @@ describe('PreferencesComponent', () => {
       'setTheme',
       'toggleDarkMode',
       'toggleHighContrastMode',
+      'toggleReducedMotion',
       'setColorFilter',
       'setFont',
       'setFontSize',
@@ -147,5 +149,13 @@ describe('PreferencesComponent', () => {
     fixture.detectChanges();
 
     expect(mockPreferencesService.toggleDarkMode).toHaveBeenCalled();
+  });
+
+  it('should call preferencesService.toggleReducedMotion on slide toggle change', () => {
+    const reducedMotionToggle = fixture.nativeElement.querySelector('mat-slide-toggle[i18n="@@prefsReducedMotionToggle"] input');
+    reducedMotionToggle.click();
+    fixture.detectChanges();
+
+    expect(mockPreferencesService.toggleReducedMotion).toHaveBeenCalled();
   });
 });

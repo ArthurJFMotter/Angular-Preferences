@@ -15,7 +15,8 @@
 
 // 5. Global styles
 // These styles apply everywhere.
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -25,3 +26,13 @@ body {
   color: var(--mat-sys-on-surface);
   transition: background-color 0.3s, color 0.3s;
 }
+
+// Global accessibility style for reduced motion
+.reduced-motion,
+.reduced-motion * {
+   transition: none !important;
+   animation-duration: 0ms !important;
+   animation-iteration-count: 1 !important;
+   transition-duration: 0ms !important;
+   scroll-behavior: auto !important;
+ }

@@ -39,6 +39,7 @@ export class PreferencesService {
                 this.themeService.setTheme(prefs.themeId ?? this.themeService.getThemes()[0].id);
                 this.themeService.isDarkMode.set(prefs.isDarkMode ?? false);
                 this.themeService.isHighContrastMode.set(prefs.isHighContrastMode ?? false);
+                this.themeService.isReducedMotion.set(prefs.isReducedMotion ?? false);
                 this.themeService.setColorFilter(prefs.activeColorFilter ?? 'none');
                 this.typographyService.setFont(prefs.fontId ?? this.typographyService.defaultFont.id);
                 this.typographyService.setFontSize(prefs.fontSizeId ?? this.typographyService.defaultFontSize.id);
@@ -56,6 +57,7 @@ export class PreferencesService {
                 themeId: this.themeService.currentTheme().id,
                 isDarkMode: this.themeService.isDarkMode(),
                 isHighContrastMode: this.themeService.isHighContrastMode(),
+                isReducedMotion: this.themeService.isReducedMotion(),
                 activeColorFilter: this.themeService.activeColorFilter(),
                 fontId: this.typographyService.activeFont().id,
                 fontSizeId: this.typographyService.activeFontSize().id,
@@ -93,7 +95,7 @@ export class PreferencesService {
 
         this.savePreferences(localeId);
 
-        const sourceLocale = 'en-US'; 
+        const sourceLocale = 'en-US';
 
         const localeUrlPrefixes = this.i18nService.supportedLocales
             .map(l => l.id)
@@ -110,10 +112,10 @@ export class PreferencesService {
                 if (currentPath.startsWith(prefix + '/') || currentPath === prefix) {
                     currentPath = currentPath.substring(prefix.length);
                     if (currentPath === '') {
-                        currentPath = '/'; 
+                        currentPath = '/';
                     }
                     wasStripped = true;
-                    break; 
+                    break;
                 }
             }
         } while (wasStripped);
@@ -138,6 +140,11 @@ export class PreferencesService {
 
     public toggleHighContrastMode(): void {
         this.themeService.toggleHighContrastMode();
+        this.savePreferences();
+    }
+
+    public toggleReducedMotion(): void {
+        this.themeService.toggleReducedMotion();
         this.savePreferences();
     }
 
@@ -198,5 +205,11 @@ export class PreferencesService {
             this.document.documentElement.classList.remove(font.cssClass);
         });
         this.document.documentElement.classList.add(newFont.cssClass);
+    });
+
+    private updateReducedMotionClass = effect(() => {
+        if (!isPlatformBrowser(this.platformId)) return;
+
+        this.document.documentElement.classList.toggle('reduced-motion', this.themeService.isReducedMotion());
     });
 }
