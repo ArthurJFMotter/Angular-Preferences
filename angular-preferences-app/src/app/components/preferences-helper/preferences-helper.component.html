@@ -1,57 +1,63 @@
-<div class="preferences-fab-container">
-    <button mat-fab [matMenuTriggerFor]="preferencesMenu"
+<div class="preferences-fab-container" [class.expanded]="isExpanded">
+    <div class="fab-option">
+        <button mat-mini-fab
+            [matTooltip]="themeService.isDarkMode() ? 'Light Mode' : 'Dark Mode'"
+            i18n-matTooltip="@@prefsHelperTooltipToggleTheme"
+            (click)="preferencesService.toggleDarkMode(); toggleExpansion();"
+            aria-label="Toggle light or dark mode">
+            <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+    </div>
+    <div class="fab-option">
+        <button mat-mini-fab
+            matTooltip="High Contrast" i18n-matTooltip="@@prefsHelperTooltipHighContrast"
+            (click)="preferencesService.toggleHighContrastMode(); toggleExpansion();"
+            aria-label="Toggle high contrast mode">
+            <mat-icon>contrast</mat-icon>
+        </button>
+    </div>
+    <div class="fab-option">
+        <button mat-mini-fab
+            matTooltip="Color Filter" i18n-matTooltip="@@prefsHelperTooltipColorFilter"
+            [matMenuTriggerFor]="filterMenu"
+            aria-label="Open color filter options">
+            <mat-icon>visibility</mat-icon>
+        </button>
+    </div>
+    <div class="fab-option">
+        <button mat-mini-fab
+            matTooltip="Theme Color" i18n-matTooltip="@@prefsHelperTooltipThemeColor"
+            [matMenuTriggerFor]="themeMenu"
+            aria-label="Open theme color options">
+            <mat-icon>format_color_fill</mat-icon>
+        </button>
+    </div>
+
+    <!-- Main FAB to toggle the expansion -->
+    <button mat-fab class="fab-toggler" (click)="toggleExpansion()"
         i18n-aria-label="@@prefsHelperAriaOpenMenu" aria-label="Open accessibility and theme preferences">
         <mat-icon>settings</mat-icon>
     </button>
 </div>
 
-<mat-menu #preferencesMenu="matMenu" xPosition="before">
-    <!-- Dark Mode Toggle Button -->
-    <button mat-menu-item (click)="preferencesService.toggleDarkMode()">
-        <mat-icon>{{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
-        <!-- Use *ngIf to handle dynamic translation -->
-        <span *ngIf="themeService.isDarkMode()" i18n="@@prefsHelperLightMode">Light Mode</span>
-        <span *ngIf="!themeService.isDarkMode()" i18n="@@prefsHelperDarkMode">Dark Mode</span>
-    </button>
-
-    <!-- High Contrast Toggle Button -->
-    <button mat-menu-item (click)="preferencesService.toggleHighContrastMode()">
-        <mat-icon>contrast</mat-icon>
-        <span i18n="@@prefsHelperHighContrast">High Contrast</span>
-    </button>
-
-    <!-- Color Filter Picker -->
-    <button mat-menu-item [matMenuTriggerFor]="filterMenu">
-        <mat-icon>visibility</mat-icon>
-        <span i18n="@@prefsHelperColorFilter">Color Filter</span>
-    </button>
-
-    <!-- Theme Color Picker -->
-    <button mat-menu-item [matMenuTriggerFor]="themeMenu">
-        <mat-icon>format_color_fill</mat-icon>
-        <span i18n="@@prefsHelperThemeColor">Theme Color</span>
-    </button>
-</mat-menu>
 
 <!-- Sub-menu for Color Filters -->
-<mat-menu #filterMenu="matMenu">
+<mat-menu #filterMenu="matMenu" (closed)="toggleExpansion()">
     @for (filter of themeService.getDaltonicFilters(); track filter.id) {
     <button mat-menu-item (click)="preferencesService.setColorFilter(filter.id)">
         <mat-icon *ngIf="themeService.activeColorFilter() === filter.id">check</mat-icon>
         <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '0' : '40px'">
-            <!-- This is already translated from the service, so no i18n tag is needed here -->
             {{ filter.displayName }}</span>
     </button>
     }
 </mat-menu>
 
 <!-- Sub-menu for Themes -->
-<mat-menu #themeMenu="matMenu">
+<mat-menu #themeMenu="matMenu" (closed)="toggleExpansion()">
     @for (theme of themeService.getThemes(); track theme.id) {
     <button mat-menu-item (click)="preferencesService.setTheme(theme.id)">
         <div class="theme-menu-item">
             <div class="color-preview" [style.background-color]="theme.primary"></div>
-            <!-- This is already translated from the service, so no i18n tag is needed here -->
             <span>{{ theme.displayName }}</span>
         </div>
     </button>

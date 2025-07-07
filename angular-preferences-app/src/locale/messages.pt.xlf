@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en-US" target-language="pt-BR" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="prefsHelperTooltipHighContrast" datatype="html">
+        <source>High Contrast</source>
+        <target>Alto Contraste</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperTooltipColorFilter" datatype="html">
+        <source>Color Filter</source>
+        <target>Filtro de Cor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperTooltipThemeColor" datatype="html">
+        <source>Theme Color</source>
+        <target>Cor do Tema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperAriaOpenMenu" datatype="html">
+        <source>Open accessibility and theme preferences</source>
+        <target>Abrir preferências de acessibilidade e tema</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="prefsLanguageTitle" datatype="html">
         <source>Language</source>
         <target>Idioma</target>
@@ -15,7 +47,7 @@
         <target>Selecionar Idioma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">10,11</context>
+          <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAriaSelectLanguage" datatype="html">
@@ -23,7 +55,7 @@
         <target>Selecione um idioma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAppearanceTitle" datatype="html">
@@ -31,7 +63,7 @@
         <target>Aparência e Acessibilidade</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsThemeLabel" datatype="html">
@@ -39,7 +71,7 @@
         <target>Cor do Tema</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">32,33</context>
+          <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAriaSelectThemeColor" datatype="html">
@@ -47,7 +79,7 @@
         <target>Selecione uma cor de tema</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">37,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsColorFilterLabel" datatype="html">
@@ -55,7 +87,7 @@
         <target>Filtro de Visão de Cores</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAriaSelectColorVisionFilter" datatype="html">
@@ -63,7 +95,7 @@
         <target>Selecione um filtro de visão de cores</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsDarkModeToggle" datatype="html">
@@ -71,7 +103,7 @@
         <target>Modo Escuro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">63,64</context>
+          <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsHighContrastToggle" datatype="html">
@@ -79,7 +111,7 @@
         <target>Modo de Alto Contraste</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">67,68</context>
+          <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsTypographyTitle" datatype="html">
@@ -87,7 +119,7 @@
         <target>Tipografia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">76,77</context>
+          <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsFontFamilyLabel" datatype="html">
@@ -95,25 +127,25 @@
         <target>Família da Fonte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">83,84</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAriaSelectFontFamily" datatype="html">
         <source>Select a font family</source>
-        <target>Selecione uma família de fontes</target>
+        <target>Selecione uma família de fonte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">85,86</context>
+          <context context-type="linenumber">88,89</context>
         </context-group>
       </trans-unit>
-            <trans-unit id="prefsBaseFontSizeLabel" datatype="html">
+      <trans-unit id="prefsBaseFontSizeLabel" datatype="html">
         <source> Base Font Size: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
                         typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></source>
-        <target>Tamanho da Fonte Base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
+        <target> Tamanho da Fonte Base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
                         typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">96,98</context>
+          <context context-type="linenumber">99,101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsBaseDensityLabel" datatype="html">
@@ -121,7 +153,7 @@
         <target> Densidade: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
-          <context context-type="linenumber">108,109</context>
+          <context context-type="linenumber">111,112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="densityDefault" datatype="html">
@@ -354,54 +386,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
           <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
-            <trans-unit id="prefsHelperAriaOpenMenu" datatype="html">
-        <source>Open accessibility and theme preferences</source>
-        <target>Abrir preferências de acessibilidade e tema</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="prefsHelperLightMode" datatype="html">
-        <source>Light Mode</source>
-        <target>Modo Claro</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="prefsHelperDarkMode" datatype="html">
-        <source>Dark Mode</source>
-        <target>Modo Escuro</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="prefsHelperHighContrast" datatype="html">
-        <source>High Contrast</source>
-        <target>Alto Contraste</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="prefsHelperColorFilter" datatype="html">
-        <source>Color Filter</source>
-        <target>Filtro de Cor</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="prefsHelperThemeColor" datatype="html">
-        <source>Theme Color</source>
-        <target>Cor do Tema</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
-          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
     </body>

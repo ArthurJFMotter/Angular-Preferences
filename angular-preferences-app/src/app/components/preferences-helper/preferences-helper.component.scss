@@ -1,8 +1,64 @@
 .preferences-fab-container {
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 2.5rem;
+    right: 2.5rem;
     z-index: 100;
+}
+
+.fab-toggler {
+    position: relative;
+    z-index: 2;
+
+    mat-icon {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+.fab-option {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+}
+
+// Styles for the expanded state
+.preferences-fab-container.expanded {
+
+    .fab-toggler mat-icon {
+        transform: rotate(135deg);
+    }
+
+    .fab-option {
+
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    // :nth-child(1) -> Light/Dark Mode
+    .fab-option:nth-child(1) {
+        transform: translate(-1.5rem, -7.5rem);
+        transition-delay: 0.12s;
+    }
+    // :nth-child(2) -> High Contrast
+    .fab-option:nth-child(2) {
+        transform: translate(-5.5rem, -5.5rem);
+        transition-delay: 0.08s;
+    }
+    // :nth-child(3) -> Color Filter
+    .fab-option:nth-child(3) {
+        transform: translate(-7.5rem, -1.5rem);
+        transition-delay: 0.04s;
+    }
+    // :nth-child(4) -> Theme Color
+    .fab-option:nth-child(4) {
+        transform: translate(-6.5rem, 2.5rem);
+        transition-delay: 0s;
+    }
 }
 
 .theme-menu-item {
