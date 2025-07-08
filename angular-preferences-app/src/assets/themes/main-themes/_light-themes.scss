@@ -1,36 +1,57 @@
-@use 'sass:map';
 @use '@angular/material' as mat;
+@use 'sass:map';
 @use 'theme-definitions' as defs;
 @use '../../typography/font-definitions' as fonts;
 
+// --- Step 1: Base Themes ---
+// We loop through each theme and each density
+@each $theme-name, $theme-config in defs.$themes {
+  @for $i from 0 through 5 {
+    .#{$theme-name}-theme.density-#{$i}:not(.dark-mode) {
+      @include mat.theme((
+        color: (
+          primary: map.get($theme-config, 'primary'),
+          tertiary: map.get($theme-config, 'tertiary'),
+          theme-type: light
+        ),
+        density: -$i
+      ));
+    }
+  }
+}
+
+// --- Step 2: Typography Overrides ---
 @each $font-class, $font-config in fonts.$fonts {
   .#{$font-class} {
+    $plain-family: map.get($font-config, 'plain-family');
+    $brand-family: map.get($font-config, 'brand-family');
 
-    // Generate standard light themes for each density level
-    @each $theme-name, $theme-config in defs.$themes {
-      @for $i from 0 through 5 {
-        // Only apply these styles when .dark-mode is NOT present
-        .#{$theme-name}-theme.density-#{$i}:not(.dark-mode) {
-          @include mat.theme((
-            color: (
-              primary: map.get($theme-config, 'primary'),
-              tertiary: map.get($theme-config, 'tertiary'),
-              theme-type: light
-            ),
-            typography: fonts.get-typography-config($font-class),
-            density: -$i
-          ));
-        }
-      }
-    }
+    // Override the "brand" font variables
+    --mat-sys-display-large-font: #{$brand-family};
+    --mat-sys-display-medium-font: #{$brand-family};
+    --mat-sys-display-small-font: #{$brand-family};
+    --mat-sys-headline-large-font: #{$brand-family};
+    --mat-sys-headline-medium-font: #{$brand-family};
+    --mat-sys-headline-small-font: #{$brand-family};
+    --mat-sys-title-large-font: #{$brand-family};
+    --mat-sys-title-medium-font: #{$brand-family};
+    --mat-sys-title-small-font: #{$brand-family};
 
-    // Generate high-contrast overrides, also ensuring it's not in dark mode
-    .high-contrast-mode:not(.dark-mode) {
-      @each $theme-name, $theme-config in defs.$themes {
-        &.#{$theme-name}-theme {
-          @include defs.apply-high-contrast($theme-name, light);
-        }
-      }
+    // Override the "plain" font variables
+    --mat-sys-body-large-font: #{$plain-family};
+    --mat-sys-body-medium-font: #{$plain-family};
+    --mat-sys-body-small-font: #{$plain-family};
+    --mat-sys-label-large-font: #{$plain-family};
+    --mat-sys-label-medium-font: #{$plain-family};
+    --mat-sys-label-small-font: #{$plain-family};
+  }
+}
+
+// --- Step 3: High-Contrast ---
+.high-contrast-mode:not(.dark-mode) {
+  @each $theme-name, $theme-config in defs.$themes {
+    &.#{$theme-name}-theme {
+      @include defs.apply-high-contrast($theme-name, light);
     }
   }
 }

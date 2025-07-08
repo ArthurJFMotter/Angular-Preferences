@@ -1,37 +1,17 @@
 @use 'sass:map';
 
-// 1. Define a map of font configurations.
+// 1. Font families map
 $fonts: (
   'font-roboto-opensans': (
     'plain-family': 'Roboto, sans-serif',
     'brand-family': '"Open Sans", sans-serif'
   ),
   'font-montserrat-lato': (
-    'plain-family': 'Montserrat, sans-serif',
-    'brand-family': 'Lato, sans-serif'
+    'plain-family': 'Lato, sans-serif',
+    'brand-family': 'Montserrat, sans-serif'
   ),
   'font-source-serif-sans': (
-    'plain-family': '"Source Serif Pro", serif',
-    'brand-family': '"Source Sans Pro", sans-serif'
+    'plain-family': '"Source Sans Pro", sans-serif',
+    'brand-family': '"Source Serif Pro", serif'
   )
 );
-
-// 2. Define standard font weights.
-$typography-weights: (
-  'bold-weight': 700,
-  'medium-weight': 500,
-  'regular-weight': 400
-);
-
-// 3. A helper function to generate the complete typography map for a given font.
-@function get-typography-config($font-class) {
-  $font-config: map.get($fonts, $font-class);
-  @if $font-config {
-    @return map.merge($typography-weights, (
-      'plain-family': map.get($font-config, 'plain-family'),
-      'brand-family': map.get($font-config, 'brand-family')
-    ));
-  } @else {
-    @error "Font class '#{$font-class}' not found in the $fonts map.";
-  }
-}
