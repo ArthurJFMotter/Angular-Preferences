@@ -1,0 +1,137 @@
+<!-- ***** THIS COMPONENT IS NOW MORE APPEALING AND SHOWCASES MORE FEATURES *****-->
+
+<div class="showcase-container">
+    <!-- Card 1: Main Actions & Introduction (Hero Card) -->
+    <mat-card class="showcase-card hero-card">
+        <mat-card-header>
+            <div mat-card-avatar class="showcase-avatar">
+                <mat-icon>palette</mat-icon>
+            </div>
+            <mat-card-title>Dynamic UI Showcase</mat-card-title>
+            <mat-card-subtitle>Theme, Color, and Shape are all live!</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <!-- New rich text content with headings -->
+            <div class="typography-showcase">
+                <h1>The Power of Theming</h1>
+                <p>
+                    Welcome to our live demonstration of a dynamic, theme-aware user interface. This entire application
+                    container is built to be flexible, allowing for instant visual changes that propagate through every
+                    component.
+                </p>
+
+                <h2>What is Dynamic Theming?</h2>
+                <p>
+                    It's an approach where design properties like color, shape, and typography are defined as variables.
+                    By changing these variables in one central place, the entire look-and-feel of the application
+                    updates in real-time without needing a page reload.
+                </p>
+
+                <h3>Real-Time Customization in Action</h3>
+                <p>
+                    The components on this page are listening to global style settings. When you use the theme controls
+                    to switch colors or toggle between light and dark modes, you're seeing this system at work.
+                </p>
+
+                <h4>Key Themed Elements</h4>
+                <ul>
+                    <li><strong>Buttons & Chips:</strong> Notice how their background and text colors adapt.</li>
+                    <li><strong>Form Controls:</strong> The input outlines, sliders, and toggles all use the primary
+                        theme color.</li>
+                    <li><strong>Surfaces & Borders:</strong> Even the card backgrounds and image borders subtly shift.
+                    </li>
+                </ul>
+
+                <h5>Try It Yourself!</h5>
+                <p>
+                    Use the main theme controls to select a new color palette. Watch how every interactive element on
+                    this page—and throughout the app—instantly reflects your choice.
+                </p>
+
+                <h6>Pro Tip: It's More Than Just Color</h6>
+                <p>
+                    Our theming engine also controls shape. Notice the border-radius of these cards. This can also be
+                    adjusted globally to create a softer or more geometric UI.
+                </p>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="button-row">
+            <button mat-flat-button>
+                <mat-icon>thumb_up</mat-icon>
+                Primary Action
+            </button>
+            <button mat-stroked-button>
+                <mat-icon>bookmark_border</mat-icon>
+                Secondary
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <!-- Group for the side cards -->
+    <div class="side-cards-container">
+        <!-- Card 2: Visual Elements -->
+        <mat-card class="showcase-card">
+            <mat-card-header>
+                <mat-card-title>Visual Elements</mat-card-title>
+                <mat-card-subtitle>Image borders & loading states</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- A more realistic loading simulation -->
+                <div class="image-container">
+                    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"
+                        class="card-progress-bar"></mat-progress-bar>
+
+                    <div class="image-placeholder" *ngIf="!isLoading && !isImageVisible">
+                        <mat-icon>image</mat-icon>
+                        <span>Image Hidden</span>
+                    </div>
+
+                    <img *ngIf="!isLoading && isImageVisible" class="custom-image"
+                        src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
+                        alt="A Shiba Inu dog looking at the camera">
+                </div>
+
+            </mat-card-content>
+            <mat-card-actions class="btn-row">
+                <button mat-stroked-button (click)="toggleImage()" [disabled]="isLoading">
+                    <mat-icon>{{ isImageVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    {{ isLoading ? 'Loading...' : (isImageVisible ? 'Hide Image' : 'Show Image') }}
+                </button>
+                <button mat-raised-button (click)="openDialog()">
+                    <mat-icon>open_in_new</mat-icon>
+                    Open Dialog
+                </button>
+            </mat-card-actions>
+        </mat-card>
+
+        <!-- Card 3: Interactive Controls -->
+        <mat-card class="showcase-card">
+            <mat-card-header>
+                <mat-card-title>Interactive Controls</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="interactive-content">
+                <!-- Form field to show themed borders and labels -->
+                <mat-form-field appearance="outline">
+                    <mat-label>Your Name</mat-label>
+                    <input matInput placeholder="Try typing here">
+                    <mat-icon matSuffix>person_outline</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Your pet</mat-label>
+                    <mat-select>
+                        <mat-option>None</mat-option>
+                        <mat-option>Bird</mat-option>
+                        <mat-option>Cat</mat-option>
+                        <mat-option>Dog</mat-option>
+                        <mat-option>Fish</mat-option>
+                        <mat-option>Other</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

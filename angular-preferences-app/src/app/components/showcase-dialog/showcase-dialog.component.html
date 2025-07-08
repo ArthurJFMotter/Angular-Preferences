@@ -1,0 +1,30 @@
+<h2 mat-dialog-title class="dialog-title">
+    <mat-icon>view_in_ar</mat-icon>
+    Dialog Window
+</h2>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <p>
+        Even components rendered in an overlay like this dialog automatically adopt the application's theme. Notice the
+        colors of the title, buttons, and form controls below.
+    </p>
+
+    <mat-radio-group aria-label="Select an option" class="dialog-controls">
+        <label>Notification Priority:</label>
+        <mat-radio-button value="1" [checked]="true">Normal</mat-radio-button>
+        <mat-radio-button value="2">High</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-checkbox [checked]="true" class="dialog-controls">
+        I agree to the themed terms and conditions
+    </mat-checkbox>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="center">
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button [mat-dialog-close]="true">Confirm</button>
+</mat-dialog-actions>

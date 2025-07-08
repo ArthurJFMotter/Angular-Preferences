@@ -1,0 +1,23 @@
+.dialog-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    min-height: 16rem
+}
+
+.dialog-controls{
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-title, mat-dialog-actions{
+    background-color: var(--mat-sys-surface-container-low);
+}
