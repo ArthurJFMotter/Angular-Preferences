@@ -1,8 +1,15 @@
 mat-toolbar {
-    justify-content: space-between;
-    background-color: var(--mat-sys-primary-container);
-    border-bottom: 1px solid var(--mat-sys-outline);
-    box-shadow: 0px 4px 4px var(--mat-sys-outline-variant);
+  justify-content: space-between;
+  background-color: var(--mat-sys-primary-container);
+  border-bottom: 1px solid var(--mat-sys-outline);
+  box-shadow: 0px 4px 4px var(--mat-sys-outline-variant);
+
+  @media(max-width:900px) {
+    button {
+      span{ display: none; }
+      mat-icon{ margin: 0 auto; }
+    }
+  }
 }
 
 .toolbar-spacer {

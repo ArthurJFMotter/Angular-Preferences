@@ -5,11 +5,15 @@ import { ShowcaseComponent } from './components/showcase/showcase.component';
 export const routes: Routes = [
     {
         path: '',
-        component: PreferencesComponent,
+        component: ShowcaseComponent,
         pathMatch: 'full'
     },
     {
         path: 'home',
         component: ShowcaseComponent,
+    },
+    {
+        path: 'configurations',
+        component: PreferencesComponent,
     },
 ];

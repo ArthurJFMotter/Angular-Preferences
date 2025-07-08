@@ -58,11 +58,14 @@
         </mat-card-content>
 
         <mat-card-actions class="button-row">
-            <button mat-flat-button>
+            <!-- Call openSnackBar() with the first message on click -->
+            <button mat-flat-button (click)="openSnackBar('You liked this!', 'Close')">
                 <mat-icon>thumb_up</mat-icon>
                 Primary Action
             </button>
-            <button mat-stroked-button>
+
+            <!-- Call openSnackBar() with the second message on click -->
+            <button mat-stroked-button (click)="openSnackBar('You bookmarked this!', 'Close')">
                 <mat-icon>bookmark_border</mat-icon>
                 Secondary
             </button>
@@ -95,13 +98,13 @@
 
             </mat-card-content>
             <mat-card-actions class="btn-row">
-                <button mat-stroked-button (click)="toggleImage()" [disabled]="isLoading">
-                    <mat-icon>{{ isImageVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    {{ isLoading ? 'Loading...' : (isImageVisible ? 'Hide Image' : 'Show Image') }}
-                </button>
                 <button mat-raised-button (click)="openDialog()">
                     <mat-icon>open_in_new</mat-icon>
                     Open Dialog
+                </button>
+                <button mat-stroked-button (click)="toggleImage()" [disabled]="isLoading">
+                    <mat-icon>{{ isImageVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    {{ isLoading ? 'Loading...' : (isImageVisible ? 'Hide Image' : 'Show Image') }}
                 </button>
             </mat-card-actions>
         </mat-card>
@@ -112,26 +115,41 @@
                 <mat-card-title>Interactive Controls</mat-card-title>
             </mat-card-header>
             <mat-card-content class="interactive-content">
-                <!-- Form field to show themed borders and labels -->
                 <mat-form-field appearance="outline">
                     <mat-label>Your Name</mat-label>
-                    <input matInput placeholder="Try typing here">
+                    <input matInput placeholder="Try typing here" [(ngModel)]="personName">
                     <mat-icon matSuffix>person_outline</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Your pet</mat-label>
-                    <mat-select>
-                        <mat-option>None</mat-option>
-                        <mat-option>Bird</mat-option>
-                        <mat-option>Cat</mat-option>
-                        <mat-option>Dog</mat-option>
-                        <mat-option>Fish</mat-option>
-                        <mat-option>Other</mat-option>
+                    <mat-select [(ngModel)]="animalType">
+                        <mat-option value="None">None</mat-option>
+                        <mat-option value="Bird">Bird</mat-option>
+                        <mat-option value="Cat">Cat</mat-option>
+                        <mat-option value="Dog">Dog</mat-option>
+                        <mat-option value="Fish">Fish</mat-option>
+                        <mat-option value="Other">Other</mat-option>
                     </mat-select>
+                    <mat-icon matSuffix>pets</mat-icon>
                 </mat-form-field>
-
             </mat-card-content>
+
+            <div class="generated-text-container">
+                <p *ngIf="generatedText" [ngClass]="{ 'gradient-text': !hasError, 'error-text': hasError }">{{
+                    generatedText }}</p>
+            </div>
+            <mat-card-actions class="btn-row">
+                <button mat-raised-button (click)="generateText()" [disabled]="isGeneratingText">
+                    <mat-spinner *ngIf="isGeneratingText" [diameter]="24"></mat-spinner>
+                    <mat-icon>whatshot</mat-icon>
+                    <span *ngIf="!isGeneratingText">Generate text</span>
+                </button>
+                <button *ngIf="generatedText" mat-stroked-button class="alt-btn" (click)="resetGeneration()">
+                    <mat-icon>clear_all</mat-icon>
+                    <span>Clear</span>
+                </button>
+            </mat-card-actions>
         </mat-card>
     </div>
 </div>
