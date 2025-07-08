@@ -2,9 +2,41 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" target-language="es" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="prefsHelperTooltipToLight" datatype="html">
+        <source>Light Mode</source>
+        <target>Modo Claro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperTooltipToDark" datatype="html">
+        <source>Dark Mode</source>
+        <target>Modo Oscuro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperAriaToLight" datatype="html">
+        <source>Switch to light mode</source>
+        <target>Cambiar a modo claro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="prefsHelperAriaToDark" datatype="html">
+        <source>Switch to dark mode</source>
+        <target>Cambiar a modo oscuro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="prefsHelperTooltipHighContrast" datatype="html">
         <source>High Contrast</source>
-        <target>Alto Contraste</target>
+        <target>Contraste Alto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
           <context context-type="linenumber">13</context>
@@ -108,7 +140,7 @@
       </trans-unit>
       <trans-unit id="prefsHighContrastToggle" datatype="html">
         <source>High Contrast Mode</source>
-        <target>Modo de Alto Contraste</target>
+        <target>Modo de Contraste Alto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">69,70</context>
@@ -116,7 +148,7 @@
       </trans-unit>
       <trans-unit id="prefsReducedMotionToggle" datatype="html">
         <source>Reduced Motion</source>
-        <target>Movimiento reducido</target>
+        <target>Movimiento Reducido</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">73,74</context>
@@ -132,7 +164,7 @@
       </trans-unit>
       <trans-unit id="prefsFontFamilyLabel" datatype="html">
         <source>Font Family</source>
-        <target>Familia de fuentes</target>
+        <target>Familia de Fuentes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">90,91</context>
@@ -140,7 +172,7 @@
       </trans-unit>
       <trans-unit id="prefsAriaSelectFontFamily" datatype="html">
         <source>Select a font family</source>
-        <target>Seleccionar una familia de fuentes</target>
+        <target>Seleccione una familia de fuentes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">92,93</context>
@@ -149,7 +181,7 @@
       <trans-unit id="prefsBaseFontSizeLabel" datatype="html">
         <source> Base Font Size: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
                         typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></source>
-        <target> Tamaño de fuente base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
+        <target> Tamaño de Fuente Base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
                         typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
@@ -166,7 +198,7 @@
       </trans-unit>
       <trans-unit id="densityDefault" datatype="html">
         <source>Default</source>
-        <target>Por defecto</target>
+        <target>Predeterminado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/density.service.ts</context>
           <context context-type="linenumber">13</context>
@@ -246,7 +278,7 @@
       </trans-unit>
       <trans-unit id="themeTeal" datatype="html">
         <source>Teal</source>
-        <target>Verde azulado</target>
+        <target>Verde Azulado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/theme.service.ts</context>
           <context context-type="linenumber">12</context>
@@ -294,7 +326,7 @@
       </trans-unit>
       <trans-unit id="filterNone" datatype="html">
         <source>Default</source>
-        <target>Por defecto</target>
+        <target>Predeterminado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/theme.service.ts</context>
           <context context-type="linenumber">21</context>
@@ -337,7 +369,7 @@
         <target>Roboto / Open Sans</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontMontserratLato" datatype="html">
@@ -345,7 +377,7 @@
         <target>Montserrat / Lato</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSourceSerifSans" datatype="html">
@@ -353,7 +385,47 @@
         <target>Source Serif / Source Sans</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontInter" datatype="html">
+        <source>Inter</source>
+        <target>Inter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontPoppinsNunito" datatype="html">
+        <source>Poppins / Nunito Sans</source>
+        <target>Poppins / Nunito Sans</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontRobotoSlabRoboto" datatype="html">
+        <source>Roboto Slab / Roboto</source>
+        <target>Roboto Slab / Roboto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontMerriweatherLato" datatype="html">
+        <source>Merriweather / Lato</source>
+        <target>Merriweather / Lato</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontDevTheme" datatype="html">
+        <source>Developer (Source Code Pro / Inter)</source>
+        <target>Desarrollador (Source Code Pro / Inter)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeTiny" datatype="html">
@@ -361,7 +433,7 @@
         <target>Diminuto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeSmall" datatype="html">
@@ -369,7 +441,7 @@
         <target>Pequeño</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeMedium" datatype="html">
@@ -377,7 +449,7 @@
         <target>Mediano</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeLarge" datatype="html">
@@ -385,7 +457,7 @@
         <target>Grande</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeGiant" datatype="html">
@@ -393,7 +465,7 @@
         <target>Gigante</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
     </body>

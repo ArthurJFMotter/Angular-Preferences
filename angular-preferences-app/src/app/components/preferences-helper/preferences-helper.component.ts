@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,4 +23,20 @@ export class PreferencesHelperComponent {
   toggleExpansion(): void {
     this.isExpanded = !this.isExpanded;
   }
+
+  tooltipText = computed(() => {
+    if (this.themeService.isDarkMode()) {
+      return $localize`:@@prefsHelperTooltipToLight:Light Mode`; 
+    } else {
+      return $localize`:@@prefsHelperTooltipToDark:Dark Mode`;
+    }
+  });
+
+  ariaLabelText = computed(() => {
+    if (this.themeService.isDarkMode()) {
+      return $localize`:@@prefsHelperAriaToLight:Switch to light mode`;
+    } else {
+      return $localize`:@@prefsHelperAriaToDark:Switch to dark mode`;
+    }
+  });
 }

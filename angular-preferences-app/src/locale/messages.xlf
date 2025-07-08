@@ -294,56 +294,91 @@
         <source>Roboto / Open Sans</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontMontserratLato" datatype="html">
         <source>Montserrat / Lato</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSourceSerifSans" datatype="html">
         <source>Source Serif / Source Sans</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontInter" datatype="html">
+        <source>Inter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontPoppinsNunito" datatype="html">
+        <source>Poppins / Nunito Sans</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontRobotoSlabRoboto" datatype="html">
+        <source>Roboto Slab / Roboto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontMerriweatherLato" datatype="html">
+        <source>Merriweather / Lato</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fontDevTheme" datatype="html">
+        <source>Developer (Source Code Pro / Inter)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/typography.service.ts</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeTiny" datatype="html">
         <source>Tiny</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeSmall" datatype="html">
         <source>Small</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeMedium" datatype="html">
         <source>Medium</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeLarge" datatype="html">
         <source>Large</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fontSizeGiant" datatype="html">
         <source>Giant</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/typography.service.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
     </body>

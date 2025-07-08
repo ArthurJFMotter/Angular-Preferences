@@ -13,5 +13,25 @@ $fonts: (
   'font-source-serif-sans': (
     'plain-family': '"Source Sans Pro", sans-serif',
     'brand-family': '"Source Serif Pro", serif'
+  ),
+  'font-inter': (
+    'plain-family': 'Inter, sans-serif',
+    'brand-family': 'Inter, sans-serif'
+  ),
+  'font-poppins-nunito': (
+    'plain-family': '"Nunito Sans", sans-serif',
+    'brand-family': 'Poppins, sans-serif'
+  ),
+  'font-roboto-slab-roboto': (
+    'plain-family': 'Roboto, sans-serif',
+    'brand-family': '"Roboto Slab", serif'
+  ),
+  'font-merriweather-lato': (
+    'plain-family': 'Lato, sans-serif',
+    'brand-family': 'Merriweather, serif'
+  ),
+  'font-dev-theme': (
+    'plain-family': 'Inter, sans-serif',
+    'brand-family': '"Source Code Pro", monospace'
   )
 );

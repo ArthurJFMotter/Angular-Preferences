@@ -1,41 +1,33 @@
 <div class="preferences-fab-container" [class.expanded]="isExpanded">
     <div class="fab-option">
-        <button mat-mini-fab
-            [matTooltip]="themeService.isDarkMode() ? 'Light Mode' : 'Dark Mode'"
-            i18n-matTooltip="@@prefsHelperTooltipToggleTheme"
-            (click)="preferencesService.toggleDarkMode(); toggleExpansion();"
-            aria-label="Toggle light or dark mode">
+        <button mat-mini-fab [matTooltip]="tooltipText()" (click)="preferencesService.toggleDarkMode();"
+            [attr.aria-label]="ariaLabelText()">
             <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
         </button>
     </div>
     <div class="fab-option">
-        <button mat-mini-fab
-            matTooltip="High Contrast" i18n-matTooltip="@@prefsHelperTooltipHighContrast"
+        <button mat-mini-fab matTooltip="High Contrast" i18n-matTooltip="@@prefsHelperTooltipHighContrast"
             (click)="preferencesService.toggleHighContrastMode(); toggleExpansion();"
             aria-label="Toggle high contrast mode">
             <mat-icon>contrast</mat-icon>
         </button>
     </div>
     <div class="fab-option">
-        <button mat-mini-fab
-            matTooltip="Color Filter" i18n-matTooltip="@@prefsHelperTooltipColorFilter"
-            [matMenuTriggerFor]="filterMenu"
-            aria-label="Open color filter options">
+        <button mat-mini-fab matTooltip="Color Filter" i18n-matTooltip="@@prefsHelperTooltipColorFilter"
+            [matMenuTriggerFor]="filterMenu" aria-label="Open color filter options">
             <mat-icon>visibility</mat-icon>
         </button>
     </div>
     <div class="fab-option">
-        <button mat-mini-fab
-            matTooltip="Theme Color" i18n-matTooltip="@@prefsHelperTooltipThemeColor"
-            [matMenuTriggerFor]="themeMenu"
-            aria-label="Open theme color options">
+        <button mat-mini-fab matTooltip="Theme Color" i18n-matTooltip="@@prefsHelperTooltipThemeColor"
+            [matMenuTriggerFor]="themeMenu" aria-label="Open theme color options">
             <mat-icon>format_color_fill</mat-icon>
         </button>
     </div>
 
     <!-- Main FAB to toggle the expansion -->
-    <button mat-fab class="fab-toggler" (click)="toggleExpansion()"
-        i18n-aria-label="@@prefsHelperAriaOpenMenu" aria-label="Open accessibility and theme preferences">
+    <button mat-fab class="fab-toggler" (click)="toggleExpansion()" i18n-aria-label="@@prefsHelperAriaOpenMenu"
+        aria-label="Open accessibility and theme preferences">
         <mat-icon>settings</mat-icon>
     </button>
 </div>
