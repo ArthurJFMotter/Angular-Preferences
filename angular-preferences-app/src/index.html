@@ -13,40 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;700&family=Noto+Serif:wght@300;400;500;700&family=Nunito+Sans:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500;700&family=Roboto:wght@300;400;500;700;900&family=Source+Code+Pro:wght@300;400;500;700&family=Source+Sans+Pro:wght@300;400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
   
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <script>
-    (function() {
-      try {
-        const storageKey = 'user-app-preferences';
-        const prefsRaw = localStorage.getItem(storageKey);
-        if (prefsRaw) {
-          const prefs = JSON.parse(prefsRaw);
-          const docEl = document.documentElement;
-          
-          if (prefs.isDarkMode) {
-            docEl.classList.add('dark-mode');
-          }
-          if (prefs.isHighContrastMode) {
-            docEl.classList.add('high-contrast-mode');
-          }
-          if (prefs.isReducedMotion) {
-            docEl.classList.add('reduced-motion');
-          }
-          if (prefs.themeId) {
-            docEl.classList.add(`${prefs.themeId}-theme`);
-          }
-          if (typeof prefs.densityValue === 'number') {
-            docEl.classList.add(`density-${prefs.densityValue}`);
-          }
-          if (prefs.activeColorFilter && prefs.activeColorFilter !== 'none') {
-            docEl.classList.add(`filter-${prefs.activeColorFilter}`);
-          }
-        }
-      } catch (e) {
-        console.error('Error applying initial theme from inline script', e);
-      }
-    })();
-  </script>
+  <script src="./theme-loader.js"></script> 
 </head>
 
 <body class="mat-typography">
