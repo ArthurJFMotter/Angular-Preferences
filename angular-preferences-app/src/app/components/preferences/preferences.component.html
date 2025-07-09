@@ -6,7 +6,6 @@
         </mat-card-header>
         <mat-card-content>
             <section class="control-section">
-                <!-- need prod testing -->
                 <mat-form-field appearance="outline" class="full-width-field">
                     <mat-label i18n="@@prefsLanguageLabel">Select Language</mat-label>
                     <mat-select [value]="i18nService.currentLocale" (selectionChange)="onLocaleChange($event.value)"

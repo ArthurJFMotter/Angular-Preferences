@@ -1,4 +1,4 @@
-<!-- ***** THIS COMPONENT IS NOW MORE APPEALING AND SHOWCASES MORE FEATURES *****-->
+<!-- ***** THIS COMPONENT IS AN PLACEHOLDER AND CAN BE DELETED OR REPURPOSED ***** -->
 
 <div class="showcase-container">
     <!-- Card 1: Main Actions & Introduction (Hero Card) -->
@@ -12,7 +12,7 @@
         </mat-card-header>
 
         <mat-card-content>
-            <!-- New rich text content with headings -->
+            <!-- Rich text content with headings -->
             <div class="typography-showcase">
                 <h1>The Power of Theming</h1>
                 <p>
@@ -58,16 +58,14 @@
         </mat-card-content>
 
         <mat-card-actions class="button-row">
-            <!-- Call openSnackBar() with the first message on click -->
             <button mat-flat-button (click)="openSnackBar('You liked this!', 'Close')">
                 <mat-icon>thumb_up</mat-icon>
-                Primary Action
+                <span>Primary Action</span>
             </button>
 
-            <!-- Call openSnackBar() with the second message on click -->
             <button mat-stroked-button (click)="openSnackBar('You bookmarked this!', 'Close')">
                 <mat-icon>bookmark_border</mat-icon>
-                Secondary
+                <span>Secondary</span>
             </button>
         </mat-card-actions>
     </mat-card>
@@ -78,10 +76,9 @@
         <mat-card class="showcase-card">
             <mat-card-header>
                 <mat-card-title>Visual Elements</mat-card-title>
-                <mat-card-subtitle>Image borders & loading states</mat-card-subtitle>
+                <mat-card-subtitle>Images & loading states</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                <!-- A more realistic loading simulation -->
                 <div class="image-container">
                     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"
                         class="card-progress-bar"></mat-progress-bar>
@@ -100,11 +97,11 @@
             <mat-card-actions class="btn-row">
                 <button mat-raised-button (click)="openDialog()">
                     <mat-icon>open_in_new</mat-icon>
-                    Open Dialog
+                    <span>Open Dialog</span>
                 </button>
                 <button mat-stroked-button (click)="toggleImage()" [disabled]="isLoading">
                     <mat-icon>{{ isImageVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    {{ isLoading ? 'Loading...' : (isImageVisible ? 'Hide Image' : 'Show Image') }}
+                    <span>{{ isLoading ? 'Loading...' : (isImageVisible ? 'Hide Image' : 'Show Image') }}</span>
                 </button>
             </mat-card-actions>
         </mat-card>
@@ -113,6 +110,7 @@
         <mat-card class="showcase-card">
             <mat-card-header>
                 <mat-card-title>Interactive Controls</mat-card-title>
+                <mat-card-subtitle>Inputs and Dynamic interactions</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="interactive-content">
                 <mat-form-field appearance="outline">
@@ -136,8 +134,8 @@
             </mat-card-content>
 
             <div class="generated-text-container">
-                <p *ngIf="generatedText" [ngClass]="{ 'gradient-text': !hasError, 'error-text': hasError }">{{
-                    generatedText }}</p>
+                <p *ngIf="generatedText" [ngClass]="{ 'gradient-text': !hasError, 'error-text': hasError }">
+                    {{ generatedText }}</p>
             </div>
             <mat-card-actions class="btn-row">
                 <button mat-raised-button (click)="generateText()" [disabled]="isGeneratingText">
