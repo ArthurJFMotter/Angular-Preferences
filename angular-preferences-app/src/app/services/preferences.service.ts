@@ -151,43 +151,43 @@ export class PreferencesService {
     // --- Centralized DOM Effects ---
     private updateColorThemeClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
-
         const theme = this.themeService.currentTheme();
         const themeClasses = this.themeService.getThemes().map((t) => `${t.id}-theme`);
-        this.document.body.classList.remove(...themeClasses);
-        this.document.body.classList.add(`${theme.id}-theme`);
+         
+        this.document.documentElement.classList.remove(...themeClasses);
+        this.document.documentElement.classList.add(`${theme.id}-theme`);
     });
 
     private updateDarkModeClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
-
-        this.document.body.classList.toggle('dark-mode', this.themeService.isDarkMode());
+         
+        this.document.documentElement.classList.toggle('dark-mode', this.themeService.isDarkMode());
     });
 
     private updateHighContrastClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
-
-        this.document.body.classList.toggle('high-contrast-mode', this.themeService.isHighContrastMode());
+         
+        this.document.documentElement.classList.toggle('high-contrast-mode', this.themeService.isHighContrastMode());
     });
 
     private updateColorFilterClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
-
         const activeFilter = this.themeService.activeColorFilter();
         const allFilterClasses = this.themeService.getDaltonicFilters().map(f => `filter-${f.id}`);
-        this.document.body.classList.remove(...allFilterClasses);
+         
+        this.document.documentElement.classList.remove(...allFilterClasses);
         if (activeFilter !== 'none') {
-            this.document.body.classList.add(`filter-${activeFilter}`);
+            this.document.documentElement.classList.add(`filter-${activeFilter}`);
         }
     });
 
     private updateDensityClass = effect(() => {
         if (!isPlatformBrowser(this.platformId)) return;
-
         const density = this.densityService.currentDensity();
         const allDensityClasses = this.densityService.getDensities().map(d => d.id);
-        this.document.body.classList.remove(...allDensityClasses);
-        this.document.body.classList.add(density.id);
+
+        this.document.documentElement.classList.remove(...allDensityClasses);
+        this.document.documentElement.classList.add(density.id);
     });
 
     private updateFontSize = effect(() => {
