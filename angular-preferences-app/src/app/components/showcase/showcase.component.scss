@@ -249,8 +249,18 @@ mat-card-actions {
 }
 
 // Responsive adjustments for smaller screens
-@media (max-width: 960px) {
+@media (max-width: 900px) {
     .showcase-container {
         grid-template-columns: 1fr;
+    }
+
+    button {
+        span {
+            display: none;
+        }
+
+        mat-icon {
+            margin: auto 0.25rem;
+        }
     }
 }

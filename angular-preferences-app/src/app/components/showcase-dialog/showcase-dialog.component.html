@@ -1,30 +1,34 @@
+<!-- ***** THIS COMPONENT IS ALSO AN PLACEHOLDER AND CAN BE DELETED OR REPURPOSED ***** -->
 <h2 mat-dialog-title class="dialog-title">
-    <mat-icon>view_in_ar</mat-icon>
-    Dialog Window
+    <mat-icon>color_lens</mat-icon>
+    Color Vision Simulation
 </h2>
-
-<mat-divider></mat-divider>
 
 <mat-dialog-content>
     <p>
-        Even components rendered in an overlay like this dialog automatically adopt the application's theme. Notice the
-        colors of the title, buttons, and form controls below.
+        This application includes an accessibility tool to simulate how users with different types of color vision deficiency perceive the interface.
     </p>
 
-    <mat-radio-group aria-label="Select an option" class="dialog-controls">
-        <label>Notification Priority:</label>
-        <mat-radio-button value="1" [checked]="true">Normal</mat-radio-button>
-        <mat-radio-button value="2">High</mat-radio-button>
-    </mat-radio-group>
-
-    <mat-checkbox [checked]="true" class="dialog-controls">
-        I agree to the themed terms and conditions
-    </mat-checkbox>
+    <h3>How to activate the filter:</h3>
+    <ol class="instructions-list">
+        <li>
+            Locate the floating Quick Settings buttons in the bottom-right corner of the screen.
+        </li>
+        <li>
+            Click the <span class="no-wrap-group"><strong>eye</strong> icon <mat-icon>visibility</mat-icon></span> to open the simulation menu.
+        </li>
+        <li>
+            Select a filter (e.g., Protanopia, Tritanopia) to apply it across the page.
+        </li>
+        <li>
+            To disable the filter, select <span class="no-wrap-group"><strong>Default</strong></span> from the menu.
+        </li>
+    </ol>
+    <p>
+        This helps ensure the UI is accessible and has sufficient color contrast for all users.
+    </p>
 </mat-dialog-content>
 
-<mat-divider></mat-divider>
-
-<mat-dialog-actions align="center">
-    <button mat-stroked-button mat-dialog-close>Cancel</button>
-    <button mat-flat-button [mat-dialog-close]="true">Confirm</button>
+<mat-dialog-actions align="end">
+    <button mat-flat-button mat-dialog-close>Got it!</button>
 </mat-dialog-actions>

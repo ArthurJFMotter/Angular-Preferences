@@ -51,8 +51,9 @@
 
                 <h6>Pro Tip: It's More Than Just Color</h6>
                 <p>
-                    Our theming engine also controls shape. Notice the border-radius of these cards. This can also be
-                    adjusted globally to create a softer or more geometric UI.
+                    Our theming engine also controls contrast and have accessibility controls. 
+                    Also Notice the font-family and font-size on the page can be changed at will! 
+                    All of these can be adjusted globally to create an more personalized and user friend UI.
                 </p>
             </div>
         </mat-card-content>
@@ -65,7 +66,7 @@
 
             <button mat-stroked-button (click)="openSnackBar('You bookmarked this!', 'Close')">
                 <mat-icon>bookmark_border</mat-icon>
-                <span>Secondary</span>
+                <span>Secondary Action</span>
             </button>
         </mat-card-actions>
     </mat-card>
@@ -97,11 +98,11 @@
             <mat-card-actions class="btn-row">
                 <button mat-raised-button (click)="openDialog()">
                     <mat-icon>open_in_new</mat-icon>
-                    <span>Open Dialog</span>
+                    <span>Open</span> Hint
                 </button>
                 <button mat-stroked-button (click)="toggleImage()" [disabled]="isLoading">
                     <mat-icon>{{ isImageVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    <span>{{ isLoading ? 'Loading...' : (isImageVisible ? 'Hide Image' : 'Show Image') }}</span>
+                    {{ isLoading ? 'Loading' : (isImageVisible ? 'Hide' : 'Show') }} <span>Image</span>
                 </button>
             </mat-card-actions>
         </mat-card>
@@ -141,7 +142,7 @@
                 <button mat-raised-button (click)="generateText()" [disabled]="isGeneratingText">
                     <mat-spinner *ngIf="isGeneratingText" [diameter]="24"></mat-spinner>
                     <mat-icon>whatshot</mat-icon>
-                    <span *ngIf="!isGeneratingText">Generate text</span>
+                    <ng-container *ngIf="!isGeneratingText">Generate text</ng-container>
                 </button>
                 <button *ngIf="generatedText" mat-stroked-button class="alt-btn" (click)="resetGeneration()">
                     <mat-icon>clear_all</mat-icon>
