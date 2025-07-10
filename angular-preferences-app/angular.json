@@ -70,17 +70,20 @@
             "development-en": {
               "localize": [
                 "en-US"
-              ]
+              ],
+              "baseHref": "/"
             },
             "development-es": {
               "localize": [
                 "es"
-              ]
+              ],
+              "baseHref": "/es/"
             },
             "development-pt": {
               "localize": [
                 "pt"
-              ]
+              ],
+              "baseHref": "/pt/"
             }
           },
           "defaultConfiguration": "production"

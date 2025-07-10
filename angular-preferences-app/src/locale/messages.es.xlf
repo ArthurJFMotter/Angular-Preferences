@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="prefsHelperTooltipHighContrast" datatype="html">
         <source>High Contrast</source>
-        <target>Alto Contraste</target>
+        <target>Contraste alto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
           <context context-type="linenumber">9</context>
@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="prefsHelperTooltipColorFilter" datatype="html">
         <source>Color Filter</source>
-        <target>Filtro de Color</target>
+        <target>Filtro de color</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
           <context context-type="linenumber">16</context>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="prefsHelperTooltipThemeColor" datatype="html">
         <source>Theme Color</source>
-        <target>Color del Tema</target>
+        <target>Color del tema</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.html</context>
           <context context-type="linenumber">22</context>
@@ -36,7 +36,7 @@
       </trans-unit>
       <trans-unit id="prefsHelperTooltipToLight" datatype="html">
         <source>Light Mode</source>
-        <target>Modo Claro</target>
+        <target>Modo claro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.ts</context>
           <context context-type="linenumber">29</context>
@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit id="prefsHelperTooltipToDark" datatype="html">
         <source>Dark Mode</source>
-        <target>Modo Oscuro</target>
+        <target>Modo oscuro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences-helper/preferences-helper.component.ts</context>
           <context context-type="linenumber">31</context>
@@ -76,7 +76,7 @@
       </trans-unit>
       <trans-unit id="prefsLanguageLabel" datatype="html">
         <source>Select Language</source>
-        <target>Seleccionar Idioma</target>
+        <target>Seleccionar idioma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">10,11</context>
@@ -84,14 +84,14 @@
       </trans-unit>
       <trans-unit id="prefsAriaSelectLanguage" datatype="html">
         <source>Select a language</source>
-        <target>Selecciona un idioma</target>
+        <target>Seleccione un idioma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">12,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsAppearanceTitle" datatype="html">
-        <source>Appearance &amp; Accessibility</source>
+        <source>Appearance & Accessibility</source>
         <target>Apariencia y Accesibilidad</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
@@ -100,7 +100,7 @@
       </trans-unit>
       <trans-unit id="prefsThemeLabel" datatype="html">
         <source>Theme Color</source>
-        <target>Color del Tema</target>
+        <target>Color del tema</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">33,34</context>
@@ -108,7 +108,7 @@
       </trans-unit>
       <trans-unit id="prefsAriaSelectThemeColor" datatype="html">
         <source>Select a theme color</source>
-        <target>Selecciona un color de tema</target>
+        <target>Seleccione un color de tema</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">36,37</context>
@@ -116,7 +116,7 @@
       </trans-unit>
       <trans-unit id="prefsColorFilterLabel" datatype="html">
         <source>Color Vision Filter</source>
-        <target>Filtro de Visión de Color</target>
+        <target>Filtro de visión de color</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">50,51</context>
@@ -124,7 +124,7 @@
       </trans-unit>
       <trans-unit id="prefsAriaSelectColorVisionFilter" datatype="html">
         <source>Select a color vision filter</source>
-        <target>Selecciona un filtro de visión de color</target>
+        <target>Seleccione un filtro de visión de color</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">53,54</context>
@@ -132,7 +132,7 @@
       </trans-unit>
       <trans-unit id="prefsDarkModeToggle" datatype="html">
         <source>Dark Mode</source>
-        <target>Modo Oscuro</target>
+        <target>Modo oscuro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">64,65</context>
@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit id="prefsHighContrastToggle" datatype="html">
         <source>High Contrast Mode</source>
-        <target>Modo de Alto Contraste</target>
+        <target>Modo de contraste alto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">68,69</context>
@@ -148,7 +148,7 @@
       </trans-unit>
       <trans-unit id="prefsReducedMotionToggle" datatype="html">
         <source>Reduced Motion</source>
-        <target>Movimiento Reducido</target>
+        <target>Movimiento reducido</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">72,73</context>
@@ -164,7 +164,7 @@
       </trans-unit>
       <trans-unit id="prefsFontFamilyLabel" datatype="html">
         <source>Font Family</source>
-        <target>Familia de Fuentes</target>
+        <target>Familia de fuentes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">89,90</context>
@@ -172,25 +172,25 @@
       </trans-unit>
       <trans-unit id="prefsAriaSelectFontFamily" datatype="html">
         <source>Select a font family</source>
-        <target>Selecciona una familia de fuentes</target>
+        <target>Seleccione una familia de fuentes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">91,92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsBaseFontSizeLabel" datatype="html">
-        <source> Base Font Size: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
-                        typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target> Tamaño de Fuente Base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
-                        typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <source> Base Font Size: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
+                        typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></source>
+        <target> Tamaño de fuente base: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ typographyService.activeFontSize().displayName }}"/> (<x id="INTERPOLATION_1" equiv-text="{{
+                        typographyService.activeFontSize().pixelValue }}"/>px)<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">102,104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="prefsBaseDensityLabel" datatype="html">
-        <source> Density: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target> Densidad: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <source> Density: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></source>
+        <target> Densidad: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/><x id="INTERPOLATION" equiv-text="{{ currentDensity().displayName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/preferences/preferences.component.html</context>
           <context context-type="linenumber">114,115</context>
@@ -198,7 +198,7 @@
       </trans-unit>
       <trans-unit id="showcaseDialogTitle" datatype="html">
         <source>Color Vision Simulation</source>
-        <target>Simulación de Visión de Color</target>
+        <target>Simulación de visión de color</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase-dialog/showcase-dialog.component.html</context>
           <context context-type="linenumber">4,8</context>
@@ -225,7 +225,7 @@
       </trans-unit>
       <trans-unit id="showcaseDialogInstruction1" datatype="html">
         <source> Locate the floating Quick Settings buttons in the bottom-right corner of the screen. </source>
-        <target> Localiza los botones flotantes de Ajustes Rápidos en la esquina inferior derecha de la pantalla. </target>
+        <target> Localice los botones flotantes de Ajustes rápidos en la esquina inferior derecha de la pantalla. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase-dialog/showcase-dialog.component.html</context>
           <context context-type="linenumber">15,17</context>
@@ -233,8 +233,8 @@
         <note priority="1" from="description">Instruction step 1</note>
       </trans-unit>
       <trans-unit id="showcaseDialogInstruction2" datatype="html">
-        <source> Click the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;no-wrap-group&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>eye<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> icon <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to open the simulation menu. </source>
-        <target> Haz clic en el ícono de <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;no-wrap-group&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>ojo<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> para abrir el menú de simulación. </target>
+        <source> Click the <x id="START_TAG_SPAN" ctype="x-span" equiv-text='<span class="no-wrap-group">'/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>eye<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> icon <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="<mat-icon>"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="</mat-icon>"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="</span>"/> to open the simulation menu. </source>
+        <target>Haga clic en el ícono de <x id="START_TAG_SPAN" ctype="x-span" equiv-text='<span class="no-wrap-group">'/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>ojo<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="<mat-icon>"/>visibility<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="</mat-icon>"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="</span>"/> para abrir el menú de simulación. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase-dialog/showcase-dialog.component.html</context>
           <context context-type="linenumber">18,20</context>
@@ -243,7 +243,7 @@
       </trans-unit>
       <trans-unit id="showcaseDialogInstruction3" datatype="html">
         <source> Select a filter (e.g., Protanopia, Tritanopia) to apply it across the page. </source>
-        <target> Selecciona un filtro (p. ej., Protanopia, Tritanopia) para aplicarlo en toda la página. </target>
+        <target> Seleccione un filtro (p. ej., Protanopia, Tritanopia) para aplicarlo en toda la página. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase-dialog/showcase-dialog.component.html</context>
           <context context-type="linenumber">21,23</context>
@@ -251,8 +251,8 @@
         <note priority="1" from="description">Instruction step 3</note>
       </trans-unit>
       <trans-unit id="showcaseDialogInstruction4" datatype="html">
-        <source> To disable the filter, select <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;no-wrap-group&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Default<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> from the menu. </source>
-        <target> Para desactivar el filtro, selecciona <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;no-wrap-group&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Predeterminado<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> en el menú. </target>
+        <source> To disable the filter, select <x id="START_TAG_SPAN" ctype="x-span" equiv-text='<span class="no-wrap-group">'/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Default<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="</span>"/> from the menu. </source>
+        <target>Para desactivar el filtro, seleccione <x id="START_TAG_SPAN" ctype="x-span" equiv-text='<span class="no-wrap-group">'/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Predeterminado<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="</span>"/> en el menú. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase-dialog/showcase-dialog.component.html</context>
           <context context-type="linenumber">24,26</context>
@@ -279,7 +279,7 @@
       </trans-unit>
       <trans-unit id="showcase.hero.title" datatype="html">
         <source>Dynamic UI Showcase</source>
-        <target>Demostración de Interfaz Dinámica</target>
+        <target>Demostración de Interfaz de Usuario Dinámica</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">10,11</context>
@@ -287,7 +287,7 @@
       </trans-unit>
       <trans-unit id="showcase.hero.subtitle" datatype="html">
         <source>Theme, Color, and Shape are all live!</source>
-        <target>¡El tema, el color y la forma están todos en vivo!</target>
+        <target>¡El tema, el color y la forma están todos activos!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">11,12</context>
@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="showcase.theming.p1" datatype="html">
         <source> Welcome to our live demonstration of a dynamic, theme-aware user interface. This entire application container is built to be flexible, allowing for instant visual changes that propagate through every component. </source>
-        <target> Bienvenido a nuestra demostración en vivo de una interfaz de usuario dinámica y consciente del tema. Todo este contenedor de la aplicación está diseñado para ser flexible, permitiendo cambios visuales instantáneos que se propagan a través de cada componente. </target>
+        <target> Bienvenido a nuestra demostración en vivo de una interfaz de usuario dinámica y sensible al tema. Todo el contenedor de esta aplicación está diseñado para ser flexible, permitiendo cambios visuales instantáneos que se propagan a través de cada componente. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">19,21</context>
@@ -311,14 +311,14 @@
       </trans-unit>
       <trans-unit id="showcase.whatIsTheming.title" datatype="html">
         <source>What is Dynamic Theming?</source>
-        <target>¿Qué es un Tema Dinámico?</target>
+        <target>¿Qué son los Temas Dinámicos?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.whatIsTheming.p1" datatype="html">
-        <source> It&apos;s an approach where design properties like color, shape, and typography are defined as variables. By changing these variables in one central place, the entire look-and-feel of the application updates in real-time without needing a page reload. </source>
+        <source> It's an approach where design properties like color, shape, and typography are defined as variables. By changing these variables in one central place, the entire look-and-feel of the application updates in real-time without needing a page reload. </source>
         <target> Es un enfoque donde las propiedades de diseño como el color, la forma y la tipografía se definen como variables. Al cambiar estas variables en un lugar central, toda la apariencia de la aplicación se actualiza en tiempo real sin necesidad de recargar la página. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
@@ -334,8 +334,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.customization.p1" datatype="html">
-        <source> The components on this page are listening to global style settings. When you use the theme controls to switch colors or toggle between light and dark modes, you&apos;re seeing this system at work. </source>
-        <target> Los componentes de esta página están escuchando la configuración de estilo global. Cuando usas los controles de tema para cambiar colores o alternar entre los modos claro y oscuro, estás viendo este sistema en funcionamiento. </target>
+        <source> The components on this page are listening to global style settings. When you use the theme controls to switch colors or toggle between light and dark modes, you're seeing this system at work. </source>
+        <target> Los componentes de esta página están atentos a la configuración de estilo global. Cuando utiliza los controles del tema para cambiar los colores o alternar entre los modos claro y oscuro, está viendo este sistema en funcionamiento. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">33,34</context>
@@ -350,24 +350,24 @@
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.elements.li1" datatype="html">
-        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Buttons &amp; Chips:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Notice how their background and text colors adapt.</source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Botones y Fichas:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Observa cómo se adaptan sus colores de fondo y de texto.</target>
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Buttons & Chips:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> Notice how their background and text colors adapt.</source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Botones y Chips:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> Observe cómo se adaptan los colores de fondo y de texto.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">39,40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.elements.li2" datatype="html">
-        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Form Controls:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> The input outlines, sliders, and toggles all use the primary theme color.</source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Controles de Formulario:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Los contornos de los campos de entrada, los deslizadores y los interruptores utilizan el color primario del tema.</target>
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Form Controls:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> The input outlines, sliders, and toggles all use the primary theme color.</source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Controles de formulario:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> Los contornos de los campos de entrada, los deslizadores y los interruptores utilizan el color primario del tema.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.elements.li3" datatype="html">
-        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Surfaces &amp; Borders:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Even the card backgrounds and image borders subtly shift. </source>
-        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Superficies y Bordes:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Incluso los fondos de las tarjetas y los bordes de las imágenes cambian sutilmente. </target>
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Surfaces & Borders:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> Even the card backgrounds and image borders subtly shift. </source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="<strong>"/>Superficies y Bordes:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="</strong>"/> Incluso los fondos de las tarjetas y los bordes de las imágenes cambian sutilmente. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">42,43</context>
@@ -375,7 +375,7 @@
       </trans-unit>
       <trans-unit id="showcase.tryIt.title" datatype="html">
         <source>Try It Yourself!</source>
-        <target>¡Pruébalo Tú Mismo!</target>
+        <target>¡Pruébelo usted mismo!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">46,47</context>
@@ -383,15 +383,15 @@
       </trans-unit>
       <trans-unit id="showcase.tryIt.p1" datatype="html">
         <source> Use the main theme controls to select a new color palette. Watch how every interactive element on this page—and throughout the app—instantly reflects your choice. </source>
-        <target> Usa los controles principales del tema para seleccionar una nueva paleta de colores. Observa cómo cada elemento interactivo en esta página, y en toda la aplicación, refleja instantáneamente tu elección. </target>
+        <target> Use los controles principales del tema para seleccionar una nueva paleta de colores. Observe cómo cada elemento interactivo en esta página, y en toda la aplicación, refleja instantáneamente su elección. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.proTip.title" datatype="html">
-        <source>Pro Tip: It&apos;s More Than Just Color</source>
-        <target>Consejo Pro: Es Más que Solo Color</target>
+        <source>Pro Tip: It's More Than Just Color</source>
+        <target>Consejo profesional: Es más que solo color</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">52,53</context>
@@ -399,7 +399,7 @@
       </trans-unit>
       <trans-unit id="showcase.proTip.p1" datatype="html">
         <source> Our theming engine also controls contrast and have accessibility controls. Also Notice the font-family and font-size on the page can be changed at will! All of these can be adjusted globally to create an more personalized and user friend UI. </source>
-        <target> Nuestro motor de temas también controla el contraste y tiene controles de accesibilidad. ¡Observa también que la familia de fuentes y el tamaño de la fuente en la página se pueden cambiar a voluntad! Todo esto se puede ajustar globalmente para crear una interfaz de usuario más personalizada y amigable. </target>
+        <target> Nuestro motor de temas también controla el contraste y tiene controles de accesibilidad. ¡También observe que la familia de fuentes y el tamaño de la fuente en la página se pueden cambiar a voluntad! Todo esto se puede ajustar globalmente para crear una interfaz de usuario más personalizada y amigable. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">54,56</context>
@@ -407,7 +407,7 @@
       </trans-unit>
       <trans-unit id="showcase.actions.primary" datatype="html">
         <source>Primary Action</source>
-        <target>Acción Principal</target>
+        <target>Acción principal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">64,67</context>
@@ -415,7 +415,7 @@
       </trans-unit>
       <trans-unit id="showcase.actions.secondary" datatype="html">
         <source>Secondary Action</source>
-        <target>Acción Secundaria</target>
+        <target>Acción secundaria</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">69,71</context>
@@ -423,14 +423,14 @@
       </trans-unit>
       <trans-unit id="showcase.visuals.title" datatype="html">
         <source>Visual Elements</source>
-        <target>Elementos Visuales</target>
+        <target>Elementos visuales</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">79,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.visuals.subtitle" datatype="html">
-        <source>Images &amp; loading states</source>
+        <source>Images & loading states</source>
         <target>Imágenes y estados de carga</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
@@ -439,7 +439,7 @@
       </trans-unit>
       <trans-unit id="showcase.visuals.imageHidden" datatype="html">
         <source>Image Hidden</source>
-        <target>Imagen Oculta</target>
+        <target>Imagen oculta</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">89,92</context>
@@ -479,7 +479,7 @@
       </trans-unit>
       <trans-unit id="showcase.interactive.title" datatype="html">
         <source>Interactive Controls</source>
-        <target>Controles Interactivos</target>
+        <target>Controles interactivos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">113,114</context>
@@ -495,7 +495,7 @@
       </trans-unit>
       <trans-unit id="showcase.form.nameLabel" datatype="html">
         <source>Your Name</source>
-        <target>Tu Nombre</target>
+        <target>Su nombre</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">118,119</context>
@@ -503,7 +503,7 @@
       </trans-unit>
       <trans-unit id="showcase.form.namePlaceholder" datatype="html">
         <source>Try typing here</source>
-        <target>Intenta escribir aquí</target>
+        <target>Intente escribir aquí</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">119,120</context>
@@ -511,58 +511,10 @@
       </trans-unit>
       <trans-unit id="showcase.form.petLabel" datatype="html">
         <source>Your pet</source>
-        <target>Tu mascota</target>
+        <target>Su mascota</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
           <context context-type="linenumber">124,125</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="showcase.form.petOptionNone" datatype="html">
-        <source>None</source>
-        <target>Ninguna</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">126,127</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="showcase.form.petOptionBird" datatype="html">
-        <source>Bird</source>
-        <target>Pájaro</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">127,128</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="showcase.form.petOptionCat" datatype="html">
-        <source>Cat</source>
-        <target>Gato</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">128,129</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="showcase.form.petOptionDog" datatype="html">
-        <source>Dog</source>
-        <target>Perro</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">129,130</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="showcase.form.petOptionFish" datatype="html">
-        <source>Fish</source>
-        <target>Pez</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">130,131</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="showcase.form.petOptionOther" datatype="html">
-        <source>Other</source>
-        <target>Otro</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">131,132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.actions.generateText" datatype="html">
@@ -570,7 +522,7 @@
         <target>Generar texto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">146,147</context>
+          <context context-type="linenumber">143,144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.actions.clear" datatype="html">
@@ -578,23 +530,71 @@
         <target>Limpiar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.html</context>
-          <context context-type="linenumber">151,153</context>
+          <context context-type="linenumber">148,150</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="showcase.snackBar.likedMessage" datatype="html">
-        <source>You liked this!</source>
-        <target>¡Te ha gustado esto!</target>
+      <trans-unit id="showcase.form.petOptionNone" datatype="html">
+        <source>None</source>
+        <target>Ninguno</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showcase.form.petOptionBird" datatype="html">
+        <source>Bird</source>
+        <target>Pájaro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
           <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="showcase.snackBar.bookmarkedMessage" datatype="html">
-        <source>You bookmarked this!</source>
-        <target>¡Has guardado esto!</target>
+      <trans-unit id="showcase.form.petOptionCat" datatype="html">
+        <source>Cat</source>
+        <target>Gato</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showcase.form.petOptionDog" datatype="html">
+        <source>Dog</source>
+        <target>Perro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
           <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showcase.form.petOptionFish" datatype="html">
+        <source>Fish</source>
+        <target>Pez</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showcase.form.petOptionOther" datatype="html">
+        <source>Other</source>
+        <target>Otro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showcase.snackBar.likedMessage" datatype="html">
+        <source>You liked this!</source>
+        <target>¡Le ha gustado esto!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showcase.snackBar.bookmarkedMessage" datatype="html">
+        <source>You bookmarked this!</source>
+        <target>¡Ha añadido esto a marcadores!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.snackBar.closeAction" datatype="html">
@@ -602,15 +602,15 @@
         <target>Cerrar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.form.validationError" datatype="html">
         <source>Please provide a name and select a pet.</source>
-        <target>Por favor, proporciona un nombre y selecciona una mascota.</target>
+        <target>Por favor, proporcione un nombre y seleccione una mascota.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.form.generatedTextOther" datatype="html">
@@ -618,15 +618,15 @@
         <target><x id="PERSON_NAME" equiv-text="this.personName"/> tiene una mascota :D</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showcase.form.generatedTextPet" datatype="html">
         <source><x id="PERSON_NAME" equiv-text="this.personName"/> has a <x id="PET_TYPE" equiv-text="pet"/> :D</source>
-        <target><x id="PERSON_NAME" equiv-text="this.personName"/> tiene un(a) <x id="PET_TYPE" equiv-text="pet"/> :D</target>
+        <target><x id="PERSON_NAME" equiv-text="this.personName"/> tiene un <x id="PET_TYPE" equiv-text="pet"/> :D</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/showcase/showcase.component.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="densityDefault" datatype="html">
@@ -711,7 +711,7 @@
       </trans-unit>
       <trans-unit id="themeTeal" datatype="html">
         <source>Teal</source>
-        <target>Verde Azulado</target>
+        <target>Verde azulado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/theme.service.ts</context>
           <context context-type="linenumber">12</context>
@@ -735,7 +735,7 @@
       </trans-unit>
       <trans-unit id="themePurple" datatype="html">
         <source>Purple</source>
-        <target>Morado</target>
+        <target>Púrpura</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/theme.service.ts</context>
           <context context-type="linenumber">15</context>

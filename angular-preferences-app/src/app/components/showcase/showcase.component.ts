@@ -19,6 +19,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ShowcaseDialogComponent } from '../showcase-dialog/showcase-dialog.component';
 
+interface AnimalOption {
+  value: string;
+  label: string;
+}
+
 @Component({
   selector: 'app-showcase',
   standalone: true,
@@ -53,6 +58,15 @@ export class ShowcaseComponent {
   generatedText: string = '';
   hasError: boolean = false;
 
+  public readonly animalOptions: AnimalOption[] = [
+    { value: 'none', label: $localize`:@@showcase.form.petOptionNone:None` },
+    { value: 'bird', label: $localize`:@@showcase.form.petOptionBird:Bird` },
+    { value: 'cat', label: $localize`:@@showcase.form.petOptionCat:Cat` },
+    { value: 'dog', label: $localize`:@@showcase.form.petOptionDog:Dog` },
+    { value: 'fish', label: $localize`:@@showcase.form.petOptionFish:Fish` },
+    { value: 'other', label: $localize`:@@showcase.form.petOptionOther:Other` },
+  ];
+
   constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   openSnackBar(messageKey: string, actionKey: string) {
@@ -60,15 +74,15 @@ export class ShowcaseComponent {
     let action: string;
 
     if (messageKey === 'You liked this!') {
-        message = $localize`:@@showcase.snackBar.likedMessage:You liked this!`;
+      message = $localize`:@@showcase.snackBar.likedMessage:You liked this!`;
     } else {
-        message = $localize`:@@showcase.snackBar.bookmarkedMessage:You bookmarked this!`;
+      message = $localize`:@@showcase.snackBar.bookmarkedMessage:You bookmarked this!`;
     }
 
     if (actionKey === 'Close') {
-        action = $localize`:@@showcase.snackBar.closeAction:Close`;
+      action = $localize`:@@showcase.snackBar.closeAction:Close`;
     } else {
-        action = actionKey; 
+      action = actionKey;
     }
 
     this.snackBar.open(message, action, {
@@ -97,13 +111,12 @@ export class ShowcaseComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Console logs are for developers and typically not translated.
       console.log('The dialog was closed. Result:', result);
     });
   }
 
   generateText(): void {
-    if (!this.personName || !this.animalType || this.animalType === 'None') {
+    if (!this.personName || !this.animalType || this.animalType === 'none') {
       this.generatedText = $localize`:@@showcase.form.validationError:Please provide a name and select a pet.`;
       this.hasError = true;
       return;
@@ -113,13 +126,15 @@ export class ShowcaseComponent {
     this.generatedText = '';
 
     setTimeout(() => {
-      const pet = this.animalType.toLowerCase();
+      const selectedOption = this.animalOptions.find(opt => opt.value === this.animalType);
 
-      if (pet === 'other') {
-        this.generatedText = $localize`:@@showcase.form.generatedTextOther:${this.personName}:PERSON_NAME: has an pet :D`;
+      if (this.animalType === 'other' || !selectedOption) {
+        this.generatedText = $localize`:@@showcase.form.generatedTextOther:${this.personName}:PERSON_NAME: has a pet :D`;
       } else {
-        this.generatedText = $localize`:@@showcase.form.generatedTextPet:${this.personName}:PERSON_NAME: has a ${pet}:PET_TYPE: :D`;
+        const translatedPetName = selectedOption.label;
+        this.generatedText = $localize`:@@showcase.form.generatedTextPet:${this.personName}:PERSON_NAME: has a ${translatedPetName.toLowerCase()}:PET_TYPE: :D`;
       }
+
       this.hasError = false;
       this.isGeneratingText = false;
     }, 1500);
