@@ -55,10 +55,25 @@ export class ShowcaseComponent {
 
   constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(messageKey: string, actionKey: string) {
+    let message: string;
+    let action: string;
+
+    if (messageKey === 'You liked this!') {
+        message = $localize`:@@showcase.snackBar.likedMessage:You liked this!`;
+    } else {
+        message = $localize`:@@showcase.snackBar.bookmarkedMessage:You bookmarked this!`;
+    }
+
+    if (actionKey === 'Close') {
+        action = $localize`:@@showcase.snackBar.closeAction:Close`;
+    } else {
+        action = actionKey; 
+    }
+
     this.snackBar.open(message, action, {
-      duration: 3000, 
-      verticalPosition: 'bottom', 
+      duration: 3000,
+      verticalPosition: 'bottom',
       horizontalPosition: 'center',
     });
   }
@@ -82,13 +97,14 @@ export class ShowcaseComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      // Console logs are for developers and typically not translated.
       console.log('The dialog was closed. Result:', result);
     });
   }
 
   generateText(): void {
     if (!this.personName || !this.animalType || this.animalType === 'None') {
-      this.generatedText = 'Please provide a name and select a pet.';
+      this.generatedText = $localize`:@@showcase.form.validationError:Please provide a name and select a pet.`;
       this.hasError = true;
       return;
     }
@@ -97,10 +113,12 @@ export class ShowcaseComponent {
     this.generatedText = '';
 
     setTimeout(() => {
-      if (this.animalType.toLowerCase() === 'other') {
-        this.generatedText = `${this.personName} have an pet :D`;
+      const pet = this.animalType.toLowerCase();
+
+      if (pet === 'other') {
+        this.generatedText = $localize`:@@showcase.form.generatedTextOther:${this.personName}:PERSON_NAME: has an pet :D`;
       } else {
-        this.generatedText = `${this.personName} have an ${this.animalType.toLowerCase()} :D`;
+        this.generatedText = $localize`:@@showcase.form.generatedTextPet:${this.personName}:PERSON_NAME: has a ${pet}:PET_TYPE: :D`;
       }
       this.hasError = false;
       this.isGeneratingText = false;

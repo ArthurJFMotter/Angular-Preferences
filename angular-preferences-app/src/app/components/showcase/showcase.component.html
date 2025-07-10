@@ -7,52 +7,52 @@
             <div mat-card-avatar class="showcase-avatar">
                 <mat-icon>palette</mat-icon>
             </div>
-            <mat-card-title>Dynamic UI Showcase</mat-card-title>
-            <mat-card-subtitle>Theme, Color, and Shape are all live!</mat-card-subtitle>
+            <mat-card-title i18n="@@showcase.hero.title">Dynamic UI Showcase</mat-card-title>
+            <mat-card-subtitle i18n="@@showcase.hero.subtitle">Theme, Color, and Shape are all live!</mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
             <!-- Rich text content with headings -->
             <div class="typography-showcase">
-                <h1>The Power of Theming</h1>
-                <p>
+                <h1 i18n="@@showcase.theming.title">The Power of Theming</h1>
+                <p i18n="@@showcase.theming.p1">
                     Welcome to our live demonstration of a dynamic, theme-aware user interface. This entire application
                     container is built to be flexible, allowing for instant visual changes that propagate through every
                     component.
                 </p>
 
-                <h2>What is Dynamic Theming?</h2>
-                <p>
+                <h2 i18n="@@showcase.whatIsTheming.title">What is Dynamic Theming?</h2>
+                <p i18n="@@showcase.whatIsTheming.p1">
                     It's an approach where design properties like color, shape, and typography are defined as variables.
                     By changing these variables in one central place, the entire look-and-feel of the application
                     updates in real-time without needing a page reload.
                 </p>
 
-                <h3>Real-Time Customization in Action</h3>
-                <p>
+                <h3 i18n="@@showcase.customization.title">Real-Time Customization in Action</h3>
+                <p i18n="@@showcase.customization.p1">
                     The components on this page are listening to global style settings. When you use the theme controls
                     to switch colors or toggle between light and dark modes, you're seeing this system at work.
                 </p>
 
-                <h4>Key Themed Elements</h4>
+                <h4 i18n="@@showcase.elements.title">Key Themed Elements</h4>
                 <ul>
-                    <li><strong>Buttons & Chips:</strong> Notice how their background and text colors adapt.</li>
-                    <li><strong>Form Controls:</strong> The input outlines, sliders, and toggles all use the primary
+                    <li i18n="@@showcase.elements.li1"><strong>Buttons & Chips:</strong> Notice how their background and text colors adapt.</li>
+                    <li i18n="@@showcase.elements.li2"><strong>Form Controls:</strong> The input outlines, sliders, and toggles all use the primary
                         theme color.</li>
-                    <li><strong>Surfaces & Borders:</strong> Even the card backgrounds and image borders subtly shift.
+                    <li i18n="@@showcase.elements.li3"><strong>Surfaces & Borders:</strong> Even the card backgrounds and image borders subtly shift.
                     </li>
                 </ul>
 
-                <h5>Try It Yourself!</h5>
-                <p>
+                <h5 i18n="@@showcase.tryIt.title">Try It Yourself!</h5>
+                <p i18n="@@showcase.tryIt.p1">
                     Use the main theme controls to select a new color palette. Watch how every interactive element on
                     this page—and throughout the app—instantly reflects your choice.
                 </p>
 
-                <h6>Pro Tip: It's More Than Just Color</h6>
-                <p>
-                    Our theming engine also controls contrast and have accessibility controls. 
-                    Also Notice the font-family and font-size on the page can be changed at will! 
+                <h6 i18n="@@showcase.proTip.title">Pro Tip: It's More Than Just Color</h6>
+                <p i18n="@@showcase.proTip.p1">
+                    Our theming engine also controls contrast and have accessibility controls.
+                    Also Notice the font-family and font-size on the page can be changed at will!
                     All of these can be adjusted globally to create an more personalized and user friend UI.
                 </p>
             </div>
@@ -61,12 +61,12 @@
         <mat-card-actions class="button-row">
             <button mat-flat-button (click)="openSnackBar('You liked this!', 'Close')">
                 <mat-icon>thumb_up</mat-icon>
-                <span>Primary Action</span>
+                <span i18n="@@showcase.actions.primary">Primary Action</span>
             </button>
 
             <button mat-stroked-button (click)="openSnackBar('You bookmarked this!', 'Close')">
                 <mat-icon>bookmark_border</mat-icon>
-                <span>Secondary Action</span>
+                <span i18n="@@showcase.actions.secondary">Secondary Action</span>
             </button>
         </mat-card-actions>
     </mat-card>
@@ -76,8 +76,8 @@
         <!-- Card 2: Visual Elements -->
         <mat-card class="showcase-card">
             <mat-card-header>
-                <mat-card-title>Visual Elements</mat-card-title>
-                <mat-card-subtitle>Images & loading states</mat-card-subtitle>
+                <mat-card-title i18n="@@showcase.visuals.title">Visual Elements</mat-card-title>
+                <mat-card-subtitle i18n="@@showcase.visuals.subtitle">Images & loading states</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <div class="image-container">
@@ -86,23 +86,23 @@
 
                     <div class="image-placeholder" *ngIf="!isLoading && !isImageVisible">
                         <mat-icon>image</mat-icon>
-                        <span>Image Hidden</span>
+                        <span i18n="@@showcase.visuals.imageHidden">Image Hidden</span>
                     </div>
 
                     <img *ngIf="!isLoading && isImageVisible" class="custom-image"
                         src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
-                        alt="A Shiba Inu dog looking at the camera">
+                        i18n-alt="@@showcase.visuals.imageAlt" alt="A Shiba Inu dog looking at the camera">
                 </div>
 
             </mat-card-content>
             <mat-card-actions class="btn-row">
                 <button mat-raised-button (click)="openDialog()">
                     <mat-icon>open_in_new</mat-icon>
-                    <span>Open</span> Hint
+                    <span i18n="@@showcase.actions.open">Open</span> <span i18n="@@showcase.actions.hint">Hint</span>
                 </button>
                 <button mat-stroked-button (click)="toggleImage()" [disabled]="isLoading">
                     <mat-icon>{{ isImageVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    {{ isLoading ? 'Loading' : (isImageVisible ? 'Hide' : 'Show') }} <span>Image</span>
+                    <span i18n="@@showcase.actions.toggleImageState">{isLoading, select, true {Loading} false {{isImageVisible, select, true {Hide} false {Show}}}}</span> <span>Image</span>
                 </button>
             </mat-card-actions>
         </mat-card>
@@ -110,25 +110,25 @@
         <!-- Card 3: Interactive Controls -->
         <mat-card class="showcase-card">
             <mat-card-header>
-                <mat-card-title>Interactive Controls</mat-card-title>
-                <mat-card-subtitle>Inputs and Dynamic interactions</mat-card-subtitle>
+                <mat-card-title i18n="@@showcase.interactive.title">Interactive Controls</mat-card-title>
+                <mat-card-subtitle i18n="@@showcase.interactive.subtitle">Inputs and Dynamic interactions</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="interactive-content">
                 <mat-form-field appearance="outline">
-                    <mat-label>Your Name</mat-label>
-                    <input matInput placeholder="Try typing here" [(ngModel)]="personName">
+                    <mat-label i18n="@@showcase.form.nameLabel">Your Name</mat-label>
+                    <input matInput i18n-placeholder="@@showcase.form.namePlaceholder" placeholder="Try typing here" [(ngModel)]="personName">
                     <mat-icon matSuffix>person_outline</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Your pet</mat-label>
+                    <mat-label i18n="@@showcase.form.petLabel">Your pet</mat-label>
                     <mat-select [(ngModel)]="animalType">
-                        <mat-option value="None">None</mat-option>
-                        <mat-option value="Bird">Bird</mat-option>
-                        <mat-option value="Cat">Cat</mat-option>
-                        <mat-option value="Dog">Dog</mat-option>
-                        <mat-option value="Fish">Fish</mat-option>
-                        <mat-option value="Other">Other</mat-option>
+                        <mat-option value="None" i18n="@@showcase.form.petOptionNone">None</mat-option>
+                        <mat-option value="Bird" i18n="@@showcase.form.petOptionBird">Bird</mat-option>
+                        <mat-option value="Cat" i18n="@@showcase.form.petOptionCat">Cat</mat-option>
+                        <mat-option value="Dog" i18n="@@showcase.form.petOptionDog">Dog</mat-option>
+                        <mat-option value="Fish" i18n="@@showcase.form.petOptionFish">Fish</mat-option>
+                        <mat-option value="Other" i18n="@@showcase.form.petOptionOther">Other</mat-option>
                     </mat-select>
                     <mat-icon matSuffix>pets</mat-icon>
                 </mat-form-field>
@@ -141,12 +141,14 @@
             <mat-card-actions class="btn-row">
                 <button mat-raised-button (click)="generateText()" [disabled]="isGeneratingText">
                     <mat-spinner *ngIf="isGeneratingText" [diameter]="24"></mat-spinner>
-                    <mat-icon>whatshot</mat-icon>
-                    <ng-container *ngIf="!isGeneratingText">Generate text</ng-container>
+                    <mat-icon *ngIf="!isGeneratingText">whatshot</mat-icon>
+                    <ng-container *ngIf="!isGeneratingText">
+                        <span i18n="@@showcase.actions.generateText">Generate text</span>
+                    </ng-container>
                 </button>
                 <button *ngIf="generatedText" mat-stroked-button class="alt-btn" (click)="resetGeneration()">
                     <mat-icon>clear_all</mat-icon>
-                    <span>Clear</span>
+                    <span i18n="@@showcase.actions.clear">Clear</span>
                 </button>
             </mat-card-actions>
         </mat-card>
