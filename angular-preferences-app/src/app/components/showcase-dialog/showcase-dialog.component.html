@@ -1,34 +1,34 @@
 <!-- ***** THIS COMPONENT IS ALSO AN PLACEHOLDER AND CAN BE DELETED OR REPURPOSED ***** -->
 <h2 mat-dialog-title class="dialog-title">
     <mat-icon>color_lens</mat-icon>
-    Color Vision Simulation
+    <span i18n="Dialog Title@@showcaseDialogTitle">Color Vision Simulation</span>
 </h2>
 
 <mat-dialog-content>
-    <p>
+    <p i18n="Main explanatory paragraph about the feature.@@showcaseDialogMainParagraph">
         This application includes an accessibility tool to simulate how users with different types of color vision deficiency perceive the interface.
     </p>
 
-    <h3>How to activate the filter:</h3>
+    <h3 i18n="Title for the instruction list@@showcaseDialogHowToTitle">How to activate the filter:</h3>
     <ol class="instructions-list">
-        <li>
+        <li i18n="Instruction step 1@@showcaseDialogInstruction1">
             Locate the floating Quick Settings buttons in the bottom-right corner of the screen.
         </li>
-        <li>
+        <li i18n="Instruction step 2 with bold text and an icon@@showcaseDialogInstruction2">
             Click the <span class="no-wrap-group"><strong>eye</strong> icon <mat-icon>visibility</mat-icon></span> to open the simulation menu.
         </li>
-        <li>
+        <li i18n="Instruction step 3@@showcaseDialogInstruction3">
             Select a filter (e.g., Protanopia, Tritanopia) to apply it across the page.
         </li>
-        <li>
+        <li i18n="Instruction step 4 with a bolded UI element name@@showcaseDialogInstruction4">
             To disable the filter, select <span class="no-wrap-group"><strong>Default</strong></span> from the menu.
         </li>
     </ol>
-    <p>
+    <p i18n="Concluding paragraph on accessibility benefits@@showcaseDialogConclusion">
         This helps ensure the UI is accessible and has sufficient color contrast for all users.
     </p>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-flat-button mat-dialog-close>Got it!</button>
+    <button mat-flat-button mat-dialog-close i18n="Confirmation button in dialog@@showcaseDialogGotItButton">Got it!</button>
 </mat-dialog-actions>
