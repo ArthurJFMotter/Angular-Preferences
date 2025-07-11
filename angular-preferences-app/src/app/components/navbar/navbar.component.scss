@@ -1,15 +1,27 @@
 mat-toolbar {
   justify-content: space-between;
   background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
   border-bottom: 1px solid var(--mat-sys-outline);
   box-shadow: 0px 4px 4px var(--mat-sys-outline-variant);
+  position: relative;
+  z-index: 999;
 
   @media(max-width:900px) {
     button {
-      span{ display: none; }
-      mat-icon{ margin: 0 auto; }
+      span {
+        display: none;
+      }
+
+      mat-icon {
+        margin: 0 auto;
+      }
     }
   }
+}
+
+button {
+  color: var(--mat-sys-on-primary-container) !important;
 }
 
 .toolbar-spacer {
