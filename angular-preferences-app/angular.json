@@ -38,6 +38,7 @@
                 "glob": "**/*",
                 "input": "public"
               },
+              "src/_redirects",
               "src/theme-loader.js"
             ],
             "styles": [
@@ -130,6 +131,7 @@
                 "glob": "**/*",
                 "input": "public"
               },
+              "src/_redirects",
               "src/theme-loader.js"
             ],
             "styles": [
