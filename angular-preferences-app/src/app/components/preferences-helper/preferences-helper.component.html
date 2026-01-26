@@ -6,27 +6,27 @@
         </button>
     </div>
     <div class="fab-option">
-        <button mat-mini-fab matTooltip="High Contrast" i18n-matTooltip="@@prefsHelperTooltipHighContrast"
+        <button mat-mini-fab matTooltip="High Contrast" 
             (click)="preferencesService.toggleHighContrastMode();"
             aria-label="Toggle high contrast mode">
             <mat-icon>contrast</mat-icon>
         </button>
     </div>
     <div class="fab-option">
-        <button mat-mini-fab matTooltip="Color Filter" i18n-matTooltip="@@prefsHelperTooltipColorFilter"
+        <button mat-mini-fab matTooltip="Color Filter" 
             [matMenuTriggerFor]="filterMenu" aria-label="Open color filter options">
             <mat-icon>visibility</mat-icon>
         </button>
     </div>
     <div class="fab-option">
-        <button mat-mini-fab matTooltip="Theme Color" i18n-matTooltip="@@prefsHelperTooltipThemeColor"
+        <button mat-mini-fab matTooltip="Theme Color" 
             [matMenuTriggerFor]="themeMenu" aria-label="Open theme color options">
             <mat-icon>format_color_fill</mat-icon>
         </button>
     </div>
 
     <!-- Main FAB to toggle the expansion -->
-    <button mat-fab class="fab-toggler" (click)="toggleExpansion()" i18n-aria-label="@@prefsHelperAriaOpenMenu"
+    <button mat-fab class="fab-toggler" (click)="toggleExpansion()" 
         aria-label="Open accessibility and theme preferences">
         <mat-icon>settings</mat-icon>
     </button>

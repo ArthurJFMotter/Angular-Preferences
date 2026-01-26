@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Import modules for the dialog and its contents
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +24,5 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrls: ['./showcase-dialog.component.scss']
 })
 export class ShowcaseDialogComponent {
-  // You can inject MatDialogRef to programmatically close the dialog
   constructor(public dialogRef: MatDialogRef<ShowcaseDialogComponent>) {}
 }

@@ -59,12 +59,12 @@ export class ShowcaseComponent {
   hasError: boolean = false;
 
   public readonly animalOptions: AnimalOption[] = [
-    { value: 'none', label: $localize`:@@showcase.form.petOptionNone:None` },
-    { value: 'bird', label: $localize`:@@showcase.form.petOptionBird:Bird` },
-    { value: 'cat', label: $localize`:@@showcase.form.petOptionCat:Cat` },
-    { value: 'dog', label: $localize`:@@showcase.form.petOptionDog:Dog` },
-    { value: 'fish', label: $localize`:@@showcase.form.petOptionFish:Fish` },
-    { value: 'other', label: $localize`:@@showcase.form.petOptionOther:Other` },
+    { value: 'none', label: 'None' },
+    { value: 'bird', label: 'Bird' },
+    { value: 'cat', label: 'Cat' },
+    { value: 'dog', label: 'Dog' },
+    { value: 'fish', label: 'Fish' },
+    { value: 'other', label: 'Other' },
   ];
 
   constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
@@ -74,13 +74,13 @@ export class ShowcaseComponent {
     let action: string;
 
     if (messageKey === 'You liked this!') {
-      message = $localize`:@@showcase.snackBar.likedMessage:You liked this!`;
+      message = 'You liked this!';
     } else {
-      message = $localize`:@@showcase.snackBar.bookmarkedMessage:You bookmarked this!`;
+      message = 'You bookmarked this!';
     }
 
     if (actionKey === 'Close') {
-      action = $localize`:@@showcase.snackBar.closeAction:Close`;
+      action = 'Close';
     } else {
       action = actionKey;
     }
@@ -117,7 +117,7 @@ export class ShowcaseComponent {
 
   generateText(): void {
     if (!this.personName || !this.animalType || this.animalType === 'none') {
-      this.generatedText = $localize`:@@showcase.form.validationError:Please provide a name and select a pet.`;
+      this.generatedText = 'Please provide a name and select a pet.';
       this.hasError = true;
       return;
     }
@@ -129,10 +129,10 @@ export class ShowcaseComponent {
       const selectedOption = this.animalOptions.find(opt => opt.value === this.animalType);
 
       if (this.animalType === 'other' || !selectedOption) {
-        this.generatedText = $localize`:@@showcase.form.generatedTextOther:${this.personName}:PERSON_NAME: has a pet :D`;
+        this.generatedText = `${this.personName} has a pet :D`;
       } else {
         const translatedPetName = selectedOption.label;
-        this.generatedText = $localize`:@@showcase.form.generatedTextPet:${this.personName}:PERSON_NAME: has a ${translatedPetName.toLowerCase()}:PET_TYPE: :D`;
+        this.generatedText = `${this.personName} has a ${translatedPetName.toLowerCase()} :D`;
       }
 
       this.hasError = false;

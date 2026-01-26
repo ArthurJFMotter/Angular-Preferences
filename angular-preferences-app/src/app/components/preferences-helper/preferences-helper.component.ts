@@ -26,17 +26,17 @@ export class PreferencesHelperComponent {
 
   tooltipText = computed(() => {
     if (this.themeService.isDarkMode()) {
-      return $localize`:@@prefsHelperTooltipToLight:Light Mode`; 
+      return 'Light Mode'; 
     } else {
-      return $localize`:@@prefsHelperTooltipToDark:Dark Mode`;
+      return 'Dark Mode';
     }
   });
 
   ariaLabelText = computed(() => {
     if (this.themeService.isDarkMode()) {
-      return $localize`:@@prefsHelperAriaToLight:Switch to light mode`;
+      return 'Switch to light mode';
     } else {
-      return $localize`:@@prefsHelperAriaToDark:Switch to dark mode`;
+      return 'Switch to dark mode';
     }
   });
 }

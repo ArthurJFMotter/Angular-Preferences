@@ -1,28 +1,8 @@
 <div class="content-wrapper">
-    <!-- Language Card -->
-    <mat-card class="preferences-card">
-        <mat-card-header>
-            <mat-card-title class="item-title" i18n="@@prefsLanguageTitle">Language</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <section class="control-section">
-                <mat-form-field appearance="outline" class="full-width-field">
-                    <mat-label i18n="@@prefsLanguageLabel">Select Language</mat-label>
-                    <mat-select [value]="i18nService.currentLocale" (selectionChange)="onLocaleChange($event.value)"
-                        i18n-aria-label="@@prefsAriaSelectLanguage" aria-label="Select a language" disabled="true">
-                        @for (locale of i18nService.supportedLocales; track locale.id) {
-                        <mat-option [value]="locale.id">{{ locale.displayName }}</mat-option>
-                        }
-                    </mat-select>
-                </mat-form-field>
-            </section>
-        </mat-card-content>
-    </mat-card>
-
     <!-- Appearance/Accessibility Card -->
     <mat-card class="preferences-card">
         <mat-card-header>
-            <mat-card-title class="item-title" i18n="@@prefsAppearanceTitle">Appearance & Accessibility</mat-card-title>
+            <mat-card-title class="item-title">Appearance & Accessibility</mat-card-title>
         </mat-card-header>
         <mat-card-content>
 
@@ -30,10 +10,10 @@
             <section class="control-section row">
                 <!-- Theme Color -->
                 <mat-form-field appearance="outline" class="full-width-field">
-                    <mat-label i18n="@@prefsThemeLabel">Theme Color</mat-label>
+                    <mat-label>Theme Color</mat-label>
                     <mat-select [value]="themeService.currentTheme().id"
                         (selectionChange)="preferencesService.setTheme($event.value)"
-                        i18n-aria-label="@@prefsAriaSelectThemeColor" aria-label="Select a theme color">
+                        aria-label="Select a theme color">
                         @for (theme of themeService.getThemes(); track theme.id) {
                         <mat-option [value]="theme.id">
                             <div class="theme-option">
@@ -47,10 +27,10 @@
 
                 <!-- Color Vision Filter -->
                 <mat-form-field appearance="outline" class="full-width-field">
-                    <mat-label i18n="@@prefsColorFilterLabel">Color Vision Filter</mat-label>
+                    <mat-label>Color Vision Filter</mat-label>
                     <mat-select [value]="themeService.activeColorFilter()"
                         (selectionChange)="preferencesService.setColorFilter($event.value)"
-                        i18n-aria-label="@@prefsAriaSelectColorVisionFilter" aria-label="Select a color vision filter">
+                        aria-label="Select a color vision filter">
                         @for (filter of themeService.getDaltonicFilters(); track filter.id) {
                         <mat-option [value]="filter.id">{{ filter.displayName }}</mat-option>
                         }
@@ -61,15 +41,15 @@
             <!-- Toggles -->
             <div class="control-section row toggles">
                 <mat-slide-toggle [checked]="themeService.isDarkMode()" (change)="preferencesService.toggleDarkMode()">
-                    <span i18n="@@prefsDarkModeToggle">Dark Mode</span>
+                    <span>Dark Mode</span>
                 </mat-slide-toggle>
                 <mat-slide-toggle [checked]="themeService.isHighContrastMode()"
                     (change)="preferencesService.toggleHighContrastMode()">
-                    <span i18n="@@prefsHighContrastToggle">High Contrast Mode</span>
+                    <span>High Contrast Mode</span>
                 </mat-slide-toggle>
                 <mat-slide-toggle [checked]="themeService.isReducedMotion()"
                     (change)="preferencesService.toggleReducedMotion()">
-                    <span i18n="@@prefsReducedMotionToggle">Reduced Motion</span>
+                    <span>Reduced Motion</span>
                 </mat-slide-toggle>
             </div>
 
@@ -79,16 +59,16 @@
     <!-- Typography Card -->
     <mat-card class="preferences-card">
         <mat-card-header>
-            <mat-card-title class="item-title" i18n="@@prefsTypographyTitle">Typography</mat-card-title>
+            <mat-card-title class="item-title">Typography</mat-card-title>
         </mat-card-header>
         <mat-card-content>
 
             <!-- Font Family -->
             <section class="control-section">
                 <mat-form-field appearance="outline" class="full-width-field">
-                    <mat-label i18n="@@prefsFontFamilyLabel">Font Family</mat-label>
+                    <mat-label>Font Family</mat-label>
                     <mat-select [value]="typographyService.activeFont().id" (selectionChange)="onFontChange($event)"
-                        i18n-aria-label="@@prefsAriaSelectFontFamily" aria-label="Select a font family">
+                        aria-label="Select a font family">
                         @for (font of typographyService.getFonts(); track font.id) {
                         <mat-option [value]="font.id">{{ font.displayName }}</mat-option>
                         }
@@ -98,7 +78,7 @@
 
             <!-- Font Size -->
             <section class="control-section">
-                <label id="font-size-label" i18n="@@prefsBaseFontSizeLabel">
+                <label id="font-size-label">
                     Base Font Size: <strong>{{ typographyService.activeFontSize().displayName }} ({{
                         typographyService.activeFontSize().pixelValue }}px)</strong>
                 </label>
@@ -110,7 +90,7 @@
 
             <!-- Density -->
             <section class="control-section">
-                <label id="density-slider-label" i18n="@@prefsBaseDensityLabel">
+                <label id="density-slider-label">
                     Density: <strong>{{ currentDensity().displayName }}</strong>
                 </label>
                 <mat-slider class="control-slider" [min]="minDensityIndex" [max]="maxDensityIndex" step="1" discrete>

@@ -5,7 +5,6 @@ import { ThemeService } from "./theme.service";
 import { TypographyService } from "./typography.service";
 import { DaltonicFilterType } from "../models/filter.model";
 import { UserPreferences } from "../models/preferences.model";
-import { I18nService } from "./i18n.service";
 
 const STORAGE_KEY = 'user-app-preferences';
 
@@ -18,7 +17,6 @@ export class PreferencesService {
 
     // Inject the individual services
     private densityService = inject(DensityService);
-    private i18nService = inject(I18nService);
     private themeService = inject(ThemeService);
     private typographyService = inject(TypographyService);
 
@@ -50,10 +48,10 @@ export class PreferencesService {
         }
     }
 
-    private savePreferences(localeOverride?: string): void {
+    private savePreferences(): void {
         if (isPlatformBrowser(this.platformId)) {
             const prefs: UserPreferences = {
-                localeId: localeOverride ?? this.i18nService.currentLocale,
+                // localeId removed
                 themeId: this.themeService.currentTheme().id,
                 isDarkMode: this.themeService.isDarkMode(),
                 isHighContrastMode: this.themeService.isHighContrastMode(),
@@ -86,46 +84,6 @@ export class PreferencesService {
     public setFontSize(sizeId: string): void {
         this.typographyService.setFontSize(sizeId);
         this.savePreferences();
-    }
-
-    public setLocale(localeId: string): void {
-        if (!isPlatformBrowser(this.platformId)) {
-            return;
-        }
-
-        this.savePreferences(localeId);
-
-        const sourceLocale = 'en-US';
-
-        const localeUrlPrefixes = this.i18nService.supportedLocales
-            .map(l => l.id)
-            .filter(id => id !== sourceLocale)
-            .map(id => `/${id}`);
-
-        let currentPath = this.document.location.pathname;
-
-        // --- AGGRESSIVELY CLEAN THE CURRENT PATH ---
-        let wasStripped;
-        do {
-            wasStripped = false;
-            for (const prefix of localeUrlPrefixes) {
-                if (currentPath.startsWith(prefix + '/') || currentPath === prefix) {
-                    currentPath = currentPath.substring(prefix.length);
-                    if (currentPath === '') {
-                        currentPath = '/';
-                    }
-                    wasStripped = true;
-                    break;
-                }
-            }
-        } while (wasStripped);
-
-        const newPrefix = localeId === sourceLocale ? '' : `/${localeId}`;
-        const newPath = newPrefix + currentPath;
-
-        // Reconstruct the final URL and redirect
-        const finalUrl = this.document.location.origin + newPath + this.document.location.search;
-        this.document.location.href = finalUrl;
     }
 
     public setTheme(themeId: string): void {

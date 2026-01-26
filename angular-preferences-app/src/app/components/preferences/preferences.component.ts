@@ -17,7 +17,6 @@ import { PreferencesService } from '../../services/preferences.service';
 import { FontSizeConfig } from '../../models/typography.model';
 import { Density } from '../../models/density.model';
 import { ThemeService } from '../../services/theme.service';
-import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-preferences',
@@ -42,7 +41,6 @@ import { I18nService } from '../../services/i18n.service';
 export class PreferencesComponent {
   // --- SERVICES ---
   densityService = inject(DensityService);
-  i18nService = inject(I18nService);
   preferencesService = inject(PreferencesService);
   themeService = inject(ThemeService);
   typographyService = inject(TypographyService);
@@ -78,10 +76,6 @@ export class PreferencesComponent {
   onFontSizeChange(event: Event) {
     const newIndex = Number((event.target as HTMLInputElement).value);
     this.fontSizeSliderIndex.set(newIndex);
-  }
-
-  onLocaleChange(localeId: string): void {
-    this.preferencesService.setLocale(localeId);
   }
 
   private setupEffects(): void {
