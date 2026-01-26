@@ -1,38 +1,58 @@
-// 1. Core styles
+/* 1. Imports */
 @use '@angular/material' as mat;
-
-// 2. Import theme definitions
 @use './assets/themes/main-themes/light-themes';
 @use './assets/themes/main-themes/dark-themes';
-
-// 3. Import filter definitions
 @use './assets/filters/filters';
-
-// 4. Import Typography definitions
 @use './assets/typography/typography.scss';
 
-@include mat.core();
+/* 2. Global Variables */
+:root {
+  --app-typography: 16px;
+  --app-border-radius: 12px;
+}
 
-// 5. Global styles
-// These styles apply everywhere.
-html,
-body {
-  height: 100%;
+html {
+  font-size: var(--app-typography);
+  transition: font-size 0.2s ease-out;
 }
 
 body {
   margin: 0;
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// Global accessibility style for reduced motion
-.reduced-motion,
-.reduced-motion * {
-   transition: none !important;
-   animation-duration: 0ms !important;
-   animation-iteration-count: 1 !important;
-   transition-duration: 0ms !important;
-   scroll-behavior: auto !important;
- }
+/* 3. Shape / Border Radius Overrides */
+:root {
+  // Small components (Buttons, Chips, Text Fields)
+  --mdc-shape-small: var(--app-border-radius);
+  
+  // Medium components (Cards, Dialogs)
+  --mdc-shape-medium: var(--app-border-radius);
+  
+  // Large components (Large Modal Sheets)
+  --mdc-shape-large: var(--app-border-radius);
+  
+  // Specific components (if tokens fails)
+  --mat-mdc-button-persistent-ripple-shape: var(--app-border-radius);
+  --mat-mdc-card-shape: var(--app-border-radius);
+}
+
+// Global transitions
+.mat-mdc-card, 
+.mat-mdc-button-base, 
+.mat-mdc-form-field,
+.mdc-text-field {
+    transition: border-radius 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* 4. Reduced Motion (Accessibility) */
+.reduced-motion {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
