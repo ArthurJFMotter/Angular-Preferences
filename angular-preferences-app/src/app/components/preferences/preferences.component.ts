@@ -11,12 +11,20 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle'; // <--- NEW
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+// Services
 import { TypographyService } from '../../services/typography.service';
 import { DensityService } from '../../services/density.service';
 import { PreferencesService } from '../../services/preferences.service';
+import { ThemeService } from '../../services/theme.service';
+import { ShapeService } from '../../services/shape.service'; // <--- NEW
+
+// Models
 import { FontSizeConfig } from '../../models/typography.model';
 import { Density } from '../../models/density.model';
-import { ThemeService } from '../../services/theme.service';
+import { Shape } from '../../models/shape.model'; // <--- NEW
 
 @Component({
   selector: 'app-preferences',
@@ -34,6 +42,8 @@ import { ThemeService } from '../../services/theme.service';
     MatSelectModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatButtonToggleModule, // <--- NEW
+    MatTooltipModule
   ],
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
@@ -44,6 +54,7 @@ export class PreferencesComponent {
   preferencesService = inject(PreferencesService);
   themeService = inject(ThemeService);
   typographyService = inject(TypographyService);
+  shapeService = inject(ShapeService); // <--- NEW
 
   // --- FONT SIZE STATE ---
   private readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
@@ -52,22 +63,11 @@ export class PreferencesComponent {
   minFontSizeIndex = 0;
   maxFontSizeIndex = this.fontSizes.length - 1;
 
-  // --- DENSITY STATE ---
-  private readonly densities: Density[] = this.densityService.getDensities();
-  currentDensity = this.densityService.currentDensity;
-  densitySliderIndex = signal(this.densities.findIndex(d => d.value === this.currentDensity().value));
-  minDensityIndex = 0;
-  maxDensityIndex = this.densities.length - 1;
-
   constructor() {
     this.setupEffects();
   }
 
-  // --- EVENT HANDLERS ---
-  onDensityChange(event: Event): void {
-    const newIndex = Number((event.target as HTMLInputElement).value);
-    this.densitySliderIndex.set(newIndex);
-  }
+  // --- ACTIONS ---
 
   onFontChange(event: MatSelectChange): void {
     this.preferencesService.setFont(event.value);
@@ -78,8 +78,13 @@ export class PreferencesComponent {
     this.fontSizeSliderIndex.set(newIndex);
   }
 
+  // Helper to format slider Label
+  formatFontSizeLabel(value: number): string {
+    return this.fontSizes[value]?.displayName ?? '';
+  }
+
   private setupEffects(): void {
-    // --- EFFECT TO UPDATE FONT SIZE SERVICE ---
+    // 1. Sync Slider -> Service (Font Size)
     effect(() => {
       const selectedSize = this.fontSizes[this.fontSizeSliderIndex()];
       if (selectedSize && selectedSize.id !== this.activeFontSize().id) {
@@ -87,27 +92,11 @@ export class PreferencesComponent {
       }
     });
 
-    // --- EFFECT TO SYNC FONT SIZE SLIDER FROM SERVICE ---
+    // 2. Sync Service -> Slider (Font Size)
     effect(() => {
       const newIndex = this.fontSizes.findIndex(s => s.id === this.activeFontSize().id);
       if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
         this.fontSizeSliderIndex.set(newIndex);
-      }
-    });
-
-    // --- EFFECT TO UPDATE DENSITY SERVICE ---
-    effect(() => {
-      const selectedDensity = this.densities[this.densitySliderIndex()];
-      if (selectedDensity && selectedDensity.value !== this.currentDensity().value) {
-        this.preferencesService.setDensity(selectedDensity.value);
-      }
-    });
-
-    // --- EFFECT TO SYNC DENSITY SLIDER FROM SERVICE ---
-    effect(() => {
-      const newIndex = this.densities.findIndex(d => d.value === this.currentDensity().value);
-      if (newIndex > -1 && newIndex !== this.densitySliderIndex()) {
-        this.densitySliderIndex.set(newIndex);
       }
     });
   }

@@ -6,11 +6,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ThemeService } from '../../services/theme.service';
 import { PreferencesService } from '../../services/preferences.service';
+import { MatDividerModule } from '@angular/material/divider'; // Added
 
 @Component({
   selector: 'app-preferences-helper',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule],
+  imports: [
+    CommonModule, 
+    MatButtonModule, 
+    MatIconModule, 
+    MatMenuModule, 
+    MatTooltipModule,
+    MatDividerModule
+  ],
   templateUrl: './preferences-helper.component.html',
   styleUrls: ['./preferences-helper.component.scss']
 })
@@ -24,19 +32,7 @@ export class PreferencesHelperComponent {
     this.isExpanded = !this.isExpanded;
   }
 
-  tooltipText = computed(() => {
-    if (this.themeService.isDarkMode()) {
-      return 'Light Mode'; 
-    } else {
-      return 'Dark Mode';
-    }
-  });
-
-  ariaLabelText = computed(() => {
-    if (this.themeService.isDarkMode()) {
-      return 'Switch to light mode';
-    } else {
-      return 'Switch to dark mode';
-    }
-  });
+  tooltipText = computed(() => this.themeService.isDarkMode() ? 'Light Mode' : 'Dark Mode');
+  
+  ariaLabelText = computed(() => this.themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode');
 }

@@ -7,29 +7,30 @@
 
 .fab-toggler {
     position: relative;
-    z-index: 2;
-
+    z-index: 10;
+    
     mat-icon {
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
+// Base state for options (hidden behind the main FAB)
 .fab-option {
     position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
+    right: 0.5rem; // Centers it horizontally relative to the 56px FAB
+    bottom: 0.5rem; // Centers it vertically relative to the 56px FAB
     opacity: 0;
     transform: scale(0.5) translateY(0);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     z-index: 1;
 }
 
-// Styles for the expanded state
+// --- EXPANDED STATE ANIMATIONS ---
 .preferences-fab-container.expanded {
 
     .fab-toggler mat-icon {
-        transform: rotate(135deg);
+        transform: rotate(135deg); // Rotate the gear/plus icon
     }
 
     .fab-option {
@@ -38,83 +39,101 @@
         pointer-events: auto;
     }
 
-    // :nth-child(4) -> Theme Color
-    .fab-option:nth-child(4) {
-        transform: translateY(-4rem); // 1st position up
+    // MATH: Each mini-fab is ~40px + margin. roughly 3.5rem steps.
+    
+    // 5. Reset (Closest to bottom)
+    .fab-option:nth-child(5) {
+        transform: translateY(-4.5rem); 
         transition-delay: 0s;
     }
 
-    // :nth-child(3) -> Color Filter
+    // 4. Theme Color
+    .fab-option:nth-child(4) {
+        transform: translateY(-8rem); 
+        transition-delay: 0.03s;
+    }
+
+    // 3. Color Filter
     .fab-option:nth-child(3) {
-        transform: translateY(-7.5rem); // 2nd position up 
-        transition-delay: 0.04s;
+        transform: translateY(-11.5rem); 
+        transition-delay: 0.06s;
     }
 
-    // :nth-child(2) -> High Contrast
+    // 2. High Contrast
     .fab-option:nth-child(2) {
-        transform: translateY(-11rem); // 3rd position up 
-        transition-delay: 0.08s;
+        transform: translateY(-15rem); 
+        transition-delay: 0.09s;
     }
 
-    // :nth-child(1) -> Light/Dark Mode
+    // 1. Light/Dark Mode (Topmost)
     .fab-option:nth-child(1) {
-        transform: translateY(-14.5rem); // 4th position up
+        transform: translateY(-18.5rem); 
         transition-delay: 0.12s;
     }
 }
 
+// --- MENU STYLES ---
 .theme-menu-item {
     display: flex;
     align-items: center;
     gap: 1rem;
+    min-width: 150px;
 }
 
 .color-preview {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
     border: 1px solid var(--mat-sys-outline-variant);
 }
 
-button[mat-menu-item] {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    mat-icon:not(:first-child) {
-        margin-left: 0 !important;
-    }
+.check-icon {
+    margin-left: auto;
+    font-size: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--mat-sys-primary);
 }
 
-@media(max-height:450px) {
+
+// --- LANDSCAPE / SHORT SCREEN MODE ---
+// Expand to the left instead of up if screen is short
+@media(max-height: 500px) {
+    
+    // Reset base transform for horizontal mode
     .fab-option {
         transform: scale(0.5) translateX(0);
     }
 
-    // Right to Left adjustment
     .preferences-fab-container.expanded {
 
-        // :nth-child(4) -> Theme Color
-        .fab-option:nth-child(4) {
-            transform: translateX(-4rem); // 1st position
+        // 5. Reset
+        .fab-option:nth-child(5) {
+            transform: translateX(-4.5rem);
             transition-delay: 0s;
         }
 
-        // :nth-child(3) -> Color Filter
+        // 4. Theme Color
+        .fab-option:nth-child(4) {
+            transform: translateX(-8rem);
+            transition-delay: 0.03s;
+        }
+
+        // 3. Color Filter
         .fab-option:nth-child(3) {
-            transform: translateX(-7.5rem); // 2nd position
-            transition-delay: 0.04s;
+            transform: translateX(-11.5rem);
+            transition-delay: 0.06s;
         }
 
-        // :nth-child(2) -> High Contrast
+        // 2. High Contrast
         .fab-option:nth-child(2) {
-            transform: translateX(-11rem); // 3rd position
-            transition-delay: 0.08s;
+            transform: translateX(-15rem);
+            transition-delay: 0.09s;
         }
 
-        // :nth-child(1) -> Light/Dark Mode
+        // 1. Light/Dark Mode
         .fab-option:nth-child(1) {
-            transform: translateX(-14.5rem); // 4th position
+            transform: translateX(-18.5rem);
             transition-delay: 0.12s;
         }
     }

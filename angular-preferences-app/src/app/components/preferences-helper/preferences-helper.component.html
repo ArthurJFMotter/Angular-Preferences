@@ -1,23 +1,33 @@
 <div class="preferences-fab-container" [class.expanded]="isExpanded">
+    
+    <!-- Option: Toggle Dark Mode -->
     <div class="fab-option">
-        <button mat-mini-fab [matTooltip]="tooltipText()" (click)="preferencesService.toggleDarkMode();"
+        <button mat-mini-fab [matTooltip]="tooltipText()" 
+            (click)="preferencesService.toggleDarkMode()"
             [attr.aria-label]="ariaLabelText()">
             <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
         </button>
     </div>
+
+    <!-- Option: High Contrast -->
     <div class="fab-option">
-        <button mat-mini-fab matTooltip="High Contrast" 
-            (click)="preferencesService.toggleHighContrastMode();"
+        <button mat-mini-fab [matTooltip]="themeService.isHighContrastMode() ? 'Standard Contrast' : 'High Contrast'" 
+            (click)="preferencesService.toggleHighContrastMode()"
+            [color]="themeService.isHighContrastMode() ? 'accent' : ''"
             aria-label="Toggle high contrast mode">
             <mat-icon>contrast</mat-icon>
         </button>
     </div>
+
+    <!-- Option: Color Filter Menu -->
     <div class="fab-option">
         <button mat-mini-fab matTooltip="Color Filter" 
             [matMenuTriggerFor]="filterMenu" aria-label="Open color filter options">
             <mat-icon>visibility</mat-icon>
         </button>
     </div>
+
+    <!-- Option: Theme Color Menu -->
     <div class="fab-option">
         <button mat-mini-fab matTooltip="Theme Color" 
             [matMenuTriggerFor]="themeMenu" aria-label="Open theme color options">
@@ -25,32 +35,47 @@
         </button>
     </div>
 
-    <!-- Main FAB to toggle the expansion -->
-    <button mat-fab class="fab-toggler" (click)="toggleExpansion()" 
+    <!-- Option: Reset (New) -->
+    <div class="fab-option">
+        <button mat-mini-fab matTooltip="Reset Defaults" color="warn"
+            (click)="preferencesService.resetToDefaults()"
+            aria-label="Reset to default settings">
+            <mat-icon>restart_alt</mat-icon>
+        </button>
+    </div>
+
+    <!-- Main Toggle Button -->
+    <button mat-fab class="fab-toggler" color="primary" (click)="toggleExpansion()" 
         aria-label="Open accessibility and theme preferences">
-        <mat-icon>settings</mat-icon>
+        <mat-icon [class.rotate-icon]="isExpanded">settings</mat-icon>
     </button>
 </div>
 
 
-<!-- Sub-menu for Color Filters -->
-<mat-menu #filterMenu="matMenu" (closed)="toggleExpansion()">
+<!-- Filter Menu -->
+<mat-menu #filterMenu="matMenu">
+    <div mat-menu-item disabled>Color Blindness Mode</div>
+    <mat-divider></mat-divider>
     @for (filter of themeService.getDaltonicFilters(); track filter.id) {
     <button mat-menu-item (click)="preferencesService.setColorFilter(filter.id)">
         <mat-icon *ngIf="themeService.activeColorFilter() === filter.id">check</mat-icon>
         <span [style.margin-left]="themeService.activeColorFilter() === filter.id ? '0' : '40px'">
-            {{ filter.displayName }}</span>
+            {{ filter.displayName }}
+        </span>
     </button>
     }
 </mat-menu>
 
-<!-- Sub-menu for Themes -->
-<mat-menu #themeMenu="matMenu" (closed)="toggleExpansion()">
+<!-- Theme Menu -->
+<mat-menu #themeMenu="matMenu">
+    <div mat-menu-item disabled>Theme Color</div>
+    <mat-divider></mat-divider>
     @for (theme of themeService.getThemes(); track theme.id) {
     <button mat-menu-item (click)="preferencesService.setTheme(theme.id)">
         <div class="theme-menu-item">
-            <div class="color-preview" [style.background-color]="theme.primary"></div>
+            <div class="color-dot" [style.background-color]="theme.primary"></div>
             <span>{{ theme.displayName }}</span>
+            <mat-icon *ngIf="themeService.currentTheme().id === theme.id" class="check-icon">check</mat-icon>
         </div>
     </button>
     }
