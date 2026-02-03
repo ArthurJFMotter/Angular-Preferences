@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <!-- Shape (Fix: Added 'fit-toggle' class) -->
+                <!-- Shape -->
                 <div class="control-group">
                     <label class="group-label">Corner Shape</label>
                     <mat-button-toggle-group class="fit-toggle" [value]="shapeService.activeShape().id"
@@ -79,7 +79,7 @@
                     </mat-form-field>
                 </div>
 
-                <!-- Font Size (Fix: Better Flex Layout) -->
+                <!-- Font Size -->
                 <div class="control-group">
                     <div class="label-row">
                         <label class="group-label">Font Size</label>
@@ -87,15 +87,21 @@
                     </div>
                     <div class="slider-row">
                         <span class="small-a">A</span>
-                        <mat-slider [min]="minFontSizeIndex" [max]="maxFontSizeIndex" step="1" discrete
-                            [displayWith]="formatFontSizeLabel.bind(this)">
-                            <input matSliderThumb [value]="fontSizeSliderIndex()" (input)="onFontSizeChange($event)">
+                        <mat-slider 
+                            [min]="minFontSizeIndex" 
+                            [max]="maxFontSizeIndex" 
+                            step="1" 
+                            discrete 
+                            showTickMarks>
+                            <input matSliderThumb 
+                                [value]="fontSizeSliderIndex()" 
+                                (valueChange)="updateFontSize($event)">
                         </mat-slider>
                         <span class="large-a">A</span>
                     </div>
                 </div>
 
-                <!-- Density (Fix: Added 'fit-toggle' class) -->
+                <!-- Density -->
                 <div class="control-group">
                     <label class="group-label">Density</label>
                     <mat-button-toggle-group class="fit-toggle" [value]="densityService.currentDensity().value">
@@ -136,6 +142,18 @@
                 </div>
             </mat-card-content>
         </mat-card>
+
+        <!-- 4. Actions / Reset -->
+        <div class="actions-container">
+            <mat-divider></mat-divider>
+            <div class="actions-row">
+                <button mat-stroked-button color="warn" (click)="preferencesService.resetToDefaults()">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset to Defaults
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <!-- RIGHT COLUMN: LIVE PREVIEW -->
@@ -150,7 +168,6 @@
                     <mat-card-subtitle>Active user session</mat-card-subtitle>
                 </mat-card-header>
 
-                <!-- Fix: Use standard img tag with styling instead of mat-card-image to control height -->
                 <div class="image-container">
                     <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Preview Image">
                 </div>

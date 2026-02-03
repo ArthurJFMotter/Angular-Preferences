@@ -11,20 +11,21 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle'; // <--- NEW
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider'; // <--- NEW
 
 // Services
 import { TypographyService } from '../../services/typography.service';
 import { DensityService } from '../../services/density.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { ThemeService } from '../../services/theme.service';
-import { ShapeService } from '../../services/shape.service'; // <--- NEW
+import { ShapeService } from '../../services/shape.service';
 
 // Models
 import { FontSizeConfig } from '../../models/typography.model';
 import { Density } from '../../models/density.model';
-import { Shape } from '../../models/shape.model'; // <--- NEW
+import { Shape } from '../../models/shape.model';
 
 @Component({
   selector: 'app-preferences',
@@ -42,8 +43,9 @@ import { Shape } from '../../models/shape.model'; // <--- NEW
     MatSelectModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatButtonToggleModule, // <--- NEW
-    MatTooltipModule
+    MatButtonToggleModule,
+    MatTooltipModule,
+    MatDividerModule
   ],
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
@@ -54,10 +56,10 @@ export class PreferencesComponent {
   preferencesService = inject(PreferencesService);
   themeService = inject(ThemeService);
   typographyService = inject(TypographyService);
-  shapeService = inject(ShapeService); // <--- NEW
+  shapeService = inject(ShapeService);
 
   // --- FONT SIZE STATE ---
-  private readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
+  readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
   activeFontSize = this.typographyService.activeFontSize;
   fontSizeSliderIndex = signal(this.fontSizes.findIndex(s => s.id === this.activeFontSize().id));
   minFontSizeIndex = 0;
@@ -73,31 +75,29 @@ export class PreferencesComponent {
     this.preferencesService.setFont(event.value);
   }
 
-  onFontSizeChange(event: Event) {
-    const newIndex = Number((event.target as HTMLInputElement).value);
-    this.fontSizeSliderIndex.set(newIndex);
-  }
-
-  // Helper to format slider Label
-  formatFontSizeLabel(value: number): string {
-    return this.fontSizes[value]?.displayName ?? '';
+  // Handle Slider Drag
+  updateFontSize(value: number) {
+    // 1. Update local signal for UI
+    this.fontSizeSliderIndex.set(value);
+    
+    // 2. Update Service
+    const selectedSize = this.fontSizes[value];
+    if (selectedSize) {
+      this.preferencesService.setFontSize(selectedSize.id);
+    }
   }
 
   private setupEffects(): void {
-    // 1. Sync Slider -> Service (Font Size)
+    // --- SYNC: Service -> Slider ---
+    // This effect ensures that if the service changes (e.g. via Reset button),
+    // the slider jumps to the correct position.
     effect(() => {
-      const selectedSize = this.fontSizes[this.fontSizeSliderIndex()];
-      if (selectedSize && selectedSize.id !== this.activeFontSize().id) {
-        this.preferencesService.setFontSize(selectedSize.id);
-      }
-    });
-
-    // 2. Sync Service -> Slider (Font Size)
-    effect(() => {
-      const newIndex = this.fontSizes.findIndex(s => s.id === this.activeFontSize().id);
+      const currentId = this.activeFontSize().id;
+      const newIndex = this.fontSizes.findIndex(s => s.id === currentId);
+      
       if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
         this.fontSizeSliderIndex.set(newIndex);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 }

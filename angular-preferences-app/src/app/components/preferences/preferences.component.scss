@@ -1,17 +1,16 @@
 // --- MAIN LAYOUT GRID ---
 .page-container {
-  // Use a constrained max-width to stop things looking huge on large monitors
   max-width: 1280px; 
   margin: 0 auto;
   padding: 2rem;
   
   display: grid;
-  grid-template-columns: 1fr; // Mobile default
+  grid-template-columns: 1fr;
   gap: 2rem;
   
-  // Desktop Breakpoint (Side by Side)
+  // Desktop Breakpoint
   @media (min-width: 960px) {
-    grid-template-columns: 2fr 1fr; // 2 parts Settings, 1 part Preview
+    grid-template-columns: 2fr 1fr; // Settings | Preview
     align-items: start;
   }
 }
@@ -31,8 +30,9 @@
 
 // --- CARD STYLING ---
 .settings-card {
-  border-radius: var(--app-border-radius);
-  // Box shadow makes it pop against the background
+  // FIX: Cap the border radius at 28px for cards, even if "Pill" is selected globally
+  border-radius: min(var(--app-border-radius), 28px) !important;
+  
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   border: 1px solid var(--mat-sys-outline-variant);
 
@@ -103,13 +103,11 @@
   }
 }
 
-// 3. Toggles (Shape & Density)
-// CRITICAL FIX: prevents the toggle group from stretching 100% width
+// 3. Toggles
 .fit-toggle {
     width: fit-content;
     max-width: 100%;
     
-    // Ensure text inside doesn't wrap awkwardly
     mat-button-toggle {
         min-width: 80px;
     }
@@ -136,12 +134,15 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding-block: 0.5rem;
+  padding-inline: 4px; // Prevent thumb clipping
   
-  .small-a { font-size: 12px; color: var(--mat-sys-on-surface-variant); }
-  .large-a { font-size: 24px; font-weight: bold; color: var(--mat-sys-on-surface); }
+  .small-a { font-size: 12px; color: var(--mat-sys-on-surface-variant); min-width: 12px; }
+  .large-a { font-size: 24px; font-weight: bold; color: var(--mat-sys-on-surface); min-width: 24px; }
   
   mat-slider { 
-    flex: 1; // Takes up remaining space
+    flex: 1; 
+    min-width: 0; // Prevent flex overflow
   }
 }
 
@@ -153,9 +154,27 @@
   flex-wrap: wrap;
 }
 
+// 6. Actions Area
+.actions-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    .actions-row {
+        display: flex;
+        justify-content: flex-end;
+        
+        button {
+             // Subtle warning color styling
+             color: var(--mat-sys-error);
+             border-color: var(--mat-sys-error);
+        }
+    }
+}
+
 // --- RIGHT COLUMN: PREVIEW ---
 .preview-column {
-    // Stick to the top when scrolling settings
     .sticky-wrapper {
         position: sticky;
         top: 2rem;
@@ -175,19 +194,23 @@
 }
 
 .preview-card {
-    border-radius: var(--app-border-radius);
-    overflow: hidden; // Ensures image corner radius matches card
+    // FIX: Cap radius here too
+    border-radius: min(var(--app-border-radius), 28px) !important;
+    overflow: hidden; 
     
-    // CRITICAL FIX: Image Sizing
+    // FIX: Image container radius logic
     .image-container {
         width: 100%;
-        height: 180px; // Fixed height
+        height: 180px; 
         overflow: hidden;
+        // Cap radius on top corners only
+        border-top-left-radius: min(var(--app-border-radius), 28px);
+        border-top-right-radius: min(var(--app-border-radius), 28px);
         
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover; // Zoom/crop nicely without distortion
+            object-fit: cover;
         }
     }
     
@@ -206,19 +229,20 @@
     .dummy-form {
         background: var(--mat-sys-surface-container-high);
         padding: 1rem;
-        border-radius: calc(var(--app-border-radius) / 2);
+        // Inner radius is half of outer, but capped
+        border-radius: min(calc(var(--app-border-radius) / 2), 14px);
     }
 }
 
 .mini-widgets {
     display: grid;
-    grid-template-columns: 1fr 1fr; // Split exactly in half
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
 
     .widget {
         background: var(--mat-sys-surface);
         border: 1px solid var(--mat-sys-outline-variant);
-        border-radius: var(--app-border-radius);
+        border-radius: min(var(--app-border-radius), 28px); // Cap radius
         padding: 1rem;
         display: flex;
         align-items: center;
