@@ -147,7 +147,7 @@
         <div class="actions-container">
             <mat-divider></mat-divider>
             <div class="actions-row">
-                <button mat-stroked-button color="warn" (click)="preferencesService.resetToDefaults()">
+                <button mat-stroked-button color="warn" (click)="handleReset()">
                     <mat-icon>restart_alt</mat-icon>
                     Reset to Defaults
                 </button>
@@ -186,21 +186,21 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions align="end">
-                    <button mat-button>Cancel</button>
-                    <button mat-flat-button color="primary">Submit</button>
+                    <button mat-button (click)="onPreviewCancel()">Cancel</button>
+                    <button mat-flat-button color="primary" (click)="onPreviewSubmit()">Submit</button>
                 </mat-card-actions>
             </mat-card>
 
             <div class="mini-widgets">
                 <div class="widget">
                     <span>Status</span>
-                    <button mat-mini-fab color="accent">
+                    <button mat-mini-fab color="accent" (click)="onPreviewStatus()">
                         <mat-icon>check</mat-icon>
                     </button>
                 </div>
                 <div class="widget">
                     <span>Alerts</span>
-                    <button mat-mini-fab color="warn">
+                    <button mat-mini-fab color="warn" (click)="onPreviewAlert()">
                         <mat-icon>priority_high</mat-icon>
                     </button>
                 </div>

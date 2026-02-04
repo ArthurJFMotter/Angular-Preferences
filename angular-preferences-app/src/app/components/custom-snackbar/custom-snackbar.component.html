@@ -1,0 +1,26 @@
+<div class="m3-snackbar-container" [ngClass]="data.type">
+  
+  <!-- Icon Section -->
+  <div class="icon-area">
+    <mat-icon>{{ getIcon() }}</mat-icon>
+  </div>
+
+  <!-- Text Section (Body) -->
+  <div class="content-area">
+    <span class="message">{{ data.message }}</span>
+  </div>
+
+  <!-- Action Section -->
+  <div class="action-area">
+    @if (data.action) {
+      <button mat-button (click)="snackBarRef.dismissWithAction()">
+        {{ data.action }}
+      </button>
+    } @else {
+      <button mat-icon-button (click)="snackBarRef.dismiss()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </div>
+
+</div>

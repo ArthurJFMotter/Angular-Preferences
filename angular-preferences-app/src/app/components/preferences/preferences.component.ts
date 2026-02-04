@@ -21,11 +21,10 @@ import { DensityService } from '../../services/density.service';
 import { PreferencesService } from '../../services/preferences.service';
 import { ThemeService } from '../../services/theme.service';
 import { ShapeService } from '../../services/shape.service';
+import { SnackbarService } from '../../services/snackbar.service'; 
 
 // Models
 import { FontSizeConfig } from '../../models/typography.model';
-import { Density } from '../../models/density.model';
-import { Shape } from '../../models/shape.model';
 
 @Component({
   selector: 'app-preferences',
@@ -57,6 +56,7 @@ export class PreferencesComponent {
   themeService = inject(ThemeService);
   typographyService = inject(TypographyService);
   shapeService = inject(ShapeService);
+  snackbarService = inject(SnackbarService);
 
   // --- FONT SIZE STATE ---
   readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
@@ -69,20 +69,46 @@ export class PreferencesComponent {
     this.setupEffects();
   }
 
-  // --- ACTIONS ---
+  // --- PREFERENCES ACTIONS ---
   onFontChange(event: MatSelectChange): void {
     this.preferencesService.setFont(event.value);
   }
 
   updateFontSize(value: number) {
     this.fontSizeSliderIndex.set(value);
-    
     const selectedSize = this.fontSizes[value];
     if (selectedSize) {
       this.preferencesService.setFontSize(selectedSize.id);
     }
   }
 
+  handleReset(): void {
+    this.preferencesService.resetToDefaults();
+    this.snackbarService.info('Preferences have been reset to defaults.');
+  }
+
+  // --- PREVIEW INTERACTION (DEMO) ---
+  onPreviewSubmit(): void {
+    // Simulate a successful form submission
+    this.snackbarService.success('Project dashboard updated successfully!', 'VIEW');
+  }
+
+  onPreviewCancel(): void {
+    // Simulate a cancellation info message
+    this.snackbarService.info('Action cancelled. No changes were made.');
+  }
+
+  onPreviewStatus(): void {
+    // Simulate a status check
+    this.snackbarService.warning('All main systems operational', 'OK');
+  }
+
+  onPreviewAlert(): void {
+    // Simulate a system error/warning
+    this.snackbarService.error('Connection lost! Retrying...', 'RETRY');
+  }
+
+  // --- EFFECTS ---
   private setupEffects(): void {
     effect(() => {
       const currentId = this.activeFontSize().id;

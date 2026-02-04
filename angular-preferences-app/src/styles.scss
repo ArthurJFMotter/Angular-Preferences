@@ -1,9 +1,9 @@
 /* 1. Imports */
-@use '@angular/material' as mat;
-@use './assets/themes/main-themes/light-themes';
-@use './assets/themes/main-themes/dark-themes';
-@use './assets/filters/filters';
-@use './assets/typography/typography.scss';
+@use "@angular/material" as mat;
+@use "./assets/themes/main-themes/light-themes";
+@use "./assets/themes/main-themes/dark-themes";
+@use "./assets/filters/filters";
+@use "./assets/typography/typography.scss";
 
 /* 2. Global Variables */
 :root {
@@ -20,36 +20,55 @@ body {
   margin: 0;
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* 3. Shape / Border Radius Overrides */
 :root {
   // Small components (Buttons, Chips, Text Fields)
   --mdc-shape-small: var(--app-border-radius);
-  
+
   // Medium components (Cards, Dialogs)
   --mdc-shape-medium: var(--app-border-radius);
-  
+
   // Large components (Large Modal Sheets)
   --mdc-shape-large: var(--app-border-radius);
-  
+
   // Specific components (if tokens fails)
   --mat-mdc-button-persistent-ripple-shape: var(--app-border-radius);
   --mat-mdc-card-shape: var(--app-border-radius);
 }
 
+/* MatSnackbar Overrides */
+.app-notification-panel {
+  --mdc-snackbar-container-color: transparent;
+  --mdc-snackbar-supporting-text-color: transparent;
+
+  .mdc-snackbar__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+
+    display: flex;
+    justify-content: center;
+  }
+}
+
 // Global transitions
-.mat-mdc-card, 
-.mat-mdc-button-base, 
+.mat-mdc-card,
+.mat-mdc-button-base,
 .mat-mdc-form-field,
 .mdc-text-field {
-    transition: border-radius 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transition: border-radius 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
 /* 4. Reduced Motion (Accessibility) */
 .reduced-motion {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
