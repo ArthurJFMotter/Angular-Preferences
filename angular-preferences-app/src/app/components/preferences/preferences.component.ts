@@ -13,7 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDividerModule } from '@angular/material/divider'; // <--- NEW
+import { MatDividerModule } from '@angular/material/divider';
 
 // Services
 import { TypographyService } from '../../services/typography.service';
@@ -70,17 +70,13 @@ export class PreferencesComponent {
   }
 
   // --- ACTIONS ---
-
   onFontChange(event: MatSelectChange): void {
     this.preferencesService.setFont(event.value);
   }
 
-  // Handle Slider Drag
   updateFontSize(value: number) {
-    // 1. Update local signal for UI
     this.fontSizeSliderIndex.set(value);
     
-    // 2. Update Service
     const selectedSize = this.fontSizes[value];
     if (selectedSize) {
       this.preferencesService.setFontSize(selectedSize.id);
@@ -88,9 +84,6 @@ export class PreferencesComponent {
   }
 
   private setupEffects(): void {
-    // --- SYNC: Service -> Slider ---
-    // This effect ensures that if the service changes (e.g. via Reset button),
-    // the slider jumps to the correct position.
     effect(() => {
       const currentId = this.activeFontSize().id;
       const newIndex = this.fontSizes.findIndex(s => s.id === currentId);
