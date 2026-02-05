@@ -17,7 +17,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ShowcaseDialogComponent } from '../showcase-dialog/showcase-dialog.component';
+import { ShowcaseDialogComponent } from '../../components/showcase-dialog/showcase-dialog.component';
 
 interface AnimalOption {
   value: string;

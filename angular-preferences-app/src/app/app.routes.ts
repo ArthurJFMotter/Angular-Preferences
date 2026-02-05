@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { PreferencesComponent } from './components/preferences/preferences.component';
-import { ShowcaseComponent } from './components/showcase/showcase.component';
+import { PreferencesComponent } from './pages/preferences/preferences.component';
+import { ShowcaseComponent } from './pages/showcase/showcase.component';
 
 export const routes: Routes = [
     {
