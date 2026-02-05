@@ -1,1 +1,55 @@
-<p>typography-settings works!</p>
+<mat-card class="settings-card">
+    <mat-card-header>
+        <div mat-card-avatar class="header-icon"><mat-icon>text_fields</mat-icon></div>
+        <mat-card-title>Typography & Layout</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="card-body">
+
+        <div class="control-group">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Font Family</mat-label>
+                <mat-select [value]="typographyService.activeFont().id"
+                    (selectionChange)="onFontChange($event)">
+                    @for (font of typographyService.getFonts(); track font.id) {
+                    <mat-option [value]="font.id">{{ font.displayName }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Font Size -->
+        <div class="control-group">
+            <div class="label-row">
+                <label class="group-label">Font Size</label>
+                <span class="value-badge">{{ typographyService.activeFontSize().displayName }}</span>
+            </div>
+            <div class="slider-row">
+                <span class="small-a">A</span>
+                <mat-slider 
+                    [min]="minFontSizeIndex" 
+                    [max]="maxFontSizeIndex" 
+                    step="1" 
+                    discrete 
+                    showTickMarks>
+                    <input matSliderThumb 
+                        [value]="fontSizeSliderIndex()" 
+                        (valueChange)="updateFontSize($event)">
+                </mat-slider>
+                <span class="large-a">A</span>
+            </div>
+        </div>
+
+        <!-- Density -->
+        <div class="control-group">
+            <label class="group-label">Density</label>
+            <mat-button-toggle-group class="fit-toggle" [value]="densityService.currentDensity().value">
+                @for (density of densityService.getDensities(); track density.id) {
+                <mat-button-toggle [value]="density.value"
+                    (click)="preferencesService.setDensity(density.value)">
+                    {{ density.displayName.split(' ')[0] }}
+                </mat-button-toggle>
+                }
+            </mat-button-toggle-group>
+        </div>
+    </mat-card-content>
+</mat-card>

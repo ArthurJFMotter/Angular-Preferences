@@ -1,1 +1,48 @@
-<p>live-preview works!</p>
+<div class="sticky-wrapper">
+    <h2 class="preview-label">Live Preview</h2>
+
+    <mat-card class="preview-card">
+        <mat-card-header>
+            <div mat-card-avatar class="dummy-avatar">JD</div>
+            <mat-card-title>Project Dashboard</mat-card-title>
+            <mat-card-subtitle>Active user session</mat-card-subtitle>
+        </mat-card-header>
+
+        <div class="image-container">
+            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Preview Image">
+        </div>
+
+        <mat-card-content>
+            <p class="preview-text">
+                This card reflects your current settings.
+                Notice how the <strong>font</strong>, <strong>spacing</strong>,
+                and <strong>corner roundness</strong> change instantly.
+            </p>
+            <div class="dummy-form">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Enter comment</mat-label>
+                    <input matInput placeholder="Type here...">
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button (click)="onPreviewCancel()">Cancel</button>
+            <button mat-flat-button color="primary" (click)="onPreviewSubmit()">Submit</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <div class="mini-widgets">
+        <div class="widget">
+            <span>Status</span>
+            <button mat-mini-fab color="accent" (click)="onPreviewStatus()">
+                <mat-icon>check</mat-icon>
+            </button>
+        </div>
+        <div class="widget">
+            <span>Alerts</span>
+            <button mat-mini-fab color="warn" (click)="onPreviewAlert()">
+                <mat-icon>priority_high</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

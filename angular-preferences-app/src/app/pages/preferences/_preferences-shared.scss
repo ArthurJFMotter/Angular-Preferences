@@ -1,0 +1,61 @@
+// This file holds styles common to all preferences components
+// Import this using @use in the sub-components.
+
+// 1. Card Container
+.settings-card {
+  border-radius: min(var(--app-border-radius), 28px) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid var(--mat-sys-outline-variant);
+
+  mat-card-header {
+    padding: 1rem 1rem 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-body {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+// 2. Header Icons
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+  border-radius: 50%;
+}
+
+// 3. Form Labels
+.group-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+// 4. Utility
+.full-width {
+  width: 100%;
+}
+
+.control-group {
+  margin-bottom: 0.5rem;
+}
+
+// 5. Toggle Button Group
+.fit-toggle {
+  width: fit-content;
+  max-width: 100%;
+  
+  mat-button-toggle {
+    min-width: 80px;
+  }
+}

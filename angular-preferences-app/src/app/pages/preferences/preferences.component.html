@@ -1,34 +1,34 @@
 <div class="page-container">
 
-  <!-- LEFT COLUMN: SETTINGS -->
-  <div class="settings-column">
+    <!-- LEFT COLUMN: SETTINGS -->
+    <div class="settings-column">
 
-    <header class="page-header">
-      <h1>Configuration</h1>
-      <p class="subtitle">Customize the look and feel of your workspace.</p>
-    </header>
+        <header class="page-header">
+            <h1>Configuration</h1>
+            <p class="subtitle">Customize the look and feel of your workspace.</p>
+        </header>
 
-    <!-- Sub Components -->
-    <app-appearance-settings></app-appearance-settings>
-    <app-typography-settings></app-typography-settings>
-    <app-accessibility-settings></app-accessibility-settings>
+        <!-- Components -->
+        <app-appearance-settings></app-appearance-settings>
+        <app-typography-settings></app-typography-settings>
+        <app-accessibility-settings></app-accessibility-settings>
 
-    <!-- Actions / Reset -->
-    <div class="actions-container">
-      <mat-divider></mat-divider>
-      <div class="actions-row">
-        <button mat-stroked-button color="warn" (click)="handleReset()">
-          <mat-icon>restart_alt</mat-icon>
-          Reset to Defaults
-        </button>
-      </div>
+        <!-- Actions / Reset -->
+        <div class="actions-container">
+            <mat-divider></mat-divider>
+            <div class="actions-row">
+                <button mat-stroked-button color="warn" (click)="handleReset()">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset to Defaults
+                </button>
+            </div>
+        </div>
+
     </div>
 
-  </div>
-
-  <!-- RIGHT COLUMN: LIVE PREVIEW -->
-  <div class="preview-column">
-    <app-live-preview></app-live-preview>
-  </div>
+    <!-- RIGHT COLUMN: LIVE PREVIEW -->
+    <div class="preview-column">
+        <app-live-preview></app-live-preview>
+    </div>
 
 </div>
