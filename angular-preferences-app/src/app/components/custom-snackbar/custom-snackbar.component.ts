@@ -19,11 +19,10 @@ export class CustomSnackbarComponent {
 
   getIcon(): string {
     if (this.data.icon) return this.data.icon;
-
     switch (this.data.type) {
       case 'success': return 'check_circle';
       case 'error': return 'error';
-      case 'warning': return 'warning_amber'
+      case 'warning': return 'warning_amber';
       case 'info': return 'info';
       default: return 'info';
     }
