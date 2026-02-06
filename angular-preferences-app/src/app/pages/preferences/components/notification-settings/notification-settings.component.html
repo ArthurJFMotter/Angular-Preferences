@@ -1,0 +1,38 @@
+<mat-card class="settings-card">
+    <mat-card-header>
+        <div mat-card-avatar class="header-icon">
+            <mat-icon>notifications_active</mat-icon>
+        </div>
+        <mat-card-title>Notifications</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content class="card-body">
+        
+        <!-- Force High Contrast -->
+        <div class="control-group">
+            <mat-checkbox 
+                [checked]="themeService.forceHighContrastNotifications()"
+                (change)="preferencesService.toggleForceHighContrastNotifications()">
+                Use High Contrast Scheme
+            </mat-checkbox>
+            <span class="hint">
+                Use a strict black-and-white layout with clear borders. 
+                Overrides theme colors for maximum readability.
+            </span>
+        </div>
+
+        <!-- Legacy Styles -->
+        <div class="control-group">
+            <mat-checkbox 
+                [checked]="themeService.useLegacyNotifications()"
+                [disabled]="themeService.forceHighContrastNotifications()"
+                (change)="preferencesService.toggleLegacyNotifications()">
+                Use Classic Colors
+            </mat-checkbox>
+            <span class="hint">
+                Use classic solid Green (Success), Red (Error), and Orange (Warning) color schemes.
+            </span>
+        </div>
+
+    </mat-card-content>
+</mat-card>

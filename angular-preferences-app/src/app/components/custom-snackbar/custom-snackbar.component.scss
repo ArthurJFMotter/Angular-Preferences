@@ -1,21 +1,19 @@
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 :host {
   display: block;
 }
 
 .m3-snackbar-container {
-  // --- Layout ---
+  // --- BASE STYLES ---
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   min-width: 300px;
   padding: 12px 16px;
-
   border-radius: var(--app-border-radius, var(--mat-sys-corner-extra-small));
 
-  // --- Typography ---
   font-family: var(--mat-sys-body-medium-font);
   font-size: var(--mat-sys-body-medium-size);
   line-height: var(--mat-sys-body-medium-line-height);
@@ -23,14 +21,13 @@
   font-weight: var(--mat-sys-body-medium-weight);
 
   box-shadow: var(--mat-sys-elevation-level3);
+  
+  // Animation
+  transition: background-color 0.3s cubic-bezier(0.2, 0, 0, 1), 
+              color 0.3s cubic-bezier(0.2, 0, 0, 1),
+              box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
 
-  // --- Animation ---
-  transition:
-    background-color 0.3s cubic-bezier(0.2, 0, 0, 1),
-    color 0.3s cubic-bezier(0.2, 0, 0, 1),
-    box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
-
-  // --- DEFAULT (Info) ---
+  // --- DEFAULT (Info / Fallback) ---
   --sb-bg-color: var(--mat-sys-inverse-surface);
   --sb-text-color: var(--mat-sys-inverse-on-surface);
   --sb-action-color: var(--mat-sys-inverse-primary);
@@ -38,49 +35,29 @@
   background-color: var(--sb-bg-color);
   color: var(--sb-text-color);
 
-  // --- Icon ---
-  .icon-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    mat-icon {
-      color: inherit;
-      width: 24px;
-      height: 24px;
-      font-size: 24px;
-    }
+  .icon-area mat-icon { 
+      color: inherit; 
+      width: 24px; height: 24px; font-size: 24px; 
   }
 
-  .content-area {
-    flex: 1;
-  }
+  .content-area { flex: 1; }
 
-  // --- Action Button ---
-  .action-area {
-    button {
-      color: var(--sb-action-color) !important;
+  .action-area button {
+    color: var(--sb-action-color) !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-
-      &[mat-button],
-      &[mat-icon-button] {
+    &[mat-button], &[mat-icon-button] {
         --mat-text-button-state-layer-color: var(--sb-action-color);
         --mat-text-button-ripple-color: var(--sb-action-color);
-      }
-
-      &:hover {
-        background-color: color-mix(
-          in srgb,
-          var(--sb-action-color),
-          transparent 92%
-        );
-      }
+    }
+    &:hover {
+      background-color: color-mix(in srgb, var(--sb-action-color), transparent 92%);
     }
   }
 
-  // --- STATUS VARIANTS ---
+  // ---- DYNAMIC VARIANTS ---
   &.success {
     --sb-bg-color: var(--mat-sys-primary-container);
     --sb-text-color: var(--mat-sys-on-primary-container);
@@ -99,10 +76,63 @@
     --sb-action-color: var(--mat-sys-on-tertiary-container);
   }
 
-  /* &.info {} */
+  &.info {
+    --sb-bg-color: var(--mat-sys-secondary-container);
+    --sb-text-color: var(--mat-sys-on-secondary-container);
+    --sb-action-color: var(--mat-sys-on-secondary-container);
+  }
+
+  // --- LEGACY Styles ---
+  &.legacy-style {
+    color: #ffffff;
+    
+    .action-area button {
+      color: #ffffff !important;
+      background: rgba(255,255,255,0.15);
+      
+      &:hover { background: rgba(255,255,255,0.3); }
+    }
+
+    &.success { background-color: #2e7d32; } // Standard Green
+    &.error   { background-color: #c62828; } // Standard Red
+    &.warning { background-color: #ef6c00; } // Standard Orange
+    &.info    { background-color: #0277bd; } // Standard Blue
+  }
+
+  // --- FORCE HIGH CONTRAST ---
+  &.force-hc-style {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    
+    border: 2px solid #ffffff;
+    box-shadow: none; 
+    border-left: 2px solid #ffffff; 
+
+    // Neon variants for icons
+    &.success .icon-area mat-icon { color: #00FF00 !important; } // Neon Green
+    &.error   .icon-area mat-icon { color: #FF0000 !important; } // Neon Red
+    &.warning .icon-area mat-icon { color: #FFFF00 !important; } // Neon Yellow
+    &.info    .icon-area mat-icon { color: #00FFFF !important; } // Cyan
+
+    .action-area button {
+      color: #ffffff !important;
+      text-decoration: underline;
+      border: 1px solid #ffffff;
+      background: transparent;
+      margin-left: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      
+      &:hover, &:focus {
+        background: #ffffff;
+        color: #000000 !important;
+        outline: 2px solid #00FFFF;
+      }
+    }
+  }
 }
 
-// --- OS HIGH CONTRAST OVERRIDES ---
+// High Contrast Mode Fallback
 @media (forced-colors: active) {
   .action-area button {
     border: 1px solid ButtonText !important;

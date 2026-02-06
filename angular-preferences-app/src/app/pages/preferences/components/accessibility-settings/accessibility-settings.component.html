@@ -4,12 +4,19 @@
         <mat-card-title>Accessibility</mat-card-title>
     </mat-card-header>
     <mat-card-content class="card-body">
+        
+        <!-- Global High Contrast -->
         <div class="control-group">
             <mat-checkbox [checked]="themeService.isHighContrastMode()"
                 (change)="preferencesService.toggleHighContrastMode()">
                 High Contrast Mode
             </mat-checkbox>
+            <span class="hint" style="display:block; margin-left: 28px; font-size: 0.8rem; color: var(--mat-sys-on-surface-variant);">
+                Increases contrast across the entire application interface.
+            </span>
         </div>
+
+        <!-- Color Vision -->
         <div class="control-group">
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Color Vision Deficiency</mat-label>

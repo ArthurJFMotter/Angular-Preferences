@@ -10,4 +10,8 @@ export interface UserPreferences {
     fontSizeId: string;
     densityValue: number;
     borderRadiusId: string;
+    
+    // Notifications Options
+    useLegacyNotifications?: boolean;
+    forceHighContrastNotifications?: boolean;
 }

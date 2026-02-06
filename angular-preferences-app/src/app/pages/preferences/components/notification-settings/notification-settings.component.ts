@@ -3,29 +3,25 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { ThemeService } from '../../../../services/theme.service';
 import { PreferencesService } from '../../../../services/preferences.service';
-import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
-  selector: 'app-accessibility-settings',
+  selector: 'app-notification-settings',
   standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
-    MatDividerModule,
     MatIconModule,
     MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule
+    MatDividerModule,
   ],
-  templateUrl: './accessibility-settings.component.html',
-  styleUrls: ['./accessibility-settings.component.scss']
+  templateUrl: './notification-settings.component.html',
+  styleUrls: ['./notification-settings.component.scss'],
 })
-export class AccessibilitySettingsComponent {
+export class NotificationSettingsComponent {
   themeService = inject(ThemeService);
   preferencesService = inject(PreferencesService);
 }

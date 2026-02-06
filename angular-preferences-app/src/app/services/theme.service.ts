@@ -31,6 +31,9 @@ export class ThemeService {
   isHighContrastMode = signal<boolean>(false);
   isReducedMotion = signal<boolean>(false);
 
+  useLegacyNotifications = signal<boolean>(false);
+  forceHighContrastNotifications = signal<boolean>(false);
+
   // --- GETTERS ---
   getThemes() {
     return this.themes;

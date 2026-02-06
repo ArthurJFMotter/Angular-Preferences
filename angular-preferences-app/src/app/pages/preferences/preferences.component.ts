@@ -11,6 +11,7 @@ import { LivePreviewComponent } from './components/live-preview/live-preview.com
 
 import { PreferencesService } from '../../services/preferences.service';
 import { SnackbarService } from '../../services/snackbar.service';
+import { NotificationSettingsComponent } from './components/notification-settings/notification-settings.component';
 
 @Component({
   selector: 'app-preferences',
@@ -23,7 +24,8 @@ import { SnackbarService } from '../../services/snackbar.service';
     AppearanceSettingsComponent,
     TypographySettingsComponent,
     AccessibilitySettingsComponent,
-    LivePreviewComponent
+    LivePreviewComponent,
+    NotificationSettingsComponent 
   ],
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
