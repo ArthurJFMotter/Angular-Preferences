@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Theme } from '../models/theme.model';
 import { DaltonicFilter, DaltonicFilterType } from '../models/filter.model';
+import { NotificationPlacement } from '../models/preferences.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,14 +26,17 @@ export class ThemeService {
     { id: 'achromatopsia', displayName: 'Achromatopsia' },
   ];
 
+  // Visual State
   activeColorFilter = signal<DaltonicFilterType>('none');
   currentTheme = signal<Theme>(this.themes[0]);
   isDarkMode = signal<boolean>(false);
   isHighContrastMode = signal<boolean>(false);
   isReducedMotion = signal<boolean>(false);
 
+  // Notification State
   useLegacyNotifications = signal<boolean>(false);
   forceHighContrastNotifications = signal<boolean>(false);
+  notificationPlacement = signal<NotificationPlacement>('bottom-center');
 
   // --- GETTERS ---
   getThemes() {
@@ -44,13 +48,17 @@ export class ThemeService {
   }
 
   // --- ACTIONS ---
+  setColorFilter(filterId: DaltonicFilterType) {
+    this.activeColorFilter.set(filterId);
+  }
+
+  setNotificationPlacement(placement: NotificationPlacement) {
+    this.notificationPlacement.set(placement);
+  }
+
   setTheme(id: string) {
     const theme = this.themes.find((t) => t.id === id) ?? this.themes[0];
     this.currentTheme.set(theme);
-  }
-
-  setColorFilter(filterId: DaltonicFilterType) {
-    this.activeColorFilter.set(filterId);
   }
 
   toggleDarkMode() {

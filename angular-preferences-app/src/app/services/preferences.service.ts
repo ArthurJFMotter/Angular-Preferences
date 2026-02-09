@@ -9,7 +9,10 @@ import { ShapeService } from './shape.service';
 
 // Models
 import { DaltonicFilterType } from '../models/filter.model';
-import { UserPreferences } from '../models/preferences.model';
+import {
+  NotificationPlacement,
+  UserPreferences,
+} from '../models/preferences.model';
 
 const STORAGE_KEY = 'user-app-preferences';
 
@@ -36,8 +39,9 @@ export class PreferencesService {
     try {
       const savedPrefs = localStorage.getItem(STORAGE_KEY);
       if (savedPrefs) {
-        const prefs: UserPreferences = JSON.parse(savedPrefs);
+        const prefs: any = JSON.parse(savedPrefs);
 
+        // 1. Load Visuals
         this.themeService.setTheme(
           prefs.themeId ?? this.themeService.getThemes()[0].id,
         );
@@ -50,13 +54,22 @@ export class PreferencesService {
           prefs.activeColorFilter ?? 'none',
         );
 
+        // 2. Load Notifications
+        const notifPrefs = prefs.notifications || {};
+
         this.themeService.useLegacyNotifications.set(
-          prefs.useLegacyNotifications ?? false,
+          notifPrefs.useLegacy ?? prefs.useLegacyNotifications ?? false,
         );
         this.themeService.forceHighContrastNotifications.set(
-          prefs.forceHighContrastNotifications ?? false,
+          notifPrefs.forceHighContrast ??
+            prefs.forceHighContrastNotifications ??
+            false,
+        );
+        this.themeService.notificationPlacement.set(
+          notifPrefs.placement ?? 'bottom-center',
         );
 
+        // 3. Load Components
         this.typographyService.setFont(
           prefs.fontId ?? this.typographyService.defaultFont.id,
         );
@@ -76,24 +89,32 @@ export class PreferencesService {
   private savePreferences(): void {
     if (isPlatformBrowser(this.platformId)) {
       const prefs: UserPreferences = {
+        // Visuals
         themeId: this.themeService.currentTheme().id,
         isDarkMode: this.themeService.isDarkMode(),
         isHighContrastMode: this.themeService.isHighContrastMode(),
         isReducedMotion: this.themeService.isReducedMotion(),
         activeColorFilter: this.themeService.activeColorFilter(),
-        useLegacyNotifications: this.themeService.useLegacyNotifications(),
-        forceHighContrastNotifications:
-          this.themeService.forceHighContrastNotifications(),
+
+        // Notifications
+        notifications: {
+          useLegacy: this.themeService.useLegacyNotifications(),
+          forceHighContrast: this.themeService.forceHighContrastNotifications(),
+          placement: this.themeService.notificationPlacement(),
+        },
+
+        // Components
         fontId: this.typographyService.activeFont().id,
         fontSizeId: this.typographyService.activeFontSize().id,
         densityValue: this.densityService.currentDensity().value,
         borderRadiusId: this.shapeService.activeShape().id,
       };
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     }
   }
 
-  // --- New Toggles ---
+  // --- Notification Toggles ---
   public toggleLegacyNotifications(): void {
     const current = this.themeService.useLegacyNotifications();
     this.themeService.useLegacyNotifications.set(!current);
@@ -103,6 +124,11 @@ export class PreferencesService {
   public toggleForceHighContrastNotifications(): void {
     const current = this.themeService.forceHighContrastNotifications();
     this.themeService.forceHighContrastNotifications.set(!current);
+    this.savePreferences();
+  }
+
+  public setNotificationPlacement(placement: NotificationPlacement): void {
+    this.themeService.setNotificationPlacement(placement);
     this.savePreferences();
   }
 
@@ -153,15 +179,19 @@ export class PreferencesService {
   }
 
   public resetToDefaults(): void {
+    // Reset Visuals
     this.themeService.setTheme(this.themeService.getThemes()[0].id);
     this.themeService.isDarkMode.set(false);
     this.themeService.isHighContrastMode.set(false);
     this.themeService.isReducedMotion.set(false);
     this.themeService.activeColorFilter.set('none');
 
+    // Reset Notifications
     this.themeService.useLegacyNotifications.set(false);
     this.themeService.forceHighContrastNotifications.set(false);
+    this.themeService.notificationPlacement.set('bottom-center');
 
+    // Reset Components
     this.typographyService.setFont(this.typographyService.defaultFont.id);
     this.typographyService.setFontSize(
       this.typographyService.defaultFontSize.id,

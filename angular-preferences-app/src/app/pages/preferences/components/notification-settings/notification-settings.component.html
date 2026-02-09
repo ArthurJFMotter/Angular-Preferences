@@ -7,6 +7,23 @@
     </mat-card-header>
     
     <mat-card-content class="card-body">
+
+        <!-- Position Control -->
+        <div class="control-row">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Screen Position</mat-label>
+                <mat-select 
+                    [value]="themeService.notificationPlacement()"
+                    (selectionChange)="preferencesService.setNotificationPlacement($event.value)">
+                    
+                    @for (option of placementOptions; track option.value) {
+                        <mat-option [value]="option.value">
+                            {{ option.label }}
+                        </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
         
         <!-- Force High Contrast -->
         <div class="control-group">
@@ -35,4 +52,14 @@
         </div>
 
     </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <!-- 3. Action Area -->
+    <mat-card-actions align="end">
+        <button mat-stroked-button color="primary" (click)="testNotification()">
+            <mat-icon>play_arrow</mat-icon>
+            Test Notification
+        </button>
+    </mat-card-actions>
 </mat-card>

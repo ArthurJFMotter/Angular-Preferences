@@ -18,7 +18,7 @@
         {{ data.action }}
       </button>
     } @else {
-      <button mat-icon-button (click)="snackBarRef.dismiss()">
+      <button mat-icon-button (click)="snackBarRef.dismiss()" aria-label="Close notification">
         <mat-icon>close</mat-icon>
       </button>
     }

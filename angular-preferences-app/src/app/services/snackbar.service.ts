@@ -1,13 +1,21 @@
 import { inject, Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { 
+  MatSnackBar, 
+  MatSnackBarConfig, 
+  MatSnackBarHorizontalPosition, 
+  MatSnackBarVerticalPosition 
+} from '@angular/material/snack-bar';
 import { CustomSnackbarComponent } from '../components/custom-snackbar/custom-snackbar.component'; 
 import { SnackbarData, SnackbarType } from '../models/snackbar.model';
+import { ThemeService } from './theme.service';
+import { NotificationPlacement } from '../models/preferences.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnackbarService {
   private snackBar = inject(MatSnackBar);
+  private themeService = inject(ThemeService);
 
   private readonly defaultDuration = 4000; 
 
@@ -15,22 +23,48 @@ export class SnackbarService {
     message: string, 
     type: SnackbarType = 'info', 
     action?: string, 
-    duration?: number
+    duration?: number,
+    placementOverride?: NotificationPlacement
   ) {
-    const data: SnackbarData = { message, type, action };
+    // Determine Position
+    const effectivePlacement = 
+      placementOverride ?? 
+      this.themeService.notificationPlacement() ?? 
+      'bottom-center';
+
+    const { vertical, horizontal } = this.getMaterialPosition(effectivePlacement);
+
+    const data: SnackbarData = { 
+      message, 
+      type, 
+      action,
+      placement: effectivePlacement
+    };
 
     const config: MatSnackBarConfig = {
       duration: duration || this.defaultDuration,
       data: data,
-      horizontalPosition: 'center', 
-      verticalPosition: 'bottom',
-      panelClass: ['app-notification-panel'] 
+      horizontalPosition: horizontal, 
+      verticalPosition: vertical,
+      panelClass: ['app-notification-panel', `pos-${effectivePlacement}`] 
     };
 
     this.snackBar.openFromComponent(CustomSnackbarComponent, config);
   }
 
-  // --- Helper Methods ---
+  // --- Helpers ---
+  private getMaterialPosition(placement: NotificationPlacement): { 
+    vertical: MatSnackBarVerticalPosition, 
+    horizontal: MatSnackBarHorizontalPosition 
+  } {
+    const parts = placement.split('-'); 
+    const vert = parts[0] as MatSnackBarVerticalPosition; // 'top' | 'bottom'
+    const horiz = parts[1] as MatSnackBarHorizontalPosition; // 'left' | 'center' | 'right'
+    
+    return { vertical: vert, horizontal: horiz };
+  }
+
+  // --- Wrappers ---
   public success(message: string, action?: string, duration?: number) {
     this.show(message, 'success', action, duration);
   }

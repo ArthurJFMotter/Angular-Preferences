@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 :host {
   display: block;
@@ -21,11 +21,16 @@
   font-weight: var(--mat-sys-body-medium-weight);
 
   box-shadow: var(--mat-sys-elevation-level3);
-  
+
   // Animation
-  transition: background-color 0.3s cubic-bezier(0.2, 0, 0, 1), 
-              color 0.3s cubic-bezier(0.2, 0, 0, 1),
-              box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
+  transition:
+    background-color 0.3s cubic-bezier(0.2, 0, 0, 1),
+    color 0.3s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
+
+  // Position (examples)
+  // &.pos-top { }
+  // &.pos-bottom { }
 
   // --- DEFAULT (Info / Fallback) ---
   --sb-bg-color: var(--mat-sys-inverse-surface);
@@ -35,12 +40,16 @@
   background-color: var(--sb-bg-color);
   color: var(--sb-text-color);
 
-  .icon-area mat-icon { 
-      color: inherit; 
-      width: 24px; height: 24px; font-size: 24px; 
+  .icon-area mat-icon {
+    color: inherit;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
   }
 
-  .content-area { flex: 1; }
+  .content-area {
+    flex: 1;
+  }
 
   .action-area button {
     color: var(--sb-action-color) !important;
@@ -48,12 +57,17 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
 
-    &[mat-button], &[mat-icon-button] {
-        --mat-text-button-state-layer-color: var(--sb-action-color);
-        --mat-text-button-ripple-color: var(--sb-action-color);
+    &[mat-button],
+    &[mat-icon-button] {
+      --mat-text-button-state-layer-color: var(--sb-action-color);
+      --mat-text-button-ripple-color: var(--sb-action-color);
     }
     &:hover {
-      background-color: color-mix(in srgb, var(--sb-action-color), transparent 92%);
+      background-color: color-mix(
+        in srgb,
+        var(--sb-action-color),
+        transparent 92%
+      );
     }
   }
 
@@ -85,34 +99,53 @@
   // --- LEGACY Styles ---
   &.legacy-style {
     color: #ffffff;
-    
+
     .action-area button {
       color: #ffffff !important;
-      background: rgba(255,255,255,0.15);
-      
-      &:hover { background: rgba(255,255,255,0.3); }
+      background: rgba(255, 255, 255, 0.15);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
     }
 
-    &.success { background-color: #2e7d32; } // Standard Green
-    &.error   { background-color: #c62828; } // Standard Red
-    &.warning { background-color: #ef6c00; } // Standard Orange
-    &.info    { background-color: #0277bd; } // Standard Blue
+    // Default variants
+    &.success {
+      background-color: #2e7d32;
+    }
+    &.error {
+      background-color: #c62828;
+    }
+    &.warning {
+      background-color: #ef6c00;
+    }
+    &.info {
+      background-color: #0277bd;
+    }
   }
 
   // --- FORCE HIGH CONTRAST ---
   &.force-hc-style {
     background-color: #000000 !important;
     color: #ffffff !important;
-    
-    border: 2px solid #ffffff;
-    box-shadow: none; 
-    border-left: 2px solid #ffffff; 
 
-    // Neon variants for icons
-    &.success .icon-area mat-icon { color: #00FF00 !important; } // Neon Green
-    &.error   .icon-area mat-icon { color: #FF0000 !important; } // Neon Red
-    &.warning .icon-area mat-icon { color: #FFFF00 !important; } // Neon Yellow
-    &.info    .icon-area mat-icon { color: #00FFFF !important; } // Cyan
+    border: 2px solid #ffffff;
+    box-shadow: none;
+    border-left: 2px solid #ffffff;
+
+    // Neon variants
+    &.success .icon-area mat-icon {
+      color: #00ff00 !important;
+    }
+    &.error .icon-area mat-icon {
+      color: #ff0000 !important;
+    }
+    &.warning .icon-area mat-icon {
+      color: #ffff00 !important;
+    }
+    &.info .icon-area mat-icon {
+      color: #00ffff !important;
+    }
 
     .action-area button {
       color: #ffffff !important;
@@ -122,11 +155,12 @@
       margin-left: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      
-      &:hover, &:focus {
+
+      &:hover,
+      &:focus {
         background: #ffffff;
         color: #000000 !important;
-        outline: 2px solid #00FFFF;
+        outline: 2px solid #00ffff;
       }
     }
   }
