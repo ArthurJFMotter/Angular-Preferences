@@ -5,14 +5,24 @@
     </mat-card-header>
     <mat-card-content class="card-body">
         
-        <!-- Global High Contrast -->
+        <!-- High Contrast Mode -->
         <div class="control-group">
-            <mat-checkbox [checked]="themeService.isHighContrastMode()"
-                (change)="preferencesService.toggleHighContrastMode()">
-                High Contrast Mode
-            </mat-checkbox>
-            <span class="hint" style="display:block; margin-left: 28px; font-size: 0.8rem; color: var(--mat-sys-on-surface-variant);">
-                Increases contrast across the entire application interface.
+            <label class="group-label">Contrast Mode</label>
+            <mat-button-toggle-group class="fit-toggle full-width-toggle"
+                [value]="themeService.contrastMode()"
+                (change)="preferencesService.setContrastMode($event.value)">
+                <mat-button-toggle value="normal">
+                    <mat-icon>invert_colors_off</mat-icon> Standard
+                </mat-button-toggle>
+                <mat-button-toggle value="auto">
+                    <mat-icon>hdr_auto</mat-icon> Auto
+                </mat-button-toggle>
+                <mat-button-toggle value="high">
+                    <mat-icon>invert_colors</mat-icon> High
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <span class="hint" style="display:block; margin-top: 8px; font-size: 0.8rem; color: var(--mat-sys-on-surface-variant);">
+                'Auto' syncs with your OS settings. 'High' forces high contrast borders and colors.
             </span>
         </div>
 

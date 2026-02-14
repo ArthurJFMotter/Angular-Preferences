@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ThemeService } from '../../../../services/theme.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-accessibility-settings',
@@ -16,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
   imports: [
     CommonModule,
     MatCardModule,
+    MatButtonToggleModule,
     MatDividerModule,
     MatIconModule,
     MatCheckboxModule,

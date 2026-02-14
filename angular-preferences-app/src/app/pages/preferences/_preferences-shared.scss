@@ -4,7 +4,7 @@
 // 1. Card Container
 .settings-card {
   border-radius: min(var(--app-border-radius), 28px) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--mat-sys-outline-variant);
 
   mat-card-header {
@@ -64,8 +64,24 @@
 .fit-toggle {
   width: fit-content;
   max-width: 100%;
-  
+
   mat-button-toggle {
     min-width: 80px;
+  }
+}
+
+.full-width-toggle {
+  width: 100%;
+
+  mat-button-toggle {
+    flex: 1;
+
+    mat-icon {
+      margin-right: 8px;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      vertical-align: text-bottom;
+    }
   }
 }

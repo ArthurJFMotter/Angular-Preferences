@@ -1,4 +1,4 @@
-import { effect, Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { effect, Injectable, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 // Services
@@ -12,6 +12,8 @@ import { DaltonicFilterType } from '../models/filter.model';
 import {
   NotificationPlacement,
   UserPreferences,
+  ThemeMode,
+  ContrastMode,
 } from '../models/preferences.model';
 
 const STORAGE_KEY = 'user-app-preferences';
@@ -24,14 +26,40 @@ export class PreferencesService {
   private document = inject(DOCUMENT);
 
   private densityService = inject(DensityService);
-  private themeService = inject(ThemeService);
+  public themeService = inject(ThemeService);
   private typographyService = inject(TypographyService);
   private shapeService = inject(ShapeService);
 
+  // --- PREFERENCE STATE (Tri-State) ---
+  themeMode = signal<ThemeMode>('auto');
+  contrastMode = signal<ContrastMode>('auto');
+
+  // --- SYSTEM STATE ---
+  private systemDarkMode = signal<boolean>(false);
+  private systemHighContrast = signal<boolean>(false);
+
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
+      this.initSystemListeners();
       this.loadPreferences();
     }
+  }
+
+  // --- System Listeners (Media Queries) ---
+  private initSystemListeners() {
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const contrastQuery = window.matchMedia('(prefers-contrast: more)');
+
+    this.systemDarkMode.set(darkQuery.matches);
+    this.systemHighContrast.set(contrastQuery.matches);
+
+    darkQuery.addEventListener('change', (e) => {
+      this.systemDarkMode.set(e.matches);
+    });
+
+    contrastQuery.addEventListener('change', (e) => {
+      this.systemHighContrast.set(e.matches);
+    });
   }
 
   // --- Core Preference Management ---
@@ -45,10 +73,19 @@ export class PreferencesService {
         this.themeService.setTheme(
           prefs.themeId ?? this.themeService.getThemes()[0].id,
         );
-        this.themeService.isDarkMode.set(prefs.isDarkMode ?? false);
-        this.themeService.isHighContrastMode.set(
-          prefs.isHighContrastMode ?? false,
-        );
+
+        if (prefs.themeMode) {
+          this.themeMode.set(prefs.themeMode);
+        } else {
+          this.themeMode.set(prefs.isDarkMode ? 'dark' : 'light');
+        }
+
+        if (prefs.contrastMode) {
+          this.contrastMode.set(prefs.contrastMode);
+        } else {
+          this.contrastMode.set(prefs.isHighContrastMode ? 'high' : 'normal');
+        }
+
         this.themeService.isReducedMotion.set(prefs.isReducedMotion ?? false);
         this.themeService.activeColorFilter.set(
           prefs.activeColorFilter ?? 'none',
@@ -91,8 +128,8 @@ export class PreferencesService {
       const prefs: UserPreferences = {
         // Visuals
         themeId: this.themeService.currentTheme().id,
-        isDarkMode: this.themeService.isDarkMode(),
-        isHighContrastMode: this.themeService.isHighContrastMode(),
+        themeMode: this.themeMode(),
+        contrastMode: this.contrastMode(),
         isReducedMotion: this.themeService.isReducedMotion(),
         activeColorFilter: this.themeService.activeColorFilter(),
 
@@ -114,7 +151,33 @@ export class PreferencesService {
     }
   }
 
-  // --- Notification Toggles ---
+  // --- Public Actions ---
+  public setThemeMode(mode: ThemeMode): void {
+    this.themeMode.set(mode);
+    this.savePreferences();
+  }
+
+  public setContrastMode(mode: ContrastMode): void {
+    this.contrastMode.set(mode);
+    this.savePreferences();
+  }
+
+  // --- Legacy Boolean Toggles (Optional Wrapper) ---
+  public toggleDarkMode(): void {
+    const current = this.themeMode();
+    if (current === 'light') this.setThemeMode('dark');
+    else if (current === 'dark') this.setThemeMode('auto');
+    else this.setThemeMode('light');
+  }
+
+  public toggleHighContrastMode(): void {
+    const current = this.contrastMode();
+    if (current === 'normal') this.setContrastMode('high');
+    else if (current === 'high') this.setContrastMode('auto');
+    else this.setContrastMode('normal');
+  }
+
+  // --- Public Actions ---
   public toggleLegacyNotifications(): void {
     const current = this.themeService.useLegacyNotifications();
     this.themeService.useLegacyNotifications.set(!current);
@@ -132,19 +195,8 @@ export class PreferencesService {
     this.savePreferences();
   }
 
-  // --- Public Actions ---
   public setTheme(themeId: string): void {
     this.themeService.setTheme(themeId);
-    this.savePreferences();
-  }
-
-  public toggleDarkMode(): void {
-    this.themeService.toggleDarkMode();
-    this.savePreferences();
-  }
-
-  public toggleHighContrastMode(): void {
-    this.themeService.toggleHighContrastMode();
     this.savePreferences();
   }
 
@@ -181,8 +233,9 @@ export class PreferencesService {
   public resetToDefaults(): void {
     // Reset Visuals
     this.themeService.setTheme(this.themeService.getThemes()[0].id);
-    this.themeService.isDarkMode.set(false);
-    this.themeService.isHighContrastMode.set(false);
+    this.themeMode.set('auto');
+    this.contrastMode.set('auto');
+
     this.themeService.isReducedMotion.set(false);
     this.themeService.activeColorFilter.set('none');
 
@@ -203,6 +256,41 @@ export class PreferencesService {
   }
 
   // --- Effects ---
+  private updateDarkModeClass = effect(
+    () => {
+      const mode = this.themeMode();
+      const systemIsDark = this.systemDarkMode();
+
+      const isActive = mode === 'dark' || (mode === 'auto' && systemIsDark);
+
+      this.themeService.isDarkMode.set(isActive);
+
+      if (isPlatformBrowser(this.platformId)) {
+        this.document.documentElement.classList.toggle('dark-mode', isActive);
+      }
+    },
+    { allowSignalWrites: true },
+  );
+
+  private updateHighContrastClass = effect(
+    () => {
+      const mode = this.contrastMode();
+      const systemIsContrast = this.systemHighContrast();
+
+      const isActive = mode === 'high' || (mode === 'auto' && systemIsContrast);
+
+      this.themeService.isHighContrastMode.set(isActive);
+
+      if (isPlatformBrowser(this.platformId)) {
+        this.document.documentElement.classList.toggle(
+          'high-contrast-mode',
+          isActive,
+        );
+      }
+    },
+    { allowSignalWrites: true },
+  );
+
   private updateColorThemeClass = effect(() => {
     if (!isPlatformBrowser(this.platformId)) return;
     const theme = this.themeService.currentTheme();
@@ -211,22 +299,6 @@ export class PreferencesService {
       .map((t) => `${t.id}-theme`);
     this.document.documentElement.classList.remove(...allThemeClasses);
     this.document.documentElement.classList.add(`${theme.id}-theme`);
-  });
-
-  private updateDarkModeClass = effect(() => {
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.document.documentElement.classList.toggle(
-      'dark-mode',
-      this.themeService.isDarkMode(),
-    );
-  });
-
-  private updateHighContrastClass = effect(() => {
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.document.documentElement.classList.toggle(
-      'high-contrast-mode',
-      this.themeService.isHighContrastMode(),
-    );
   });
 
   private updateColorFilterClass = effect(() => {

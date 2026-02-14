@@ -1,9 +1,11 @@
 import { DaltonicFilterType } from "./filter.model";
 
+export type ThemeMode = 'light' | 'dark' | 'auto';
+export type ContrastMode = 'normal' | 'high' | 'auto';
+
 export type NotificationPlacement = 
   | 'top-left' | 'top-center' | 'top-right' 
   | 'bottom-left' | 'bottom-center' | 'bottom-right';
-
 
 export interface NotificationPreferences {
   useLegacy: boolean;
@@ -13,8 +15,10 @@ export interface NotificationPreferences {
 
 export interface UserPreferences {
   themeId: string;
-  isDarkMode: boolean;
-  isHighContrastMode: boolean;
+  
+  themeMode: ThemeMode;       
+  contrastMode: ContrastMode; 
+
   isReducedMotion: boolean;
   activeColorFilter: DaltonicFilterType;
   

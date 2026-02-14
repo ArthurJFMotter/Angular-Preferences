@@ -1,7 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 import { Theme } from '../models/theme.model';
 import { DaltonicFilter, DaltonicFilterType } from '../models/filter.model';
-import { NotificationPlacement } from '../models/preferences.model';
+import {
+  NotificationPlacement,
+  ThemeMode,
+  ContrastMode,
+} from '../models/preferences.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +33,13 @@ export class ThemeService {
   // Visual State
   activeColorFilter = signal<DaltonicFilterType>('none');
   currentTheme = signal<Theme>(this.themes[0]);
+  themeMode = signal<ThemeMode>('auto'); // 'light' | 'dark' | 'auto'
+  contrastMode = signal<ContrastMode>('auto'); // 'normal' | 'high' | 'auto'
+
+  // Effective State
   isDarkMode = signal<boolean>(false);
   isHighContrastMode = signal<boolean>(false);
+
   isReducedMotion = signal<boolean>(false);
 
   // Notification State
@@ -42,7 +51,6 @@ export class ThemeService {
   getThemes() {
     return this.themes;
   }
-
   getDaltonicFilters() {
     return this.daltonicFilters;
   }
@@ -61,12 +69,12 @@ export class ThemeService {
     this.currentTheme.set(theme);
   }
 
-  toggleDarkMode() {
-    this.isDarkMode.update((v) => !v);
+  setThemeMode(mode: ThemeMode) {
+    this.themeMode.set(mode);
   }
 
-  toggleHighContrastMode() {
-    this.isHighContrastMode.update((v) => !v);
+  setContrastMode(mode: ContrastMode) {
+    this.contrastMode.set(mode);
   }
 
   toggleReducedMotion() {
