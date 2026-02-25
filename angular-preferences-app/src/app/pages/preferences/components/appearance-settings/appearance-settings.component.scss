@@ -4,42 +4,51 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  
+  align-items: center;
+  margin-top: 8px;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start; 
+    row-gap: 28px;
+    column-gap: 56px;
+    margin: 8px auto;
+  }
+
   .color-swatch {
-    width: 40px;
-    height: 40px;
+    width: 44px;  
+    height: 44px;
     border-radius: 50%;
-    border: 2px solid transparent;
+    border: 1px solid rgba(0,0,0,0.1);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    transition: transform 0.2s;
+    position: relative;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
     
+    // Ensure checkmark is visible
     mat-icon { 
         color: white; 
         font-size: 20px; 
-        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        height: 20px;
+        width: 20px;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
     }
     
-    &:hover { transform: scale(1.1); }
+    // Hover/Focus
+    &:hover, &:focus-visible { 
+        transform: scale(1.1); 
+        outline: none;
+        z-index: 2;
+    }
+
+    // Active Selection Ring
     &.active {
       transform: scale(1.15);
-      box-shadow: 0 0 0 3px var(--mat-sys-surface), 0 0 0 5px var(--mat-sys-primary);
+      box-shadow: 
+        0 0 0 2px var(--mat-sys-surface), 
+        0 0 0 4px var(--mat-sys-primary);
     }
   }
-}
-
-.toggle-row {
-  display: flex;
-  gap: 2rem;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-}
-
-// Mobile Adjustment
-@media (max-width: 600px) {
-    .swatch-grid { gap: 8px; }
-    .toggle-row { gap: 1rem; }
 }

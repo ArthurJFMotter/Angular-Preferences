@@ -1,7 +1,7 @@
 <div class="page-container">
 
     <!-- LEFT COLUMN: SETTINGS -->
-    <div class="settings-column">
+    <main class="settings-column">
 
         <header class="page-header">
             <h1>Configuration</h1>
@@ -9,27 +9,39 @@
         </header>
 
         <!-- Components -->
-        <app-appearance-settings></app-appearance-settings>
-        <app-accessibility-settings></app-accessibility-settings>
-        <app-typography-settings></app-typography-settings>
-        <app-notification-settings></app-notification-settings>
+        <section aria-label="Appearance Settings">
+            <app-appearance-settings></app-appearance-settings>
+        </section>
+        
+        <section aria-label="Accessibility Settings">
+            <app-accessibility-settings></app-accessibility-settings>
+        </section>
+        
+        <section aria-label="Typography Settings">
+            <app-typography-settings></app-typography-settings>
+        </section>
+        
+        <section aria-label="Notification Settings">
+            <app-notification-settings></app-notification-settings>
+        </section>
 
         <!-- Actions / Reset -->
         <div class="actions-container">
-            <mat-divider></mat-divider>
             <div class="actions-row">
-                <button mat-stroked-button color="warn" (click)="handleReset()">
+                <button mat-stroked-button color="warn" class="reset-btn" (click)="handleReset()">
                     <mat-icon>restart_alt</mat-icon>
                     Reset to Defaults
                 </button>
             </div>
         </div>
 
-    </div>
+    </main>
 
     <!-- RIGHT COLUMN: LIVE PREVIEW -->
-    <div class="preview-column">
-        <app-live-preview></app-live-preview>
-    </div>
+    <aside class="preview-column" role="complementary" aria-label="Live Preview">
+        <div class="sticky-wrapper">
+            <app-live-preview></app-live-preview>
+        </div>
+    </aside>
 
 </div>

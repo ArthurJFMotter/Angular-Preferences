@@ -1,16 +1,26 @@
-<mat-card class="settings-card">
+<mat-card class="settings-card" appearance="outlined">
   <mat-card-header>
-    <div mat-card-avatar class="header-icon"><mat-icon>palette</mat-icon></div>
-    <mat-card-title>Appearance</mat-card-title>
+    <div mat-card-avatar class="header-icon">
+        <mat-icon aria-hidden="true">palette</mat-icon>
+    </div>
+    <mat-card-title>
+        <h2>Appearance</h2>
+    </mat-card-title>
   </mat-card-header>
+  
   <mat-card-content class="card-body">
+    
     <!-- Theme Color -->
     <div class="control-group">
       <label class="group-label">Theme Color</label>
-      <div class="swatch-grid">
+      <div class="swatch-grid" role="radiogroup" aria-label="Theme Color">
         @for (theme of themeService.getThemes(); track theme.id) {
           <button
+            type="button"
             class="color-swatch"
+            role="radio"
+            [attr.aria-checked]="themeService.currentTheme().id === theme.id"
+            [attr.aria-label]="theme.displayName"
             [style.background-color]="theme.primary"
             [class.active]="themeService.currentTheme().id === theme.id"
             (click)="preferencesService.setTheme(theme.id)"
@@ -26,44 +36,45 @@
 
     <!-- Theme Mode -->
     <div class="control-group">
-      <label class="group-label">Theme Mode</label>
+      <label id="mode-label" class="group-label">Theme Mode</label>
       <mat-button-toggle-group
-        class="fit-toggle full-width-toggle"
+        class="responsive-toggle-group"
+        aria-labelledby="mode-label"
         [value]="themeService.themeMode()"
         (change)="preferencesService.setThemeMode($event.value)"
       >
         <mat-button-toggle value="light">
-          <mat-icon>light_mode</mat-icon> Light
+          <mat-icon>light_mode</mat-icon> <span>Light</span>
         </mat-button-toggle>
         <mat-button-toggle value="auto">
-          <mat-icon>brightness_auto</mat-icon> Auto
+          <mat-icon>brightness_auto</mat-icon> <span>Auto</span>
         </mat-button-toggle>
         <mat-button-toggle value="dark">
-          <mat-icon>dark_mode</mat-icon> Dark
+          <mat-icon>dark_mode</mat-icon> <span>Dark</span>
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
 
     <!-- Corner Shape -->
     <div class="control-group">
-      <label class="group-label">Corner Shape</label>
-      <mat-button-toggle-group
-        class="fit-toggle full-width-toggle"
+      <label id="shape-label" class="group-label">Corner Shape</label>
+      <mat-button-toggle-group 
+        class="responsive-toggle-group"
+        aria-labelledby="shape-label"
         [value]="shapeService.activeShape().id"
         (change)="preferencesService.setShape($event.value)"
       >
         <mat-button-toggle value="sharp">
-          <mat-icon>crop_square</mat-icon> Square
+          <mat-icon>crop_square</mat-icon> <span>Square</span>
         </mat-button-toggle>
-
         <mat-button-toggle value="md">
-          <mat-icon>rounded_corner</mat-icon> Rounded
+          <mat-icon>rounded_corner</mat-icon> <span>Rounded</span>
         </mat-button-toggle>
-
         <mat-button-toggle value="full">
-          <mat-icon>circle</mat-icon> Pill
+          <mat-icon>circle</mat-icon> <span>Pill</span>
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
+
   </mat-card-content>
 </mat-card>

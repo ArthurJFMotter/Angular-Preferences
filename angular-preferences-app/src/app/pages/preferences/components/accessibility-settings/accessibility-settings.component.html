@@ -1,27 +1,31 @@
-<mat-card class="settings-card">
+<mat-card class="settings-card" appearance="outlined">
   <mat-card-header>
     <div mat-card-avatar class="header-icon">
-      <mat-icon>accessibility_new</mat-icon>
+      <mat-icon aria-hidden="true">accessibility_new</mat-icon>
     </div>
-    <mat-card-title>Accessibility</mat-card-title>
+    <mat-card-title>
+      <h2>Accessibility</h2>
+    </mat-card-title>
   </mat-card-header>
+  
   <mat-card-content class="card-body">
     <!-- High Contrast Mode -->
     <div class="control-group">
-      <label class="group-label">Contrast Mode</label>
+      <label id="contrast-label" class="group-label">Contrast Mode</label>
       <mat-button-toggle-group
-        class="fit-toggle full-width-toggle"
+        class="responsive-toggle-group"
+        aria-labelledby="contrast-label"
         [value]="themeService.contrastMode()"
         (change)="preferencesService.setContrastMode($event.value)"
       >
         <mat-button-toggle value="normal">
-          <mat-icon>invert_colors_off</mat-icon> Standard
+          <mat-icon>invert_colors_off</mat-icon> <span>Standard</span>
         </mat-button-toggle>
         <mat-button-toggle value="auto">
-          <mat-icon>hdr_auto</mat-icon> Auto
+          <mat-icon>hdr_auto</mat-icon> <span>Auto</span>
         </mat-button-toggle>
         <mat-button-toggle value="high">
-          <mat-icon>invert_colors</mat-icon> High
+          <mat-icon>invert_colors</mat-icon> <span>High</span>
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
@@ -35,9 +39,7 @@
           (selectionChange)="preferencesService.setColorFilter($event.value)"
         >
           @for (filter of themeService.getDaltonicFilters(); track filter.id) {
-            <mat-option [value]="filter.id">{{
-              filter.displayName
-            }}</mat-option>
+            <mat-option [value]="filter.id">{{ filter.displayName }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -46,6 +48,7 @@
     <!-- Motion -->
     <div class="toggle-row">
       <mat-slide-toggle
+        color="primary"
         [checked]="themeService.isReducedMotion()"
         (change)="preferencesService.toggleReducedMotion()"
       >
