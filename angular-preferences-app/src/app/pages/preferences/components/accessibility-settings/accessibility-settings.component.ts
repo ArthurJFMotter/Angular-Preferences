@@ -10,6 +10,7 @@ import { ThemeService } from '../../../../services/theme.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-accessibility-settings',
@@ -22,7 +23,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatIconModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   templateUrl: './accessibility-settings.component.html',
   styleUrls: ['./accessibility-settings.component.scss']

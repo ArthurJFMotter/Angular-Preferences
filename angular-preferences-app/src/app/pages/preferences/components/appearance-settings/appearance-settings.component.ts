@@ -20,8 +20,7 @@ import { ShapeService } from '../../../../services/shape.service';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    MatButtonToggleModule,
-    MatSlideToggleModule
+    MatButtonToggleModule
   ],
   templateUrl: './appearance-settings.component.html',
   styleUrls: ['./appearance-settings.component.scss']

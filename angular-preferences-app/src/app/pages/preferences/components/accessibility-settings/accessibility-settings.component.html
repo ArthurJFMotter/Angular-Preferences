@@ -1,42 +1,56 @@
 <mat-card class="settings-card">
-    <mat-card-header>
-        <div mat-card-avatar class="header-icon"><mat-icon>accessibility_new</mat-icon></div>
-        <mat-card-title>Accessibility</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="card-body">
-        
-        <!-- High Contrast Mode -->
-        <div class="control-group">
-            <label class="group-label">Contrast Mode</label>
-            <mat-button-toggle-group class="fit-toggle full-width-toggle"
-                [value]="themeService.contrastMode()"
-                (change)="preferencesService.setContrastMode($event.value)">
-                <mat-button-toggle value="normal">
-                    <mat-icon>invert_colors_off</mat-icon> Standard
-                </mat-button-toggle>
-                <mat-button-toggle value="auto">
-                    <mat-icon>hdr_auto</mat-icon> Auto
-                </mat-button-toggle>
-                <mat-button-toggle value="high">
-                    <mat-icon>invert_colors</mat-icon> High
-                </mat-button-toggle>
-            </mat-button-toggle-group>
-            <span class="hint" style="display:block; margin-top: 8px; font-size: 0.8rem; color: var(--mat-sys-on-surface-variant);">
-                'Auto' syncs with your OS settings. 'High' forces high contrast borders and colors.
-            </span>
-        </div>
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon>accessibility_new</mat-icon>
+    </div>
+    <mat-card-title>Accessibility</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-body">
+    <!-- High Contrast Mode -->
+    <div class="control-group">
+      <label class="group-label">Contrast Mode</label>
+      <mat-button-toggle-group
+        class="fit-toggle full-width-toggle"
+        [value]="themeService.contrastMode()"
+        (change)="preferencesService.setContrastMode($event.value)"
+      >
+        <mat-button-toggle value="normal">
+          <mat-icon>invert_colors_off</mat-icon> Standard
+        </mat-button-toggle>
+        <mat-button-toggle value="auto">
+          <mat-icon>hdr_auto</mat-icon> Auto
+        </mat-button-toggle>
+        <mat-button-toggle value="high">
+          <mat-icon>invert_colors</mat-icon> High
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
 
-        <!-- Color Vision -->
-        <div class="control-group">
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Color Vision Deficiency</mat-label>
-                <mat-select [value]="themeService.activeColorFilter()"
-                    (selectionChange)="preferencesService.setColorFilter($event.value)">
-                    @for (filter of themeService.getDaltonicFilters(); track filter.id) {
-                    <mat-option [value]="filter.id">{{ filter.displayName }}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </mat-card-content>
+    <!-- Color Vision -->
+    <div class="control-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Color Vision Deficiency</mat-label>
+        <mat-select
+          [value]="themeService.activeColorFilter()"
+          (selectionChange)="preferencesService.setColorFilter($event.value)"
+        >
+          @for (filter of themeService.getDaltonicFilters(); track filter.id) {
+            <mat-option [value]="filter.id">{{
+              filter.displayName
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Motion -->
+    <div class="toggle-row">
+      <mat-slide-toggle
+        [checked]="themeService.isReducedMotion()"
+        (change)="preferencesService.toggleReducedMotion()"
+      >
+        Reduced Motion
+      </mat-slide-toggle>
+    </div>
+  </mat-card-content>
 </mat-card>

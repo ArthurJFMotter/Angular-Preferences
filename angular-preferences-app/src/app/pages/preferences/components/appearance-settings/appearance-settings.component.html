@@ -65,15 +65,5 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-
-    <!-- Toggles -->
-    <div class="toggle-row">
-      <mat-slide-toggle
-        [checked]="themeService.isReducedMotion()"
-        (change)="preferencesService.toggleReducedMotion()"
-      >
-        Reduced Motion
-      </mat-slide-toggle>
-    </div>
   </mat-card-content>
 </mat-card>
