@@ -7,7 +7,7 @@
       <h2>Accessibility</h2>
     </mat-card-title>
   </mat-card-header>
-  
+
   <mat-card-content class="card-body">
     <!-- High Contrast Mode -->
     <div class="control-group">
@@ -15,7 +15,7 @@
       <mat-button-toggle-group
         class="responsive-toggle-group"
         aria-labelledby="contrast-label"
-        [value]="themeService.contrastMode()"
+        [value]="preferencesService.contrastMode()"
         (change)="preferencesService.setContrastMode($event.value)"
       >
         <mat-button-toggle value="normal">
@@ -39,7 +39,9 @@
           (selectionChange)="preferencesService.setColorFilter($event.value)"
         >
           @for (filter of themeService.getDaltonicFilters(); track filter.id) {
-            <mat-option [value]="filter.id">{{ filter.displayName }}</mat-option>
+            <mat-option [value]="filter.id">{{
+              filter.displayName
+            }}</mat-option>
           }
         </mat-select>
       </mat-form-field>

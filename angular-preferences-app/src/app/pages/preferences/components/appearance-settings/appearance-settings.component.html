@@ -1,15 +1,14 @@
 <mat-card class="settings-card" appearance="outlined">
   <mat-card-header>
     <div mat-card-avatar class="header-icon">
-        <mat-icon aria-hidden="true">palette</mat-icon>
+      <mat-icon aria-hidden="true">palette</mat-icon>
     </div>
     <mat-card-title>
-        <h2>Appearance</h2>
+      <h2>Appearance</h2>
     </mat-card-title>
   </mat-card-header>
-  
+
   <mat-card-content class="card-body">
-    
     <!-- Theme Color -->
     <div class="control-group">
       <label class="group-label">Theme Color</label>
@@ -40,7 +39,7 @@
       <mat-button-toggle-group
         class="responsive-toggle-group"
         aria-labelledby="mode-label"
-        [value]="themeService.themeMode()"
+        [value]="preferencesService.themeMode()"
         (change)="preferencesService.setThemeMode($event.value)"
       >
         <mat-button-toggle value="light">
@@ -58,7 +57,7 @@
     <!-- Corner Shape -->
     <div class="control-group">
       <label id="shape-label" class="group-label">Corner Shape</label>
-      <mat-button-toggle-group 
+      <mat-button-toggle-group
         class="responsive-toggle-group"
         aria-labelledby="shape-label"
         [value]="shapeService.activeShape().id"
@@ -75,6 +74,5 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-
   </mat-card-content>
 </mat-card>
