@@ -15,11 +15,12 @@ export class ThemeService {
   private readonly themes: Theme[] = [
     { id: 'blue', primary: '#0047AB', displayName: 'Blue' },
     { id: 'teal', primary: '#006A6A', displayName: 'Teal' },
-    { id: 'orange', primary: '#894A00', displayName: 'Orange' },
-    { id: 'pink', primary: '#9C405C', displayName: 'Pink' },
     { id: 'purple', primary: '#6750A4', displayName: 'Purple' },
-    { id: 'green', primary: '#028A0F', displayName: 'Green' },
+    { id: 'pink', primary: '#9C405C', displayName: 'Pink' },
     { id: 'red', primary: '#A91B0D', displayName: 'Red' },
+    { id: 'orange', primary: '#894A00', displayName: 'Orange' },
+    { id: 'yellow', primary: '#93c40f', displayName: 'Yellow' },
+    { id: 'green', primary: '#028A0F', displayName: 'Green' },
   ];
 
   private readonly daltonicFilters: DaltonicFilter[] = [

@@ -8,6 +8,7 @@
 @use '../color-themes/purple.scss' as noon-theme;
 @use '../color-themes/red.scss' as fire-theme;
 @use '../color-themes/teal.scss' as river-theme;
+@use '../color-themes/yellow.scss' as golden-theme;
 
 // 2. Define a map that holds the palette configurations for each theme.
 $themes: (
@@ -38,6 +39,10 @@ $themes: (
   'teal': (
     'primary': river-theme.$primary-palette,
     'tertiary': river-theme.$tertiary-palette
+  ),
+  'yellow': (
+    'primary': golden-theme.$primary-palette,
+    'tertiary': golden-theme.$tertiary-palette
   )
 );
 
@@ -57,5 +62,7 @@ $themes: (
     @include fire-theme.high-contrast-overrides($mode);
   } @else if $theme-name == 'teal' {
     @include river-theme.high-contrast-overrides($mode);
+  } @else if $theme-name == 'yellow' {
+    @include golden-theme.high-contrast-overrides($mode);
   }
 }
