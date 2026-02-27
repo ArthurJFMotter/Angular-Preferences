@@ -1,14 +1,16 @@
 import { Component, inject, SecurityContext } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // Import these
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PreferencesService } from './services/preferences.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PreferencesHelperComponent } from './components/preferences-helper/preferences-helper.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     NavbarComponent,
     PreferencesHelperComponent
@@ -19,7 +21,7 @@ import { PreferencesHelperComponent } from './components/preferences-helper/pref
 export class AppComponent {
   title = 'angular-preferences-app';
 
-  private preferencesService = inject(PreferencesService);
+  protected preferencesService = inject(PreferencesService);
   private sanitizer = inject(DomSanitizer);
 
   private readonly filtersSvg = `

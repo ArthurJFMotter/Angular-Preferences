@@ -75,12 +75,26 @@ mat-card-title h2 {
   line-height: 1.4;
 }
 
-// Responsive Toggle Groups
-.responsive-toggle-group {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+.toggle-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .toggle-column {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+.button-toggle-group {
   border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: min(var(--app-border-radius), 28px) !important; //experimental
+  overflow: hidden;
+  width: 100%;
 
   mat-button-toggle {
     flex: 1;
@@ -93,7 +107,7 @@ mat-card-title h2 {
     }
 
     mat-icon {
-      margin-right: 8px;
+      margin-right: 0.25rem;
     }
   }
 

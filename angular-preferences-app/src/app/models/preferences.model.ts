@@ -19,6 +19,7 @@ export interface UserPreferences {
   themeMode: ThemeMode;       
   contrastMode: ContrastMode; 
 
+  showHelper?: boolean;
   isReducedMotion: boolean;
   activeColorFilter: DaltonicFilterType;
   

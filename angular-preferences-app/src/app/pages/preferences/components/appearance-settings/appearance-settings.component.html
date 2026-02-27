@@ -37,7 +37,7 @@
     <div class="control-group">
       <label id="mode-label" class="group-label">Theme Mode</label>
       <mat-button-toggle-group
-        class="responsive-toggle-group"
+        class="button-toggle-group"
         aria-labelledby="mode-label"
         [value]="preferencesService.themeMode()"
         (change)="preferencesService.setThemeMode($event.value)"
@@ -58,7 +58,7 @@
     <div class="control-group">
       <label id="shape-label" class="group-label">Corner Shape</label>
       <mat-button-toggle-group
-        class="responsive-toggle-group"
+        class="button-toggle-group"
         aria-labelledby="shape-label"
         [value]="shapeService.activeShape().id"
         (change)="preferencesService.setShape($event.value)"

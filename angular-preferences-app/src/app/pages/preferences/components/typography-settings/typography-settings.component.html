@@ -53,7 +53,7 @@
     <div class="control-group">
       <label id="density-label" class="group-label">Density</label>
       <mat-button-toggle-group
-        class="responsive-toggle-group"
+        class="button-toggle-group"
         aria-labelledby="density-label"
         [value]="densityService.currentDensity().value"
         (change)="preferencesService.setDensity($event.value)"

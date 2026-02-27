@@ -4,6 +4,8 @@
   <router-outlet></router-outlet>
 </main>
 
-<app-preferences-helper></app-preferences-helper>
+@if (preferencesService.showHelper()) {
+  <app-preferences-helper></app-preferences-helper>
+}
 
 <div [innerHTML]="safeFilters"></div>

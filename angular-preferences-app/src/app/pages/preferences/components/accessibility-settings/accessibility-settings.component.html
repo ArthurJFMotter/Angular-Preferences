@@ -13,7 +13,7 @@
     <div class="control-group">
       <label id="contrast-label" class="group-label">Contrast Mode</label>
       <mat-button-toggle-group
-        class="responsive-toggle-group"
+        class="button-toggle-group"
         aria-labelledby="contrast-label"
         [value]="preferencesService.contrastMode()"
         (change)="preferencesService.setContrastMode($event.value)"
@@ -47,14 +47,23 @@
       </mat-form-field>
     </div>
 
-    <!-- Motion -->
-    <div class="toggle-row">
+    <!-- Toggles Row -->
+    <div class="toggle-column">
+      <!-- Helper Toggle -->
+      <mat-slide-toggle
+        color="primary"
+        [checked]="preferencesService.showHelper()"
+        (change)="preferencesService.toggleHelper()"
+      >
+        Floating Helper
+      </mat-slide-toggle>
+      <!-- Reduced Motion -->
       <mat-slide-toggle
         color="primary"
         [checked]="themeService.isReducedMotion()"
         (change)="preferencesService.toggleReducedMotion()"
       >
-        Reduced Motion
+        Reduce Motion
       </mat-slide-toggle>
     </div>
   </mat-card-content>
