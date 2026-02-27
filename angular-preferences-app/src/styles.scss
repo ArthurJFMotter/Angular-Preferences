@@ -9,6 +9,10 @@
 :root {
   --app-typography: 16px;
   --app-border-radius: 12px;
+
+  // Default fallbacks
+  --app-font-plain: "Roboto", sans-serif;
+  --app-font-brand: "Open Sans", sans-serif;
 }
 
 html {
@@ -20,9 +24,23 @@ body {
   margin: 0;
   background-color: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
+  font-family: var(--app-font-plain);
+
   transition:
     background-color 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    font-family 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.mat-mdc-card-title,
+.mat-drawer-container {
+  font-family: var(--app-font-brand);
 }
 
 /* 3. Shape / Border Radius Overrides */

@@ -1,29 +1,79 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, effect, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { FontConfig, FontSizeConfig } from '../models/typography.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TypographyService {
+  private document = inject(DOCUMENT);
 
   // --- Font Configuration ---
   private readonly availableFonts: FontConfig[] = [
-    { id: 'roboto-opensans', displayName: 'Roboto / Open Sans', plainFamily: 'Roboto', brandFamily: 'Open Sans', cssClass: 'font-roboto-opensans' },
-    { id: 'montserrat-lato', displayName: 'Montserrat / Lato', plainFamily: 'Lato', brandFamily: 'Montserrat', cssClass: 'font-montserrat-lato' },
-    { id: 'source-serif-sans', displayName: 'Source Serif / Source Sans', plainFamily: 'Source Serif Pro', brandFamily: 'Source Sans Pro', cssClass: 'font-source-serif-sans' },
-    { id: 'inter', displayName: 'Inter', plainFamily: 'Inter', brandFamily: 'Inter', cssClass: 'font-inter' },
-    { id: 'poppins-nunito', displayName: 'Poppins / Nunito Sans', plainFamily: 'Nunito Sans', brandFamily: 'Poppins', cssClass: 'font-poppins-nunito' },
-    { id: 'roboto-slab-roboto', displayName: 'Roboto Slab / Roboto', plainFamily: 'Roboto', brandFamily: 'Roboto Slab', cssClass: 'font-roboto-slab-roboto' },
-    { id: 'merriweather-lato', displayName: 'Merriweather / Lato', plainFamily: 'Lato', brandFamily: 'Merriweather', cssClass: 'font-merriweather-lato' },
-    { id: 'dev-theme', displayName: 'Developer (Source Code Pro / Inter)', plainFamily: 'Inter', brandFamily: 'Source Code Pro', cssClass: 'font-dev-theme' }
+    {
+      id: 'roboto-opensans',
+      displayName: 'Roboto / Open Sans',
+      plainFamily: "'Roboto', sans-serif",
+      brandFamily: "'Open Sans', sans-serif",
+      cssClass: 'font-roboto-opensans',
+    },
+    {
+      id: 'montserrat-lato',
+      displayName: 'Montserrat / Lato',
+      plainFamily: "'Lato', sans-serif",
+      brandFamily: "'Montserrat', sans-serif",
+      cssClass: 'font-montserrat-lato',
+    },
+    {
+      id: 'source-serif-sans',
+      displayName: 'Source Serif / Source Sans',
+      plainFamily: "'Source Sans Pro', sans-serif",
+      brandFamily: "'Source Serif Pro', serif",
+      cssClass: 'font-source-serif-sans',
+    },
+    {
+      id: 'inter',
+      displayName: 'Inter',
+      plainFamily: "'Inter', sans-serif",
+      brandFamily: "'Inter', sans-serif",
+      cssClass: 'font-inter',
+    },
+    {
+      id: 'poppins-nunito',
+      displayName: 'Poppins / Nunito Sans',
+      plainFamily: "'Nunito Sans', sans-serif",
+      brandFamily: "'Poppins', sans-serif",
+      cssClass: 'font-poppins-nunito',
+    },
+    {
+      id: 'roboto-slab-roboto',
+      displayName: 'Roboto Slab / Roboto',
+      plainFamily: "'Roboto', sans-serif",
+      brandFamily: "'Roboto Slab', serif",
+      cssClass: 'font-roboto-slab-roboto',
+    },
+    {
+      id: 'merriweather-lato',
+      displayName: 'Merriweather / Lato',
+      plainFamily: "'Lato', sans-serif",
+      brandFamily: "'Merriweather', serif",
+      cssClass: 'font-merriweather-lato',
+    },
+    {
+      id: 'dev-theme',
+      displayName: 'Developer',
+      plainFamily: "'Inter', sans-serif",
+      brandFamily: "'Source Code Pro', monospace",
+      cssClass: 'font-dev-theme',
+    },
   ];
   public readonly defaultFont = this.availableFonts[0];
 
-  // --- Font State Management ---
+  // --- Font State ---
   private readonly _activeFont = signal<FontConfig>(this.defaultFont);
   public readonly activeFont = this._activeFont.asReadonly();
 
-  // --- Font Size Configuration ---
+  // --- Font Size State ---
   private readonly availableFontSizes: FontSizeConfig[] = [
     { id: 'x-small', displayName: 'Tiny', pixelValue: 12 },
     { id: 'small', displayName: 'Small', pixelValue: 14 },
@@ -33,27 +83,53 @@ export class TypographyService {
   ];
   public readonly defaultFontSize = this.availableFontSizes[2];
 
-  // --- Font Size State Management ---
-  private readonly _activeFontSize = signal<FontSizeConfig>(this.defaultFontSize);
+  private readonly _activeFontSize = signal<FontSizeConfig>(
+    this.defaultFontSize,
+  );
   public readonly activeFontSize = this._activeFontSize.asReadonly();
 
-  // --- Font Size Methods ---
-  public getFontSizes(): FontSizeConfig[] {
-    return this.availableFontSizes;
+  constructor() {
+    effect(() => {
+      const font = this._activeFont();
+
+      this.document.body.style.setProperty(
+        '--app-font-plain',
+        font.plainFamily,
+      );
+      this.document.body.style.setProperty(
+        '--app-font-brand',
+        font.brandFamily,
+      );
+    });
+
+    effect(() => {
+      const size = this._activeFontSize();
+      this.document.documentElement.style.setProperty(
+        '--app-typography',
+        `${size.pixelValue}px`,
+      );
+    });
   }
 
-  public setFontSize(sizeId: string): void {
-    const newSize = this.availableFontSizes.find(s => s.id === sizeId) ?? this.defaultFontSize;
-    this._activeFontSize.set(newSize);
-  }
-
-  // --- Font Family Methods ---
-  public getFonts(): FontConfig[] {
+  // --- Methods ---
+  public getFonts() {
     return this.availableFonts;
   }
 
-  public setFont(fontId: string): void {
-    const newFont = this.availableFonts.find(f => f.id === fontId) ?? this.defaultFont;
+  public setFont(fontId: string) {
+    const newFont =
+      this.availableFonts.find((f) => f.id === fontId) ?? this.defaultFont;
     this._activeFont.set(newFont);
+  }
+
+  public getFontSizes() {
+    return this.availableFontSizes;
+  }
+
+  public setFontSize(sizeId: string) {
+    const newSize =
+      this.availableFontSizes.find((s) => s.id === sizeId) ??
+      this.defaultFontSize;
+    this._activeFontSize.set(newSize);
   }
 }
