@@ -9,7 +9,7 @@ export class TooltipService {
   // Global Defaults
   private readonly defaults = signal<TooltipGlobalDefaults>({
     showDelay: 600,      
-    hideDelay: 100,
+    hideDelay: 200,
     touchendHideDelay: 1500,
     position: 'above'
   });

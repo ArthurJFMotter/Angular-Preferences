@@ -31,6 +31,7 @@ export class PreferencesService {
   private shapeService = inject(ShapeService);
 
   showHelper = signal<boolean>(true); 
+  showTooltips = signal<boolean>(true);
 
   // --- PREFERENCE STATE (Tri-State) ---
   themeMode = signal<ThemeMode>('auto');
@@ -94,6 +95,7 @@ export class PreferencesService {
         );
 
         this.showHelper.set(prefs.showHelper ?? true);
+        this.showTooltips.set(prefs.showTooltips ?? true);
 
         // 2. Load Notifications
         const notifPrefs = prefs.notifications || {};
@@ -137,6 +139,7 @@ export class PreferencesService {
         isReducedMotion: this.themeService.isReducedMotion(),
         activeColorFilter: this.themeService.activeColorFilter(),
         showHelper: this.showHelper(),
+        showTooltips: this.showTooltips(),
 
         // Notifications
         notifications: {
@@ -215,6 +218,11 @@ export class PreferencesService {
     this.savePreferences();
   }
 
+  public toggleTooltips() {
+    this.showTooltips.update(v => !v);
+    this.savePreferences();
+  }
+
   public setColorFilter(filterId: DaltonicFilterType): void {
     this.themeService.setColorFilter(filterId);
     this.savePreferences();
@@ -250,6 +258,7 @@ export class PreferencesService {
     this.themeService.activeColorFilter.set('none');
 
     this.showHelper.set(true);
+    this.showTooltips.set(true);
 
     // Reset Notifications
     this.themeService.useLegacyNotifications.set(false);

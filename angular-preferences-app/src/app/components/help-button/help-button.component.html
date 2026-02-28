@@ -1,9 +1,12 @@
-<button
-  mat-icon-button
-  class="help-trigger"
-  [appTooltip]="config"
-  aria-label="More information"
-  (click)="$event.stopPropagation()"
->
-  <mat-icon>help_outline</mat-icon>
-</button>
+<!-- Only render if the preference is enabled -->
+@if (preferencesService.showTooltips()) {
+  <button
+    mat-icon-button
+    class="help-trigger"
+    [appTooltip]="config"
+    aria-label="More information"
+    (click)="$event.stopPropagation()"
+  >
+    <mat-icon>help_outline</mat-icon>
+  </button>
+}

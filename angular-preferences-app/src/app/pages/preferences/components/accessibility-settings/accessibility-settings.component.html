@@ -6,7 +6,9 @@
     <mat-card-title>
       <div class="title-with-help">
         <h2>Accessibility</h2>
-        <app-help-button message="Tools to improve visibility and usability for users with visual or motor impairments."></app-help-button>
+        <app-help-button
+          message="Tools to improve visibility and usability for users with visual or motor impairments."
+        ></app-help-button>
       </div>
     </mat-card-title>
   </mat-card-header>
@@ -52,7 +54,7 @@
 
     <!-- Toggles Row -->
     <div class="toggle-column">
-      <!-- Helper Toggle -->
+      <!-- Mini Helper -->
       <mat-slide-toggle
         color="primary"
         [checked]="preferencesService.showHelper()"
@@ -60,6 +62,16 @@
       >
         Floating Helper
       </mat-slide-toggle>
+
+      <!-- Help tooltip-->
+      <mat-slide-toggle
+        color="primary"
+        [checked]="preferencesService.showTooltips()"
+        (change)="preferencesService.toggleTooltips()"
+      >
+        Show Explanations
+      </mat-slide-toggle>
+
       <!-- Reduced Motion -->
       <mat-slide-toggle
         color="primary"
