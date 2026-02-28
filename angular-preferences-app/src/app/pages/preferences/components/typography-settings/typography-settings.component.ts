@@ -12,6 +12,7 @@ import { TypographyService } from '../../../../services/typography.service';
 import { DensityService } from '../../../../services/density.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { FontSizeConfig } from '../../../../models/typography.model';
+import { HelpButtonComponent } from '../../../../components/help-button/help-button.component';
 
 @Component({
   selector: 'app-typography-settings',
@@ -19,15 +20,16 @@ import { FontSizeConfig } from '../../../../models/typography.model';
   imports: [
     CommonModule,
     FormsModule,
+    HelpButtonComponent,
     MatCardModule,
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSliderModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
   ],
   templateUrl: './typography-settings.component.html',
-  styleUrls: ['./typography-settings.component.scss']
+  styleUrls: ['./typography-settings.component.scss'],
 })
 export class TypographySettingsComponent {
   typographyService = inject(TypographyService);
@@ -36,19 +38,24 @@ export class TypographySettingsComponent {
 
   readonly fontSizes: FontSizeConfig[] = this.typographyService.getFontSizes();
   activeFontSize = this.typographyService.activeFontSize;
-  
-  fontSizeSliderIndex = signal(this.fontSizes.findIndex(s => s.id === this.activeFontSize().id));
+
+  fontSizeSliderIndex = signal(
+    this.fontSizes.findIndex((s) => s.id === this.activeFontSize().id),
+  );
   minFontSizeIndex = 0;
   maxFontSizeIndex = this.fontSizes.length - 1;
 
   constructor() {
-    effect(() => {
-      const currentId = this.activeFontSize().id;
-      const newIndex = this.fontSizes.findIndex(s => s.id === currentId);
-      if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
-        this.fontSizeSliderIndex.set(newIndex);
-      }
-    }, { allowSignalWrites: true });
+    effect(
+      () => {
+        const currentId = this.activeFontSize().id;
+        const newIndex = this.fontSizes.findIndex((s) => s.id === currentId);
+        if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
+          this.fontSizeSliderIndex.set(newIndex);
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   onFontChange(event: MatSelectChange): void {

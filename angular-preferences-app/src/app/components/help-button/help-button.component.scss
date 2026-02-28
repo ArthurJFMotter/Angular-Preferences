@@ -1,0 +1,10 @@
+.help-trigger {
+  color: var(--mat-sys-outline);
+  transform: scale(0.9);
+  margin-left: 4px;
+
+  &:hover {
+    color: var(--mat-sys-primary);
+    background-color: var(--mat-sys-surface-variant);
+  }
+}

@@ -12,19 +12,21 @@ import { ThemeService } from '../../../../services/theme.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { SnackbarService } from '../../../../services/snackbar.service';
 import { NotificationPlacement } from '../../../../models/preferences.model';
+import { HelpButtonComponent } from '../../../../components/help-button/help-button.component';
 
 @Component({
   selector: 'app-notification-settings',
   standalone: true,
   imports: [
     CommonModule,
+    HelpButtonComponent,
     MatCardModule,
     MatIconModule,
     MatCheckboxModule,
     MatDividerModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './notification-settings.component.html',
   styleUrls: ['./notification-settings.component.scss'],
@@ -45,9 +47,6 @@ export class NotificationSettingsComponent {
   ];
 
   testNotification() {
-    this.snackbarService.info(
-      'This is a test notification', 
-      'Dismiss'
-    );
+    this.snackbarService.info('This is a test notification', 'Dismiss');
   }
 }
