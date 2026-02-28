@@ -4,7 +4,7 @@
 // Card Container
 .settings-card {
   border-radius: min(var(--app-border-radius), 28px) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px var(--mat-sys-surface-container-high);
   border: 1px solid var(--mat-sys-outline-variant);
   background-color: var(--mat-sys-surface-container-low);
   color: var(--mat-sys-on-surface);
