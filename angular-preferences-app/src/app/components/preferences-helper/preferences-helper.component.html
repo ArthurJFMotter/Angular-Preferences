@@ -40,7 +40,7 @@
   <!-- Reset -->
   <div class="fab-option">
     <button mat-mini-fab matTooltip="Reset Defaults" color="warn"
-        (click)="preferencesService.resetToDefaults()"
+        (click)="preferencesService.resetToDefaults(); handleReset()"
         aria-label="Reset to default settings">
         <mat-icon>restart_alt</mat-icon>
     </button>

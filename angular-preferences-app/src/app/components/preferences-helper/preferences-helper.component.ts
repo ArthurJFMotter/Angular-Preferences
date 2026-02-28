@@ -7,6 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { ThemeService } from '../../services/theme.service';
 import { PreferencesService } from '../../services/preferences.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-preferences-helper',
@@ -25,11 +26,17 @@ import { PreferencesService } from '../../services/preferences.service';
 export class PreferencesHelperComponent {
   themeService = inject(ThemeService);
   preferencesService = inject(PreferencesService);
+  snackbarService = inject(SnackbarService);
 
   isExpanded = false;
 
   toggleExpansion(): void {
     this.isExpanded = !this.isExpanded;
+  }
+
+  handleReset(): void {
+    this.preferencesService.resetToDefaults();
+    this.snackbarService.info('Preferences have been reset to defaults.');
   }
 
   // Theme Mode: Light -> Dark -> Auto
