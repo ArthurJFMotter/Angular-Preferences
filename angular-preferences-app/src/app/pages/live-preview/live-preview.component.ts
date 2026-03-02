@@ -44,7 +44,7 @@ interface AuditLog {
   templateUrl: './live-preview.component.html',
   styleUrls: ['./live-preview.component.scss']
 })
-export class HomeComponent {
+export class LivePreviewComponent {
   private prefs = inject(PreferencesService); 
   public themeService = inject(ThemeService);
   public densityService = inject(DensityService);
