@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SnackbarService } from '../../../../services/snackbar.service';
 
 @Component({
-  selector: 'app-live-preview',
+  selector: 'app-preview-card',
   standalone: true,
   imports: [
     CommonModule, 
@@ -18,10 +18,10 @@ import { SnackbarService } from '../../../../services/snackbar.service';
     MatFormFieldModule, 
     MatInputModule
   ],
-  templateUrl: './live-preview.component.html',
-  styleUrls: ['./live-preview.component.scss']
+  templateUrl: './preview-card.component.html',
+  styleUrls: ['./preview-card.component.scss']
 })
-export class LivePreviewComponent {
+export class PreviewCardComponent {
   private snackbarService = inject(SnackbarService);
 
   onPreviewSubmit() {

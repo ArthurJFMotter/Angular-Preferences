@@ -1,0 +1,115 @@
+<div class="home-container">
+  
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="badge">Angular Material 3 + Signals</div>
+      <h1 class="display-headline">
+        Design that adapts to <br>
+        <span class="gradient-text">every user.</span>
+      </h1>
+      <p class="hero-subtext">
+        Static interfaces are a thing of the past. Empower your users with granular control over contrast, density, typography, and motion. 
+        Improve accessibility and retention by letting the UI fit the user, not the other way around.
+      </p>
+      
+      <div class="hero-actions">
+        <button mat-flat-button color="primary" class="cta-button" (click)="navigateToSettings()">
+          <mat-icon>tune</mat-icon>
+          Start Customizing
+        </button>
+        <button mat-stroked-button class="cta-button">
+          <mat-icon>code</mat-icon>
+          View Documentation
+        </button>
+      </div>
+    </div>
+
+    <!-- Visual Abstract Representation -->
+    <div class="hero-visual">
+      <!-- Glass Card -->
+      <div class="abstract-card glass-effect">
+        <div class="row">
+          <div class="skeleton-circle"></div>
+          <div class="skeleton-line full"></div>
+        </div>
+        <div class="skeleton-line half"></div>
+        <div class="active-indicator"></div>
+      </div>
+      
+      <!-- Solid Card -->
+      <div class="abstract-card solid-effect">
+        <mat-icon>palette</mat-icon>
+        <span>Theming Engine</span>
+      </div>
+    </div>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <!-- Value Proposition / Benefits Section -->
+  <section class="features-grid">
+    
+    <!-- Accessibility Card -->
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <div mat-card-avatar class="icon-box">
+          <mat-icon>accessibility_new</mat-icon>
+        </div>
+        <mat-card-title>Inclusive Accessibility</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Meet WCAG standards effortlessly. Users with visual impairments can toggle 
+          <strong>High Contrast</strong> modes, while those with vestibular disorders can 
+          <strong>Reduce Motion</strong> instantly.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Density Card -->
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <div mat-card-avatar class="icon-box">
+          <mat-icon>view_compact</mat-icon>
+        </div>
+        <mat-card-title>Information Density</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          From data-heavy analysts needing <strong>Compact</strong> views to casual users preferring 
+          <strong>Comfortable</strong> spacing. Your application's layout scales dynamically.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Theming Card -->
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <div mat-card-avatar class="icon-box">
+          <mat-icon>format_paint</mat-icon>
+        </div>
+        <mat-card-title>Expressive Theming</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Beyond simple Dark Mode. Allow users to select semantic color palettes that resonate with them, 
+          changing the emotional tone of the workspace.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+  </section>
+
+  <!-- Technical modernization section -->
+  <section class="tech-specs">
+    <h2>Modernize your Stack</h2>
+    <div class="tech-chips">
+      <span class="tech-pill">SCSS Variables</span>
+      <span class="tech-pill">CSS Container Queries</span>
+      <span class="tech-pill">Angular Signals</span>
+      <span class="tech-pill">Material 3 Design Tokens</span>
+    </div>
+  </section>
+
+</div>

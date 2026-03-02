@@ -49,6 +49,6 @@ export class SmartTooltipDirective implements OnChanges {
   @HostListener('mouseleave')
   onMouseLeave() {
     // needs validation
-    // window.speechSynthesis.cancel();
+    window.speechSynthesis.cancel();
   }
 }

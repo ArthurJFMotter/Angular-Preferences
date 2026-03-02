@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
-import { ShowcaseComponent } from './pages/showcase/showcase.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: ShowcaseComponent,
+        component: HomeComponent,
         pathMatch: 'full'
     },
     {
         path: 'home',
-        component: ShowcaseComponent,
+        component: HomeComponent,
     },
     {
         path: 'configurations',

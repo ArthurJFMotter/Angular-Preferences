@@ -7,7 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AppearanceSettingsComponent } from './components/appearance-settings/appearance-settings.component';
 import { TypographySettingsComponent } from './components/typography-settings/typography-settings.component';
 import { AccessibilitySettingsComponent } from './components/accessibility-settings/accessibility-settings.component';
-import { LivePreviewComponent } from './components/live-preview/live-preview.component';
+import { PreviewCardComponent } from './components/preview-card/preview-card.component';
 
 import { PreferencesService } from '../../services/preferences.service';
 import { SnackbarService } from '../../services/snackbar.service';
@@ -24,7 +24,7 @@ import { NotificationSettingsComponent } from './components/notification-setting
     AppearanceSettingsComponent,
     TypographySettingsComponent,
     AccessibilitySettingsComponent,
-    LivePreviewComponent,
+    PreviewCardComponent,
     NotificationSettingsComponent 
   ],
   templateUrl: './preferences.component.html',
