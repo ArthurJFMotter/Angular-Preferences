@@ -11,11 +11,21 @@
   border-radius: 24px;
   margin-bottom: 40px;
 
+  @media (max-width: 600px) {
+    padding: 40px 16px;
+    border-radius: 16px;
+  }
+
   h2 {
     font-weight: 300;
     font-size: 2rem;
     margin-bottom: 32px;
     color: var(--mat-sys-on-surface);
+
+    @media (max-width: 600px) {
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+    }
   }
 
   .tech-chips {

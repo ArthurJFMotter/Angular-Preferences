@@ -1,8 +1,14 @@
-@use '../../home-shared' as shared;
+@use "../../home-shared" as shared;
 
 .hero-content {
   @media (max-width: 900px) {
-    .hero-actions, .badge-container { justify-content: center; }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .badge-container {
+      justify-content: center;
+    }
   }
 }
 
@@ -12,25 +18,25 @@
   margin-bottom: 24px;
 }
 
-.badge { 
-  @include shared.pill-base; 
-  background: var(--mat-sys-primary); 
-  color: var(--mat-sys-on-primary); 
+.badge {
+  @include shared.pill-base;
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
 }
 
-.badge-secondary { 
+.badge-secondary {
   @include shared.pill-base;
-  background: var(--mat-sys-secondary-container); 
-  color: var(--mat-sys-on-secondary-container); 
+  background: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
 }
 
 .display-headline {
   font-family: var(--app-font-brand);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.1;
-  font-weight: 800; 
+  font-weight: 800;
   margin-bottom: 24px;
-  letter-spacing: -1.5px;
+  letter-spacing: -1px;
 
   .gradient-text {
     @include shared.gradient-text-brand;
@@ -38,22 +44,37 @@
 }
 
 .hero-subtext {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.6;
   color: var(--mat-sys-on-surface-variant);
   margin-bottom: 40px;
   max-width: 550px;
-  @media (max-width: 900px) { margin-left: auto; margin-right: auto; }
+
+  @media (max-width: 900px) {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+  }
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
+  justify-content: start;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
 
   .cta-button {
     height: 52px;
     padding: 0 32px;
     font-size: 1.05rem;
     border-radius: 100px;
+
+    @media (max-width: 380px) {
+      width: 100%;
+    }
   }
 }

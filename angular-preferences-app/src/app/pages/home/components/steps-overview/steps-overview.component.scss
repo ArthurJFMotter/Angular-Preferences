@@ -2,7 +2,11 @@
 
 :host {
   display: block;
-  margin-bottom: 60px;
+  margin-bottom: shared.$section-spacing-desktop;
+
+  @media (max-width: 600px) {
+    margin-bottom: shared.$section-spacing-mobile;
+  }
 }
 
 .steps-section {
@@ -12,8 +16,9 @@
 
   @media (max-width: 700px) {
     flex-direction: column;
-    gap: 32px;
-    
+    align-items: center;
+    gap: 48px;
+
     .step-divider {
       display: none;
     }
@@ -29,7 +34,9 @@
     font-size: 3rem;
     font-weight: 900;
     color: var(--mat-sys-surface-container-highest);
-    margin-bottom: 12px;
+    opacity: 0.5;
+    margin-bottom: 8px;
+    line-height: 1;
   }
 
   h3 {
@@ -42,6 +49,8 @@
   p {
     font-size: 0.95rem;
     color: var(--mat-sys-on-surface-variant);
+    max-width: 300px;
+    margin: 0 auto;
   }
 }
 

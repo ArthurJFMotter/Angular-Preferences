@@ -1,44 +1,49 @@
-@use "../../home-shared" as shared;
+@use '../../home-shared' as shared;
 
 :host {
   display: block;
-  margin-bottom: shared.$section-spacing;
+  margin-bottom: shared.$section-spacing-desktop;
+  
+  @media (max-width: 600px) {
+    margin-bottom: shared.$section-spacing-mobile;
+  }
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  // Use 260px to fit on smaller devices without overflow
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: 24px;
 }
 
 .feature-card {
   height: 100%;
   background-color: var(--mat-sys-surface-container);
-  border-radius: var(--app-border-radius);
+  border-radius: 16px;
   transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
+  
+  // Disable hover lift on touch devices to prevent "sticky" hover states
+  @media (hover: hover) {
+    &:hover { transform: translateY(-5px); }
   }
 
   .icon-box {
     background: var(--mat-sys-tertiary-container);
     color: var(--mat-sys-on-tertiary-container);
-    display: flex;
-    align-items: center;
+    display: flex; 
+    align-items: center; 
     justify-content: center;
-    border-radius: 50%;
+  }
+  
+  mat-card-title { 
+    font-weight: 600; 
+    font-size: 1.1rem; 
+    margin-top: 8px; 
   }
 
-  mat-card-title {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-top: 8px;
-  }
-
-  mat-card-content p {
-    color: var(--mat-sys-on-surface-variant);
-    line-height: 1.6;
-    margin-top: 12px;
+  mat-card-content p { 
+    color: var(--mat-sys-on-surface-variant); 
+    line-height: 1.6; 
+    margin-top: 12px; 
   }
 }
