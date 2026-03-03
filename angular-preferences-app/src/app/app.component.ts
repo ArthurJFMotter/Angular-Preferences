@@ -5,6 +5,7 @@ import { PreferencesService } from './services/preferences.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PreferencesHelperComponent } from './components/preferences-helper/preferences-helper.component';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     RouterOutlet,
+    FooterComponent,
     NavbarComponent,
     PreferencesHelperComponent
   ],

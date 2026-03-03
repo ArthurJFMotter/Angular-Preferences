@@ -2,15 +2,20 @@
   
   <!-- Hero Section -->
   <header class="hero-section">
+    <!-- LEFT: Marketing -->
     <div class="hero-content">
-      <div class="badge">Angular Material 3 + Signals</div>
+      <div class="badge-container">
+        <div class="badge">Angular 17+</div>
+        <div class="badge-secondary">Material 3</div>
+      </div>
+
       <h1 class="display-headline">
         Design that adapts to <br>
         <span class="gradient-text">every user.</span>
       </h1>
+      
       <p class="hero-subtext">
-        Static interfaces are a thing of the past. Empower your users with granular control over contrast, density, typography, and motion. 
-        Improve accessibility and retention by letting the UI fit the user, not the other way around.
+        Static interfaces are a thing of the past. Empower your users with granular control over contrast, density, typography, and motion.
       </p>
       
       <div class="hero-actions">
@@ -19,38 +24,106 @@
           Start Customizing
         </button>
         <button mat-stroked-button class="cta-button">
-          <mat-icon>code</mat-icon>
-          View Documentation
+          <mat-icon>description</mat-icon>
+          Documentation
         </button>
       </div>
     </div>
 
-    <!-- Visual Abstract Representation -->
+    <!-- RIGHT: Interactive Playground -->
     <div class="hero-visual">
-      <!-- Glass Card -->
-      <div class="abstract-card glass-effect">
-        <div class="row">
-          <div class="skeleton-circle"></div>
-          <div class="skeleton-line full"></div>
+      <div class="playground-card">
+        
+        <!-- Window Header -->
+        <div class="editor-header">
+          <div class="window-controls">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+          </div>
+          <span class="filename">app.config.ts</span>
         </div>
-        <div class="skeleton-line half"></div>
-        <div class="active-indicator"></div>
-      </div>
-      
-      <!-- Solid Card -->
-      <div class="abstract-card solid-effect">
-        <mat-icon>palette</mat-icon>
-        <span>Theming Engine</span>
+
+        <!-- Code Content -->
+        <div class="editor-content">
+          <pre><code>{{ codeSnippet() }}</code></pre>
+          
+          <div class="powered-badge">
+            <mat-icon class="bolt-icon">bolt</mat-icon>
+            <span>Signals</span>
+          </div>
+        </div>
+
+        <!-- Playground Controls -->
+        <div class="playground-controls">
+          
+          <!-- Theme Mode -->
+          <button class="mini-toggle" (click)="cycleThemeMode()" 
+                  matTooltip="Theme Mode: {{ prefs.themeMode() | titlecase }}">
+            <mat-icon>
+              {{ prefs.themeMode() === 'auto' ? 'brightness_auto' : 
+                 (prefs.themeMode() === 'dark' ? 'dark_mode' : 'light_mode') }}
+            </mat-icon>
+            <span class="toggle-text">{{ prefs.themeMode() | titlecase }}</span>
+          </button>
+
+          <!-- Contrast Mode -->
+          <button class="mini-toggle" (click)="cycleContrastMode()" 
+                  matTooltip="Contrast: {{ prefs.contrastMode() | titlecase }}">
+            <mat-icon>contrast</mat-icon>
+            <span class="toggle-text">
+              {{ prefs.contrastMode() === 'auto' ? 'Auto' : 
+                 (prefs.contrastMode() === 'high' ? 'High' : 'Norm') }}
+            </span>
+          </button>
+
+          <!-- Density -->
+          <button class="mini-toggle" (click)="cycleDensity()" matTooltip="Density">
+            <mat-icon>view_agenda</mat-icon>
+            <span class="toggle-text">
+              {{ densityService.currentDensity().displayName.split(' ')[0] }}
+            </span>
+          </button>
+
+           <!-- Font Size -->
+           <button class="mini-toggle" (click)="cycleFontSize()" matTooltip="Font Size">
+            <mat-icon>format_size</mat-icon>
+            <span class="toggle-text">
+              {{ typographyService.activeFontSize().displayName }}
+            </span>
+          </button>
+
+        </div>
+
       </div>
     </div>
   </header>
 
-  <mat-divider></mat-divider>
+  <!-- Steps Section -->
+  <section class="steps-section">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3>Configure</h3>
+      <p>Adjust global settings for typography, color, and density.</p>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3>Preview</h3>
+      <p>Watch your components transform in real-time.</p>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3>Integrate</h3>
+      <p>Export your JSON config to your application.</p>
+    </div>
+  </section>
 
-  <!-- Value Proposition / Benefits Section -->
+  <mat-divider class="section-divider"></mat-divider>
+
+  <!-- Features Grid -->
   <section class="features-grid">
-    
-    <!-- Accessibility Card -->
     <mat-card class="feature-card">
       <mat-card-header>
         <div mat-card-avatar class="icon-box">
@@ -59,15 +132,10 @@
         <mat-card-title>Inclusive Accessibility</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          Meet WCAG standards effortlessly. Users with visual impairments can toggle 
-          <strong>High Contrast</strong> modes, while those with vestibular disorders can 
-          <strong>Reduce Motion</strong> instantly.
-        </p>
+        <p>Meet WCAG standards effortlessly. Toggle <strong>High Contrast</strong> modes and <strong>Reduce Motion</strong> instantly.</p>
       </mat-card-content>
     </mat-card>
 
-    <!-- Density Card -->
     <mat-card class="feature-card">
       <mat-card-header>
         <div mat-card-avatar class="icon-box">
@@ -76,32 +144,23 @@
         <mat-card-title>Information Density</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          From data-heavy analysts needing <strong>Compact</strong> views to casual users preferring 
-          <strong>Comfortable</strong> spacing. Your application's layout scales dynamically.
-        </p>
+        <p>From data-heavy analysts needing <strong>Compact</strong> views to casual users preferring <strong>Comfortable</strong> spacing.</p>
       </mat-card-content>
     </mat-card>
 
-    <!-- Theming Card -->
     <mat-card class="feature-card">
       <mat-card-header>
         <div mat-card-avatar class="icon-box">
-          <mat-icon>format_paint</mat-icon>
+          <mat-icon>palette</mat-icon>
         </div>
         <mat-card-title>Expressive Theming</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          Beyond simple Dark Mode. Allow users to select semantic color palettes that resonate with them, 
-          changing the emotional tone of the workspace.
-        </p>
+        <p>Allow users to select semantic color palettes that resonate with them, changing the emotional tone.</p>
       </mat-card-content>
     </mat-card>
-
   </section>
 
-  <!-- Technical modernization section -->
   <section class="tech-specs">
     <h2>Modernize your Stack</h2>
     <div class="tech-chips">

@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 2.5rem;
     right: 2.5rem;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .fab-toggler {
@@ -17,8 +17,8 @@
 // Base state for options (hidden behind the main FAB)
 .fab-option {
     position: absolute;
-    right: 0.5rem; // Centers it horizontally relative to the 56px FAB
-    bottom: 0.5rem; // Centers it vertically relative to the 56px FAB
+    right: 0.5rem; 
+    bottom: 0.5rem; 
     opacity: 0;
     transform: scale(0.5) translateY(0);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -30,7 +30,7 @@
 .preferences-fab-container.expanded {
 
     .fab-toggler mat-icon {
-        transform: rotate(135deg); // Rotate the gear/plus icon
+        transform: rotate(135deg);
     }
 
     .fab-option {
@@ -38,10 +38,8 @@
         transform: scale(1);
         pointer-events: auto;
     }
-
-    // MATH: Each mini-fab is ~40px + margin. roughly 3.5rem steps.
     
-    // 5. Reset (Closest to bottom)
+    // 5. Reset (Closest)
     .fab-option:nth-child(5) {
         transform: translateY(-4.5rem); 
         transition-delay: 0s;
@@ -65,7 +63,7 @@
         transition-delay: 0.09s;
     }
 
-    // 1. Light/Dark Mode (Topmost)
+    // 1. Light/Dark Mode (Farest)
     .fab-option:nth-child(1) {
         transform: translateY(-18.5rem); 
         transition-delay: 0.12s;
@@ -97,7 +95,6 @@
 
 
 // --- LANDSCAPE / SHORT SCREEN MODE ---
-// Expand to the left instead of up if screen is short
 @media(max-height: 500px) {
     
     // Reset base transform for horizontal mode
