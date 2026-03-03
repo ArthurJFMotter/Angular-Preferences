@@ -11,20 +11,31 @@
 
 .features-grid {
   display: grid;
-  // Use 260px to fit on smaller devices without overflow
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: 24px;
 }
 
 .feature-card {
   height: 100%;
+
+  border-radius: min(var(--app-border-radius), 28px) !important;
+  box-shadow: 0 4px 12px var(--mat-sys-surface-container-high);
+  border: 1px solid var(--mat-sys-outline-variant);
   background-color: var(--mat-sys-surface-container);
-  border-radius: 16px;
-  transition: transform 0.3s ease;
+  color: var(--mat-sys-on-surface);
   
-  // Disable hover lift on touch devices to prevent "sticky" hover states
+  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.0, 0.2, 1);
+  will-change: transform;
+  backface-visibility: hidden; 
+  
   @media (hover: hover) {
-    &:hover { transform: translateY(-5px); }
+    &:hover { 
+      transform: translateY(-5px); 
+    }
+  }
+
+  @media (max-width: 600px) {
+    border-radius: 16px !important;
   }
 
   .icon-box {

@@ -29,6 +29,20 @@
   flex: 1;
   text-align: center;
   padding: 0 16px;
+  
+  transition: transform 0.3s cubic-bezier(0.2, 0.0, 0.2, 1);
+  will-change: transform;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-5px);
+
+      .step-number {
+        color: var(--mat-sys-primary);
+        opacity: 1;
+      }
+    }
+  }
 
   .step-number {
     font-size: 3rem;
@@ -37,6 +51,8 @@
     opacity: 0.5;
     margin-bottom: 8px;
     line-height: 1;
+    
+    transition: color 0.3s ease, opacity 0.3s ease;
   }
 
   h3 {
