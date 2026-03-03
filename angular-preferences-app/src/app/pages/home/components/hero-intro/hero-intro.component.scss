@@ -1,0 +1,59 @@
+@use '../../home-shared' as shared;
+
+.hero-content {
+  @media (max-width: 900px) {
+    .hero-actions, .badge-container { justify-content: center; }
+  }
+}
+
+.badge-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.badge { 
+  @include shared.pill-base; 
+  background: var(--mat-sys-primary); 
+  color: var(--mat-sys-on-primary); 
+}
+
+.badge-secondary { 
+  @include shared.pill-base;
+  background: var(--mat-sys-secondary-container); 
+  color: var(--mat-sys-on-secondary-container); 
+}
+
+.display-headline {
+  font-family: var(--app-font-brand);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 800; 
+  margin-bottom: 24px;
+  letter-spacing: -1.5px;
+
+  .gradient-text {
+    @include shared.gradient-text-brand;
+  }
+}
+
+.hero-subtext {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--mat-sys-on-surface-variant);
+  margin-bottom: 40px;
+  max-width: 550px;
+  @media (max-width: 900px) { margin-left: auto; margin-right: auto; }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+
+  .cta-button {
+    height: 52px;
+    padding: 0 32px;
+    font-size: 1.05rem;
+    border-radius: 100px;
+  }
+}

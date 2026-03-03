@@ -1,174 +1,19 @@
 <div class="home-container">
-  
-  <!-- Hero Section -->
+  <!-- Hero Grid Layout -->
   <header class="hero-section">
-    <!-- LEFT: Marketing -->
-    <div class="hero-content">
-      <div class="badge-container">
-        <div class="badge">Angular 17+</div>
-        <div class="badge-secondary">Material 3</div>
-      </div>
+    <app-hero-intro></app-hero-intro>
 
-      <h1 class="display-headline">
-        Design that adapts to <br>
-        <span class="gradient-text">every user.</span>
-      </h1>
-      
-      <p class="hero-subtext">
-        Static interfaces are a thing of the past. Empower your users with granular control over contrast, density, typography, and motion.
-      </p>
-      
-      <div class="hero-actions">
-        <button mat-flat-button color="primary" class="cta-button" (click)="navigateToSettings()">
-          <mat-icon>tune</mat-icon>
-          Start Customizing
-        </button>
-        <button mat-stroked-button class="cta-button">
-          <mat-icon>description</mat-icon>
-          Documentation
-        </button>
-      </div>
-    </div>
-
-    <!-- RIGHT: Interactive Playground -->
     <div class="hero-visual">
-      <div class="playground-card">
-        
-        <!-- Window Header -->
-        <div class="editor-header">
-          <div class="window-controls">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-          </div>
-          <span class="filename">app.config.ts</span>
-        </div>
-
-        <!-- Code Content -->
-        <div class="editor-content">
-          <pre><code>{{ codeSnippet() }}</code></pre>
-          
-          <div class="powered-badge">
-            <mat-icon class="bolt-icon">bolt</mat-icon>
-            <span>Signals</span>
-          </div>
-        </div>
-
-        <!-- Playground Controls -->
-        <div class="playground-controls">
-          
-          <!-- Theme Mode -->
-          <button class="mini-toggle" (click)="cycleThemeMode()" 
-                  matTooltip="Theme Mode: {{ prefs.themeMode() | titlecase }}">
-            <mat-icon>
-              {{ prefs.themeMode() === 'auto' ? 'brightness_auto' : 
-                 (prefs.themeMode() === 'dark' ? 'dark_mode' : 'light_mode') }}
-            </mat-icon>
-            <span class="toggle-text">{{ prefs.themeMode() | titlecase }}</span>
-          </button>
-
-          <!-- Contrast Mode -->
-          <button class="mini-toggle" (click)="cycleContrastMode()" 
-                  matTooltip="Contrast: {{ prefs.contrastMode() | titlecase }}">
-            <mat-icon>contrast</mat-icon>
-            <span class="toggle-text">
-              {{ prefs.contrastMode() === 'auto' ? 'Auto' : 
-                 (prefs.contrastMode() === 'high' ? 'High' : 'Norm') }}
-            </span>
-          </button>
-
-          <!-- Density -->
-          <button class="mini-toggle" (click)="cycleDensity()" matTooltip="Density">
-            <mat-icon>view_agenda</mat-icon>
-            <span class="toggle-text">
-              {{ densityService.currentDensity().displayName.split(' ')[0] }}
-            </span>
-          </button>
-
-           <!-- Font Size -->
-           <button class="mini-toggle" (click)="cycleFontSize()" matTooltip="Font Size">
-            <mat-icon>format_size</mat-icon>
-            <span class="toggle-text">
-              {{ typographyService.activeFontSize().displayName }}
-            </span>
-          </button>
-
-        </div>
-
-      </div>
+      <app-interactive-playground></app-interactive-playground>
     </div>
   </header>
 
-  <!-- Steps Section -->
-  <section class="steps-section">
-    <div class="step">
-      <div class="step-number">01</div>
-      <h3>Configure</h3>
-      <p>Adjust global settings for typography, color, and density.</p>
-    </div>
-    <div class="step-divider"></div>
-    <div class="step">
-      <div class="step-number">02</div>
-      <h3>Preview</h3>
-      <p>Watch your components transform in real-time.</p>
-    </div>
-    <div class="step-divider"></div>
-    <div class="step">
-      <div class="step-number">03</div>
-      <h3>Integrate</h3>
-      <p>Export your JSON config to your application.</p>
-    </div>
-  </section>
+  <!-- Content Sections -->
+  <app-steps-overview></app-steps-overview>
 
   <mat-divider class="section-divider"></mat-divider>
 
-  <!-- Features Grid -->
-  <section class="features-grid">
-    <mat-card class="feature-card">
-      <mat-card-header>
-        <div mat-card-avatar class="icon-box">
-          <mat-icon>accessibility_new</mat-icon>
-        </div>
-        <mat-card-title>Inclusive Accessibility</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Meet WCAG standards effortlessly. Toggle <strong>High Contrast</strong> modes and <strong>Reduce Motion</strong> instantly.</p>
-      </mat-card-content>
-    </mat-card>
+  <app-features-grid></app-features-grid>
 
-    <mat-card class="feature-card">
-      <mat-card-header>
-        <div mat-card-avatar class="icon-box">
-          <mat-icon>view_compact</mat-icon>
-        </div>
-        <mat-card-title>Information Density</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>From data-heavy analysts needing <strong>Compact</strong> views to casual users preferring <strong>Comfortable</strong> spacing.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="feature-card">
-      <mat-card-header>
-        <div mat-card-avatar class="icon-box">
-          <mat-icon>palette</mat-icon>
-        </div>
-        <mat-card-title>Expressive Theming</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Allow users to select semantic color palettes that resonate with them, changing the emotional tone.</p>
-      </mat-card-content>
-    </mat-card>
-  </section>
-
-  <section class="tech-specs">
-    <h2>Modernize your Stack</h2>
-    <div class="tech-chips">
-      <span class="tech-pill">SCSS Variables</span>
-      <span class="tech-pill">CSS Container Queries</span>
-      <span class="tech-pill">Angular Signals</span>
-      <span class="tech-pill">Material 3 Design Tokens</span>
-    </div>
-  </section>
-
+  <app-tech-specs></app-tech-specs>
 </div>

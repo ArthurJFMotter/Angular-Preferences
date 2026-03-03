@@ -1,0 +1,20 @@
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+@Component({
+  selector: 'app-hero-intro',
+  standalone: true,
+  imports: [CommonModule, MatButtonModule, MatIconModule],
+  templateUrl: './hero-intro.component.html',
+  styleUrls: ['./hero-intro.component.scss'],
+})
+export class HeroIntroComponent {
+  private router = inject(Router);
+
+  navigateToSettings() {
+    this.router.navigate(['/configurations']);
+  }
+}

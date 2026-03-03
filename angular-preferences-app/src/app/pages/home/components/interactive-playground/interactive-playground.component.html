@@ -1,0 +1,64 @@
+<div class="playground-card">
+        
+  <!-- Window Header -->
+  <div class="editor-header">
+    <div class="window-controls">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <span class="filename">app.config.ts</span>
+  </div>
+
+  <!-- Code Content -->
+  <div class="editor-content">
+    <pre><code>{{ codeSnippet() }}</code></pre>
+    
+    <div class="powered-badge">
+      <mat-icon class="bolt-icon">bolt</mat-icon>
+      <span>Signals</span>
+    </div>
+  </div>
+
+  <!-- Playground Controls -->
+  <div class="playground-controls">
+    
+    <!-- Theme Mode -->
+    <button class="mini-toggle" (click)="cycleThemeMode()" 
+            matTooltip="Theme Mode: {{ prefs.themeMode() | titlecase }}">
+      <mat-icon>
+        {{ prefs.themeMode() === 'auto' ? 'brightness_auto' : 
+           (prefs.themeMode() === 'dark' ? 'dark_mode' : 'light_mode') }}
+      </mat-icon>
+      <span class="toggle-text">{{ prefs.themeMode() | titlecase }}</span>
+    </button>
+
+    <!-- Contrast Mode -->
+    <button class="mini-toggle" (click)="cycleContrastMode()" 
+            matTooltip="Contrast: {{ prefs.contrastMode() | titlecase }}">
+      <mat-icon>contrast</mat-icon>
+      <span class="toggle-text">
+        {{ prefs.contrastMode() === 'auto' ? 'Auto' : 
+           (prefs.contrastMode() === 'high' ? 'High' : 'Norm') }}
+      </span>
+    </button>
+
+    <!-- Density -->
+    <button class="mini-toggle" (click)="cycleDensity()" matTooltip="Density">
+      <mat-icon>view_agenda</mat-icon>
+      <span class="toggle-text">
+        {{ densityService.currentDensity().displayName.split(' ')[0] }}
+      </span>
+    </button>
+
+     <!-- Font Size -->
+     <button class="mini-toggle" (click)="cycleFontSize()" matTooltip="Font Size">
+      <mat-icon>format_size</mat-icon>
+      <span class="toggle-text">
+        {{ typographyService.activeFontSize().displayName }}
+      </span>
+    </button>
+
+  </div>
+
+</div>

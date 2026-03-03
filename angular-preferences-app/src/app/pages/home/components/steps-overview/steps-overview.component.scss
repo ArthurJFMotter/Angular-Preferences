@@ -1,0 +1,54 @@
+@use "../../home-shared" as shared;
+
+:host {
+  display: block;
+  margin-bottom: 60px;
+}
+
+.steps-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    gap: 32px;
+    
+    .step-divider {
+      display: none;
+    }
+  }
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  padding: 0 16px;
+
+  .step-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--mat-sys-surface-container-highest);
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--mat-sys-primary);
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.step-divider {
+  width: 80px;
+  height: 2px;
+  background: var(--mat-sys-outline-variant);
+  margin-top: 40px;
+  opacity: 0.5;
+}
