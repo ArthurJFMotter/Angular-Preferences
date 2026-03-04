@@ -1,4 +1,4 @@
-@use "../../home-shared" as shared;
+@use "app/pages/home/home-shared" as shared;
 
 .hero-content {
   @media (max-width: 900px) {

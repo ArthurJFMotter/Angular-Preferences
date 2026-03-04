@@ -1,4 +1,5 @@
-@use "../../home-shared" as shared;
+@use "app/pages/home/home-shared" as shared;
+@use "motion" as motion;
 
 :host {
   display: block;
@@ -17,36 +18,19 @@
 
 .feature-card {
   height: 100%;
+  
   border-radius: min(var(--app-border-radius), 28px) !important;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
 
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s cubic-bezier(0.2, 0, 0.2, 1),
-    border-radius 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-
-  will-change: transform;
-  backface-visibility: hidden;
+  @include motion.interactive-material-elevation($include-transform: true); 
 
   @media (hover: hover) {
-    &:hover {
-      transform: translateY(-5px);
+    &:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 16px var(--mat-sys-shadow); 
     }
-  }
-
-  :host-context(.reduced-motion) & {
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
-  }
-
-  @media (max-width: 600px) {
-    border-radius: 16px !important;
   }
 
   .icon-box {

@@ -4,6 +4,7 @@
 @use "./assets/themes/main-themes/dark-themes";
 @use "./assets/filters/filters";
 @use "./assets/typography/typography.scss";
+@use "./assets/styles/motion" as motion;
 
 /* 2. Global Variables */
 :root {
@@ -124,26 +125,18 @@ h6,
   }
 }
 
-/* Global Transitions */
-.mat-mdc-card,
-.mat-mdc-button-base,
-.mat-mdc-form-field,
-.mdc-text-field {
-  transition: border-radius 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-}
-
-/* 2. Reduced Motion */
+/* 4. Reduced Motion (Accessibility) */
 .reduced-motion {
-  *,
-  ::before,
-  ::after,
-  .mat-mdc-card,
-  .mat-mdc-button-base,
-  .mat-mdc-form-field {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+// Global Material Overrides 
+.mat-mdc-card,
+.mat-mdc-button-base {
+  transition: border-radius motion.$duration-long motion.$ease-shape !important;
 }
