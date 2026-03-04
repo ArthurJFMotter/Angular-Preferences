@@ -1,47 +1,50 @@
 <div class="page-container">
-
-    <!-- LEFT COLUMN: SETTINGS -->
-    <main class="settings-column">
-
-        <header class="page-header">
-            <h1>Configuration</h1>
-            <p class="subtitle">Customize the look and feel of your workspace.</p>
-        </header>
-
-        <!-- Components -->
-        <section aria-label="Appearance Settings">
-            <app-appearance-settings></app-appearance-settings>
-        </section>
-        
-        <section aria-label="Accessibility Settings">
-            <app-accessibility-settings></app-accessibility-settings>
-        </section>
-        
-        <section aria-label="Typography Settings">
-            <app-typography-settings></app-typography-settings>
-        </section>
-        
-        <section aria-label="Notification Settings">
-            <app-notification-settings></app-notification-settings>
-        </section>
-
-        <!-- Actions / Reset -->
-        <div class="actions-container">
-            <div class="actions-row">
-                <button mat-stroked-button color="warn" class="reset-btn" (click)="handleReset()">
-                    <mat-icon>restart_alt</mat-icon>
-                    Reset to Defaults
-                </button>
-            </div>
+  <!-- LEFT COLUMN: SETTINGS -->
+  <main class="settings-column">
+    <header class="page-header">
+      <!-- Title -->
+      <div class="title-container">
+        <h1>Configuration</h1>
+        <p class="subtitle">Customize the look and feel of your workspace.</p>
+      </div>
+      <!-- Actions / Reset -->
+      <div class="actions-container">
+        <div class="actions-row">
+          <button
+            mat-stroked-button
+            color="warn"
+            class="reset-btn"
+            (click)="handleReset()"
+          >
+            <mat-icon>restart_alt</mat-icon>
+            Reset to Defaults
+          </button>
         </div>
+      </div>
+    </header>
 
-    </main>
+    <!-- Components -->
+    <section aria-label="Appearance Settings">
+      <app-appearance-settings></app-appearance-settings>
+    </section>
 
-    <!-- RIGHT COLUMN: LIVE PREVIEW -->
-    <aside class="preview-column" role="complementary" aria-label="Live Preview">
-        <div class="sticky-wrapper">
-            <app-preview-card></app-preview-card>
-        </div>
-    </aside>
+    <section aria-label="Accessibility Settings">
+      <app-accessibility-settings></app-accessibility-settings>
+    </section>
 
+    <section aria-label="Typography Settings">
+      <app-typography-settings></app-typography-settings>
+    </section>
+
+    <section aria-label="Notification Settings">
+      <app-notification-settings></app-notification-settings>
+    </section>
+  </main>
+
+  <!-- RIGHT COLUMN: LIVE PREVIEW -->
+  <aside class="preview-column" role="complementary" aria-label="Live Preview">
+    <div class="sticky-wrapper">
+      <app-preview-card></app-preview-card>
+    </div>
+  </aside>
 </div>

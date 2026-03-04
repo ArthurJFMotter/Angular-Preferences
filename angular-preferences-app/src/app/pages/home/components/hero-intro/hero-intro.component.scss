@@ -1,4 +1,5 @@
 @use "app/pages/home/home-shared" as shared;
+@use "shape" as shape;
 
 .hero-content {
   @media (max-width: 900px) {
@@ -19,13 +20,13 @@
 }
 
 .badge {
-  @include shared.pill-base;
+  @include shape.rounded-chips ;
   background: var(--mat-sys-primary);
   color: var(--mat-sys-on-primary);
 }
 
 .badge-secondary {
-  @include shared.pill-base;
+  @include shape.rounded-chips ;
   background: var(--mat-sys-secondary-container);
   color: var(--mat-sys-on-secondary-container);
 }

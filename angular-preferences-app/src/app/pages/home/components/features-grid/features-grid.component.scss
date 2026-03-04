@@ -1,5 +1,6 @@
 @use "app/pages/home/home-shared" as shared;
 @use "motion" as motion;
+@use "shape" as shape;
 
 :host {
   display: block;
@@ -17,19 +18,19 @@
 }
 
 .feature-card {
-  height: 100%;
+  @include shape.rounded-card;
   
-  border-radius: min(var(--app-border-radius), 28px) !important;
+  @include motion.interactive-material-elevation($include-transform: true); 
+
+  height: 100%;
   border: 1px solid var(--mat-sys-outline-variant);
   background-color: var(--mat-sys-surface-container);
   color: var(--mat-sys-on-surface);
 
-  @include motion.interactive-material-elevation($include-transform: true); 
-
   @media (hover: hover) {
     &:hover { 
       transform: translateY(-5px); 
-      box-shadow: 0 8px 16px var(--mat-sys-shadow); 
+      box-shadow: 0 8px 16px var(--mat-sys-outline-variant); 
     }
   }
 

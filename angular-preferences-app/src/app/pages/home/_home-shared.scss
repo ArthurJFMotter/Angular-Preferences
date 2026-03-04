@@ -22,14 +22,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-@mixin pill-base {
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
 // Global Spacing Variables
 $section-spacing-desktop: 80px;
 $section-spacing-mobile: 48px;

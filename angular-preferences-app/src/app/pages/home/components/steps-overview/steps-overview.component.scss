@@ -1,5 +1,6 @@
 @use "app/pages/home/home-shared" as shared;
 @use "motion" as motion;
+@use "shape" as shape;
 
 :host {
   display: block;
@@ -30,7 +31,7 @@
   flex: 1;
   text-align: center;
   padding: 0 16px;
-  
+
   @include motion.hover-lift(-5px);
 
   @media (hover: hover) {
@@ -43,14 +44,19 @@
   }
 
   .step-number {
+    @include shape.circle;
+
+    @include motion.transition-standard(color, opacity);
+
     font-size: 3rem;
     font-weight: 900;
     color: var(--mat-sys-surface-container-highest);
     opacity: 0.5;
-    margin-bottom: 8px;
     line-height: 1;
-    
-    @include motion.transition-standard(color, opacity);
+
+    width: fit-content;
+    min-width: 3rem;
+    margin: 0rem auto;
   }
 
   h3 {

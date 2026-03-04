@@ -14,6 +14,16 @@ $raw: var(--app-border-radius);
   border-radius: clamp(4px, $raw, 999px) !important;
 }
 
+// CHIPS: Ensures a minimum of 8px so chips don't feel "razor sharp", 
+// but allows full rounding up to pill shape.
+@mixin rounded-chips {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: clamp(8px, $raw, 999px) !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 // INPUT/GROUP: Similar to cards but for smaller containers (Toggle Groups)
 // Caps at 24px because inputs look weird if they are too round.
 @mixin rounded-input {
