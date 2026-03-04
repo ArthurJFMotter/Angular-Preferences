@@ -1,19 +1,17 @@
-// This file holds styles common to all preferences components
-// Import this using @use in the sub-components.
+@use "shape" as shape;
+@use "motion" as motion;
 
-// Card Container
+// --- 1. Card Container ---
 .settings-card {
-  border-radius: min(var(--app-border-radius), 28px) !important;
-  box-shadow: 0 4px 12px var(--mat-sys-surface-container-high);
-  border: 1px solid var(--mat-sys-outline-variant);
+  @include shape.rounded-card;
+
+  @include motion.interactive-material-elevation($include-transform: false);
+
   background-color: var(--mat-sys-surface-container-low);
   color: var(--mat-sys-on-surface);
-  transition: box-shadow 0.3s ease;
+  border: 1px solid var(--mat-sys-outline-variant);
 
-  @media (max-width: 600px) {
-    border-radius: 16px !important;
-  }
-
+  // Layout
   mat-card-header {
     padding: 16px 16px 8px;
     display: flex;
@@ -28,15 +26,15 @@
   }
 }
 
-// Header Icons & Titles
+// --- 2. Header Icons ---
 .header-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--mat-sys-secondary-container);
   color: var(--mat-sys-on-secondary-container);
-  border-radius: 50%;
-  
+
+  @include shape.circle;
 }
 
 mat-card-title h2 {
@@ -46,7 +44,7 @@ mat-card-title h2 {
   line-height: 1.5;
 }
 
-// Form Labels
+// --- 3. Form Utilities ---
 .group-label {
   display: block;
   font-size: 0.875rem;
@@ -55,7 +53,6 @@ mat-card-title h2 {
   margin-bottom: 8px;
 }
 
-// Utility
 .full-width {
   width: 100%;
 }
@@ -75,16 +72,15 @@ mat-card-title h2 {
   line-height: 1.4;
 }
 
+// --- 4. Toggles ---
 .toggle-column {
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
   gap: 2rem;
-}
 
-@media (max-width: 768px) {
-  .toggle-column {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: start;
   }
@@ -92,27 +88,27 @@ mat-card-title h2 {
 
 .button-toggle-group {
   border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: min(var(--app-border-radius), 28px) !important; //experimental
   overflow: hidden;
   width: 100%;
+
+  @include shape.rounded-input;
 
   mat-button-toggle {
     flex: 1;
     min-width: 80px;
-    border-left: 1px solid var(--mat-sys-outline-variant); 
+    border-left: 1px solid var(--mat-sys-outline-variant);
     border-bottom: none;
 
     &:first-child {
       border-left: none;
     }
-
     mat-icon {
       margin-right: 0.25rem;
     }
   }
 
   @media (max-width: 768px) {
-    mat-button-toggle span{
+    mat-button-toggle span {
       display: none;
     }
   }

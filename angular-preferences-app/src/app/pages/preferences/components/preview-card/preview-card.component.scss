@@ -1,4 +1,6 @@
-@use "../../preferences-shared" as shared;
+@use "app/pages/preferences/preferences-shared" as shared;
+@use "shape" as shape;
+@use "motion" as motion;
 
 // Desktop Behavior
 @media (min-width: 960px) {
@@ -25,9 +27,10 @@
 }
 
 .preview-card {
+  @include shape.rounded-card;
+
   box-shadow: 0 4px 12px var(--mat-sys-surface-container-high);
   border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: min(var(--app-border-radius), 28px) !important;
   overflow: hidden;
 
   .image-container {
@@ -58,9 +61,10 @@
   }
 
   .dummy-form {
+    @include shape.rounded-card;
+
     background: var(--mat-sys-surface-container-high);
     padding: 1rem;
-    border-radius: min(calc(var(--app-border-radius) / 2), 14px);
   }
 }
 
@@ -70,9 +74,10 @@
   gap: 1rem;
 
   .widget {
+    @include shape.rounded-card;
+    
     background: var(--mat-sys-surface);
     border: 1px solid var(--mat-sys-outline-variant);
-    border-radius: min(var(--app-border-radius), 28px);
     padding: 1rem;
     display: flex;
     align-items: center;

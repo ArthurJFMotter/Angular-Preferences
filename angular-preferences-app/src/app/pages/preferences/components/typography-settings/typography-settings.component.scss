@@ -1,16 +1,18 @@
-@use '../../preferences-shared' as shared;
+@use "app/pages/preferences/preferences-shared" as shared;
+@use "shape" as shape;
 
 .label-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  
+
   .value-badge {
+    @include shape.rounded-button;
+
     background: var(--mat-sys-tertiary-container);
     color: var(--mat-sys-on-tertiary-container);
     padding: 4px 12px;
-    border-radius: 16px;
     font-size: 0.75rem;
     font-weight: 600;
   }
@@ -21,13 +23,20 @@
   align-items: center;
   gap: 16px;
   padding: 8px 0;
-  
-  .small-a { font-size: 14px; color: var(--mat-sys-on-surface-variant); }
-  .large-a { font-size: 24px; font-weight: bold; color: var(--mat-sys-on-surface); }
-  
-  mat-slider { 
-    flex: 1; 
+
+  .small-a {
+    font-size: 14px;
+    color: var(--mat-sys-on-surface-variant);
+  }
+  .large-a {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--mat-sys-on-surface);
+  }
+
+  mat-slider {
+    flex: 1;
     min-width: 0;
-    margin: 0 8px; 
+    margin: 0 8px;
   }
 }

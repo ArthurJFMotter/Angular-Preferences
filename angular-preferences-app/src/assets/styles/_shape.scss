@@ -1,0 +1,26 @@
+$raw: var(--app-border-radius);
+
+// --- 1. Smart Mixins ---
+
+// CARD: Caps the radius at 28px so large containers don't look like pills.
+// If user selects 0px, it allows 0px. If user selects 50px, it stops at 28px.
+@mixin rounded-card {
+  border-radius: min($raw, 28px) !important;
+}
+
+// BUTTON: Ensures a minimum of 4px so buttons don't feel "razor sharp", 
+// but allows full rounding up to pill shape.
+@mixin rounded-button {
+  border-radius: clamp(4px, $raw, 999px) !important;
+}
+
+// INPUT/GROUP: Similar to cards but for smaller containers (Toggle Groups)
+// Caps at 24px because inputs look weird if they are too round.
+@mixin rounded-input {
+  border-radius: min($raw, 24px) !important;
+}
+
+// --- 2. Helper for Circles ---
+@mixin circle {
+  border-radius: 50% !important;
+}
