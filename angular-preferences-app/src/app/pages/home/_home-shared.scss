@@ -1,27 +1,2 @@
 // This file holds styles common to all home components
 // Import this using @use in the sub-components.
-
-// Layout Utility
-@mixin responsive-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 40px;
-  }
-}
-
-@mixin gradient-text-brand {
-  background: linear-gradient(120deg, var(--mat-sys-tertiary), var(--mat-sys-primary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-// Global Spacing Variables
-$section-spacing-desktop: 80px;
-$section-spacing-mobile: 48px;

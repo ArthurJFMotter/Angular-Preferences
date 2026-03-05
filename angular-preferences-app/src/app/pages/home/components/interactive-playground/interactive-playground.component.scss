@@ -1,4 +1,3 @@
-@use "app/pages/home/home-shared" as shared;
 @use "motion" as motion;
 @use "shape" as shape;
 
@@ -69,7 +68,7 @@
     }
 
     .powered-badge {
-      @include shape.rounded-chips ;
+      @include shape.rounded-chips;
 
       position: absolute;
       top: 24px;
@@ -128,7 +127,6 @@
         background: #333;
         color: white;
       }
-      
     }
   }
 }

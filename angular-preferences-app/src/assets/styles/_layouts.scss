@@ -1,0 +1,45 @@
+// --- 1. Global Variables ---
+$section-spacing-desktop: 80px;
+$section-spacing-mobile: 48px;
+
+// --- 2. Page Constructors (Mixins) ---
+
+// Base Host: Standardizes the component host element
+@mixin host-base {
+  display: block;
+  min-height: 100vh;
+}
+
+// Page Container: The standard wrapper with responsive padding
+@mixin page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+
+  @media (max-width: 600px) {
+    padding: 24px 16px;
+  }
+}
+
+// Responsive Grid: 2 columns on desktop, 1 on mobile
+@mixin responsive-2-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+}
+
+// --- 3. Text Utilities ---
+@mixin gradient-text-brand {
+  background: linear-gradient(120deg, var(--mat-sys-tertiary), var(--mat-sys-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--mat-sys-primary); 
+}

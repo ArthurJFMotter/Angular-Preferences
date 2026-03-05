@@ -1,4 +1,4 @@
-@use "app/pages/home/home-shared" as shared;
+@use "layouts" as layout;
 @use "shape" as shape;
 
 .hero-content {
@@ -20,13 +20,13 @@
 }
 
 .badge {
-  @include shape.rounded-chips ;
+  @include shape.rounded-chips;
   background: var(--mat-sys-primary);
   color: var(--mat-sys-on-primary);
 }
 
 .badge-secondary {
-  @include shape.rounded-chips ;
+  @include shape.rounded-chips;
   background: var(--mat-sys-secondary-container);
   color: var(--mat-sys-on-secondary-container);
 }
@@ -40,7 +40,7 @@
   letter-spacing: -1px;
 
   .gradient-text {
-    @include shared.gradient-text-brand;
+    @include layout.gradient-text-brand;
   }
 }
 

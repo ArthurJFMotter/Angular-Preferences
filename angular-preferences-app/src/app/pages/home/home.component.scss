@@ -1,29 +1,21 @@
-@use './home-shared' as shared;
+@use "layouts" as layout; 
 
 :host {
-  display: block;
-  min-height: 100vh;
+  @include layout.host-base;
 }
 
 .home-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  
-  padding: 48px 24px;
-
-  @media (max-width: 600px) {
-    padding: 24px 16px; 
-  }
+  @include layout.page-container;
 }
 
 .hero-section {
-  @include shared.responsive-grid-container;
+  @include layout.responsive-2-col-grid;
   min-height: 60vh;
-  margin-bottom: shared.$section-spacing-desktop;
+  margin-bottom: layout.$section-spacing-desktop;
 
   @media (max-width: 600px) {
     min-height: auto;
-    margin-bottom: shared.$section-spacing-mobile;
+    margin-bottom: layout.$section-spacing-mobile;
   }
 
   .hero-visual {
@@ -37,10 +29,10 @@
 }
 
 .section-divider {
-  margin-bottom: shared.$section-spacing-desktop;
+  margin-bottom: layout.$section-spacing-desktop;
   border-color: var(--mat-sys-outline-variant);
 
   @media (max-width: 600px) {
-    margin-bottom: shared.$section-spacing-mobile;
+    margin-bottom: layout.$section-spacing-mobile;
   }
 }

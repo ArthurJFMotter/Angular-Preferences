@@ -1,8 +1,14 @@
-.page-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 32px;
+@use "layouts" as layout;
 
+:host {
+  @include layout.host-base;
+}
+
+.page-container {
+  @include layout.page-container;
+}
+
+.double-lg-sm-column {
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
@@ -70,8 +76,9 @@
 
 // Mobile Adjustments
 @media (max-width: 600px) {
+  // If you strictly need different padding than the mixin provides:
   .page-container {
-    padding: 16px;
+    padding: 16px; // Overrides the mixin's 24px 16px if necessary
     gap: 24px;
   }
 

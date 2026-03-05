@@ -1,13 +1,13 @@
-@use "app/pages/home/home-shared" as shared;
+@use "layouts" as layout;
 @use "motion" as motion;
 @use "shape" as shape;
 
 :host {
   display: block;
-  margin-bottom: shared.$section-spacing-desktop;
+  margin-bottom: layout.$section-spacing-desktop;
 
   @media (max-width: 600px) {
-    margin-bottom: shared.$section-spacing-mobile;
+    margin-bottom: layout.$section-spacing-mobile;
   }
 }
 
@@ -45,7 +45,6 @@
 
   .step-number {
     @include shape.circle;
-
     @include motion.transition-standard(color, opacity);
 
     font-size: 3rem;
