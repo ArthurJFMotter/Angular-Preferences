@@ -4,16 +4,14 @@
 
 // Desktop Behavior
 .sticky-wrapper {
-  // Base styles (if any) could go here
-  
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
   @media (min-width: 960px) {
     position: sticky;
     position: -webkit-sticky;
     top: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 
     transition: top 0.3s ease;
   }
@@ -77,7 +75,7 @@
 
   .widget {
     @include shape.rounded-card;
-    
+
     background: var(--mat-sys-surface);
     border: 1px solid var(--mat-sys-outline-variant);
     padding: 1rem;
