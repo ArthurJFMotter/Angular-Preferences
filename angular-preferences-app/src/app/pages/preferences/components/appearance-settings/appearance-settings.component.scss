@@ -17,10 +17,11 @@
   }
 
   .color-swatch {
+    @include shape.circle; 
+    @include motion.interactive-press($scale: 0.9); 
+
     width: 44px;  
     height: 44px;
-    
-    @include shape.circle; 
     
     border: 1px solid rgba(0,0,0,0.1);
     cursor: pointer;
@@ -30,8 +31,6 @@
     padding: 0;
     position: relative;
     
-    @include motion.interactive-press($scale: 0.9); 
-
     mat-icon { 
         color: white; 
         font-size: 20px; 

@@ -3,8 +3,10 @@
 @use "motion" as motion;
 
 // Desktop Behavior
-@media (min-width: 960px) {
-  .sticky-wrapper {
+.sticky-wrapper {
+  // Base styles (if any) could go here
+  
+  @media (min-width: 960px) {
     position: sticky;
     position: -webkit-sticky;
     top: 2rem;
