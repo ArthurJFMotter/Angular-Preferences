@@ -7,7 +7,11 @@
 .sticky-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: app-vars.$section-gap-desktop;
+
+  @media (max-width: app-vars.$breakpoint-mobile) {
+    gap: app-vars.$section-gap-mobile;
+  }
 
   @media (min-width: app-vars.$breakpoint-tablet) {
     position: sticky;
@@ -28,11 +32,18 @@
 }
 
 .preview-card {
-  @include shape.rounded-card;
-
-  box-shadow: 0 4px 12px var(--mat-sys-surface-container-high);
   border: 1px solid var(--mat-sys-outline-variant);
   overflow: hidden;
+
+  @include shape.rounded-card;
+  @include motion.interactive-material-elevation($include-transform: true);
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px var(--mat-sys-outline-variant);
+    }
+  }
 
   .image-container {
     width: 100%;

@@ -78,7 +78,11 @@
 .settings-column {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: app-vars.$section-gap-desktop;
+
+  @media (max-width: app-vars.$breakpoint-mobile) {
+    gap: app-vars.$section-gap-mobile;
+  }
 }
 
 .preview-column {
