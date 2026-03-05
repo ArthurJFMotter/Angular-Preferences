@@ -2,10 +2,21 @@
 $section-spacing-desktop: 80px;
 $section-spacing-mobile: 48px;
 
-// Breakpoints (for consistent responsive design)
+// Width Breakpoints
 $breakpoint-mobile: 600px;
 $breakpoint-tablet: 900px;
 $breakpoint-desktop: 1200px;
+$breakpoint-wide: 1600px;
+
+// Height Breakpoints
+$breakpoint-height-short: 500px;    
+$breakpoint-height-medium: 700px;   
+$breakpoint-height-tall: 900px;     
+$breakpoint-height-very-tall: 1080px; 
+
+// Orientation Queries
+$orientation-portrait: portrait;
+$orientation-landscape: landscape;
 
 // --- CSS Custom Properties (for runtime theming) ---
 :root {

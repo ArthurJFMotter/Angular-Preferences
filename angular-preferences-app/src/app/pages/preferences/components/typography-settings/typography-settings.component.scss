@@ -1,4 +1,5 @@
 @use "app/pages/preferences/preferences-shared" as shared;
+@use "variables" as app-vars;
 @use "shapes" as shape;
 
 .label-row {
@@ -69,7 +70,7 @@
 }
 
 // Mobile-specific adjustments
-@media (max-width: 600px) {
+@media (max-width: app-vars.$breakpoint-mobile) {
   .slider-row {
     gap: 8px;
     
@@ -85,7 +86,7 @@
 }
 
 // landscape orientation adjustments
-@media (orientation: landscape) and (max-height: 600px) {
+@media (orientation: landscape) and (max-height: app-vars.$breakpoint-height-short) {
   .slider-row {
     min-height: 40px;
     

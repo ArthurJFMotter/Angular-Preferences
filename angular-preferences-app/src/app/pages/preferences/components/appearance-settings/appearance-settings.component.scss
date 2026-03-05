@@ -1,4 +1,5 @@
 @use "app/pages/preferences/preferences-shared" as shared;
+@use "variables" as app-vars;
 @use "motion" as motion;
 @use "shapes" as shape;
 
@@ -9,7 +10,7 @@
   align-items: center;
   margin-top: 8px;
 
-  @media (max-width: 768px) {
+  @media (max-width: app-vars.$breakpoint-mobile) {
     justify-content: flex-start; 
     row-gap: 28px;
     column-gap: 56px;

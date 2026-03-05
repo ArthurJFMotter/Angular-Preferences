@@ -11,7 +11,7 @@
   display: block;
   margin-bottom: app-vars.$section-spacing-desktop;
 
-  @media (max-width: 600px) {
+  @media (max-width: app-vars.$breakpoint-mobile) {
     margin-bottom: app-vars.$section-spacing-mobile;
   }
 }

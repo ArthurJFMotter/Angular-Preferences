@@ -1,3 +1,5 @@
+@use "variables" as app-vars;
+
 .preferences-fab-container {
     position: fixed;
     bottom: 2.5rem;
@@ -95,7 +97,7 @@
 
 
 // --- LANDSCAPE / SHORT SCREEN MODE ---
-@media(max-height: 500px) {
+@media(max-height: app-vars.$breakpoint-height-short) {
     
     // Reset base transform for horizontal mode
     .fab-option {

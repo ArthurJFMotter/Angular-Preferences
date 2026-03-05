@@ -1,3 +1,4 @@
+@use "variables" as app-vars;
 @use "shapes" as shape;
 @use "motion" as motion;
 
@@ -106,7 +107,7 @@ mat-card-title h2 {
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: app-vars.$breakpoint-mobile) {
     mat-button-toggle span {
       display: none;
     }

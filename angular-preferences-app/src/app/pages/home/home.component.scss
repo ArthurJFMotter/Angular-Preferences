@@ -14,7 +14,7 @@
 
   @include layout.responsive-2-col-grid;
 
-  @media (max-width: 600px) {
+  @media (max-width: app-vars.$breakpoint-mobile) {
     min-height: auto;
     margin-bottom: app-vars.$section-spacing-mobile;
   }
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: flex-end;
 
-    @media (max-width: 900px) {
+    @media (max-width: app-vars.$breakpoint-tablet) {
       display: none;
     }
   }
@@ -33,7 +33,7 @@
   margin-bottom: app-vars.$section-spacing-desktop;
   border-color: var(--mat-sys-outline-variant);
 
-  @media (max-width: 600px) {
+  @media (max-width: app-vars.$breakpoint-mobile) {
     margin-bottom: app-vars.$section-spacing-mobile;
   }
 }

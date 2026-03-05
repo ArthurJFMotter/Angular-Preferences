@@ -1,3 +1,4 @@
+@use "variables" as app-vars;
 @use "layouts" as layout;
 @use "shapes" as shape;
 
@@ -16,7 +17,7 @@
   text-align: center;
   padding: 60px 24px;
 
-  @media (max-width: 600px) {
+  @media (max-width: app-vars.$breakpoint-mobile) {
     padding: 40px 16px;
   }
 
@@ -26,7 +27,7 @@
     margin-bottom: 32px;
     color: var(--mat-sys-on-surface);
 
-    @media (max-width: 600px) {
+    @media (max-width: app-vars.$breakpoint-mobile) {
       font-size: 1.75rem;
       margin-bottom: 24px;
     }
