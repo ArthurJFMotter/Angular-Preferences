@@ -1,15 +1,10 @@
-@use "variables" as global-vars;
+@use "variables" as app-vars;
 @use "layouts" as layout;
 @use "motion" as motion;
 @use "shapes" as shape;
 
 :host {
-  display: block;
-  margin-bottom: global-vars.$section-spacing-desktop;
-
-  @media (max-width: 600px) {
-    margin-bottom: global-vars.$section-spacing-mobile;
-  }
+  @include layout.host-component;
 }
 
 .features-grid {

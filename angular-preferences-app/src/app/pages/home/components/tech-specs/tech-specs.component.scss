@@ -1,7 +1,8 @@
+@use "layouts" as layout;
 @use "shapes" as shape;
 
 :host {
-  display: block;
+  @include layout.host-component;
 }
 
 .tech-specs {
@@ -14,11 +15,9 @@
 
   text-align: center;
   padding: 60px 24px;
-  margin-bottom: 40px;
 
   @media (max-width: 600px) {
     padding: 40px 16px;
-    border-radius: 16px !important;
   }
 
   h2 {

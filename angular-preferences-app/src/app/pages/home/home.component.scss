@@ -1,4 +1,4 @@
-@use "variables" as global-vars;
+@use "variables" as app-vars;
 @use "layouts" as layout;
 
 :host {
@@ -11,13 +11,12 @@
 
 .hero-section {
   min-height: 60vh;
-  margin-bottom: global-vars.$section-spacing-desktop;
 
   @include layout.responsive-2-col-grid;
 
   @media (max-width: 600px) {
     min-height: auto;
-    margin-bottom: global-vars.$section-spacing-mobile;
+    margin-bottom: app-vars.$section-spacing-mobile;
   }
 
   .hero-visual {
@@ -31,10 +30,10 @@
 }
 
 .section-divider {
-  margin-bottom: global-vars.$section-spacing-desktop;
+  margin-bottom: app-vars.$section-spacing-desktop;
   border-color: var(--mat-sys-outline-variant);
 
   @media (max-width: 600px) {
-    margin-bottom: global-vars.$section-spacing-mobile;
+    margin-bottom: app-vars.$section-spacing-mobile;
   }
 }

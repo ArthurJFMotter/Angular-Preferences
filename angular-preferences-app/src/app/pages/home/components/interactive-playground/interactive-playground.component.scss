@@ -1,26 +1,28 @@
+@use "layouts" as layout;
 @use "motion" as motion;
 @use "shapes" as shape;
 
 :host {
-  display: block;
   width: 100%;
-  perspective: 1000px; 
+  perspective: 1000px;
   transform-style: preserve-3d;
+
+  @include layout.host-component;
 }
 
 .playground-card {
   @include shape.rounded-card;
 
   width: 100%;
-  max-width: 520px; 
+  max-width: 520px;
   background: #1a1a1a;
   border: 1px solid var(--mat-sys-outline-variant);
-  
+
   // 3D Shadows
-  box-shadow: 
-    0 50px 100px -20px rgba(0, 0, 0, 0.7), 
+  box-shadow:
+    0 50px 100px -20px rgba(0, 0, 0, 0.7),
     0 30px 60px -30px rgba(0, 0, 0, 0.8);
-    
+
   overflow: hidden;
 
   // Initial State
@@ -29,7 +31,7 @@
 
   // Hover State
   &:hover {
-    transform: rotateY(0) rotateX(0) scale(1.02); 
+    transform: rotateY(0) rotateX(0) scale(1.02);
     box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6);
   }
 
@@ -41,27 +43,45 @@
     align-items: center;
     gap: 16px;
     border-bottom: 1px solid #333;
-    
+
     .window-controls {
-      display: flex; gap: 8px;
-      .dot { width: 12px; height: 12px; @include shape.circle; }
-      .red { background: #ff5f56; }
-      .yellow { background: #ffbd2e; }
-      .green { background: #27c93f; }
+      display: flex;
+      gap: 8px;
+      .dot {
+        width: 12px;
+        height: 12px;
+        @include shape.circle;
+      }
+      .red {
+        background: #ff5f56;
+      }
+      .yellow {
+        background: #ffbd2e;
+      }
+      .green {
+        background: #27c93f;
+      }
     }
-    .filename { color: #888; font-family: monospace; font-size: 0.8rem; }
+    .filename {
+      color: #888;
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
   }
 
   // --- Code Area ---
   .editor-content {
     padding: 24px;
     position: relative;
-    min-height: 220px; 
+    min-height: 220px;
     background-color: #1a1a1a;
-    
-    pre { margin: 0; white-space: pre-wrap; }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+    }
     code {
-      font-family: 'Fira Code', 'Roboto Mono', monospace;
+      font-family: "Fira Code", "Roboto Mono", monospace;
       color: #e0e0e0;
       font-size: 0.95rem;
       line-height: 1.6;
@@ -76,14 +96,18 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,215,0, 0.05);
+      background: rgba(255, 215, 0, 0.05);
       color: #ffd700;
-      border: 1px solid rgba(255,215,0, 0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       padding: 4px 10px;
       font-size: 0.75rem;
       backdrop-filter: blur(4px);
-      
-      .bolt-icon { font-size: 16px; width: 16px; height: 16px; }
+
+      .bolt-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 
@@ -98,7 +122,7 @@
     border-top: 1px solid #333;
 
     .mini-toggle {
-      flex: 1; 
+      flex: 1;
       background: transparent;
       border: 1px solid transparent;
       color: #aaa;
@@ -106,7 +130,7 @@
       border-radius: 6px;
       cursor: pointer;
       display: flex;
-      flex-direction: column; 
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 4px;
@@ -114,8 +138,12 @@
 
       @include motion.interactive-press;
 
-      mat-icon { font-size: 20px; width: 20px; height: 20px; }
-      
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+
       .toggle-text {
         white-space: nowrap;
         overflow: hidden;
