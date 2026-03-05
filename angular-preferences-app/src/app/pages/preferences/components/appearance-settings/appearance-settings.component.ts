@@ -43,7 +43,6 @@ export class AppearanceSettingsComponent {
   );
 
   constructor() {
-    // Sync slider when shape changes externally
     effect(() => {
       const currentId = this.activeShape().id;
       const newIndex = this.shapes.findIndex((s) => s.id === currentId);
