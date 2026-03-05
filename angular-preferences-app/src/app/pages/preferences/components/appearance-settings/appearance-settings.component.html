@@ -6,7 +6,9 @@
     <mat-card-title>
       <div class="title-with-help">
         <h2>Appearance</h2>
-        <app-help-button message="Customize the look and feel of the workspace, including theme colors, dark mode, and shape styling."></app-help-button>
+        <app-help-button
+          message="Customize the look and feel of the workspace, including theme colors, dark mode, and shape styling."
+        ></app-help-button>
       </div>
     </mat-card-title>
   </mat-card-header>
@@ -57,25 +59,36 @@
       </mat-button-toggle-group>
     </div>
 
-    <!-- Corner Shape -->
+    <!-- Corner Shape (replaced button toggle with slider) -->
     <div class="control-group">
-      <label id="shape-label" class="group-label">Corner Shape</label>
-      <mat-button-toggle-group
-        class="button-toggle-group"
-        aria-labelledby="shape-label"
-        [value]="shapeService.activeShape().id"
-        (change)="preferencesService.setShape($event.value)"
-      >
-        <mat-button-toggle value="sharp">
-          <mat-icon>crop_square</mat-icon> <span>Square</span>
-        </mat-button-toggle>
-        <mat-button-toggle value="md">
-          <mat-icon>rounded_corner</mat-icon> <span>Rounded</span>
-        </mat-button-toggle>
-        <mat-button-toggle value="full">
-          <mat-icon>circle</mat-icon> <span>Pill</span>
-        </mat-button-toggle>
-      </mat-button-toggle-group>
+      <div class="label-row">
+        <label id="shape-label" class="group-label">Corner Shape</label>
+        <span class="value-badge">{{
+          shapeService.activeShape().displayName
+        }}</span>
+      </div>
+      <div class="slider-row">
+        <mat-icon class="shape-icon square-icon" aria-hidden="true"
+          >crop_square</mat-icon
+        >
+        <mat-slider
+          [min]="0"
+          [max]="shapeService.getShapes().length - 1"
+          step="1"
+          discrete
+          showTickMarks
+          aria-labelledby="shape-label"
+        >
+          <input
+            matSliderThumb
+            [value]="shapeSliderIndex()"
+            (valueChange)="updateShape($event)"
+          />
+        </mat-slider>
+        <mat-icon class="shape-icon pill-icon" aria-hidden="true"
+          >circle</mat-icon
+        >
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

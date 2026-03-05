@@ -72,6 +72,83 @@ mat-card-title h2 {
   line-height: 1.4;
 }
 
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+
+  .value-badge {
+    @include shape.rounded-button;
+    background: var(--mat-sys-tertiary-container);
+    color: var(--mat-sys-on-tertiary-container);
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  padding: 4px 0; 
+  min-height: 48px; 
+  width: 100%;
+  contain: layout; 
+
+  mat-slider {
+    flex: 1 1 auto; 
+    min-width: 120px; 
+    margin: 0;
+    height: 48px; 
+    display: block;
+    
+    .mat-slider-thumb {
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    
+    .mdc-slider__track {
+      height: 4px !important;
+    }
+    
+    .mdc-slider__thumb {
+      width: 20px !important;
+      height: 20px !important;
+    }
+  }
+}
+
+// Mobile-specific adjustments
+@media (max-width: app-vars.$breakpoint-mobile) {
+  .slider-row {
+    gap: 8px;
+    
+    mat-slider {
+      min-width: 80px; 
+    }
+    
+    .small-a, .large-a {
+      width: 16px; 
+      font-size-adjust: 0.5;
+    }
+  }
+}
+
+// landscape orientation adjustments
+@media (orientation: landscape) and (max-height: app-vars.$breakpoint-height-short) {
+  .slider-row {
+    min-height: 40px;
+    
+    mat-slider {
+      height: 40px;
+    }
+  }
+}
+
 // --- 4. Toggles ---
 .toggle-column {
   display: flex;
