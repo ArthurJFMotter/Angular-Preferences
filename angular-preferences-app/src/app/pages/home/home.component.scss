@@ -9,9 +9,10 @@
 }
 
 .hero-section {
-  @include layout.responsive-2-col-grid;
   min-height: 60vh;
   margin-bottom: layout.$section-spacing-desktop;
+
+  @include layout.responsive-2-col-grid;
 
   @media (max-width: 600px) {
     min-height: auto;

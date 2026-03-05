@@ -5,14 +5,14 @@
 }
 
 .page-container {
-  @include layout.page-container;
-
   display: flex;
   flex-direction: column;
   gap: 24px;
 
+  @include layout.page-container;
+
   @media (max-width: 600px) {
-    padding: 16px; 
+    padding: 16px;
   }
 }
 
@@ -41,7 +41,7 @@
       max-width: 60ch;
     }
   }
-  
+
   .actions-container {
     margin-bottom: 8px;
 
@@ -54,7 +54,7 @@
       .reset-btn {
         padding: 0 24px;
         height: 48px;
-        
+
         @media (max-width: 600px) {
           width: 100%;
         }

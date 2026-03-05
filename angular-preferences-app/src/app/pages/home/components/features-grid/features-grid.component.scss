@@ -18,18 +18,18 @@
 }
 
 .feature-card {
-  @include shape.rounded-card;
-  @include motion.interactive-material-elevation($include-transform: true); 
-
   height: 100%;
   border: 1px solid var(--mat-sys-outline-variant);
   background-color: var(--mat-sys-surface-container);
   color: var(--mat-sys-on-surface);
 
+  @include shape.rounded-card;
+  @include motion.interactive-material-elevation($include-transform: true);
+
   @media (hover: hover) {
-    &:hover { 
-      transform: translateY(-5px); 
-      box-shadow: 0 8px 16px var(--mat-sys-outline-variant); 
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px var(--mat-sys-outline-variant);
     }
   }
 
