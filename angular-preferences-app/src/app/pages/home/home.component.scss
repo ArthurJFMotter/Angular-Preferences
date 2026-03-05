@@ -1,4 +1,5 @@
-@use "layouts" as layout; 
+@use "variables" as global-vars;
+@use "layouts" as layout;
 
 :host {
   @include layout.host-base;
@@ -10,30 +11,30 @@
 
 .hero-section {
   min-height: 60vh;
-  margin-bottom: layout.$section-spacing-desktop;
+  margin-bottom: global-vars.$section-spacing-desktop;
 
   @include layout.responsive-2-col-grid;
 
   @media (max-width: 600px) {
     min-height: auto;
-    margin-bottom: layout.$section-spacing-mobile;
+    margin-bottom: global-vars.$section-spacing-mobile;
   }
 
   .hero-visual {
     display: flex;
     justify-content: flex-end;
-    
+
     @media (max-width: 900px) {
-      display: none; 
+      display: none;
     }
   }
 }
 
 .section-divider {
-  margin-bottom: layout.$section-spacing-desktop;
+  margin-bottom: global-vars.$section-spacing-desktop;
   border-color: var(--mat-sys-outline-variant);
 
   @media (max-width: 600px) {
-    margin-bottom: layout.$section-spacing-mobile;
+    margin-bottom: global-vars.$section-spacing-mobile;
   }
 }

@@ -1,0 +1,14 @@
+/* MatSnackbar Overrides */
+.app-notification-panel {
+  --mdc-snackbar-container-color: transparent;
+  --mdc-snackbar-supporting-text-color: transparent;
+
+  .mdc-snackbar__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+
+    display: flex;
+    justify-content: center;
+  }
+}

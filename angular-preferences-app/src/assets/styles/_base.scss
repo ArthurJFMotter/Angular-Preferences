@@ -1,0 +1,31 @@
+@use "variables" as vars;
+
+// Base HTML elements styling
+html {
+  font-size: var(--app-typography);
+  transition: font-size 0.2s ease-out;
+}
+
+body {
+  margin: 0;
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
+  font-family: var(--app-font-plain);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    font-family 0.3s ease;
+}
+
+// Headings and specific Material components
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.mat-mdc-card-title,
+.mat-drawer-container {
+  font-family: var(--app-font-brand);
+}

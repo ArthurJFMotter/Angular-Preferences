@@ -1,13 +1,14 @@
+@use "variables" as global-vars;
 @use "layouts" as layout;
 @use "motion" as motion;
-@use "shape" as shape;
+@use "shapes" as shape;
 
 :host {
   display: block;
-  margin-bottom: layout.$section-spacing-desktop;
+  margin-bottom: global-vars.$section-spacing-desktop;
 
   @media (max-width: 600px) {
-    margin-bottom: layout.$section-spacing-mobile;
+    margin-bottom: global-vars.$section-spacing-mobile;
   }
 }
 

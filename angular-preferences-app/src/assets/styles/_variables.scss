@@ -1,0 +1,19 @@
+// --- Global SCSS Variables (for use in mixins/functions) ---
+$section-spacing-desktop: 80px;
+$section-spacing-mobile: 48px;
+
+// Breakpoints (for consistent responsive design)
+$breakpoint-mobile: 600px;
+$breakpoint-tablet: 900px;
+$breakpoint-desktop: 1200px;
+
+// --- CSS Custom Properties (for runtime theming) ---
+:root {
+  // Base settings
+  --app-typography: 16px;
+  --app-border-radius: 12px;
+
+  // Font fallbacks
+  --app-font-plain: "Roboto", sans-serif;
+  --app-font-brand: "Open Sans", sans-serif;
+}

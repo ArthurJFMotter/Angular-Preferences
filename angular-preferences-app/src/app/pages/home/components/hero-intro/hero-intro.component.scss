@@ -1,5 +1,6 @@
 @use "layouts" as layout;
-@use "shape" as shape;
+@use "shapes" as shape;
+@use "utilities" as utility;
 
 .hero-content {
   @media (max-width: 900px) {
@@ -40,7 +41,7 @@
   letter-spacing: -1px;
 
   .gradient-text {
-    @include layout.gradient-text-brand;
+    @include utility.gradient-text-brand;
   }
 }
 

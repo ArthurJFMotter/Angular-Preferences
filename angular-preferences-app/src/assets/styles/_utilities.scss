@@ -1,0 +1,21 @@
+// --- Text Utilities ---
+@mixin gradient-text-brand {
+  background: linear-gradient(120deg, var(--mat-sys-tertiary), var(--mat-sys-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--mat-sys-primary); 
+}
+
+// --- Assistive Title Helper ---
+.title-with-help {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  h2 {
+    margin: 0;
+    cursor: help;
+  }
+}

@@ -1,0 +1,15 @@
+/* Shape & Border Radius Overrides */
+:root {
+  // Small components (Buttons, Chips, Text Fields)
+  --mdc-shape-small: var(--app-border-radius);
+
+  // Medium components (Cards, Dialogs)
+  --mdc-shape-medium: var(--app-border-radius);
+
+  // Large components (Large Modal Sheets)
+  --mdc-shape-large: var(--app-border-radius);
+
+  // Specific components (if tokens fails)
+  --mat-mdc-button-persistent-ripple-shape: var(--app-border-radius);
+  --mat-mdc-card-shape: var(--app-border-radius);
+}
