@@ -4,37 +4,37 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PreferencesService } from '../../../../services/preferences.service';
-import { ThemeService } from '../../../../services/theme.service';
 import { DensityService } from '../../../../services/density.service';
 import { TypographyService } from '../../../../services/typography.service';
+import { ShapeService } from '../../../../services/shape.service';
 
 @Component({
   selector: 'app-interactive-playground',
   standalone: true,
   imports: [CommonModule, MatIconModule, MatTooltipModule],
   templateUrl: './interactive-playground.component.html',
-  styleUrls: ['./interactive-playground.component.scss']
+  styleUrls: ['./interactive-playground.component.scss'],
 })
 export class InteractivePlaygroundComponent {
   public prefs = inject(PreferencesService);
   public densityService = inject(DensityService);
   public typographyService = inject(TypographyService);
-  // ThemeService injected via provider usually, or used inside prefs
+  public shapeService = inject(ShapeService);
 
   codeSnippet = computed(() => {
     const format = (val: string) => `'${val}'`;
     const mode = this.prefs.themeMode();
     const contrast = this.prefs.contrastMode();
-    const density = this.densityService.currentDensity().displayName;
     const fontSize = this.typographyService.activeFontSize().displayName;
+    const borderRadius = this.shapeService.activeShape().displayName;
 
     return `
   // Real-time Angular Signals
   const userConfig = {
     mode: signal(${format(mode)}),
     contrast: signal(${format(contrast)}),
-    density: signal(${format(density)}),
-    fontSize: signal(${format(fontSize)})
+    borderRadius: signal(${format(borderRadius)}),
+    fontSize: signal(${format(fontSize)}),
   };`;
   });
 
@@ -55,14 +55,16 @@ export class InteractivePlaygroundComponent {
   cycleFontSize() {
     const allSizes = this.typographyService.getFontSizes();
     const current = this.typographyService.activeFontSize();
-    const nextIndex = (allSizes.findIndex((s) => s.id === current.id) + 1) % allSizes.length;
+    const nextIndex =
+      (allSizes.findIndex((s) => s.id === current.id) + 1) % allSizes.length;
     this.prefs.setFontSize(allSizes[nextIndex].id);
   }
 
-  cycleDensity() {
-    const allDensities = this.densityService.getDensities();
-    const current = this.densityService.currentDensity();
-    const nextIndex = (allDensities.findIndex((d) => d.value === current.value) + 1) % allDensities.length;
-    this.prefs.setDensity(allDensities[nextIndex].value);
+  cycleShape() {
+    const allShapes = this.shapeService.getShapes();
+    const current = this.shapeService.activeShape();
+    const nextIndex =
+      (allShapes.findIndex((s) => s.id === current.id) + 1) % allShapes.length;
+    this.prefs.setShape(allShapes[nextIndex].id);
   }
 }
