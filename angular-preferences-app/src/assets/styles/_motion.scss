@@ -75,6 +75,8 @@ $duration-long: 400ms;
     $trans-list: append($trans-list, ($prop $duration-medium $ease-standard), comma);
   }
   transition: $trans-list;
+
+  @include reduced-motion-reset;
 }
 
 // --- 7. Press / Click Interaction ---
