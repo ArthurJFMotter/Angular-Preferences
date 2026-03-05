@@ -46,17 +46,14 @@ export class TypographySettingsComponent {
   maxFontSizeIndex = this.fontSizes.length - 1;
 
   constructor() {
-    effect(
-      () => {
-        const currentId = this.activeFontSize().id;
-        const newIndex = this.fontSizes.findIndex((s) => s.id === currentId);
-        if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
-          this.fontSizeSliderIndex.set(newIndex);
-        }
-      },
-      { allowSignalWrites: true },
-    );
-  }
+  effect(() => {
+    const currentId = this.activeFontSize().id;
+    const newIndex = this.fontSizes.findIndex((s) => s.id === currentId);
+    if (newIndex > -1 && newIndex !== this.fontSizeSliderIndex()) {
+      this.fontSizeSliderIndex.set(newIndex);
+    }
+  });
+}
 
   onFontChange(event: MatSelectChange): void {
     this.preferencesService.setFont(event.value);

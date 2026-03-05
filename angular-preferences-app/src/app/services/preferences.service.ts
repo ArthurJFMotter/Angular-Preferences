@@ -290,7 +290,7 @@ export class PreferencesService {
         this.document.documentElement.classList.toggle('dark-mode', isActive);
       }
     },
-    { allowSignalWrites: true },
+    
   );
 
   private updateHighContrastClass = effect(
@@ -309,7 +309,7 @@ export class PreferencesService {
         );
       }
     },
-    { allowSignalWrites: true },
+    
   );
 
   private updateColorThemeClass = effect(() => {
