@@ -113,3 +113,75 @@ $duration-long: 400ms;
 
   @include reduced-motion-reset;
 }
+
+// --- Hint Show on Hover ---
+@mixin hint-on-hover($hint-selector: '.hint', $delay: 0ms) {
+  #{$hint-selector} {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $duration-short $ease-standard, 
+                visibility $duration-short $ease-standard;
+    transition-delay: $delay;
+  }
+
+  // Show on hover
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) {
+    &:hover #{$hint-selector} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  // Always show when reduced motion is enabled
+  @media (prefers-reduced-motion: reduce) {
+    #{$hint-selector} {
+      opacity: 1;
+      visibility: visible;
+      transition: none !important;
+    }
+  }
+
+  :host-context(.reduced-motion) & {
+    #{$hint-selector} {
+      opacity: 1;
+      visibility: visible;
+      transition: none !important;
+    }
+  }
+}
+
+// --- Hint Show + transform on Hover ---
+@mixin hint-on-hover-transform($hint-selector: '.hint') {
+  #{$hint-selector} {
+    opacity: 0;
+    transform: scale(0.95) translateY(-2px);
+    transition: opacity $duration-short $ease-standard,
+                transform $duration-short $ease-standard;
+    transform-origin: top left;
+  }
+
+  // Show on hover with smooth animation
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) {
+    &:hover #{$hint-selector} {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  // Always show when reduced motion is enabled
+  @media (prefers-reduced-motion: reduce) {
+    #{$hint-selector} {
+      opacity: 1;
+      transform: none;
+      transition: none !important;
+    }
+  }
+
+  :host-context(.reduced-motion) & {
+    #{$hint-selector} {
+      opacity: 1;
+      transform: none;
+      transition: none !important;
+    }
+  }
+}

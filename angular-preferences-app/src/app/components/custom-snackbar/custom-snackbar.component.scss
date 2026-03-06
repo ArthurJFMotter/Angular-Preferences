@@ -1,10 +1,11 @@
 @use "@angular/material" as mat;
+@use "layouts" as layout;
 
 :host {
-  display: block;
+  @include layout.host-component;
 }
 
-.m3-snackbar-container {
+.snackbar-container {
   // --- BASE STYLES ---
   display: flex;
   align-items: center;
@@ -22,15 +23,7 @@
 
   box-shadow: var(--mat-sys-elevation-level3);
 
-  // Animation
-  transition:
-    background-color 0.3s cubic-bezier(0.2, 0, 0, 1),
-    color 0.3s cubic-bezier(0.2, 0, 0, 1),
-    box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
-
-  // Position (examples)
-  // &.pos-top { }
-  // &.pos-bottom { }
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
 
   // --- DEFAULT (Info / Fallback) ---
   --sb-bg-color: var(--mat-sys-inverse-surface);
@@ -47,27 +40,21 @@
     font-size: 24px;
   }
 
-  .content-area {
-    flex: 1;
-  }
+  .content-area { flex: 1; }
 
   .action-area button {
     color: var(--sb-action-color) !important;
     font-weight: 700;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
-
-    &[mat-button],
-    &[mat-icon-button] {
+    letter-spacing: 0.5px;
+    
+    &[mat-button], &[mat-icon-button] {
       --mat-text-button-state-layer-color: var(--sb-action-color);
       --mat-text-button-ripple-color: var(--sb-action-color);
     }
+    
     &:hover {
-      background-color: color-mix(
-        in srgb,
-        var(--sb-action-color),
-        transparent 92%
-      );
+      background-color: color-mix(in srgb, var(--sb-action-color), transparent 92%);
     }
   }
 
@@ -77,96 +64,112 @@
     --sb-text-color: var(--mat-sys-on-primary-container);
     --sb-action-color: var(--mat-sys-on-primary-container);
   }
-
   &.error {
     --sb-bg-color: var(--mat-sys-error-container);
     --sb-text-color: var(--mat-sys-on-error-container);
     --sb-action-color: var(--mat-sys-on-error-container);
   }
-
   &.warning {
     --sb-bg-color: var(--mat-sys-tertiary-container);
     --sb-text-color: var(--mat-sys-on-tertiary-container);
     --sb-action-color: var(--mat-sys-on-tertiary-container);
   }
-
   &.info {
     --sb-bg-color: var(--mat-sys-secondary-container);
     --sb-text-color: var(--mat-sys-on-secondary-container);
     --sb-action-color: var(--mat-sys-on-secondary-container);
   }
 
-  // --- LEGACY Styles ---
+  // --- LEGACY STYLES (Solid Colors) ---
   &.legacy-style {
     color: #ffffff;
-
+    
     .action-area button {
       color: #ffffff !important;
       background: rgba(255, 255, 255, 0.15);
+      &:hover { background: rgba(255, 255, 255, 0.3); }
+    }
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.3);
+    &.success { background-color: #2e7d32; }
+    &.error   { background-color: #c62828; }
+    &.warning { background-color: #ef6c00; }
+    &.info    { background-color: #0277bd; }
+  }
+
+  // --- FORCE HIGH CONTRAST (Overrides Everything) ---
+  &.force-hc-style {
+    // 1. GLOBAL OVERRIDES
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: none;
+    
+    // Reset vars
+    --sb-bg-color: #000000;
+    --sb-text-color: #ffffff;
+    --sb-action-color: #ffffff;
+
+    // Default Monochrome Border
+    border: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+
+    // 2. ICON OVERRIDE (Must be White by default)
+    mat-icon, 
+    .icon-area mat-icon {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+    }
+
+    // 3. BUTTON OVERRIDE (Wireframe)
+    .action-area button {
+      color: #ffffff !important;
+      border: 1px solid #ffffff;
+      background: transparent;
+      text-decoration: underline;
+      margin-left: 8px;
+
+      // HOVER STATE
+      &:hover, &:focus {
+        background: #ffffff;
+        color: #000000 !important;
+        outline: 2px solid #ffffff;
+
+        // --- FIX STARTS HERE ---
+        // Force the icon to turn Black when the background becomes White.
+        // This overrides the global "White Icon" rule above.
+        mat-icon {
+          color: #000000 !important;
+          fill: #000000 !important;
+        }
+        // --- FIX ENDS HERE ---
       }
     }
 
-    // Default variants
-    &.success {
-      background-color: #2e7d32;
-    }
-    &.error {
-      background-color: #c62828;
-    }
-    &.warning {
-      background-color: #ef6c00;
-    }
-    &.info {
-      background-color: #0277bd;
-    }
-  }
-
-  // --- FORCE HIGH CONTRAST ---
-  &.force-hc-style {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-
-    border: 2px solid #ffffff;
-    box-shadow: none;
-    border-left: 2px solid #ffffff;
-
-    // Neon variants
-    &.success .icon-area mat-icon {
-      color: #00ff00 !important;
-    }
-    &.error .icon-area mat-icon {
-      color: #ff0000 !important;
-    }
-    &.warning .icon-area mat-icon {
-      color: #ffff00 !important;
-    }
-    &.info .icon-area mat-icon {
-      color: #00ffff !important;
-    }
-
-    .action-area button {
-      color: #ffffff !important;
-      text-decoration: underline;
-      border: 1px solid #ffffff;
-      background: transparent;
-      margin-left: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-
-      &:hover,
-      &:focus {
-        background: #ffffff;
-        color: #000000 !important;
-        outline: 2px solid #00ffff;
+    // 4. NEON / HYBRID MODE
+    &.legacy-style {
+      &.success {
+        border-color: #00ff00;
+        mat-icon, .icon-area mat-icon { color: #00ff00 !important; }
+        .action-area button:hover { outline-color: #00ff00; }
+      }
+      &.error {
+        border-color: #ff0000;
+        mat-icon, .icon-area mat-icon { color: #ff0000 !important; }
+        .action-area button:hover { outline-color: #ff0000; }
+      }
+      &.warning {
+        border-color: #ffff00;
+        mat-icon, .icon-area mat-icon { color: #ffff00 !important; }
+        .action-area button:hover { outline-color: #ffff00; }
+      }
+      &.info {
+        border-color: #00ffff;
+        mat-icon, .icon-area mat-icon { color: #00ffff !important; }
+        .action-area button:hover { outline-color: #00ffff; }
       }
     }
   }
 }
 
-// High Contrast Mode Fallback
 @media (forced-colors: active) {
   .action-area button {
     border: 1px solid ButtonText !important;

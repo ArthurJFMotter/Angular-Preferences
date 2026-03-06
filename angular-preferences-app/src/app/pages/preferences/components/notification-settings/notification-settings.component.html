@@ -1,69 +1,65 @@
 <mat-card class="settings-card" appearance="outlined">
-    <mat-card-header>
-        <div mat-card-avatar class="header-icon">
-            <mat-icon aria-hidden="true">notifications_active</mat-icon>
-        </div>
-        <mat-card-title>
-            <div class="title-with-help">
-                <h2>Notifications</h2>
-                <app-help-button message="Control where alerts appear on screen and adjust their contrast levels for better visibility."></app-help-button>
-            </div>
-        </mat-card-title>
-    </mat-card-header>
-    
-    <mat-card-content class="card-body">
-        <!-- Position Control -->
-        <div class="control-group">
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Screen Position</mat-label>
-                <mat-select 
-                    [value]="themeService.notificationPlacement()"
-                    (selectionChange)="preferencesService.setNotificationPlacement($event.value)">
-                    @for (option of placementOptions; track option.value) {
-                        <mat-option [value]="option.value">
-                            {{ option.label }}
-                        </mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-        </div>
-        
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon aria-hidden="true">notifications_active</mat-icon>
+    </div>
+    <mat-card-title>
+      <div class="title-with-help">
+        <h2>Notifications</h2>
+        <app-help-button
+          message="Control where alerts appear on screen and adjust their contrast levels for better visibility."
+        ></app-help-button>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="card-body">
+    <!-- Position Control -->
+    <div class="control-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Screen Position</mat-label>
+        <mat-select
+          [value]="themeService.notificationPlacement()"
+          (selectionChange)="
+            preferencesService.setNotificationPlacement($event.value)
+          "
+        >
+          @for (option of placementOptions; track option.value) {
+            <mat-option [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Personalization Styles -->
+    <div class="control-group">
+      <label class="group-label">Personalization</label>
+      <!-- Legacy -->
+      <div class="checkbox-group">
+        <mat-checkbox
+          color="primary"
+          [checked]="themeService.useLegacyNotifications()"
+          (change)="preferencesService.toggleLegacyNotifications()"
+        >
+          Use Classic Colors
+        </mat-checkbox>
+        <p class="hint">Uses traditional status colors (Green, yellow, Red).</p>
+      </div>
+      <div class="checkbox-group">
         <!-- Force High Contrast -->
-        <div class="control-group checkbox-group">
-            <mat-checkbox 
-                color="primary"
-                [checked]="themeService.forceHighContrastNotifications()"
-                (change)="preferencesService.toggleForceHighContrastNotifications()">
-                Use High Contrast Scheme
-            </mat-checkbox>
-            <p class="hint">
-                Use a strict black-and-white layout with clear borders. 
-                Overrides theme colors for maximum readability.
-            </p>
-        </div>
-
-        <!-- Legacy Styles -->
-        <div class="control-group checkbox-group">
-            <mat-checkbox 
-                color="primary"
-                [checked]="themeService.useLegacyNotifications()"
-                [disabled]="themeService.forceHighContrastNotifications()"
-                (change)="preferencesService.toggleLegacyNotifications()">
-                Use Classic Colors
-            </mat-checkbox>
-            <p class="hint">
-                Use classic solid Green (Success), Red (Error), and Orange (Warning) color schemes.
-            </p>
-        </div>
-    </mat-card-content>
-
-    <mat-divider></mat-divider>
-
-    <!-- Action Area -->
-    <mat-card-actions align="end" class="mobile-actions">
-        <button mat-stroked-button color="primary" (click)="testNotification()">
-            <mat-icon>play_arrow</mat-icon>
-            Test Notification
-        </button>
-    </mat-card-actions>
+        <mat-checkbox
+          color="primary"
+          [checked]="themeService.forceHighContrastNotifications()"
+          (change)="preferencesService.toggleForceHighContrastNotifications()"
+        >
+          Use Extra Contrast
+        </mat-checkbox>
+        <p class="hint">
+          Enforces an black and white scheme for maximum readability.
+        </p>
+      </div>
+    </div>
+  </mat-card-content>
 </mat-card>
