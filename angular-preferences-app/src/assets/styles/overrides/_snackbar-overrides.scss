@@ -1,4 +1,4 @@
-/* MatSnackbar Overrides */
+/* Base Snackbar */
 .app-notification-panel {
   --mdc-snackbar-container-color: transparent;
   --mdc-snackbar-supporting-text-color: transparent;
@@ -7,8 +7,58 @@
     background-color: transparent !important;
     box-shadow: none !important;
     padding: 0 !important;
-
     display: flex;
     justify-content: center;
+  }
+}
+
+// Reduced motion overrides
+html.reduced-motion {
+  .app-notification-panel {
+    .mdc-snackbar__surface,
+    .snackbar-container {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      
+      transition: none !important;
+    }
+    
+    .snackbar-container {
+      transition: none !important;
+      
+      &[class*="transition"] {
+        transition: none !important;
+      }
+    }
+  }
+}
+
+//  CDK overlay handler
+html.reduced-motion {
+  .cdk-overlay-pane {
+    .mat-mdc-snack-bar-container {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+// OS preference fallback
+@media (prefers-reduced-motion: reduce) {
+  html:not(.reduced-motion) {
+    .app-notification-panel {
+      .mdc-snackbar__surface,
+      .snackbar-container {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+    
+    .cdk-overlay-pane .mat-mdc-snack-bar-container {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 }

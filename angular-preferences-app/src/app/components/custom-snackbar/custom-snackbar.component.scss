@@ -1,9 +1,4 @@
 @use "@angular/material" as mat;
-@use "layouts" as layout;
-
-:host {
-  @include layout.host-component;
-}
 
 .snackbar-container {
   // --- BASE STYLES ---
@@ -80,7 +75,7 @@
     --sb-action-color: var(--mat-sys-on-secondary-container);
   }
 
-  // --- LEGACY STYLES (Solid Colors) ---
+  // --- LEGACY STYLES ---
   &.legacy-style {
     color: #ffffff;
     
@@ -96,30 +91,25 @@
     &.info    { background-color: #0277bd; }
   }
 
-  // --- FORCE HIGH CONTRAST (Overrides Everything) ---
+  // --- FORCE HIGH CONTRAST ---
   &.force-hc-style {
-    // 1. GLOBAL OVERRIDES
     background-color: #000000 !important;
     color: #ffffff !important;
     box-shadow: none;
     
-    // Reset vars
     --sb-bg-color: #000000;
     --sb-text-color: #ffffff;
     --sb-action-color: #ffffff;
 
-    // Default Monochrome Border
     border: 2px solid #ffffff;
     border-left: 2px solid #ffffff;
 
-    // 2. ICON OVERRIDE (Must be White by default)
     mat-icon, 
     .icon-area mat-icon {
       color: #ffffff !important;
       fill: #ffffff !important;
     }
 
-    // 3. BUTTON OVERRIDE (Wireframe)
     .action-area button {
       color: #ffffff !important;
       border: 1px solid #ffffff;
@@ -127,24 +117,19 @@
       text-decoration: underline;
       margin-left: 8px;
 
-      // HOVER STATE
       &:hover, &:focus {
         background: #ffffff;
         color: #000000 !important;
         outline: 2px solid #ffffff;
 
-        // --- FIX STARTS HERE ---
-        // Force the icon to turn Black when the background becomes White.
-        // This overrides the global "White Icon" rule above.
         mat-icon {
           color: #000000 !important;
           fill: #000000 !important;
         }
-        // --- FIX ENDS HERE ---
       }
     }
 
-    // 4. NEON / HYBRID MODE
+    // NEON / HYBRID MODE
     &.legacy-style {
       &.success {
         border-color: #00ff00;
