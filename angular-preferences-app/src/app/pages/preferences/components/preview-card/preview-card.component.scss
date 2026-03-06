@@ -18,7 +18,7 @@
     position: -webkit-sticky;
     top: 2rem;
 
-    transition: top 0.3s ease;
+    @include motion.transition-base(top);
   }
 }
 
@@ -73,10 +73,10 @@
   }
 
   .dummy-form {
-    @include shape.rounded-card;
-
     background: var(--mat-sys-surface-container-high);
     padding: 1rem;
+
+    @include shape.rounded-card;
   }
 }
 
@@ -86,14 +86,21 @@
   gap: 1rem;
 
   .widget {
-    @include shape.rounded-card;
-
     background: var(--mat-sys-surface);
     border: 1px solid var(--mat-sys-outline-variant);
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include shape.rounded-card;
+    @include motion.interactive-press;
+
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
     span {
       font-weight: 500;

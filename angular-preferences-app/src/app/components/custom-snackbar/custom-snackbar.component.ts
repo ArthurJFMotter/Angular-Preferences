@@ -26,7 +26,7 @@ export class CustomSnackbarComponent {
     switch (this.data.type) {
       case 'success': return 'check_circle';
       case 'error':   return 'error';
-      case 'warning': return 'warning_amber';
+      case 'warning': return 'warning';
       case 'info':    return 'info';
       default:        return 'info';
     }
