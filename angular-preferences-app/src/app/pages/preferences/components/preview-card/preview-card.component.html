@@ -40,15 +40,13 @@
   </mat-card>
 
   <div class="mini-widgets">
-    <div class="widget" (click)="onPreviewStatus()">
+    <button mat-stroked-button class="widget" (click)="onPreviewStatus()">
       <span>Alerts</span>
-
       <mat-icon>warning_amber</mat-icon>
-    </div>
-    <div class="widget" (click)="onPreviewAlert()">
+    </button>
+    <button mat-stroked-button class="widget" (click)="onPreviewAlert()">
       <span>Errors</span>
-
       <mat-icon>error_outline</mat-icon>
-    </div>
+    </button>
   </div>
 </div>
