@@ -1,22 +1,21 @@
-
-// --- 1. Constants ---
-$ease-standard: cubic-bezier(0.2, 0.0, 0.2, 1);
-$ease-emphasized: cubic-bezier(0.4, 0.0, 0.2, 1);
+// --- Constants ---
+$ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+$ease-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
 $ease-shape: cubic-bezier(0.25, 0.8, 0.25, 1);
-$ease-spring-settle: cubic-bezier(0.23, 1, 0.32, 1); 
+$ease-spring-settle: cubic-bezier(0.23, 1, 0.32, 1);
 
 $duration-short: 200ms;
 $duration-medium: 300ms;
 $duration-long: 400ms;
 
-// --- 2. Helper: The Reduced Motion Reset ---
+// --- Reduced Motion Reset ---
 @mixin reduced-motion-reset {
   @media (prefers-reduced-motion: reduce) {
     transform: none !important;
     transition: none !important;
     animation: none !important;
   }
-  
+
   :host-context(.reduced-motion) & {
     transform: none !important;
     transition: none !important;
@@ -24,36 +23,57 @@ $duration-long: 400ms;
   }
 }
 
-// --- 3. Material Interactive Mixin ---
+// --- Internal Engine ---
+@mixin _transition-engine($duration, $ease, $properties) {
+  $trans-list: ();
+
+  @each $prop in $properties {
+    $trans-list: append($trans-list, ($prop $duration $ease), comma);
+  }
+
+  transition: $trans-list;
+  @include reduced-motion-reset;
+}
+
+// --- Generic Public Mixins ---
+
+// Normal
+@mixin transition-base($properties...) {
+  @include _transition-engine($duration-medium, $ease-standard, $properties);
+}
+
+// Fast
+@mixin transition-quick($properties...) {
+  @include _transition-engine($duration-short, $ease-standard, $properties);
+}
+
+// Slow
+@mixin transition-long($properties...) {
+  @include _transition-engine($duration-long, $ease-standard, $properties);
+}
+
+// --- Specific Interactions ---
+
+// Material Elevation
 @mixin interactive-material-elevation($include-transform: true) {
   $trans-props: box-shadow $duration-medium ease;
-  
+
   @if $include-transform {
-    $trans-props: $trans-props, transform $duration-medium $ease-standard;
+    $trans-props:
+      $trans-props,
+      transform $duration-medium $ease-standard;
     will-change: transform;
     backface-visibility: hidden;
   }
 
-  transition: 
-    #{$trans-props}, 
+  transition:
+    #{$trans-props},
     border-radius $duration-long $ease-shape !important;
 
   @include reduced-motion-reset;
 }
 
-// --- 4. Generic Transition ---
-@mixin transition-base($properties...) {
-  $transitions: ();
-  
-  @each $prop in $properties {
-    $transitions: append($transitions, ($prop $duration-medium $ease-standard), comma);
-  }
-
-  transition: $transitions;
-  @include reduced-motion-reset;
-}
-
-// --- 5. Hover Lift (Movement Only) ---
+// Hover Lift
 @mixin hover-lift($y-offset: -5px) {
   transition: transform $duration-medium $ease-standard;
   will-change: transform;
@@ -68,32 +88,25 @@ $duration-long: 400ms;
   @include reduced-motion-reset;
 }
 
-// --- 6. Quick Transition ---
-@mixin transition-standard($properties...) {
-  $trans-list: ();
-  @each $prop in $properties {
-    $trans-list: append($trans-list, ($prop $duration-medium $ease-standard), comma);
-  }
-  transition: $trans-list;
-
-  @include reduced-motion-reset;
-}
-
-// --- 7. Press / Click Interaction ---
+// Press / Click
 @mixin interactive-press($scale: 0.96) {
-  transition: transform $duration-short $ease-standard, background-color $duration-short linear;
+  transition:
+    transform $duration-short $ease-standard,
+    background-color $duration-short linear;
   will-change: transform;
 
   &:active {
     transform: scale($scale);
   }
-  
+
   @include reduced-motion-reset;
 }
 
-// --- 8. Complex 3D Transition Helper ---
+// Complex 3D
 @mixin transition-3d($duration: $duration-long, $ease: $ease-spring-settle) {
-  transition: transform $duration $ease, box-shadow $duration ease;
+  transition:
+    transform $duration $ease,
+    box-shadow $duration ease;
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;

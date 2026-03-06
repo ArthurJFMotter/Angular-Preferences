@@ -51,7 +51,7 @@
     margin: 0rem auto;
 
     @include shape.circle;
-    @include motion.transition-standard(color, opacity);
+    @include motion.transition-quick(color, opacity);
   }
 
   h3 {
