@@ -19,7 +19,7 @@ import { TechMarqueeComponent } from './components/tech-marquee/tech-marquee.com
     InteractivePlaygroundComponent,
     StepsOverviewComponent,
     FeaturesGridComponent,
-    TechSpecsComponent,
+    //TechSpecsComponent,
     TechMarqueeComponent
   ],
   templateUrl: './home.component.html',
