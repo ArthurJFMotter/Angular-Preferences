@@ -1,0 +1,89 @@
+@use "variables" as app-vars;
+@use "layouts" as layout;
+@use "motion" as motion;
+@use "shapes" as shape;
+
+:host {
+  @include layout.host-component;
+}
+
+.marquee-wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.marquee-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--mat-sys-outline); 
+  margin-bottom: 24px;
+}
+
+.marquee-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  
+  // The fade masks
+  .fade-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+    
+    &.left {
+      left: 0;
+      background: linear-gradient(to right, var(--mat-sys-background), transparent);
+    }
+    
+    &.right {
+      right: 0;
+      background: linear-gradient(to left, var(--mat-sys-background), transparent);
+    }
+  }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: scroll 50s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.linear-chip {
+  background-color: var(--mat-sys-surface-container-low);
+  border: 1px solid var(--mat-sys-outline-variant);
+  color: var(--mat-sys-on-surface);
+  
+  user-select: none;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  @include shape.rounded-chips;
+
+  .chip-icon {
+    font-size: 18px; 
+    width: 18px;
+    height: 18px;
+    color: var(--mat-sys-primary);
+  }
+
+  // Hover State
+  &:hover {
+    background-color: var(--mat-sys-surface-container-high);
+    border-color: var(--mat-sys-outline);
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}

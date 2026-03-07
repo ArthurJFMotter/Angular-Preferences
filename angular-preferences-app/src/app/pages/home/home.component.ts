@@ -7,6 +7,7 @@ import { InteractivePlaygroundComponent } from './components/interactive-playgro
 import { StepsOverviewComponent } from './components/steps-overview/steps-overview.component';
 import { TechSpecsComponent } from './components/tech-specs/tech-specs.component';
 import { FeaturesGridComponent } from './components/features-grid/features-grid.component';
+import { TechMarqueeComponent } from './components/tech-marquee/tech-marquee.component';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ import { FeaturesGridComponent } from './components/features-grid/features-grid.
     InteractivePlaygroundComponent,
     StepsOverviewComponent,
     FeaturesGridComponent,
-    TechSpecsComponent
+    TechSpecsComponent,
+    TechMarqueeComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

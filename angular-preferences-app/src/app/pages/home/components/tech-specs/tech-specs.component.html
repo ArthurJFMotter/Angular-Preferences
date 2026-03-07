@@ -1,8 +1,28 @@
 <section class="tech-specs">
-  <h2>Modernize your Stack</h2>
-  <div class="tech-chips">
-    @for (tech of technologies; track tech) {
-      <span class="tech-pill">{{ tech }}</span>
+  <header class="specs-header">
+    <h2>Modernize your Stack</h2>
+    <p class="subtitle">
+      Engineered for performance, scalability, and inclusion.
+    </p>
+  </header>
+
+  <div class="specs-grid">
+    @for (category of categories; track category.title) {
+      <article class="spec-card">
+        <div class="card-header">
+          <!-- Note: If you use Material Icons, replace this span with <mat-icon> -->
+          <mat-icon class="icon-placeholder material-symbols-outlined">{{
+            category.icon
+          }}</mat-icon>
+          <h3>{{ category.title }}</h3>
+        </div>
+
+        <div class="tech-chips">
+          @for (item of category.items; track item) {
+            <span class="tech-pill">{{ item }}</span>
+          }
+        </div>
+      </article>
     }
   </div>
 </section>

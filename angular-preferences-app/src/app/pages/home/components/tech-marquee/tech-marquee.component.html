@@ -1,0 +1,18 @@
+<section class="marquee-wrapper">
+  <p class="marquee-label">POWERED BY MODERN STANDARDS</p>
+
+  <div class="marquee-container">
+    <div class="fade-mask left"></div>
+    <div class="fade-mask right"></div>
+
+    <!-- The Track -->
+    <div class="marquee-track">
+      @for (tag of marqueeItems; track $index) {
+        <div class="linear-chip">
+          <mat-icon class="chip-icon">{{ tag.icon }}</mat-icon>
+          <span class="chip-label">{{ tag.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
