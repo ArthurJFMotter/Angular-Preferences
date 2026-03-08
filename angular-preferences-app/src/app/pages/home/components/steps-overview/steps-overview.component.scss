@@ -4,6 +4,8 @@
 @use "shapes" as shape;
 
 :host {
+  width: 100%;
+  max-width: 100vw; 
   @include layout.host-component;
 }
 
@@ -12,9 +14,11 @@
   grid-template-columns: 1fr 1.5fr;
   gap: 4rem;
   align-items: center;
+  padding: 0rem 1rem;
 
-  @media (max-width: app-vars.$breakpoint-mobile) {
-    grid-template-columns: 1fr;
+  @media (max-width: app-vars.$breakpoint-tablet) {
+    display: flex;
+    flex-direction: column-reverse;
     gap: 2rem;
   }
 }
@@ -24,6 +28,17 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media (max-width: app-vars.$breakpoint-tablet) {
+    flex-direction: row; 
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    gap: 1rem;
+    
+    &::-webkit-scrollbar { display: none; }
+    scrollbar-width: none;
+  }
 }
 
 .step-tab {
@@ -32,11 +47,22 @@
   cursor: pointer;
   background: transparent;
   border: 1px solid transparent;
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease;
+  transition: all 0.3s ease;
+  min-width: 200px;
 
   @include shape.rounded-card;
+
+  @media (max-width: app-vars.$breakpoint-tablet) {
+    padding: 1rem;
+    min-width: auto; 
+    flex: 1; 
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   &:not(.active):hover {
     background: var(--mat-sys-surface-container-low);
@@ -50,10 +76,8 @@
       background: var(--mat-sys-primary);
       color: var(--mat-sys-on-primary);
     }
-
-    h3 {
-      color: var(--mat-sys-primary);
-    }
+    
+    h3 { color: var(--mat-sys-primary); }
   }
 
   .step-header {
@@ -61,6 +85,12 @@
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.5rem;
+
+    @media (max-width: app-vars.$breakpoint-tablet) {
+      margin-bottom: 0;
+      justify-content: center;
+      gap: 0.5rem;
+    }
   }
 
   .step-number {
@@ -75,6 +105,12 @@
     font-size: 0.9rem;
     transition: all 0.3s ease;
     @include shape.circle;
+    
+    @media (max-width: app-vars.$breakpoint-tablet) {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 0.75rem;
+    }
   }
 
   h3 {
@@ -82,6 +118,10 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--mat-sys-on-surface);
+    
+    @media (max-width: app-vars.$breakpoint-tablet) {
+      font-size: 1rem;
+    }
   }
 
   .step-desc {
@@ -90,6 +130,10 @@
     color: var(--mat-sys-on-surface-variant);
     font-size: 0.95rem;
     line-height: 1.5;
+
+    @media (max-width: app-vars.$breakpoint-tablet) {
+      display: none;
+    }
   }
 
   // Progress Bar
@@ -102,6 +146,10 @@
     background: transparent;
     border-radius: 10px;
     overflow: hidden;
+    
+    @media (max-width: app-vars.$breakpoint-tablet) {
+      left: 10px; right: 10px;
+    }
   }
 
   .progress-fill {
@@ -116,14 +164,19 @@
   position: relative;
   aspect-ratio: 16/9; 
   min-height: 400px; 
+  width: 100%;
   
   border: 1px solid var(--mat-sys-outline-variant);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  
   font-size: 16px; 
 
   @include shape.rounded-card;
+
+  @media (max-width: app-vars.$breakpoint-tablet) {
+    min-height: 250px; 
+    aspect-ratio: 4/3;
+  }
 
   // Background Glow
   &::before {
