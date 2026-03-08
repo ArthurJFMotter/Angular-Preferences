@@ -1,12 +1,20 @@
-import { Component, OnDestroy, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  Inject,
+  inject,
+  effect,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ThemeService } from '../../../../services/theme.service';
 
 interface Step {
   id: number;
   title: string;
   description: string;
   imageAlt: string;
-  // In a real app, you might have: imageSrc: 'assets/steps/configure.gif'
 }
 
 @Component({
@@ -38,15 +46,28 @@ export class StepsOverviewComponent implements OnInit, OnDestroy {
     },
   ];
 
+  private themeService = inject(ThemeService);
+
   currentStepIndex = 0;
   progress = 0;
   private timer: any;
   private readonly STEP_DURATION = 5000; // 5 seconds per slide
-  private readonly REFRESH_RATE = 50; // Update progress bar every 50ms
+  private readonly REFRESH_RATE = 50; // 50ms
   isBrowser = false;
 
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
+
+    effect(() => {
+      const isReduced = this.themeService.isReducedMotion();
+
+      if (isReduced) {
+        this.stopTimer();
+        this.progress = 0;
+      } else if (this.isBrowser) {
+        this.startTimer();
+      }
+    });
   }
 
   ngOnInit() {
@@ -60,11 +81,13 @@ export class StepsOverviewComponent implements OnInit, OnDestroy {
   }
 
   // --- Timer Logic ---
-
   startTimer() {
-    this.stopTimer(); // Ensure no duplicates
+    this.stopTimer();
+
+    if (this.themeService.isReducedMotion()) return;
+
     this.timer = setInterval(() => {
-      this.progress += (100 / (this.STEP_DURATION / this.REFRESH_RATE));
+      this.progress += 100 / (this.STEP_DURATION / this.REFRESH_RATE);
 
       if (this.progress >= 100) {
         this.nextStep();
@@ -80,12 +103,11 @@ export class StepsOverviewComponent implements OnInit, OnDestroy {
   }
 
   // --- Interaction Logic ---
-
   setStep(index: number) {
     this.currentStepIndex = index;
     this.progress = 0;
     this.stopTimer();
-    this.startTimer(); // Restart timer from 0 for the new step
+    this.startTimer();
   }
 
   nextStep() {

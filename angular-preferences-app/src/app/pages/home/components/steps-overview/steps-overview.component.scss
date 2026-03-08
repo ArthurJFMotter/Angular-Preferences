@@ -364,3 +364,49 @@
     padding-left: 2ch;
   }
 }
+
+// REDUCED MOTION OVERRIDES
+
+// 1. Navigation Tabs
+.step-tab {
+  @include motion.reduced-motion-reset;
+
+  :host-context(.reduced-motion) & {
+    .progress-track {
+      display: none;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .progress-track {
+      display: none;
+    }
+  }
+}
+
+// Slide Transition 
+.slide-content {
+  :host-context(.reduced-motion) & {
+    transition: none !important;
+    transform: none !important;
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+    transform: none !important;
+    
+    &.active { opacity: 1; }
+  }
+}
+
+.display-window::before {
+  :host-context(.reduced-motion) & {
+    animation: none;
+    transition: none;
+  }
+}
