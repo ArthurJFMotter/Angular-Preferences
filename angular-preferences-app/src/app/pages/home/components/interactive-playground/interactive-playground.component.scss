@@ -11,8 +11,6 @@
 }
 
 .playground-card {
-  @include shape.rounded-card;
-
   width: 100%;
   max-width: 520px;
   background: #1a1a1a;
@@ -27,6 +25,7 @@
 
   // Initial State
   transform: rotateY(-8deg) rotateX(4deg);
+  @include shape.rounded-card;
   @include motion.transition-3d(600ms, motion.$ease-spring-settle);
 
   // Hover State

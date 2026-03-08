@@ -7,71 +7,307 @@
   @include layout.host-component;
 }
 
-.steps-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+.carousel-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: center;
 
   @media (max-width: app-vars.$breakpoint-mobile) {
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-
-    .step-divider {
-      display: none;
-    }
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-.step {
-  flex: 1;
-  text-align: center;
-  padding: 0 16px;
+// --- Navigation Tabs ---
+.steps-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-  @include motion.hover-lift(-5px);
+.step-tab {
+  position: relative;
+  padding: 1.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 
-  @media (hover: hover) {
-    &:hover {
-      .step-number {
-        color: var(--mat-sys-primary);
-        opacity: 1;
-      }
+  @include shape.rounded-card;
+
+  &:not(.active):hover {
+    background: var(--mat-sys-surface-container-low);
+  }
+
+  &.active {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+
+    .step-number {
+      background: var(--mat-sys-primary);
+      color: var(--mat-sys-on-primary);
     }
+
+    h3 {
+      color: var(--mat-sys-primary);
+    }
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .step-number {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--mat-sys-outline);
-    line-height: 1;
-
-    width: fit-content;
-    min-width: 3rem;
-    margin: 0rem auto;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--mat-sys-surface-container-highest);
+    color: var(--mat-sys-on-surface-variant);
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
     @include shape.circle;
-    @include motion.transition-quick(color, opacity);
   }
 
   h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--mat-sys-primary);
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
   }
 
-  p {
-    font-size: 0.95rem;
+  .step-desc {
+    margin: 0;
+    padding-left: 3rem;
     color: var(--mat-sys-on-surface-variant);
-    max-width: 300px;
-    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  // Progress Bar
+  .progress-track {
+    position: absolute;
+    bottom: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 3px;
+    background: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--mat-sys-primary);
+    transition: width 0.05s linear;
   }
 }
 
-.step-divider {
-  width: 80px;
-  height: 2px;
-  background: var(--mat-sys-outline-variant);
-  margin-top: 40px;
-  opacity: 0.5;
+// --- Display Window (Right Side) ---
+.display-window {
+  position: relative;
+  aspect-ratio: 16/9; 
+  min-height: 400px; 
+  
+  border: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  
+  font-size: 16px; 
+
+  @include shape.rounded-card;
+
+  // Background Glow
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: var(--mat-sys-primary);
+    filter: blur(120px); 
+    opacity: 0.15;
+    z-index: 0;
+  }
+}
+
+.slide-content {
+  position: absolute;
+  inset: 0; 
+  padding: 0;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: scale(0.95); 
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// --- Mock UI Styles ---
+.mock-ui {
+  width: 100%;
+  height: 100%;
+  padding: 3rem; 
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  
+  position: relative;
+  box-sizing: border-box;
+
+  .mock-label {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    left: auto;
+    transform: none;
+    
+    color: var(--mat-sys-on-surface-variant);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+}
+
+// --- Specific Mock Implementations ---
+
+// 1. Sidebar Mock
+.sidebar-mock {
+  background: var(--mat-sys-surface);
+  
+  .mock-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 70%;
+  }
+
+  .mock-row {
+    width: 100%;
+    height: 16px;
+    background: var(--mat-sys-surface-container-highest);
+    border-radius: 4px;
+  }
+  
+  .mock-slider-track {
+    width: 100%;
+    height: 6px;
+    background: var(--mat-sys-surface-container-highest);
+    border-radius: 10px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 60%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      background: var(--mat-sys-primary);
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+  }
+}
+
+// 2. Preview Card Mock
+.card-mock {
+  align-items: center;
+  justify-content: center;
+
+  .preview-card {
+    width: 320px;
+    padding: 24px;
+    background: var(--mat-sys-surface-container);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: scale(1.2); 
+  }
+
+  .mock-img {
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(135deg, var(--mat-sys-tertiary), var(--mat-sys-secondary));
+    border-radius: 12px;
+  }
+
+  .mock-text-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    span {
+      height: 10px;
+      background: var(--mat-sys-on-surface);
+      opacity: 0.1;
+      border-radius: 4px;
+      
+      &:nth-child(1) { width: 100%; }
+      &:nth-child(2) { width: 80%; }
+      &:nth-child(3) { width: 60%; }
+    }
+  }
+}
+
+// 3. Code Integration Mock
+.code-mock {
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  
+  .code-window {
+    width: 85%;
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: clamp(14px, 1.5vw, 20px); 
+  line-height: 1.6;
+
+  .code-line {
+    color: #d4d4d4; 
+    white-space: pre; 
+    
+    .keyword { color: #569cd6; }      // Blue (const)
+    .property { color: #9cdcfe; }     // Light Blue (classes / vars)
+    .string { color: #ce9178; }       // Orange/Red ('properties')
+    .punctuation { color: #ffd700; }  // Yellow/Gold ({ } ;)
+  }
+  
+  .indent {
+    padding-left: 2ch;
+  }
 }
