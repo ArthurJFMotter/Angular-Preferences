@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeActionsService } from '../../services/home-actions.service';
 
 @Component({
   selector: 'app-call-to-action',
@@ -9,4 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './call-to-action.component.html',
   styleUrls: ['./call-to-action.component.scss'],
 })
-export class CallToActionComponent {}
+export class CallToActionComponent {
+  public homeActions = inject(HomeActionsService);
+}

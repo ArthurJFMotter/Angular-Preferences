@@ -3,12 +3,21 @@
     <h2>Ready to build truly adaptive interfaces?</h2>
     <p>Stop writing boilerplate SCSS and start empowering your users today.</p>
 
-    <div class="cta-actions">
-      <button mat-flat-button color="primary" class="action-btn">
+    <div class="shared-action-group cta-action-alignment">
+      <button
+        mat-flat-button
+        color="primary"
+        class="cta-button"
+        (click)="homeActions.navigateToSettings()"
+      >
         <mat-icon>tune</mat-icon>
         Start Customizing
       </button>
-      <button mat-stroked-button class="action-btn">
+      <button
+        mat-stroked-button
+        class="cta-button"
+        (click)="homeActions.handleDocumentation()"
+      >
         <mat-icon>description</mat-icon>
         Documentation
       </button>
