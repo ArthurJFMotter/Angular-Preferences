@@ -5,7 +5,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HeroIntroComponent } from './components/hero-intro/hero-intro.component';
 import { InteractivePlaygroundComponent } from './components/interactive-playground/interactive-playground.component';
 import { StepsOverviewComponent } from './components/steps-overview/steps-overview.component';
-import { TechSpecsComponent } from './components/tech-specs/tech-specs.component';
 import { FeaturesGridComponent } from './components/features-grid/features-grid.component';
 import { TechMarqueeComponent } from './components/tech-marquee/tech-marquee.component';
 import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
@@ -20,7 +19,6 @@ import { CallToActionComponent } from './components/call-to-action/call-to-actio
     InteractivePlaygroundComponent,
     StepsOverviewComponent,
     FeaturesGridComponent,
-    //TechSpecsComponent,
     TechMarqueeComponent,
     CallToActionComponent
   ],
