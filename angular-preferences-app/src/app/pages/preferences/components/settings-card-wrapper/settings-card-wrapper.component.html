@@ -1,0 +1,18 @@
+<mat-card class="settings-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon aria-hidden="true">{{ icon }}</mat-icon>
+    </div>
+    <mat-card-title>
+      <div class="title-with-help">
+        <h2>{{ title }}</h2>
+        <app-help-button [message]="helpMessage"></app-help-button>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="card-body">
+    <!-- Content will be projected here -->
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>

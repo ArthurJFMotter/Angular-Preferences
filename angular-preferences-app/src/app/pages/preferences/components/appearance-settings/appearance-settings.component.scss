@@ -4,6 +4,10 @@
 @use "motion" as motion;
 @use "shapes" as shape;
 
+:host {
+  @include shared.settings-shared-styles;
+}
+
 .swatch-grid {
   display: flex;
   flex-wrap: wrap;

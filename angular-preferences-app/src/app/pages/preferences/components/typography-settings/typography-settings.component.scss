@@ -1,5 +1,9 @@
 @use "app/pages/preferences/preferences-shared" as shared;
 
+:host {
+  @include shared.settings-shared-styles;
+}
+
 .small-a {
   font-size: 14px;
   color: var(--mat-sys-on-surface-variant);

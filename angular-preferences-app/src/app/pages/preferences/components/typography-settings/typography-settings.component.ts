@@ -12,7 +12,7 @@ import { TypographyService } from '../../../../services/typography.service';
 import { DensityService } from '../../../../services/density.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { FontSizeConfig } from '../../../../models/typography.model';
-import { HelpButtonComponent } from '../../../../components/help-button/help-button.component';
+import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
   selector: 'app-typography-settings',
@@ -20,7 +20,7 @@ import { HelpButtonComponent } from '../../../../components/help-button/help-but
   imports: [
     CommonModule,
     FormsModule,
-    HelpButtonComponent,
+    SettingsCardWrapperComponent,
     MatCardModule,
     MatIconModule,
     MatFormFieldModule,

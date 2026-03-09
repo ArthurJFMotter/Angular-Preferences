@@ -75,9 +75,17 @@
   .dummy-form {
     background: var(--mat-sys-surface-container-high);
     padding: 1rem;
-
     @include shape.rounded-card;
+
+    .full-width {
+      width: 100%;
+      display: block;
+    }
   }
+}
+
+mat-card-actions{
+  margin-top: 0.5rem;
 }
 
 .mini-widgets {

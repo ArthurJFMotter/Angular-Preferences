@@ -1,0 +1,57 @@
+@use "variables" as app-vars;
+@use "shapes" as shape;
+@use "motion" as motion;
+
+:host {
+  display: block;
+}
+
+// --- 1. Card Container ---
+.settings-card {
+  @include shape.rounded-card;
+  @include motion.interactive-material-elevation($include-transform: false);
+  background-color: var(--mat-sys-surface-container-low);
+  color: var(--mat-sys-on-surface);
+  border: 1px solid var(--mat-sys-outline-variant);
+
+  mat-card-header {
+    padding: 16px 16px 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-body {
+    padding: 0 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+// --- 2. Header Icons & Title ---
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+  
+  @include shape.circle;
+}
+
+mat-card-title {
+  display: block;
+
+  .title-with-help {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}

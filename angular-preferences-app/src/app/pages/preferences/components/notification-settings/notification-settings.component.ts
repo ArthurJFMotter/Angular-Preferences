@@ -12,14 +12,14 @@ import { ThemeService } from '../../../../services/theme.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { SnackbarService } from '../../../../services/snackbar.service';
 import { NotificationPlacement } from '../../../../models/preferences.model';
-import { HelpButtonComponent } from '../../../../components/help-button/help-button.component';
+import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
   selector: 'app-notification-settings',
   standalone: true,
   imports: [
     CommonModule,
-    HelpButtonComponent,
+    SettingsCardWrapperComponent,
     MatCardModule,
     MatIconModule,
     MatCheckboxModule,

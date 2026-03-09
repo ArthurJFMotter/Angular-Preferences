@@ -10,15 +10,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ThemeService } from '../../../../services/theme.service';
 import { PreferencesService } from '../../../../services/preferences.service';
 import { ShapeService } from '../../../../services/shape.service';
-import { HelpButtonComponent } from '../../../../components/help-button/help-button.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
   selector: 'app-appearance-settings',
   standalone: true,
   imports: [
     CommonModule,
-    HelpButtonComponent,
+    SettingsCardWrapperComponent,
     MatButtonToggleModule,
     MatCardModule,
     MatIconModule,

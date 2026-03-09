@@ -1,19 +1,8 @@
-<mat-card class="settings-card" appearance="outlined">
-  <mat-card-header>
-    <div mat-card-avatar class="header-icon">
-      <mat-icon aria-hidden="true">notifications_active</mat-icon>
-    </div>
-    <mat-card-title>
-      <div class="title-with-help">
-        <h2>Notifications</h2>
-        <app-help-button
-          message="Control where alerts appear on screen and adjust their contrast levels for better visibility."
-        ></app-help-button>
-      </div>
-    </mat-card-title>
-  </mat-card-header>
-
-  <mat-card-content class="card-body">
+<app-settings-card-wrapper
+  icon="notifications_active"
+  title="Notifications"
+  helpMessage="Control where alerts appear on screen and adjust their contrast levels for better visibility."
+>
     <!-- Position Control -->
     <div class="control-group">
       <mat-form-field appearance="outline" class="full-width">
@@ -61,5 +50,4 @@
         </p>
       </div>
     </div>
-  </mat-card-content>
-</mat-card>
+</app-settings-card-wrapper>

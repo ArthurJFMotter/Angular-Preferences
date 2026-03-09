@@ -11,14 +11,14 @@ import { PreferencesService } from '../../../../services/preferences.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { HelpButtonComponent } from '../../../../components/help-button/help-button.component';
+import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
   selector: 'app-accessibility-settings',
   standalone: true,
   imports: [
     CommonModule,
-    HelpButtonComponent,
+    SettingsCardWrapperComponent,
     MatCardModule,
     MatButtonToggleModule,
     MatDividerModule,

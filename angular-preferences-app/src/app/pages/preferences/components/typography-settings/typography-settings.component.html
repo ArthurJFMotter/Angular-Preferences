@@ -1,77 +1,73 @@
-<mat-card class="settings-card" appearance="outlined">
-  <mat-card-header>
-    <div mat-card-avatar class="header-icon">
-      <mat-icon aria-hidden="true">text_fields</mat-icon>
-    </div>
-     <mat-card-title>
-        <div class="title-with-help">
-            <h2>Typography & Layout</h2>
-            <app-help-button message="Adjust text size, font family, and information density to match your reading preferences."></app-help-button>
-        </div>
-    </mat-card-title>
-  </mat-card-header>
-  
-  <mat-card-content class="card-body">
-    <div class="control-group">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Font Family</mat-label>
-        <mat-select
-          [value]="typographyService.activeFont().id"
-          (selectionChange)="onFontChange($event)"
-        >
-          @for (font of typographyService.getFonts(); track font.id) {
-            <mat-option [value]="font.id">{{ font.displayName }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <!-- Font Size -->
-    <div class="control-group">
-      <div class="label-row">
-        <label id="fontsize-label" class="group-label">Font Size</label>
-        <span class="value-badge">{{ typographyService.activeFontSize().displayName }}</span>
-      </div>
-      <div class="slider-row">
-        <span class="small-a" aria-hidden="true">A</span>
-        <mat-slider
-          [min]="minFontSizeIndex"
-          [max]="maxFontSizeIndex"
-          step="1"
-          discrete
-          showTickMarks
-          aria-labelledby="fontsize-label"
-        >
-          <input
-            matSliderThumb
-            [value]="fontSizeSliderIndex()"
-            (valueChange)="updateFontSize($event)"
-          />
-        </mat-slider>
-        <span class="large-a" aria-hidden="true">A</span>
-      </div>
-    </div>
-
-    <!-- Density -->
-    <div class="control-group">
-      <label id="density-label" class="group-label">Density</label>
-      <mat-button-toggle-group
-        class="button-toggle-group"
-        aria-labelledby="density-label"
-        [value]="densityService.currentDensity().value"
-        (change)="preferencesService.setDensity($event.value)"
+<app-settings-card-wrapper
+  icon="text_fields"
+  title="Typography & Layout"
+  helpMessage="Adjust text size, font family, and information density to match your reading preferences."
+>
+  <div class="control-group">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Font Family</mat-label>
+      <mat-select
+        [value]="typographyService.activeFont().id"
+        (selectionChange)="onFontChange($event)"
       >
-        @for (density of densityService.getDensities(); track density.id) {
-          <mat-button-toggle [value]="density.value">
-            <mat-icon>
-              @if (density.displayName.toLowerCase().includes("high")) { view_comfy } 
-              @else if (density.displayName.toLowerCase().includes("compact")) { view_list } 
-              @else { view_stream }
-            </mat-icon>
-            <span>{{ density.displayName.split(" ")[0] }}</span>
-          </mat-button-toggle>
+        @for (font of typographyService.getFonts(); track font.id) {
+          <mat-option [value]="font.id">{{ font.displayName }}</mat-option>
         }
-      </mat-button-toggle-group>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Font Size -->
+  <div class="control-group">
+    <div class="label-row">
+      <label id="fontsize-label" class="group-label">Font Size</label>
+      <span class="value-badge">{{
+        typographyService.activeFontSize().displayName
+      }}</span>
     </div>
-  </mat-card-content>
-</mat-card>
+    <div class="slider-row">
+      <span class="small-a" aria-hidden="true">A</span>
+      <mat-slider
+        [min]="minFontSizeIndex"
+        [max]="maxFontSizeIndex"
+        step="1"
+        discrete
+        showTickMarks
+        aria-labelledby="fontsize-label"
+      >
+        <input
+          matSliderThumb
+          [value]="fontSizeSliderIndex()"
+          (valueChange)="updateFontSize($event)"
+        />
+      </mat-slider>
+      <span class="large-a" aria-hidden="true">A</span>
+    </div>
+  </div>
+
+  <!-- Density -->
+  <div class="control-group">
+    <label id="density-label" class="group-label">Density</label>
+    <mat-button-toggle-group
+      class="button-toggle-group"
+      aria-labelledby="density-label"
+      [value]="densityService.currentDensity().value"
+      (change)="preferencesService.setDensity($event.value)"
+    >
+      @for (density of densityService.getDensities(); track density.id) {
+        <mat-button-toggle [value]="density.value">
+          <mat-icon>
+            @if (density.displayName.toLowerCase().includes("high")) {
+              view_comfy
+            } @else if (density.displayName.toLowerCase().includes("compact")) {
+              view_list
+            } @else {
+              view_stream
+            }
+          </mat-icon>
+          <span>{{ density.displayName.split(" ")[0] }}</span>
+        </mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </div>
+</app-settings-card-wrapper>
