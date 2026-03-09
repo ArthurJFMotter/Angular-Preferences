@@ -1,10 +1,23 @@
 // --- Text Utilities ---
+
+//gradient
 @mixin gradient-text-brand {
   background: linear-gradient(120deg, var(--mat-sys-tertiary), var(--mat-sys-primary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: var(--mat-sys-primary); 
+}
+
+// --- Container Utilities ---
+
+//gradient
+@mixin gradient-surface-container {
+  background: linear-gradient(
+    135deg,
+    var(--mat-sys-surface-container-high) 0%,
+    var(--mat-sys-surface) 100%
+  );
 }
 
 // --- Assistive Title Helper ---

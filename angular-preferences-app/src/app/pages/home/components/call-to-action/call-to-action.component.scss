@@ -3,6 +3,7 @@
 @use "layouts" as layout;
 @use "motion" as motion;
 @use "shapes" as shape;
+@use "utilities" as utils;
 
 :host {
   @include layout.host-component;
@@ -16,12 +17,7 @@
   border: 1px solid var(--mat-sys-outline-variant);
   padding: 1rem;
 
-  background: linear-gradient(
-    135deg,
-    var(--mat-sys-surface-container-high) 0%,
-    var(--mat-sys-surface) 100%
-  );
-
+  @include utils.gradient-surface-container;
   @include shape.rounded-card;
 }
 
@@ -46,15 +42,10 @@
     font-size: clamp(2.2rem, 7vw, 3rem);
     font-weight: 800;
     letter-spacing: -0.03em;
-    background: linear-gradient(
-      135deg,
-      var(--mat-sys-primary) 0%,
-      var(--mat-sys-tertiary) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    
     margin-bottom: 1rem;
+
+    @include utils.gradient-text-brand;
   }
 
   p {
