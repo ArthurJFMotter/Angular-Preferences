@@ -14,10 +14,10 @@ export const routes: Routes = [
         component: HomeComponent,
     },
     // for future use
-    /*{
+    {
         path: 'preview',
         component: LivePreviewComponent,
-    },*/
+    },
     {
         path: 'configurations',
         component: PreferencesComponent,
