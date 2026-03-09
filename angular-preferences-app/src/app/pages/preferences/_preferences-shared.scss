@@ -1,3 +1,6 @@
+// This file holds styles common to all preferences components
+// Import this using @use in the sub-components.
+
 @use "variables" as app-vars;
 @use "shapes" as shape;
 @use "motion" as motion;

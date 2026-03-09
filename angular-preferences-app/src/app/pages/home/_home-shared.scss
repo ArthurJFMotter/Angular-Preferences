@@ -1,21 +1,26 @@
 // This file holds styles common to all home components
 // Import this using @use in the sub-components.
 
-@use "variables" as app-vars;
+@use "variables" as app-vars; 
 
-.shared-action-group {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+@mixin home-action-buttons {
+  .shared-action-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
 
-  .cta-button {
-    height: 52px;
-    padding: 0 32px;
-    font-size: 1.05rem;
+    .cta-button {
+      height: 52px;
+      padding: 0 32px;
+      font-size: 1.05rem;
 
-    @media (max-width: app-vars.$breakpoint-mobile) {
-      width: 100%;
+      @media (max-width: app-vars.$breakpoint-mobile) {
+        width: 100%;
+      }
+      
+      mat-icon {
+        margin-right: 8px;
+      }
     }
-    
   }
 }

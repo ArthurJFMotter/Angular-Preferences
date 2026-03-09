@@ -1,4 +1,4 @@
-@use "../../home-shared";
+@use "app/pages/home/home-shared" as home-shared;
 @use "variables" as app-vars;
 @use "layouts" as layout;
 @use "shapes" as shape;
@@ -6,6 +6,7 @@
 
 :host {
   @include layout.host-component;
+  @include home-shared.home-action-buttons;
 }
 
 .hero-content {
@@ -13,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 }
 
@@ -43,29 +45,8 @@
   }
 }
 
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: start;
-
-  @media (max-width: app-vars.$breakpoint-tablet) {
-    justify-content: center;
-  }
-
-  .cta-button {
-    height: 52px;
-    padding: 0 32px;
-    font-size: 1.05rem;
-
-     @media (max-width: app-vars.$breakpoint-mobile) {
-      width: 100%;
-    }
-  }
-}
-
 .hero-action-alignment {
-  justify-content: start;
+  justify-content: flex-start;
 
   @media (max-width: app-vars.$breakpoint-tablet) {
     justify-content: center;
