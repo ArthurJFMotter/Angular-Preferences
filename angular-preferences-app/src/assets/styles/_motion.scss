@@ -8,22 +8,41 @@ $duration-short: 200ms;
 $duration-medium: 300ms;
 $duration-long: 400ms;
 
-// --- Reduced Motion Reset ---
-@mixin reduced-motion-reset {
+// --- Core Reduced Motion Properties ---
+@mixin _motion-kill-switch {
+  transition: none !important;
+  animation: none !important;
+  transition-delay: 0s !important;
+}
+
+// --- Unified Reduced Motion Reset ---
+@mixin reduced-motion-reset($context: 'component') {
+  
+  // OS-Level
   @media (prefers-reduced-motion: reduce) {
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
+    @include _motion-kill-switch;
   }
 
-  :host-context(.reduced-motion) & {
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
+  // App-Level
+  @if $context == 'component' {
+    // For Angular Components
+    :host-context(.reduced-motion) & {
+      @include _motion-kill-switch;
+    }
+  } @else if $context == 'global' {
+    // For global children
+    html.reduced-motion & {
+      @include _motion-kill-switch;
+    }
+  } @else if $context == 'self' {
+    // For html tags
+    &.reduced-motion {
+      @include _motion-kill-switch;
+    }
   }
 }
 
-// --- Internal Engine ---
+// --- Internal Transitions Engine ---
 @mixin _transition-engine($duration, $ease, $properties) {
   $trans-list: ();
 

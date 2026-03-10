@@ -1,17 +1,10 @@
 @use "variables" as app-vars;
+@use "motion" as motion;
 
 // Base HTML elements styling
 html {
   font-size: var(--app-typography);
   transition: font-size 0.2s ease-out;
-
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
-
-  &.reduced-motion {
-    transition: none;
-  }
 }
 
 body {
@@ -25,17 +18,8 @@ body {
     color 0.3s ease,
     font-family 0.3s ease;
 
-  // --- OVERRIDES FOR REDUCED MOTION ---
-
-  // OS-level preference
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
-
-  // App-level preference
-  html.reduced-motion & {
-    transition: none;
-  }
+  // Single line!
+  @include motion.reduced-motion-reset('global');
 }
 
 // Headings and specific Material components

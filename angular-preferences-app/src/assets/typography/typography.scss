@@ -1,23 +1,12 @@
+@use "motion" as motion;
+
 :root {
   --app-typography: 16px; //1rem
 }
 
 html {
   font-size: var(--app-typography);
-  
-  // Normal smooth transition
   transition: font-size 0.1s ease-in-out;
 
-  // --- OVERRIDES FOR REDUCED MOTION ---
-  /* Makes the font-size change abrupt */
-
-  // OS-level preference
-  @media (prefers-reduced-motion: reduce) {
-    transition: none; 
-  }
-
-  // App-level preference
-  &.reduced-motion {
-    transition: none;
-  }
+  @include motion.reduced-motion-reset('self');
 }
