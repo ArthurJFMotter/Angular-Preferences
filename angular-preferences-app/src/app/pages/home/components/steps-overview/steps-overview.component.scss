@@ -4,8 +4,6 @@
 @use "shapes" as shape;
 
 :host {
-  width: 100%;
-  max-width: 100vw; 
   @include layout.host-component;
 }
 
@@ -30,13 +28,15 @@
   gap: 1.5rem;
 
   @media (max-width: app-vars.$breakpoint-tablet) {
-    flex-direction: row; 
+    flex-direction: row;
     width: 100%;
     overflow-x: auto;
     padding-bottom: 4px;
     gap: 1rem;
-    
-    &::-webkit-scrollbar { display: none; }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
     scrollbar-width: none;
   }
 }
@@ -47,17 +47,17 @@
   cursor: pointer;
   background: transparent;
   border: 1px solid transparent;
-  transition: all 0.3s ease;
   min-width: 200px;
 
   @include shape.rounded-card;
+  @include motion.transition-base(background-color, border-color);
 
   @media (max-width: app-vars.$breakpoint-tablet) {
     padding: 1rem;
-    min-width: auto; 
-    flex: 1; 
+    min-width: auto;
+    flex: 1;
     text-align: center;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,8 +76,10 @@
       background: var(--mat-sys-primary);
       color: var(--mat-sys-on-primary);
     }
-    
-    h3 { color: var(--mat-sys-primary); }
+
+    h3 {
+      color: var(--mat-sys-primary);
+    }
   }
 
   .step-header {
@@ -103,9 +105,10 @@
     color: var(--mat-sys-on-surface-variant);
     font-weight: bold;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+
+    @include motion.transition-base(background-color, color);
     @include shape.circle;
-    
+
     @media (max-width: app-vars.$breakpoint-tablet) {
       width: 1.5rem;
       height: 1.5rem;
@@ -118,7 +121,9 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--mat-sys-on-surface);
-    
+
+    @include motion.transition-base(color);
+
     @media (max-width: app-vars.$breakpoint-tablet) {
       font-size: 1rem;
     }
@@ -146,9 +151,10 @@
     background: transparent;
     border-radius: 10px;
     overflow: hidden;
-    
+
     @media (max-width: app-vars.$breakpoint-tablet) {
-      left: 10px; right: 10px;
+      left: 10px;
+      right: 10px;
     }
   }
 
@@ -162,19 +168,19 @@
 // --- Display Window (Right Side) ---
 .display-window {
   position: relative;
-  aspect-ratio: 16/9; 
-  min-height: 400px; 
+  aspect-ratio: 16/9;
+  min-height: 400px;
   width: 100%;
-  
+
   border: 1px solid var(--mat-sys-outline-variant);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  font-size: 16px; 
+  font-size: 16px;
 
   @include shape.rounded-card;
 
   @media (max-width: app-vars.$breakpoint-tablet) {
-    min-height: 250px; 
+    min-height: 250px;
     aspect-ratio: 4/3;
   }
 
@@ -188,7 +194,7 @@
     width: 60%;
     height: 60%;
     background: var(--mat-sys-primary);
-    filter: blur(120px); 
+    filter: blur(120px);
     opacity: 0.15;
     z-index: 0;
   }
@@ -196,19 +202,18 @@
 
 .slide-content {
   position: absolute;
-  inset: 0; 
+  inset: 0;
   padding: 0;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
 
   opacity: 0;
-  transform: scale(0.95); 
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(0.95);
   z-index: 1;
+
+  @include motion.transition-base(opacity, transform);
 
   &.active {
     opacity: 1;
@@ -220,13 +225,13 @@
 .mock-ui {
   width: 100%;
   height: 100%;
-  padding: 3rem; 
-  
+  padding: 3rem;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1.5rem;
-  
+
   position: relative;
   box-sizing: border-box;
 
@@ -236,7 +241,7 @@
     right: 30px;
     left: auto;
     transform: none;
-    
+
     color: var(--mat-sys-on-surface-variant);
     font-size: 0.75rem;
     font-weight: 700;
@@ -251,7 +256,7 @@
 // 1. Sidebar Mock
 .sidebar-mock {
   background: var(--mat-sys-surface);
-  
+
   .mock-group {
     display: flex;
     flex-direction: column;
@@ -266,16 +271,16 @@
     background: var(--mat-sys-surface-container-highest);
     border-radius: 4px;
   }
-  
+
   .mock-slider-track {
     width: 100%;
     height: 6px;
     background: var(--mat-sys-surface-container-highest);
     border-radius: 10px;
     position: relative;
-    
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 60%;
       top: 50%;
@@ -284,7 +289,7 @@
       height: 16px;
       background: var(--mat-sys-primary);
       border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
   }
 }
@@ -299,17 +304,21 @@
     padding: 24px;
     background: var(--mat-sys-surface-container);
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     gap: 16px;
-    transform: scale(1.2); 
+    transform: scale(1.2);
   }
 
   .mock-img {
     width: 100%;
     height: 140px;
-    background: linear-gradient(135deg, var(--mat-sys-tertiary), var(--mat-sys-secondary));
+    background: linear-gradient(
+      135deg,
+      var(--mat-sys-tertiary),
+      var(--mat-sys-secondary)
+    );
     border-radius: 12px;
   }
 
@@ -317,16 +326,22 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    
+
     span {
       height: 10px;
       background: var(--mat-sys-on-surface);
       opacity: 0.1;
       border-radius: 4px;
-      
-      &:nth-child(1) { width: 100%; }
-      &:nth-child(2) { width: 80%; }
-      &:nth-child(3) { width: 60%; }
+
+      &:nth-child(1) {
+        width: 100%;
+      }
+      &:nth-child(2) {
+        width: 80%;
+      }
+      &:nth-child(3) {
+        width: 60%;
+      }
     }
   }
 }
@@ -336,30 +351,38 @@
   padding: 0;
   justify-content: center;
   align-items: center;
-  
+
   .code-window {
     width: 85%;
     background: #181818;
     border: 1px solid #333;
     border-radius: 8px;
     padding: 2rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   }
 
-  font-family: 'Fira Code', 'Consolas', monospace;
-  font-size: clamp(14px, 1.5vw, 20px); 
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: clamp(14px, 1.5vw, 20px);
   line-height: 1.6;
 
   .code-line {
-    color: #d4d4d4; 
-    white-space: pre; 
-    
-    .keyword { color: #569cd6; }      // Blue (const)
-    .property { color: #9cdcfe; }     // Light Blue (classes / vars)
-    .string { color: #ce9178; }       // Orange/Red ('properties')
-    .punctuation { color: #ffd700; }  // Yellow/Gold ({ } ;)
+    color: #d4d4d4;
+    white-space: pre;
+
+    .keyword {
+      color: #569cd6;
+    } // Blue (const)
+    .property {
+      color: #9cdcfe;
+    } // Light Blue (classes / vars)
+    .string {
+      color: #ce9178;
+    } // Orange/Red ('properties')
+    .punctuation {
+      color: #ffd700;
+    } // Yellow/Gold ({ } ;)
   }
-  
+
   .indent {
     padding-left: 2ch;
   }
@@ -369,27 +392,29 @@
 
 // 1. Navigation Tabs
 .step-tab {
-  @include motion.reduced-motion-reset;
+  .step-number {
+    @include motion.reduced-motion-reset;
+  }
+
+  h3 {
+    @include motion.reduced-motion-reset;
+  }
 
   :host-context(.reduced-motion) & {
-    .progress-track {
-      display: none;
-    }
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    .progress-track {
-      display: none;
+    @media (prefers-reduced-motion: reduce) {
+      .progress-track {
+        display: none;
+      }
     }
   }
 }
 
-// Slide Transition 
+// Slide Transition
 .slide-content {
   :host-context(.reduced-motion) & {
-    transition: none !important;
     transform: none !important;
     opacity: 0;
+    @include motion.reduced-motion-reset;
 
     &.active {
       opacity: 1;
@@ -397,16 +422,17 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    transition: none !important;
     transform: none !important;
-    
-    &.active { opacity: 1; }
+    @include motion.reduced-motion-reset;
+
+    &.active {
+      opacity: 1;
+    }
   }
 }
 
 .display-window::before {
   :host-context(.reduced-motion) & {
-    animation: none;
-    transition: none;
+    @include motion.reduced-motion-reset;
   }
 }

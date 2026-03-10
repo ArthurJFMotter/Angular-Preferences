@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "motion" as motion;
 
 .snackbar-container {
   // --- BASE STYLES ---
@@ -18,8 +19,6 @@
 
   box-shadow: var(--mat-sys-elevation-level3);
 
-  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-
   // --- DEFAULT (Info / Fallback) ---
   --sb-bg-color: var(--mat-sys-inverse-surface);
   --sb-text-color: var(--mat-sys-inverse-on-surface);
@@ -27,6 +26,9 @@
 
   background-color: var(--sb-bg-color);
   color: var(--sb-text-color);
+
+  transition: all motion.$duration-short motion.$ease-standard;
+  @include motion.reduced-motion-reset;
 
   .icon-area mat-icon {
     color: inherit;
