@@ -1,4 +1,4 @@
-@use "motion" as motion; 
+@use "motion" as motion;
 
 /* Button Shape Overrides */
 :root {
@@ -32,8 +32,17 @@
   border-radius: var(--custom-button-radius) !important;
 }
 
-// Global Material Overrides 
+// Global Material Overrides
 .mat-mdc-card,
 .mat-mdc-button-base {
   transition: border-radius motion.$duration-long motion.$ease-shape !important;
+
+  // --- OVERRIDES FOR REDUCED MOTION ---
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+  }
+
+  html.reduced-motion & {
+    transition: none !important;
+  }
 }

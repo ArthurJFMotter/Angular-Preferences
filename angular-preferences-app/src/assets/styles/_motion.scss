@@ -73,6 +73,26 @@ $duration-long: 400ms;
   @include reduced-motion-reset;
 }
 
+// Material Ripples
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mat-mdc-button-ripple-color: transparent !important;
+    --mat-mdc-button-persistent-ripple-color: transparent !important;
+  }
+  .mat-ripple-element {
+    display: none !important;
+  }
+}
+
+html.reduced-motion {
+  --mat-mdc-button-ripple-color: transparent !important;
+  --mat-mdc-button-persistent-ripple-color: transparent !important;
+  
+  .mat-ripple-element {
+    display: none !important;
+  }
+}
+
 // Hover Lift
 @mixin hover-lift($y-offset: -5px) {
   transition: transform $duration-medium $ease-standard;
