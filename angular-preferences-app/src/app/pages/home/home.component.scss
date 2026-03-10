@@ -10,8 +10,6 @@
 }
 
 .hero-section {
-  min-height: 60vh;
-
   @include layout.responsive-2-col-grid;
 
   @media (max-width: app-vars.$breakpoint-mobile) {
