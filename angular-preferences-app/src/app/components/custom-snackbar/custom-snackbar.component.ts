@@ -6,29 +6,34 @@ import {
   MAT_SNACK_BAR_DATA,
   MatSnackBarRef,
 } from '@angular/material/snack-bar';
-import { SnackbarData } from '../../models/snackbar.model'; 
-import { ThemeService } from '../../services/theme.service'; 
+import { SnackbarData } from '../../models/snackbar.model';
+import { SnackbarActionComponent } from './components/snackbar-action/snackbar-action.component';
 
 @Component({
   selector: 'app-custom-snackbar',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    SnackbarActionComponent,
+  ],
   templateUrl: './custom-snackbar.component.html',
   styleUrls: ['./custom-snackbar.component.scss'],
 })
 export class CustomSnackbarComponent {
   public snackBarRef = inject(MatSnackBarRef);
-  public themeService = inject(ThemeService);
   public data = inject<SnackbarData>(MAT_SNACK_BAR_DATA);
 
   getIcon(): string {
-    if (this.data.icon) return this.data.icon;
-    switch (this.data.type) {
-      case 'success': return 'check_circle';
-      case 'error':   return 'error';
-      case 'warning': return 'warning';
-      case 'info':    return 'info';
-      default:        return 'info';
-    }
+    return this.data.icon || 'info';
+  }
+
+  handleAction(): void {
+    this.snackBarRef.dismissWithAction();
+  }
+
+  handleDismiss(): void {
+    this.snackBarRef.dismiss();
   }
 }

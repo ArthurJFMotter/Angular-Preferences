@@ -1,0 +1,9 @@
+@if (action) {
+  <button mat-button (click)="onActionClick()">
+    {{ action }}
+  </button>
+} @else {
+  <button mat-icon-button (click)="onDismiss()" aria-label="Close notification">
+    <mat-icon>close</mat-icon>
+  </button>
+}

@@ -34,8 +34,8 @@ export class ThemeService {
   // Visual State
   activeColorFilter = signal<DaltonicFilterType>('none');
   currentTheme = signal<Theme>(this.themes[0]);
-  themeMode = signal<ThemeMode>('auto'); // 'light' | 'dark' | 'auto'
-  contrastMode = signal<ContrastMode>('auto'); // 'normal' | 'high' | 'auto'
+  themeMode = signal<ThemeMode>('auto');
+  contrastMode = signal<ContrastMode>('auto');
 
   // Effective State
   isDarkMode = signal<boolean>(false);
@@ -54,6 +54,18 @@ export class ThemeService {
   }
   getDaltonicFilters() {
     return this.daltonicFilters;
+  }
+
+  getDefaultPlacement(): NotificationPlacement {
+    return this.notificationPlacement() ?? 'bottom-center';
+  }
+  
+  shouldUseLegacyNotifications(): boolean {
+    return this.useLegacyNotifications();
+  }
+  
+  shouldForceHighContrast(): boolean {
+    return this.forceHighContrastNotifications();
   }
 
   // --- ACTIONS ---

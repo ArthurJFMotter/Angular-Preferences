@@ -1,6 +1,5 @@
 import { NotificationPlacement } from './preferences.model';
-
-export type SnackbarType = 'success' | 'error' | 'warning' | 'info';
+import { SnackbarType } from '../providers/snackbar.provider';
 
 export interface SnackbarData {
   message: string;
@@ -8,4 +7,29 @@ export interface SnackbarData {
   action?: string;
   icon?: string;
   placement?: NotificationPlacement;
+  useLegacyStyle?: boolean;
+  forceHighContrast?: boolean;
 }
+
+export interface SnackbarConfig {
+  message: string;
+  type?: SnackbarType;
+  action?: string;
+  duration?: number;
+  icon?: string;
+  placement?: NotificationPlacement;
+  useLegacyStyle?: boolean;
+  forceHighContrast?: boolean;
+}
+
+// Helper type for merged config with all required fields
+export type RequiredSnackbarConfig = {
+  message: string;
+  type: SnackbarType;
+  action?: string;
+  duration: number;
+  icon: string;
+  placement: NotificationPlacement;
+  useLegacyStyle: boolean;
+  forceHighContrast: boolean;
+};

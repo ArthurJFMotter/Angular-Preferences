@@ -3,12 +3,22 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideSnackbarConfig } from './providers/snackbar.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimations(),
-    provideAnimationsAsync()
-  ]
+    provideAnimationsAsync(),
+    provideSnackbarConfig({
+      defaultDuration: 5000,
+      errorDuration: 8000,
+      defaultPlacement: 'top-center',
+      icons: {
+        success: 'done',
+        error: 'cancel',
+      },
+    }),
+  ],
 };

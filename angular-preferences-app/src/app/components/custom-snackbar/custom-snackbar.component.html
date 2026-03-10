@@ -1,8 +1,8 @@
 <div
   class="snackbar-container"
   [ngClass]="data.type"
-  [class.legacy-style]="themeService.useLegacyNotifications()"
-  [class.force-hc-style]="themeService.forceHighContrastNotifications()"
+  [class.legacy-style]="data.useLegacyStyle"
+  [class.force-hc-style]="data.forceHighContrast"
 >
   <div class="icon-area">
     <mat-icon>{{ getIcon() }}</mat-icon>
@@ -13,14 +13,12 @@
   </div>
 
   <div class="action-area">
-    @if (data.action) {
-      <button mat-button (click)="snackBarRef.dismissWithAction()">
-        {{ data.action }}
-      </button>
-    } @else {
-      <button mat-icon-button (click)="snackBarRef.dismiss()" aria-label="Close notification">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
+    <app-snackbar-action
+      [action]="data.action"
+      [forceHighContrast]="data.forceHighContrast || false"
+      (actionClick)="handleAction()"
+      (dismiss)="handleDismiss()"
+    >
+    </app-snackbar-action>
   </div>
 </div>

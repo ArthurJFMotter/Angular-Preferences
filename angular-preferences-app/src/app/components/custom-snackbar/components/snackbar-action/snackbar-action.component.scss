@@ -1,0 +1,60 @@
+:host {
+  display: contents;
+}
+
+button {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  &[mat-button], &[mat-icon-button] {
+    --mat-text-button-state-layer-color: currentColor;
+    --mat-text-button-ripple-color: currentColor;
+  }
+}
+
+button:not(.force-hc) {
+  color: inherit;
+  
+  &:hover {
+    background-color: color-mix(in srgb, currentColor, transparent 92%);
+  }
+}
+
+button.force-hc {
+  border: 1px solid currentColor !important;
+  background: transparent;
+  text-decoration: underline;
+  color: inherit !important;
+
+  &:hover, &:focus {
+    background: currentColor !important;
+    color: #000000 !important;
+    outline: 2px solid currentColor;
+
+    mat-icon {
+      color: #000000 !important;
+      fill: #000000 !important;
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  button {
+    border: 1px solid ButtonText !important;
+    
+    &.force-hc {
+      border: 1px solid ButtonText !important;
+      
+      &:hover, &:focus {
+        background: ButtonText !important;
+        color: ButtonFace !important;
+        outline: 2px solid ButtonText;
+        
+        mat-icon {
+          color: ButtonFace !important;
+        }
+      }
+    }
+  }
+}

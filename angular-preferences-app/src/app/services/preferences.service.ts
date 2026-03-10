@@ -170,7 +170,7 @@ export class PreferencesService {
     this.savePreferences();
   }
 
-  // --- Legacy Boolean Toggles (Optional Wrapper) ---
+  // --- Legacy Boolean Toggles ---
   public toggleDarkMode(): void {
     const current = this.themeMode();
     if (current === 'light') this.setThemeMode('dark');
