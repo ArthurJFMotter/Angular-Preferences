@@ -141,27 +141,30 @@
     }
   }
 
-  // Progress Bar
+  // --- Progress Bar ---
   .progress-track {
     position: absolute;
     bottom: 0;
     left: 1.5rem;
     right: 1.5rem;
-    height: 3px;
-    background: transparent;
-    border-radius: 10px;
+    height: 4px; 
     overflow: hidden;
+
+    border-radius: var(--app-border-radius);
+    @include shape.shape-transition;
 
     @media (max-width: app-vars.$breakpoint-tablet) {
       left: 10px;
       right: 10px;
     }
-  }
 
-  .progress-fill {
-    height: 100%;
-    background: var(--mat-sys-primary);
-    transition: width 0.05s linear;
+    mat-progress-bar {
+      height: 100%;
+      --mdc-linear-progress-track-color: transparent; 
+      
+      border-radius: var(--app-border-radius);
+      @include shape.shape-transition;
+    }
   }
 }
 

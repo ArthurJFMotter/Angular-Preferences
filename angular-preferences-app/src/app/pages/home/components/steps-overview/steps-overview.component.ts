@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../../../../services/theme.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 interface Step {
   id: number;
@@ -20,7 +21,7 @@ interface Step {
 @Component({
   selector: 'app-steps-overview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressBarModule],
   templateUrl: './steps-overview.component.html',
   styleUrls: ['./steps-overview.component.scss'],
 })
