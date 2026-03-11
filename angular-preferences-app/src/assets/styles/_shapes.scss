@@ -1,29 +1,24 @@
-$raw: var(--app-border-radius);
+@use "motion" as motion;
 
-// --- 1. Smart Mixins ---
-
-// CARD
+// --- Smart Mixins ---
 @mixin rounded-card {
-  border-radius: min($raw, 28px) !important;
+  border-radius: var(--app-shape-card) !important;
 }
 
-// BUTTON
 @mixin rounded-button {
-  border-radius: clamp(4px, $raw, 999px) !important;
+  border-radius: var(--app-shape-button) !important;
 }
 
-// BADGES
 @mixin rounded-badge {
-  border-radius: clamp(8px, $raw, 999px) !important;
+  border-radius: var(--app-shape-badge) !important;
   display: inline-block;
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-// CHIPS
 @mixin rounded-chips {
-  border-radius: clamp(8px, $raw, 999px) !important;
+  border-radius: var(--app-shape-badge) !important;
   display: flex;
   align-items: center;
   padding: 0.5rem 0.75rem;
@@ -31,12 +26,16 @@ $raw: var(--app-border-radius);
   white-space: nowrap;
 }
 
-// INPUT/GROUP
 @mixin rounded-input {
-  border-radius: min($raw, 24px) !important;
+  border-radius: var(--app-shape-input) !important;
 }
 
-// --- 2. Helper for Circles ---
 @mixin circle {
   border-radius: 50% !important;
+}
+
+// --- Global Shape Transition Helper ---
+@mixin shape-transition {
+  transition: border-radius motion.$duration-long motion.$ease-shape !important;
+  @include motion.reduced-motion-reset('component');
 }

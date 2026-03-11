@@ -1,38 +1,29 @@
 @use "motion" as motion;
 
-/* Button Shape Overrides */
 :root {
-  --custom-button-radius: clamp(4px, var(--app-border-radius), 28px);
-
-  /* 1. Standard Buttons (Text, Raised, Stroked, Flat) */
-  --mdc-filled-button-container-shape: var(--custom-button-radius);
-  --mdc-outlined-button-container-shape: var(--custom-button-radius);
-  --mdc-text-button-container-shape: var(--custom-button-radius);
-  --mdc-protected-button-container-shape: var(--custom-button-radius);
-  --mdc-filled-tonal-button-container-shape: var(--custom-button-radius);
-
-  /* 2. Floating Action Buttons (FABs) */
-  --mdc-fab-container-shape: var(--custom-button-radius);
-  --mdc-fab-small-container-shape: var(--custom-button-radius);
-  --mdc-fab-large-container-shape: var(--custom-button-radius);
-  --mdc-extended-fab-container-shape: var(--custom-button-radius);
-
-  /* 3. Chip Buttons (Optional, but often related) */
-  --mdc-chip-container-shape: var(--custom-button-radius);
+  --mdc-filled-button-container-shape: var(--app-shape-button);
+  --mdc-outlined-button-container-shape: var(--app-shape-button);
+  --mdc-text-button-container-shape: var(--app-shape-button);
+  --mdc-protected-button-container-shape: var(--app-shape-button);
+  --mdc-filled-tonal-button-container-shape: var(--app-shape-button);
+  
+  --mdc-fab-container-shape: var(--app-shape-button);
+  --mdc-fab-small-container-shape: var(--app-shape-button);
+  --mdc-fab-large-container-shape: var(--app-shape-button);
+  --mdc-extended-fab-container-shape: var(--app-shape-button);
+  
+  --mdc-chip-container-shape: var(--app-shape-badge);
 }
 
-/* 4. Icon Buttons */
 .mat-mdc-icon-button {
-  border-radius: var(--custom-button-radius) !important;
+  border-radius: var(--app-shape-button) !important;
 }
 
-/* Ensure the internal touch/ripple target matches the new shape */
 .mat-mdc-icon-button .mat-mdc-button-persistent-ripple,
 .mat-mdc-icon-button .mat-mdc-button-ripple {
-  border-radius: var(--custom-button-radius) !important;
+  border-radius: var(--app-shape-button) !important;
 }
 
-// Global Button Overrides
 .mat-mdc-button-base {
   transition: border-radius motion.$duration-long motion.$ease-shape !important;
   @include motion.reduced-motion-reset('global');
