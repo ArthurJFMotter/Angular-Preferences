@@ -32,10 +32,8 @@
   border-radius: var(--custom-button-radius) !important;
 }
 
-// Global Material Overrides
-.mat-mdc-card,
+// Global Button Overrides
 .mat-mdc-button-base {
   transition: border-radius motion.$duration-long motion.$ease-shape !important;
-
   @include motion.reduced-motion-reset('global');
 }

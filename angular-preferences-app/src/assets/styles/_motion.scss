@@ -17,27 +17,27 @@ $duration-long: 400ms;
 
 // --- Unified Reduced Motion Reset ---
 @mixin reduced-motion-reset($context: 'component') {
-  
   // OS-Level
   @media (prefers-reduced-motion: reduce) {
     @include _motion-kill-switch;
+    @content;
   }
 
   // App-Level
   @if $context == 'component' {
-    // For Angular Components
     :host-context(.reduced-motion) & {
       @include _motion-kill-switch;
+      @content; 
     }
   } @else if $context == 'global' {
-    // For global children
     html.reduced-motion & {
       @include _motion-kill-switch;
+      @content; 
     }
   } @else if $context == 'self' {
-    // For html tags
     &.reduced-motion {
       @include _motion-kill-switch;
+      @content; 
     }
   }
 }
@@ -92,26 +92,6 @@ $duration-long: 400ms;
   @include reduced-motion-reset;
 }
 
-// Material Ripples
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --mat-mdc-button-ripple-color: transparent !important;
-    --mat-mdc-button-persistent-ripple-color: transparent !important;
-  }
-  .mat-ripple-element {
-    display: none !important;
-  }
-}
-
-html.reduced-motion {
-  --mat-mdc-button-ripple-color: transparent !important;
-  --mat-mdc-button-persistent-ripple-color: transparent !important;
-  
-  .mat-ripple-element {
-    display: none !important;
-  }
-}
-
 // Hover Lift
 @mixin hover-lift($y-offset: -5px) {
   transition: transform $duration-medium $ease-standard;
@@ -163,7 +143,6 @@ html.reduced-motion {
     transition-delay: $delay;
   }
 
-  // Show on hover
   @media (prefers-reduced-motion: no-preference) and (hover: hover) {
     &:hover #{$hint-selector} {
       opacity: 1;
@@ -171,20 +150,10 @@ html.reduced-motion {
     }
   }
 
-  // Always show when reduced motion is enabled
-  @media (prefers-reduced-motion: reduce) {
+  @include reduced-motion-reset('component') {
     #{$hint-selector} {
       opacity: 1;
       visibility: visible;
-      transition: none !important;
-    }
-  }
-
-  :host-context(.reduced-motion) & {
-    #{$hint-selector} {
-      opacity: 1;
-      visibility: visible;
-      transition: none !important;
     }
   }
 }
@@ -199,7 +168,6 @@ html.reduced-motion {
     transform-origin: top left;
   }
 
-  // Show on hover with smooth animation
   @media (prefers-reduced-motion: no-preference) and (hover: hover) {
     &:hover #{$hint-selector} {
       opacity: 1;
@@ -207,20 +175,10 @@ html.reduced-motion {
     }
   }
 
-  // Always show when reduced motion is enabled
-  @media (prefers-reduced-motion: reduce) {
+  @include reduced-motion-reset('component') {
     #{$hint-selector} {
       opacity: 1;
       transform: none;
-      transition: none !important;
-    }
-  }
-
-  :host-context(.reduced-motion) & {
-    #{$hint-selector} {
-      opacity: 1;
-      transform: none;
-      transition: none !important;
     }
   }
 }

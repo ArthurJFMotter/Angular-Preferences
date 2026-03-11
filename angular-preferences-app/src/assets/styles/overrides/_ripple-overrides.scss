@@ -1,0 +1,25 @@
+// --- MATERIAL RIPPLE OVERRIDES ---
+// Handles the ripple effect on buttons, tabs, list items, menus, etc.
+
+// 1. Define the kill-switch behavior
+@mixin disable-ripples {
+  :root {
+    --mat-mdc-button-ripple-color: transparent !important;
+    --mat-mdc-button-persistent-ripple-color: transparent !important;
+  }
+  .mat-ripple-element {
+    display: none !important;
+  }
+}
+
+// 2. Apply the kill-switch for Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  @include disable-ripples;
+}
+
+html.reduced-motion {
+  @include disable-ripples;
+}
+
+// NOTE: If you ever want to change the default ripple color or opacity 
+// for normal users, you can also add those standard overrides in this file!
