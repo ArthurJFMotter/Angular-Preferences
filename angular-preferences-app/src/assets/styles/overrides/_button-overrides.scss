@@ -37,12 +37,5 @@
 .mat-mdc-button-base {
   transition: border-radius motion.$duration-long motion.$ease-shape !important;
 
-  // --- OVERRIDES FOR REDUCED MOTION ---
-  @media (prefers-reduced-motion: reduce) {
-    transition: none !important;
-  }
-
-  html.reduced-motion & {
-    transition: none !important;
-  }
+  @include motion.reduced-motion-reset('global');
 }

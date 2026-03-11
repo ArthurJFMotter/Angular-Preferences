@@ -1,0 +1,62 @@
+@use "../motion" as motion;
+
+:root {
+  --custom-form-radius: clamp(2px, var(--app-border-radius), 28px);
+
+  /* 1. Form Fields (Outlined Inputs & Selects) */
+  --mdc-outlined-text-field-container-shape: var(--custom-form-radius);
+
+  /* 2. Form Fields (Filled Inputs - Usually only top corners are rounded) */
+  --mdc-filled-text-field-container-shape: var(--custom-form-radius) var(--custom-form-radius) 0 0;
+
+  /* 3. Menus & Dropdown Panels */
+  --mat-menu-container-shape: var(--custom-form-radius);
+}
+
+/* 4. Button Toggles (Targeted via CSS because MDC tokens vary for this) */
+.mat-button-toggle-group {
+  border-radius: var(--custom-form-radius) !important;
+}
+
+// --- GLOBAL SHAPE TRANSITIONS ---
+.mat-button-toggle-group,
+.mdc-text-field,
+.mat-mdc-menu-panel,
+.mat-mdc-select-panel {
+  transition: border-radius motion.$duration-long motion.$ease-shape !important;
+
+  @include motion.reduced-motion-reset('global');
+}
+
+// --- INTERNAL COMPONENT ANIMATIONS (Reduced Motion) ---
+@mixin form-components-reduced-motion {
+  // Button Toggles
+  .mat-button-toggle-button,
+  .mat-button-toggle-label-content,
+  .mat-button-toggle-checked::before,
+  .mat-button-toggle-focus-overlay,
+  
+  // Form Fields & Selects
+  .mdc-floating-label,
+  .mdc-line-ripple,
+  .mdc-line-ripple::before,
+  .mdc-notched-outline__notch,
+  .mat-mdc-select-arrow,
+  
+  // Panels & Dialogs
+  .mat-mdc-select-panel,
+  .mat-mdc-menu-panel,
+  .mat-mdc-dialog-container {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+// Apply the micro-interaction kill switch
+@media (prefers-reduced-motion: reduce) {
+  @include form-components-reduced-motion;
+}
+
+html.reduced-motion {
+  @include form-components-reduced-motion;
+}

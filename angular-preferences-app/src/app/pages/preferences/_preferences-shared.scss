@@ -147,19 +147,15 @@
   }
 
   .button-toggle-group {
-    @include shape.rounded-input;
-    border: 1px solid var(--mat-sys-outline-variant);
-    overflow: hidden;
     width: 100%;
 
     mat-button-toggle {
       flex: 1;
       min-width: 80px;
-      border-left: 1px solid var(--mat-sys-outline-variant);
-      border-bottom: none;
-
-      &:first-child { border-left: none; }
-      mat-icon { margin-right: 0.25rem; }
+      
+      mat-icon{
+        margin: 0rem 0.5rem;
+      }
     }
 
     @media (max-width: app-vars.$breakpoint-mobile) {
