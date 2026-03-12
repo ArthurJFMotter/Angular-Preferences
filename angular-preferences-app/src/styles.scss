@@ -1,17 +1,20 @@
-/* 1. Imports */
+/* 1. Main Imports */
 @use "@angular/material" as mat;
 @use "./assets/themes/main-themes/light-themes";
 @use "./assets/themes/main-themes/dark-themes";
 @use "./assets/filters/filters";
 @use "./assets/typography/typography.scss";
-@use "./assets/styles/motion" as motion;
 
-/* 2. Import all the separated style files */
+/* 2. Specific styles Imports */
 @use "./assets/styles/base";
-@use "./assets/styles/variables";
+@use "./assets/styles/motion" as motion;
 @use "./assets/styles/utilities";
+@use "./assets/styles/variables";
+
+/* 3. Override Imports */
 @use "./assets/styles/overrides/button-overrides";
 @use "./assets/styles/overrides/form-overrides";
 @use "./assets/styles/overrides/ripple-overrides";
+@use "./assets/styles/overrides/scroll-overrides";
 @use "./assets/styles/overrides/shape-overrides";
 @use "./assets/styles/overrides/snackbar-overrides";
