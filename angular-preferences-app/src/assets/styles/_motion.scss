@@ -187,8 +187,8 @@ $duration-long: 400ms;
 
 // --- Global View Transitions Kill Switch ---
 
-// Disables page crossfades when reduced motion is requested.
-@mixin view-transitions-reduced-motion {
+// OS-level
+@media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
@@ -196,12 +196,9 @@ $duration-long: 400ms;
   }
 }
 
-// OS-level
-@media (prefers-reduced-motion: reduce) {
-  @include view-transitions-reduced-motion;
-}
-
 // App-level
-html.reduced-motion {
-  @include view-transitions-reduced-motion;
+html.reduced-motion::view-transition-group(*),
+html.reduced-motion::view-transition-old(*),
+html.reduced-motion::view-transition-new(*) {
+  animation: none !important;
 }
