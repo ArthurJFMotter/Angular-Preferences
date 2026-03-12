@@ -1,0 +1,23 @@
+@use "motion" as motion;
+
+:root {
+  --mdc-dialog-container-shape: var(--app-shape-card);
+}
+
+// Target all dialogs and our specific dynamic modal panel
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  transition: border-radius motion.$duration-long motion.$ease-shape !important;
+
+  // --- REDUCED MOTION ---
+  @include motion.reduced-motion-reset('global') {
+    transform: none !important;
+  }
+}
+
+// Backdrop fade kill-switch
+.cdk-overlay-backdrop {
+  @include motion.reduced-motion-reset('global') {
+    transition: none !important;
+    animation: none !important;
+  }
+}

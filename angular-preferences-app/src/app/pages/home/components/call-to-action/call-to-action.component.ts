@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { HomeActionsService } from '../../services/home-actions.service';
+import { ModalService } from '../../../../services/modal.service';
 
 @Component({
   selector: 'app-call-to-action',
@@ -11,5 +11,9 @@ import { HomeActionsService } from '../../services/home-actions.service';
   styleUrls: ['./call-to-action.component.scss'],
 })
 export class CallToActionComponent {
-  public homeActions = inject(HomeActionsService);
+  private modalService = inject(ModalService);
+  
+    openDocs() {
+      this.modalService.openDocumentationModal();
+    }
 }

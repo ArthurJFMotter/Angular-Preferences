@@ -9,22 +9,17 @@
     control over contrast, density, typography and more.
   </p>
 
-  <!-- Using the shared classes here -->
   <div class="shared-action-group hero-action-alignment">
     <button
       mat-flat-button
       color="primary"
       class="cta-button"
-      (click)="homeActions.navigateToSettings()"
-    >
+      
+    > <!-- (click)="homeActions.navigateToSettings()" -->
       <mat-icon>tune</mat-icon>
       Start Customizing
     </button>
-    <button
-      mat-stroked-button
-      class="cta-button"
-      (click)="homeActions.handleDocumentation()"
-    >
+    <button mat-stroked-button class="cta-button" (click)="openDocs()">
       <mat-icon>description</mat-icon>
       Documentation
     </button>
