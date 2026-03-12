@@ -16,7 +16,7 @@ $duration-long: 400ms;
 }
 
 // --- Unified Reduced Motion Reset ---
-@mixin reduced-motion-reset($context: 'component') {
+@mixin reduced-motion-reset($context: "component") {
   // OS-Level
   @media (prefers-reduced-motion: reduce) {
     @include _motion-kill-switch;
@@ -24,20 +24,20 @@ $duration-long: 400ms;
   }
 
   // App-Level
-  @if $context == 'component' {
+  @if $context == "component" {
     :host-context(.reduced-motion) & {
       @include _motion-kill-switch;
-      @content; 
+      @content;
     }
-  } @else if $context == 'global' {
+  } @else if $context == "global" {
     html.reduced-motion & {
       @include _motion-kill-switch;
-      @content; 
+      @content;
     }
-  } @else if $context == 'self' {
+  } @else if $context == "self" {
     &.reduced-motion {
       @include _motion-kill-switch;
-      @content; 
+      @content;
     }
   }
 }
@@ -133,13 +133,14 @@ $duration-long: 400ms;
   @include reduced-motion-reset;
 }
 
-// --- Hint Show on Hover ---
-@mixin hint-on-hover($hint-selector: '.hint', $delay: 0ms) {
+// Hint Show on Hover
+@mixin hint-on-hover($hint-selector: ".hint", $delay: 0ms) {
   #{$hint-selector} {
     opacity: 0;
     visibility: hidden;
-    transition: opacity $duration-short $ease-standard, 
-                visibility $duration-short $ease-standard;
+    transition:
+      opacity $duration-short $ease-standard,
+      visibility $duration-short $ease-standard;
     transition-delay: $delay;
   }
 
@@ -150,7 +151,7 @@ $duration-long: 400ms;
     }
   }
 
-  @include reduced-motion-reset('component') {
+  @include reduced-motion-reset("component") {
     #{$hint-selector} {
       opacity: 1;
       visibility: visible;
@@ -158,13 +159,14 @@ $duration-long: 400ms;
   }
 }
 
-// --- Hint Show + transform on Hover ---
-@mixin hint-on-hover-transform($hint-selector: '.hint') {
+// Hint Show + transform on Hover
+@mixin hint-on-hover-transform($hint-selector: ".hint") {
   #{$hint-selector} {
     opacity: 0;
     transform: scale(0.95) translateY(-2px);
-    transition: opacity $duration-short $ease-standard,
-                transform $duration-short $ease-standard;
+    transition:
+      opacity $duration-short $ease-standard,
+      transform $duration-short $ease-standard;
     transform-origin: top left;
   }
 
@@ -175,10 +177,31 @@ $duration-long: 400ms;
     }
   }
 
-  @include reduced-motion-reset('component') {
+  @include reduced-motion-reset("component") {
     #{$hint-selector} {
       opacity: 1;
       transform: none;
     }
   }
+}
+
+// --- Global View Transitions Kill Switch ---
+
+// Disables page crossfades when reduced motion is requested.
+@mixin view-transitions-reduced-motion {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+// OS-level
+@media (prefers-reduced-motion: reduce) {
+  @include view-transitions-reduced-motion;
+}
+
+// App-level
+html.reduced-motion {
+  @include view-transitions-reduced-motion;
 }

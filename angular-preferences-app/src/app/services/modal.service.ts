@@ -34,4 +34,20 @@ export class ModalService {
       ]
     });
   }
+
+  openLicenseModal() {
+    return this.openModal({
+      title: 'MIT License',
+      icon: 'gavel',
+      message: 'Copyright (c) 2026. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files...',
+      actions:[
+        {
+          label: 'I Understand',
+          color: 'primary',
+          isPrimary: true,
+          action: () => console.log('License accepted')
+        }
+      ]
+    });
+  }
 }

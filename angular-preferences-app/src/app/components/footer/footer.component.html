@@ -1,13 +1,32 @@
 <footer class="app-footer">
   <div class="footer-content">
+    
     <div class="footer-brand">
       <span>Angular Prefs</span>
       <small>Built with Material 3</small>
     </div>
+    
     <div class="footer-links">
-      <a href="https://github.com" target="_blank">GitHub</a>
-      <a href="https://material.angular.io" target="_blank">Angular Material</a>
-      <a href="#">License</a>
+      <!-- External Routing -->
+      <a tabindex="0" 
+         (click)="openExternalLink('https://github.com')" 
+         (keydown.enter)="openExternalLink('https://github.com')">
+         GitHub
+      </a>
+      
+      <a tabindex="0" 
+         (click)="openExternalLink('https://material.angular.io')" 
+         (keydown.enter)="openExternalLink('https://material.angular.io')">
+         Angular Material
+      </a>
+      
+      <!-- Modal -->
+      <a tabindex="0" 
+         (click)="openLicense()" 
+         (keydown.enter)="openLicense()">
+         License
+      </a>
     </div>
+
   </div>
 </footer>
