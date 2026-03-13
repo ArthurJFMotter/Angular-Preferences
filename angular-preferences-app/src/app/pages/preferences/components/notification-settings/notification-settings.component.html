@@ -24,9 +24,9 @@
 
     <!-- Personalization Styles -->
     <div class="control-group">
-      <label class="group-label">Personalization</label>
+      <span id="checkbox-label" class="group-label">Personalization</span>
       <!-- Legacy -->
-      <div class="checkbox-group">
+      <div aria-labelledby="checkbox-label" class="checkbox-group">
         <mat-checkbox
           color="primary"
           [checked]="themeService.useLegacyNotifications()"
@@ -36,7 +36,7 @@
         </mat-checkbox>
         <p class="hint">Uses traditional status colors (Green, yellow, Red).</p>
       </div>
-      <div class="checkbox-group">
+      <div aria-labelledby="checkbox-label" class="checkbox-group">
         <!-- Force High Contrast -->
         <mat-checkbox
           color="primary"

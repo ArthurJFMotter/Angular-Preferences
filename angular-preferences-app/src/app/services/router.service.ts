@@ -21,7 +21,7 @@ export class RouterService {
 
   private initRouterListeners() {
     this.router.events.subscribe(event => {
-      // 1. Loading State (Useful for global progress bars)
+      // Loading State
       if (event instanceof NavigationStart) {
         this.isNavigating.set(true);
       }
@@ -30,7 +30,7 @@ export class RouterService {
         this.isNavigating.set(false);
       }
 
-      // 2. Route Tracking
+      // Route Tracking
       if (event instanceof NavigationEnd) {
         this.isNavigating.set(false);
         this.previousUrl.set(this.currentUrl());
@@ -56,7 +56,7 @@ export class RouterService {
     }
   }
 
-  /** Manual scroll control (if you need to force a reset) */
+  /** Manual scroll controls */
   public scrollToTop(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
   }

@@ -5,17 +5,15 @@
 >
   <!-- Theme Color -->
   <div class="control-group">
-    <label class="group-label">Theme Color</label>
-    <div class="swatch-grid" role="radiogroup" aria-label="Theme Color">
+    <span id="color-label" class="group-label">Theme Color</span>
+    <div class="swatch-grid" role="radiogroup" aria-labelledby="color-label">
       @for (theme of themeService.getThemes(); track theme.id) {
         <button
           type="button"
           class="color-swatch"
           role="radio"
-          [attr.aria-checked]="themeService.currentTheme().id === theme.id"
-          [attr.aria-label]="theme.displayName"
-          [style.background-color]="theme.primary"
-          [class.active]="themeService.currentTheme().id === theme.id"
+          [attr.aria-checked]="themeService.currentTheme().id === theme.id"[attr.aria-label]="theme.displayName"
+          [style.background-color]="theme.primary"[class.active]="themeService.currentTheme().id === theme.id"
           (click)="preferencesService.setTheme(theme.id)"
           [matTooltip]="theme.displayName"
         >
@@ -29,7 +27,7 @@
 
   <!-- Theme Mode -->
   <div class="control-group">
-    <label id="mode-label" class="group-label">Theme Mode</label>
+    <span id="mode-label" class="group-label">Theme Mode</span>
     <mat-button-toggle-group
       class="button-toggle-group"
       aria-labelledby="mode-label"
@@ -51,7 +49,7 @@
   <!-- Corner Shape -->
   <div class="control-group">
     <div class="label-row">
-      <label id="shape-label" class="group-label">Corner Shape</label>
+      <span id="shape-label" class="group-label">Corner Shape</span>
       <span class="value-badge">{{
         shapeService.activeShape().displayName
       }}</span>

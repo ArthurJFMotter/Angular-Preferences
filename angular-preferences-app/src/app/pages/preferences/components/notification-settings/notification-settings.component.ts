@@ -34,7 +34,6 @@ import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-
 export class NotificationSettingsComponent {
   themeService = inject(ThemeService);
   preferencesService = inject(PreferencesService);
-  private snackbarService = inject(SnackbarService);
 
   // Notification Placement Options
   placementOptions: { value: NotificationPlacement; label: string }[] = [
@@ -45,8 +44,4 @@ export class NotificationSettingsComponent {
     { value: 'bottom-center', label: 'Bottom Center' },
     { value: 'bottom-right', label: 'Bottom Right' },
   ];
-
-  testNotification() {
-    this.snackbarService.info('This is a test notification', 'Dismiss');
-  }
 }
