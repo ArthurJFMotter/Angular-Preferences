@@ -30,7 +30,7 @@ export class PreferencesService {
   private typographyService = inject(TypographyService);
   private shapeService = inject(ShapeService);
 
-  showHelper = signal<boolean>(true); 
+  showFab = signal<boolean>(true); 
   showTooltips = signal<boolean>(true);
 
   // --- PREFERENCE STATE (Tri-State) ---
@@ -94,7 +94,7 @@ export class PreferencesService {
           prefs.activeColorFilter ?? 'none',
         );
 
-        this.showHelper.set(prefs.showHelper ?? true);
+        this.showFab.set(prefs.showFab ?? true);
         this.showTooltips.set(prefs.showTooltips ?? true);
 
         // 2. Load Notifications
@@ -138,7 +138,7 @@ export class PreferencesService {
         contrastMode: this.contrastMode(),
         isReducedMotion: this.themeService.isReducedMotion(),
         activeColorFilter: this.themeService.activeColorFilter(),
-        showHelper: this.showHelper(),
+        showFab: this.showFab(),
         showTooltips: this.showTooltips(),
 
         // Notifications
@@ -213,8 +213,8 @@ export class PreferencesService {
     this.savePreferences();
   }
 
-  public toggleHelper(): void {
-    this.showHelper.update(v => !v);
+  public toggleFab(): void {
+    this.showFab.update(v => !v);
     this.savePreferences();
   }
 
@@ -257,7 +257,7 @@ export class PreferencesService {
     this.themeService.isReducedMotion.set(false);
     this.themeService.activeColorFilter.set('none');
 
-    this.showHelper.set(true);
+    this.showFab.set(true);
     this.showTooltips.set(true);
 
     // Reset Notifications

@@ -6,7 +6,7 @@
   display: block;
 }
 
-// --- 1. Card Container ---
+// --- Card Container ---
 .settings-card {
   background-color: var(--mat-sys-surface-container-low);
   color: var(--mat-sys-on-surface);
@@ -14,11 +14,6 @@
 
   @include shape.rounded-card;
   @include motion.interactive-material-elevation($include-transform: false);
-
-  mat-card-header {
-    display: flex;
-    align-items: center;
-  }
 
   .card-body {
     padding: 1.5rem 1.25rem;
@@ -28,7 +23,7 @@
   }
 }
 
-// --- 2. Header Icons & Title ---
+// --- Header Icons & Title ---
 .header-icon {
   display: flex;
   align-items: center;
@@ -40,18 +35,15 @@
 }
 
 mat-card-title {
-  display: block;
-
-  .title-with-help {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   h2 {
     margin: 0;
     font-size: 1.25rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 2;
   }
 }

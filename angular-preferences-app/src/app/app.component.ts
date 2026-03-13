@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PreferencesService } from './services/preferences.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { PreferencesHelperComponent } from './components/preferences-helper/preferences-helper.component';
+import { PreferencesFabComponent } from './components/preferences-fab/preferences-fab.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -15,7 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
     RouterOutlet,
     FooterComponent,
     NavbarComponent,
-    PreferencesHelperComponent
+    PreferencesFabComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

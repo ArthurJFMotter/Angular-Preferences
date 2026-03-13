@@ -10,7 +10,7 @@ import { PreferencesService } from '../../services/preferences.service';
 import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
-  selector: 'app-preferences-helper',
+  selector: 'app-preferences-fab',
   standalone: true,
   imports: [
     CommonModule, 
@@ -20,10 +20,10 @@ import { SnackbarService } from '../../services/snackbar.service';
     MatTooltipModule,
     MatDividerModule
   ],
-  templateUrl: './preferences-helper.component.html',
-  styleUrls: ['./preferences-helper.component.scss']
+  templateUrl: './preferences-fab.component.html',
+  styleUrls: ['./preferences-fab.component.scss']
 })
-export class PreferencesHelperComponent {
+export class PreferencesFabComponent {
   themeService = inject(ThemeService);
   preferencesService = inject(PreferencesService);
   snackbarService = inject(SnackbarService);

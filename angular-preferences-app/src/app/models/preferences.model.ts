@@ -19,7 +19,7 @@ export interface UserPreferences {
   themeMode: ThemeMode;       
   contrastMode: ContrastMode; 
 
-  showHelper?: boolean;
+  showFab?: boolean;
   showTooltips: boolean;
   
   isReducedMotion: boolean;

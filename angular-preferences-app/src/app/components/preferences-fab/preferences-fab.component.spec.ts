@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowcaseDialogComponent } from './showcase-dialog.component';
+import { PreferencesFabComponent } from './preferences-fab.component';
 
-describe('ShowcaseDialogComponent', () => {
-  let component: ShowcaseDialogComponent;
-  let fixture: ComponentFixture<ShowcaseDialogComponent>;
+describe('PreferencesFabComponent', () => {
+  let component: PreferencesFabComponent;
+  let fixture: ComponentFixture<PreferencesFabComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShowcaseDialogComponent]
+      imports: [PreferencesFabComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ShowcaseDialogComponent);
+    fixture = TestBed.createComponent(PreferencesFabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

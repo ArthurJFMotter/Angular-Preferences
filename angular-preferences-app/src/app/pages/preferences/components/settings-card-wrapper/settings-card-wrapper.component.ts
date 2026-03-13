@@ -13,6 +13,6 @@ import { HelpButtonComponent } from '../../../../components/help-button/help-but
 })
 export class SettingsCardWrapperComponent {
   @Input({ required: true }) icon!: string;
-  @Input({ required: true }) title!: string;
+  @Input({ required: true }) headerTitle!: string;
   @Input({ required: true }) helpMessage!: string;
 }

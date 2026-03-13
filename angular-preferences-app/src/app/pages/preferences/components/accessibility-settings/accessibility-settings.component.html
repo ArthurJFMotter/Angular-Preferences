@@ -1,6 +1,6 @@
 <app-settings-card-wrapper
   icon="accessibility_new"
-  title="Accessibility"
+  headerTitle="Accessibility"
   helpMessage="Tools to improve visibility and usability for users with visual or motor impairments."
 >
   <!-- High Contrast Mode -->
@@ -44,10 +44,10 @@
     <!-- Mini Helper -->
     <mat-slide-toggle
       color="primary"
-      [checked]="preferencesService.showHelper()"
-      (change)="preferencesService.toggleHelper()"
+      [checked]="preferencesService.showFab()"
+      (change)="preferencesService.toggleFab()"
     >
-      Floating Helper
+      Enable FAB
     </mat-slide-toggle>
 
     <!-- Help tooltip-->

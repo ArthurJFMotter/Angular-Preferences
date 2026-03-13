@@ -19,16 +19,3 @@
     var(--mat-sys-surface) 100%
   );
 }
-
-// --- Assistive Title Helper ---
-.title-with-help {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-
-  h2 {
-    margin: 0;
-    cursor: help;
-  }
-}
