@@ -1,0 +1,57 @@
+<div class="sticky-wrapper">
+  <h2 class="preview-label">Live Preview</h2>
+
+  <!-- Preview Card -->
+  <app-settings-card-wrapper
+    icon="person"
+    headerTitle="Project Dashboard"
+    subtitle="Active user session"
+    class="interactive-preview"
+  >
+    <!-- Card Image -->
+    <div card-image class="image-container">
+      <img
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="Preview Image"
+      />
+    </div>
+
+    <!-- Main Content -->
+    <p class="preview-text">
+      This card reflects your current settings. Notice how the
+      <strong>font</strong>, <strong>spacing</strong>, and
+      <strong>corner roundness</strong> change instantly.
+    </p>
+    
+    <div class="dummy-form">
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        subscriptSizing="dynamic"
+      >
+        <mat-label>Enter comment</mat-label>
+        <input matInput placeholder="Type here..." />
+      </mat-form-field>
+    </div>
+
+    <!-- Actions -->
+    <mat-card-actions align="end">
+      <button mat-button (click)="onPreviewCancel()">Cancel</button>
+      <button mat-flat-button color="primary" (click)="onPreviewSubmit()">
+        Submit
+      </button>
+    </mat-card-actions>
+  </app-settings-card-wrapper>
+
+  <!-- widgets -->
+  <div class="mini-widgets">
+    <button mat-stroked-button class="widget" (click)="onPreviewStatus()">
+      <span>Alerts</span>
+      <mat-icon>warning_amber</mat-icon>
+    </button>
+    <button mat-stroked-button class="widget" (click)="onPreviewAlert()">
+      <span>Errors</span>
+      <mat-icon>error_outline</mat-icon>
+    </button>
+  </div>
+</div>

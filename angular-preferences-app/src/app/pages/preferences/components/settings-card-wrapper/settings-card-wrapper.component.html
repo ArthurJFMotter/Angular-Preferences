@@ -5,12 +5,23 @@
     </div>
     <mat-card-title>
         <h2>{{ headerTitle }}</h2>
-        <app-help-button [message]="helpMessage"></app-help-button>
+        @if (helpMessage) {
+          <app-help-button [message]="helpMessage"></app-help-button>
+        }
     </mat-card-title>
+    @if (subtitle) {
+      <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+    }
   </mat-card-header>
 
+  <!-- Optional slot for full-width card images -->
+  <ng-content select="[card-image]"></ng-content>
+
   <mat-card-content class="card-body">
-    <!-- Content will be projected here -->
+    <!-- Main content will be projected here -->
     <ng-content></ng-content>
   </mat-card-content>
+
+  <!-- Optional slot for actions at the bottom -->
+  <ng-content select="mat-card-actions"></ng-content>
 </mat-card>

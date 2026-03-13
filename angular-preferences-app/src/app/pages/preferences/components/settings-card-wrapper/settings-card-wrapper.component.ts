@@ -7,12 +7,13 @@ import { HelpButtonComponent } from '../../../../components/help-button/help-but
 @Component({
   selector: 'app-settings-card-wrapper',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, HelpButtonComponent],
+  imports:[CommonModule, MatCardModule, MatIconModule, HelpButtonComponent],
   templateUrl: './settings-card-wrapper.component.html',
   styleUrls: ['./settings-card-wrapper.component.scss'],
 })
 export class SettingsCardWrapperComponent {
   @Input({ required: true }) icon!: string;
   @Input({ required: true }) headerTitle!: string;
-  @Input({ required: true }) helpMessage!: string;
+  @Input() subtitle?: string;
+  @Input() helpMessage?: string;
 }

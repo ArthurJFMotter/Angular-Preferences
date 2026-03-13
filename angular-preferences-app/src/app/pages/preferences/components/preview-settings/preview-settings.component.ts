@@ -6,22 +6,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SnackbarService } from '../../../../services/snackbar.service';
+import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
-  selector: 'app-preview-card',
+  selector: 'app-preview-settings',
   standalone: true,
-  imports: [
+  imports:[
     CommonModule, 
     MatCardModule, 
     MatButtonModule, 
     MatIconModule, 
     MatFormFieldModule, 
-    MatInputModule
+    MatInputModule,
+    SettingsCardWrapperComponent
   ],
-  templateUrl: './preview-card.component.html',
-  styleUrls: ['./preview-card.component.scss']
+  templateUrl: './preview-settings.component.html',
+  styleUrls: ['./preview-settings.component.scss']
 })
-export class PreviewCardComponent {
+export class PreviewSettingsComponent {
   private snackbarService = inject(SnackbarService);
 
   onPreviewSubmit() {

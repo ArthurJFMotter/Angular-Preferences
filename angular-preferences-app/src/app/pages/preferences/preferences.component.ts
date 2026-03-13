@@ -7,11 +7,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AppearanceSettingsComponent } from './components/appearance-settings/appearance-settings.component';
 import { TypographySettingsComponent } from './components/typography-settings/typography-settings.component';
 import { AccessibilitySettingsComponent } from './components/accessibility-settings/accessibility-settings.component';
-import { PreviewCardComponent } from './components/preview-card/preview-card.component';
+import { NotificationSettingsComponent } from './components/notification-settings/notification-settings.component';
+import { PreviewSettingsComponent } from './components/preview-settings/preview-settings.component';
 
 import { PreferencesService } from '../../services/preferences.service';
 import { SnackbarService } from '../../services/snackbar.service';
-import { NotificationSettingsComponent } from './components/notification-settings/notification-settings.component';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-preferences',
@@ -24,8 +25,9 @@ import { NotificationSettingsComponent } from './components/notification-setting
     AppearanceSettingsComponent,
     TypographySettingsComponent,
     AccessibilitySettingsComponent,
-    PreviewCardComponent,
-    NotificationSettingsComponent 
+    PreviewSettingsComponent,
+    NotificationSettingsComponent,
+    MatCardModule, MatButtonModule
   ],
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
