@@ -16,14 +16,8 @@
 
 // --- REDUCED MOTION OVERRIDES ---
 .app-notification-panel .mdc-snackbar__surface,
-.app-notification-panel .snackbar-container,
-.app-notification-panel .snackbar-container[class*="transition"],
 .cdk-overlay-pane .mat-mdc-snack-bar-container {
-
   @include motion.reduced-motion-reset('global') {
-    // Angular Material Snackbars use transforms to slide up from the bottom.
-    // Because we used @content in our mixin, we can safely kill the transform 
-    // strictly for the snackbar without breaking the layout of other components!
     transform: none !important;
   }
 }
