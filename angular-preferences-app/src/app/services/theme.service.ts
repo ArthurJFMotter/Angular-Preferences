@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { Theme } from '../models/theme.model';
 import { DaltonicFilter, DaltonicFilterType } from '../models/filter.model';
 import {
@@ -6,12 +6,23 @@ import {
   ThemeMode,
   ContrastMode,
 } from '../models/preferences.model';
+import { SnackbarConfigService } from '../providers/snackbar.provider';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
   // --- STATE ---
+  private snackbarConfig = inject(SnackbarConfigService);
+
+  constructor() {
+    effect(() => {
+      this.snackbarConfig.globalPlacementOverride.set(this.notificationPlacement());
+      this.snackbarConfig.globalLegacyStyleOverride.set(this.useLegacyNotifications());
+      this.snackbarConfig.globalHighContrastOverride.set(this.forceHighContrastNotifications());
+    });
+  }
+  
   private readonly themes: Theme[] = [
     { id: 'blue', primary: '#0047AB', displayName: 'Blue' },
     { id: 'teal', primary: '#006A6A', displayName: 'Teal' },

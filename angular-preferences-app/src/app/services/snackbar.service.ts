@@ -12,7 +12,6 @@ import {
   RequiredSnackbarConfig,
 } from '../models/snackbar.model';
 import { NotificationPlacement } from '../models/preferences.model';
-import { ThemeService } from './theme.service';
 import {
   SnackbarConfigService,
   SnackbarType,
@@ -23,7 +22,6 @@ import {
 })
 export class SnackbarService {
   private snackBar = inject(MatSnackBar);
-  private themeService = inject(ThemeService);
   private configService = inject(SnackbarConfigService);
 
   public show(
@@ -33,7 +31,6 @@ export class SnackbarService {
     duration?: number,
   ): void {
     const finalConfig = this.normalizeConfig(config, type, action, duration);
-
     const mergedConfig = this.mergeWithDefaults(finalConfig);
 
     const data: SnackbarData = {
@@ -68,39 +65,24 @@ export class SnackbarService {
     duration?: number,
   ): SnackbarConfig {
     if (typeof config === 'string') {
-      return {
-        message: config,
-        type: type || 'info',
-        action,
-        duration,
-      };
+      return { message: config, type: type || 'info', action, duration };
     }
     return config;
   }
 
   private mergeWithDefaults(config: SnackbarConfig): RequiredSnackbarConfig {
-    const themePlacement = this.themeService.notificationPlacement();
-    const themeLegacy = this.themeService.useLegacyNotifications();
-    const themeHighContrast =
-      this.themeService.forceHighContrastNotifications();
-
     return {
       message: config.message,
       type: config.type || 'info',
       action: config.action,
       duration: config.duration ?? this.configService.getDuration(config.type),
       icon: config.icon || this.configService.getIcon(config.type || 'info'),
-      placement:
-        config.placement ??
-        themePlacement ??
-        this.configService.getDefaultPlacement(),
+
+      placement: config.placement ?? this.configService.getDefaultPlacement(),
       useLegacyStyle:
-        config.useLegacyStyle ??
-        themeLegacy ??
-        this.configService.shouldUseLegacyStyle(),
+        config.useLegacyStyle ?? this.configService.shouldUseLegacyStyle(),
       forceHighContrast:
         config.forceHighContrast ??
-        themeHighContrast ??
         this.configService.shouldForceHighContrast(),
     };
   }
@@ -110,13 +92,13 @@ export class SnackbarService {
     horizontal: MatSnackBarHorizontalPosition;
   } {
     const parts = placement.split('-');
-    const vert = parts[0] as MatSnackBarVerticalPosition;
-    const horiz = parts[1] as MatSnackBarHorizontalPosition;
-
-    return { vertical: vert, horizontal: horiz };
+    return {
+      vertical: parts[0] as MatSnackBarVerticalPosition,
+      horizontal: parts[1] as MatSnackBarHorizontalPosition,
+    };
   }
 
-  // --- Wrappers for backward compatibility ---
+  // Wrappers
   public success(message: string, action?: string, duration?: number): void {
     this.show({ message, type: 'success', action, duration });
   }
@@ -128,7 +110,7 @@ export class SnackbarService {
   public warning(message: string, action?: string, duration?: number): void {
     this.show({ message, type: 'warning', action, duration });
   }
-
+  
   public info(message: string, action?: string, duration?: number): void {
     this.show({ message, type: 'info', action, duration });
   }

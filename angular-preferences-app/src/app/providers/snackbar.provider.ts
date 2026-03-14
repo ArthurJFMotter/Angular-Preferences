@@ -51,10 +51,15 @@ export function provideSnackbarConfig(
 }
 
 // ============= CONFIG SERVICE =============
-import { Injectable, Inject, Optional } from '@angular/core';
+import { Injectable, Inject, Optional, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SnackbarConfigService {
+  
+  public globalPlacementOverride = signal<NotificationPlacement | null>(null);
+  public globalLegacyStyleOverride = signal<boolean | null>(null);
+  public globalHighContrastOverride = signal<boolean | null>(null);
+
   constructor(
     @Optional()
     @Inject(SNACKBAR_CONFIG)
@@ -66,30 +71,23 @@ export class SnackbarConfigService {
   }
 
   getIcon(type: SnackbarType): string {
-    const config = this.getConfig();
-    return config.icons?.[type] || SNACKBAR_ICONS[type] || 'info';
+    return this.getConfig().icons?.[type] || SNACKBAR_ICONS[type] || 'info';
   }
 
   getDuration(type?: SnackbarType): number {
-    const config = this.getConfig();
-    if (type === 'error') {
-      return config.errorDuration || SNACKBAR_ERROR_DURATION;
-    }
-    return config.defaultDuration || SNACKBAR_DEFAULT_DURATION;
+    if (type === 'error') return this.getConfig().errorDuration || SNACKBAR_ERROR_DURATION;
+    return this.getConfig().defaultDuration || SNACKBAR_DEFAULT_DURATION;
   }
 
   getDefaultPlacement(): NotificationPlacement {
-    const config = this.getConfig();
-    return config.defaultPlacement || 'bottom-center';
+    return this.globalPlacementOverride() ?? this.getConfig().defaultPlacement ?? 'bottom-center';
   }
 
   shouldUseLegacyStyle(): boolean {
-    const config = this.getConfig();
-    return config.defaultUseLegacyStyle || false;
+    return this.globalLegacyStyleOverride() ?? this.getConfig().defaultUseLegacyStyle ?? false;
   }
 
   shouldForceHighContrast(): boolean {
-    const config = this.getConfig();
-    return config.defaultForceHighContrast || false;
+    return this.globalHighContrastOverride() ?? this.getConfig().defaultForceHighContrast ?? false;
   }
 }

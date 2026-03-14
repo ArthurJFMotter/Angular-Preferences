@@ -52,8 +52,9 @@
   .action-area {
     color: var(--sb-action-color);
 
-    .force-hc {
+    app-snackbar-action {
       margin-left: 8px;
+      display: inline-block;
     }
   }
 

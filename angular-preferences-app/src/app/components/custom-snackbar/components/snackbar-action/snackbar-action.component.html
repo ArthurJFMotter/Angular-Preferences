@@ -1,9 +1,9 @@
 @if (action) {
-  <button mat-button (click)="onActionClick()">
+  <button mat-button [class.force-hc]="forceHighContrast" (click)="onActionClick()">
     {{ action }}
   </button>
 } @else {
-  <button mat-icon-button (click)="onDismiss()" aria-label="Close notification">
+  <button mat-icon-button [class.force-hc]="forceHighContrast" (click)="onDismiss()" aria-label="Close notification">
     <mat-icon>close</mat-icon>
   </button>
 }
