@@ -72,7 +72,6 @@ export class LivePreviewComponent {
   });
 
   // --- Actions ---
-
   testNotification(type: 'success' | 'warning' | 'error' | 'info') {
     const placement = this.themeService.notificationPlacement();
     const msg = `This is a ${type.toUpperCase()} alert appearing at ${placement}.`;

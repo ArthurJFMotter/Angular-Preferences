@@ -14,7 +14,7 @@
           role="radio"
           [attr.aria-checked]="themeService.currentTheme().id === theme.id"[attr.aria-label]="theme.displayName"
           [style.background-color]="theme.primary"[class.active]="themeService.currentTheme().id === theme.id"
-          (click)="preferencesService.setTheme(theme.id)"
+          (click)="themeService.setTheme(theme.id)"
           [matTooltip]="theme.displayName"
         >
           @if (themeService.currentTheme().id === theme.id) {

@@ -1,4 +1,11 @@
-import { effect, Injectable, inject, PLATFORM_ID, signal } from '@angular/core';
+import {
+  effect,
+  Injectable,
+  inject,
+  PLATFORM_ID,
+  signal,
+  untracked,
+} from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 // Services
@@ -25,26 +32,33 @@ export class PreferencesService {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
 
-  private densityService = inject(DensityService);
+  // Exposing the domain services so components can use them directly if needed
+  public densityService = inject(DensityService);
   public themeService = inject(ThemeService);
-  private typographyService = inject(TypographyService);
-  private shapeService = inject(ShapeService);
+  public typographyService = inject(TypographyService);
+  public shapeService = inject(ShapeService);
 
-  showFab = signal<boolean>(true); 
+  showFab = signal<boolean>(true);
   showTooltips = signal<boolean>(true);
-
-  // --- PREFERENCE STATE (Tri-State) ---
   themeMode = signal<ThemeMode>('auto');
   contrastMode = signal<ContrastMode>('auto');
 
-  // --- SYSTEM STATE ---
   private systemDarkMode = signal<boolean>(false);
   private systemHighContrast = signal<boolean>(false);
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.initSystemListeners();
-      this.loadPreferences();
+
+      // 1. We load the preferences ONCE silently (without triggering saves)
+      untracked(() => this.loadPreferences());
+
+      // 2. ✨ THE MAGIC AUTO-SAVE EFFECT ✨
+      // Because we read all these signals here, Angular tracks them automatically.
+      // If ANY of these signals change anywhere in the app, this effect fires and saves!
+      effect(() => {
+        this.savePreferences();
+      });
     }
   }
 
@@ -130,187 +144,109 @@ export class PreferencesService {
   }
 
   private savePreferences(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const prefs: UserPreferences = {
-        // Visuals
-        themeId: this.themeService.currentTheme().id,
-        themeMode: this.themeMode(),
-        contrastMode: this.contrastMode(),
-        isReducedMotion: this.themeService.isReducedMotion(),
-        activeColorFilter: this.themeService.activeColorFilter(),
-        showFab: this.showFab(),
-        showTooltips: this.showTooltips(),
+    if (!isPlatformBrowser(this.platformId)) return;
 
-        // Notifications
-        notifications: {
-          useLegacy: this.themeService.useLegacyNotifications(),
-          forceHighContrast: this.themeService.forceHighContrastNotifications(),
-          placement: this.themeService.notificationPlacement(),
-        },
+    const prefs: UserPreferences = {
+      themeId: this.themeService.currentTheme().id,
+      themeMode: this.themeMode(),
+      contrastMode: this.contrastMode(),
+      isReducedMotion: this.themeService.isReducedMotion(),
+      activeColorFilter: this.themeService.activeColorFilter(),
+      showFab: this.showFab(),
+      showTooltips: this.showTooltips(),
+      notifications: {
+        useLegacy: this.themeService.useLegacyNotifications(),
+        forceHighContrast: this.themeService.forceHighContrastNotifications(),
+        placement: this.themeService.notificationPlacement(),
+      },
+      fontId: this.typographyService.activeFont().id,
+      fontSizeId: this.typographyService.activeFontSize().id,
+      densityValue: this.densityService.currentDensity().value,
+      borderRadiusId: this.shapeService.activeShape().id,
+    };
 
-        // Components
-        fontId: this.typographyService.activeFont().id,
-        fontSizeId: this.typographyService.activeFontSize().id,
-        densityValue: this.densityService.currentDensity().value,
-        borderRadiusId: this.shapeService.activeShape().id,
-      };
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
-    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
   }
 
-  // --- Public Actions ---
+    // --- Public Actions ---
   public setThemeMode(mode: ThemeMode): void {
     this.themeMode.set(mode);
-    this.savePreferences();
   }
 
   public setContrastMode(mode: ContrastMode): void {
     this.contrastMode.set(mode);
-    this.savePreferences();
   }
 
-  // --- Legacy Boolean Toggles ---
+  public toggleFab(): void {
+    this.showFab.update((v) => !v);
+  }
+
+  public toggleTooltips() {
+    this.showTooltips.update((v) => !v);
+  }
+
   public toggleDarkMode(): void {
     const current = this.themeMode();
-    if (current === 'light') this.setThemeMode('dark');
-    else if (current === 'dark') this.setThemeMode('auto');
-    else this.setThemeMode('light');
+    this.themeMode.set(
+      current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light',
+    );
   }
 
   public toggleHighContrastMode(): void {
     const current = this.contrastMode();
-    if (current === 'normal') this.setContrastMode('high');
-    else if (current === 'high') this.setContrastMode('auto');
-    else this.setContrastMode('normal');
-  }
-
-  // --- Public Actions ---
-  public toggleLegacyNotifications(): void {
-    const current = this.themeService.useLegacyNotifications();
-    this.themeService.useLegacyNotifications.set(!current);
-    this.savePreferences();
-  }
-
-  public toggleForceHighContrastNotifications(): void {
-    const current = this.themeService.forceHighContrastNotifications();
-    this.themeService.forceHighContrastNotifications.set(!current);
-    this.savePreferences();
-  }
-
-  public setNotificationPlacement(placement: NotificationPlacement): void {
-    this.themeService.setNotificationPlacement(placement);
-    this.savePreferences();
-  }
-
-  public setTheme(themeId: string): void {
-    this.themeService.setTheme(themeId);
-    this.savePreferences();
-  }
-
-  public toggleReducedMotion(): void {
-    this.themeService.toggleReducedMotion();
-    this.savePreferences();
-  }
-
-  public toggleFab(): void {
-    this.showFab.update(v => !v);
-    this.savePreferences();
-  }
-
-  public toggleTooltips() {
-    this.showTooltips.update(v => !v);
-    this.savePreferences();
-  }
-
-  public setColorFilter(filterId: DaltonicFilterType): void {
-    this.themeService.setColorFilter(filterId);
-    this.savePreferences();
-  }
-
-  public setDensity(value: number): void {
-    this.densityService.setDensity(value);
-    this.savePreferences();
-  }
-
-  public setFont(fontId: string): void {
-    this.typographyService.setFont(fontId);
-    this.savePreferences();
-  }
-
-  public setFontSize(sizeId: string): void {
-    this.typographyService.setFontSize(sizeId);
-    this.savePreferences();
-  }
-
-  public setShape(shapeId: string): void {
-    this.shapeService.setShape(shapeId);
-    this.savePreferences();
+    this.contrastMode.set(
+      current === 'normal' ? 'high' : current === 'high' ? 'auto' : 'normal',
+    );
   }
 
   public resetToDefaults(): void {
-    // Reset Visuals
     this.themeService.setTheme(this.themeService.getThemes()[0].id);
     this.themeMode.set('auto');
     this.contrastMode.set('auto');
-
     this.themeService.isReducedMotion.set(false);
     this.themeService.activeColorFilter.set('none');
-
     this.showFab.set(true);
     this.showTooltips.set(true);
-
-    // Reset Notifications
     this.themeService.useLegacyNotifications.set(false);
     this.themeService.forceHighContrastNotifications.set(false);
     this.themeService.notificationPlacement.set('bottom-center');
-
-    // Reset Components
     this.typographyService.setFont(this.typographyService.defaultFont.id);
     this.typographyService.setFontSize(
       this.typographyService.defaultFontSize.id,
     );
     this.densityService.setDensity(0);
     this.shapeService.setShape(this.shapeService.defaultShape.id);
-
-    this.savePreferences();
   }
 
   // --- Effects ---
-  private updateDarkModeClass = effect(
-    () => {
-      const mode = this.themeMode();
-      const systemIsDark = this.systemDarkMode();
+  private updateDarkModeClass = effect(() => {
+    const mode = this.themeMode();
+    const systemIsDark = this.systemDarkMode();
 
-      const isActive = mode === 'dark' || (mode === 'auto' && systemIsDark);
+    const isActive = mode === 'dark' || (mode === 'auto' && systemIsDark);
 
-      this.themeService.isDarkMode.set(isActive);
+    this.themeService.isDarkMode.set(isActive);
 
-      if (isPlatformBrowser(this.platformId)) {
-        this.document.documentElement.classList.toggle('dark-mode', isActive);
-      }
-    },
-    
-  );
+    if (isPlatformBrowser(this.platformId)) {
+      this.document.documentElement.classList.toggle('dark-mode', isActive);
+    }
+  });
 
-  private updateHighContrastClass = effect(
-    () => {
-      const mode = this.contrastMode();
-      const systemIsContrast = this.systemHighContrast();
+  private updateHighContrastClass = effect(() => {
+    const mode = this.contrastMode();
+    const systemIsContrast = this.systemHighContrast();
 
-      const isActive = mode === 'high' || (mode === 'auto' && systemIsContrast);
+    const isActive = mode === 'high' || (mode === 'auto' && systemIsContrast);
 
-      this.themeService.isHighContrastMode.set(isActive);
+    this.themeService.isHighContrastMode.set(isActive);
 
-      if (isPlatformBrowser(this.platformId)) {
-        this.document.documentElement.classList.toggle(
-          'high-contrast-mode',
-          isActive,
-        );
-      }
-    },
-    
-  );
+    if (isPlatformBrowser(this.platformId)) {
+      this.document.documentElement.classList.toggle(
+        'high-contrast-mode',
+        isActive,
+      );
+    }
+  });
 
   private updateColorThemeClass = effect(() => {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -336,12 +272,13 @@ export class PreferencesService {
 
   private updateDensityClass = effect(() => {
     if (!isPlatformBrowser(this.platformId)) return;
-    const density = this.densityService.currentDensity();
-    [0, 1, 2, 3, 4, 5].forEach((i) => {
-      this.document.documentElement.classList.remove(`density-${i}`);
-      this.document.documentElement.classList.remove(`density--${i}`);
+    const currentDensity = this.densityService.currentDensity();
+
+    this.densityService.getDensities().forEach((d) => {
+      this.document.documentElement.classList.remove(d.id);
     });
-    this.document.documentElement.classList.add(density.id);
+
+    this.document.documentElement.classList.add(currentDensity.id);
   });
 
   private updateFontSize = effect(() => {
@@ -355,9 +292,9 @@ export class PreferencesService {
 
   private updateFontFamily = effect(() => {
     if (!isPlatformBrowser(this.platformId)) return;
-    
+
     const newFont = this.typographyService.activeFont();
-    
+
     this.typographyService.getFonts().forEach((font) => {
       this.document.documentElement.classList.remove(font.cssClass);
     });
@@ -365,11 +302,11 @@ export class PreferencesService {
 
     this.document.documentElement.style.setProperty(
       '--app-font-plain',
-      newFont.plainFamily
+      newFont.plainFamily,
     );
     this.document.documentElement.style.setProperty(
       '--app-font-brand',
-      newFont.brandFamily
+      newFont.brandFamily,
     );
   });
 

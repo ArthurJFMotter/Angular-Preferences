@@ -25,32 +25,32 @@
     <button
       class="mini-toggle"
       (click)="cycleThemeMode()"
-      matTooltip="Theme Mode: {{ prefs.themeMode() | titlecase }}"
+      matTooltip="Theme Mode: {{ preferencesService.themeMode() | titlecase }}"
     >
       <mat-icon>
         {{
-          prefs.themeMode() === "auto"
+          preferencesService.themeMode() === "auto"
             ? "brightness_auto"
-            : prefs.themeMode() === "dark"
+            : preferencesService.themeMode() === "dark"
               ? "dark_mode"
               : "light_mode"
         }}
       </mat-icon>
-      <span class="toggle-text">{{ prefs.themeMode() | titlecase }}</span>
+      <span class="toggle-text">{{ preferencesService.themeMode() | titlecase }}</span>
     </button>
 
     <!-- Contrast Mode -->
     <button
       class="mini-toggle"
       (click)="cycleContrastMode()"
-      matTooltip="Contrast: {{ prefs.contrastMode() | titlecase }}"
+      matTooltip="Contrast: {{ preferencesService.contrastMode() | titlecase }}"
     >
       <mat-icon>contrast</mat-icon>
       <span class="toggle-text">
         {{
-          prefs.contrastMode() === "auto"
+          preferencesService.contrastMode() === "auto"
             ? "Auto"
-            : prefs.contrastMode() === "high"
+            : preferencesService.contrastMode() === "high"
               ? "High"
               : "Normal"
         }}

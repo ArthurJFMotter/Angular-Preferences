@@ -16,15 +16,15 @@ import { ShapeService } from '../../../../services/shape.service';
   styleUrls: ['./interactive-playground.component.scss'],
 })
 export class InteractivePlaygroundComponent {
-  public prefs = inject(PreferencesService);
+  public preferencesService = inject(PreferencesService);
   public densityService = inject(DensityService);
   public typographyService = inject(TypographyService);
   public shapeService = inject(ShapeService);
 
   codeSnippet = computed(() => {
     const format = (val: string) => `'${val}'`;
-    const mode = this.prefs.themeMode();
-    const contrast = this.prefs.contrastMode();
+    const mode = this.preferencesService.themeMode();
+    const contrast = this.preferencesService.contrastMode();
     const fontSize = this.typographyService.activeFontSize().displayName;
     const borderRadius = this.shapeService.activeShape().displayName;
 
@@ -39,17 +39,18 @@ export class InteractivePlaygroundComponent {
   });
 
   cycleThemeMode() {
-    const current = this.prefs.themeMode();
-    if (current === 'light') this.prefs.setThemeMode('dark');
-    else if (current === 'dark') this.prefs.setThemeMode('auto');
-    else this.prefs.setThemeMode('light');
+    const current = this.preferencesService.themeMode();
+    if (current === 'light') this.preferencesService.setThemeMode('dark');
+    else if (current === 'dark') this.preferencesService.setThemeMode('auto');
+    else this.preferencesService.setThemeMode('light');
   }
 
   cycleContrastMode() {
-    const current = this.prefs.contrastMode();
-    if (current === 'normal') this.prefs.setContrastMode('high');
-    else if (current === 'high') this.prefs.setContrastMode('auto');
-    else this.prefs.setContrastMode('normal');
+    const current = this.preferencesService.contrastMode();
+    if (current === 'normal') this.preferencesService.setContrastMode('high');
+    else if (current === 'high')
+      this.preferencesService.setContrastMode('auto');
+    else this.preferencesService.setContrastMode('normal');
   }
 
   cycleFontSize() {
@@ -57,7 +58,7 @@ export class InteractivePlaygroundComponent {
     const current = this.typographyService.activeFontSize();
     const nextIndex =
       (allSizes.findIndex((s) => s.id === current.id) + 1) % allSizes.length;
-    this.prefs.setFontSize(allSizes[nextIndex].id);
+    this.typographyService.setFontSize(allSizes[nextIndex].id);
   }
 
   cycleShape() {
@@ -65,6 +66,6 @@ export class InteractivePlaygroundComponent {
     const current = this.shapeService.activeShape();
     const nextIndex =
       (allShapes.findIndex((s) => s.id === current.id) + 1) % allShapes.length;
-    this.prefs.setShape(allShapes[nextIndex].id);
+    this.shapeService.setShape(allShapes[nextIndex].id);
   }
 }

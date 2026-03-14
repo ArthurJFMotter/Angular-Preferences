@@ -30,7 +30,7 @@
       <mat-label>Color Vision Deficiency</mat-label>
       <mat-select
         [value]="themeService.activeColorFilter()"
-        (selectionChange)="preferencesService.setColorFilter($event.value)"
+        (selectionChange)="themeService.setColorFilter($event.value)"
       >
         @for (filter of themeService.getDaltonicFilters(); track filter.id) {
           <mat-option [value]="filter.id">{{ filter.displayName }}</mat-option>
@@ -63,7 +63,7 @@
     <mat-slide-toggle
       color="primary"
       [checked]="themeService.isReducedMotion()"
-      (change)="preferencesService.toggleReducedMotion()"
+      (change)="themeService.toggleReducedMotion()"
     >
       Reduce Motion
     </mat-slide-toggle>

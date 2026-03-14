@@ -52,7 +52,7 @@
       class="button-toggle-group"
       aria-labelledby="density-label"
       [value]="densityService.currentDensity().value"
-      (change)="preferencesService.setDensity($event.value)"
+      (change)="densityService.setDensity($event.value)"
     >
       @for (density of densityService.getDensities(); track density.id) {
         <mat-button-toggle [value]="density.value">

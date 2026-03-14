@@ -56,7 +56,7 @@ export class AppearanceSettingsComponent {
     this.shapeSliderIndex.set(index);
     const selectedShape = this.shapes[index];
     if (selectedShape) {
-      this.preferencesService.setShape(selectedShape.id);
+      this.shapeService.setShape(selectedShape.id);
     }
   }
 }

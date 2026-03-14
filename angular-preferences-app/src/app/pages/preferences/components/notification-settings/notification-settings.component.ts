@@ -9,15 +9,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 
 import { ThemeService } from '../../../../services/theme.service';
-import { PreferencesService } from '../../../../services/preferences.service';
-import { SnackbarService } from '../../../../services/snackbar.service';
 import { NotificationPlacement } from '../../../../models/preferences.model';
 import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
   selector: 'app-notification-settings',
   standalone: true,
-  imports: [
+  imports:[
     CommonModule,
     SettingsCardWrapperComponent,
     MatCardModule,
@@ -32,11 +30,10 @@ import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-
   styleUrls: ['./notification-settings.component.scss'],
 })
 export class NotificationSettingsComponent {
-  themeService = inject(ThemeService);
-  preferencesService = inject(PreferencesService);
+  public themeService = inject(ThemeService);
 
   // Notification Placement Options
-  placementOptions: { value: NotificationPlacement; label: string }[] = [
+  public placementOptions: { value: NotificationPlacement; label: string }[] =[
     { value: 'top-left', label: 'Top Left' },
     { value: 'top-center', label: 'Top Center' },
     { value: 'top-right', label: 'Top Right' },

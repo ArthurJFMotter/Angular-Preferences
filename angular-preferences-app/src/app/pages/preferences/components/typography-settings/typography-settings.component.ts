@@ -56,14 +56,14 @@ export class TypographySettingsComponent {
 }
 
   onFontChange(event: MatSelectChange): void {
-    this.preferencesService.setFont(event.value);
+    this.typographyService.setFont(event.value);
   }
 
   updateFontSize(value: number) {
     this.fontSizeSliderIndex.set(value);
     const selectedSize = this.fontSizes[value];
     if (selectedSize) {
-      this.preferencesService.setFontSize(selectedSize.id);
+      this.typographyService.setFontSize(selectedSize.id);
     }
   }
 }

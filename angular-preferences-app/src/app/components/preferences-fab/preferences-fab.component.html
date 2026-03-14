@@ -1,6 +1,6 @@
 <div class="preferences-fab-container" [class.expanded]="isExpanded">
     
-  <!-- Theme Mode -->
+  <!-- Theme Mode (Still uses preferencesService because it owns this state!) -->
   <div class="fab-option">
     <button mat-mini-fab 
         [matTooltip]="themeTooltip()" 
@@ -10,7 +10,7 @@
     </button>
   </div>
 
-  <!-- Contrast Mode -->
+  <!-- Contrast Mode (Still uses preferencesService!) -->
   <div class="fab-option">
     <button mat-mini-fab 
         [matTooltip]="contrastTooltip()" 
@@ -23,8 +23,7 @@
 
   <!-- Color Filter -->
   <div class="fab-option">
-    <button mat-mini-fab matTooltip="Color Deficiency Filter" 
-        [matMenuTriggerFor]="filterMenu" aria-label="Open color filter options">
+    <button mat-mini-fab matTooltip="Color Deficiency Filter"[matMenuTriggerFor]="filterMenu" aria-label="Open color filter options">
         <mat-icon>visibility</mat-icon>
     </button>
   </div>
@@ -37,10 +36,10 @@
     </button>
   </div>
 
-  <!-- Reset -->
+  <!-- Reset (Cleaned up redundant click handler) -->
   <div class="fab-option">
     <button mat-mini-fab matTooltip="Reset Defaults" color="warn"
-        (click)="preferencesService.resetToDefaults(); handleReset()"
+        (click)="handleReset()"
         aria-label="Reset to default settings">
         <mat-icon>restart_alt</mat-icon>
     </button>
@@ -59,7 +58,7 @@
   <div mat-menu-item disabled>Color Vision Deficiency</div>
   <mat-divider></mat-divider>
   @for (filter of themeService.getDaltonicFilters(); track filter.id) {
-    <button mat-menu-item (click)="preferencesService.setColorFilter(filter.id)">
+    <button mat-menu-item (click)="themeService.setColorFilter(filter.id)">
       <div class="menu-item-row">
         @if (themeService.activeColorFilter() === filter.id) {
           <mat-icon color="accent">check</mat-icon>
@@ -77,7 +76,7 @@
   <div mat-menu-item disabled>Primary Color</div>
   <mat-divider></mat-divider>
   @for (theme of themeService.getThemes(); track theme.id) {
-    <button mat-menu-item (click)="preferencesService.setTheme(theme.id)">
+    <button mat-menu-item (click)="themeService.setTheme(theme.id)">
       <div class="theme-menu-item">
         <div class="color-dot" [style.background-color]="theme.primary"></div>
         <span>{{ theme.displayName }}</span>
