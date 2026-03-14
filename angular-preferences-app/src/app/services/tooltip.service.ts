@@ -1,42 +1,50 @@
-import { Injectable, signal } from '@angular/core';
-import { TooltipConfig, TooltipGlobalDefaults, TooltipType } from '../models/tooltip.model';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import {
+  TooltipConfig,
+  TooltipGlobalDefaults,
+  TooltipType,
+} from '../models/tooltip.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TooltipService {
+  private platformId = inject(PLATFORM_ID);
 
   // Global Defaults
   private readonly defaults = signal<TooltipGlobalDefaults>({
-    showDelay: 600,      
+    showDelay: 600,
     hideDelay: 200,
     touchendHideDelay: 1500,
-    position: 'above'
+    position: 'above',
   });
 
   // User input merging
   public getConfig(input: string | TooltipConfig): TooltipConfig {
     const global = this.defaults();
-    
+
     if (typeof input === 'string') {
       return {
         message: input,
         showDelay: global.showDelay,
         position: global.position,
-        enableTTS: false
+        enableTTS: false,
       };
     }
 
     return {
       ...input,
-      showDelay: input.showDelay ?? (input.type === 'warning' ? 0 : global.showDelay),
+      showDelay:
+        input.showDelay ?? (input.type === 'warning' ? 0 : global.showDelay),
       position: input.position ?? global.position,
-      enableTTS: input.enableTTS ?? false
+      enableTTS: input.enableTTS ?? false,
     };
   }
 
   // TTS (Browser Speech API)
   public speak(text: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (!('speechSynthesis' in window)) return;
 
     window.speechSynthesis.cancel();

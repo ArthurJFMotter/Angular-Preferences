@@ -355,11 +355,22 @@ export class PreferencesService {
 
   private updateFontFamily = effect(() => {
     if (!isPlatformBrowser(this.platformId)) return;
+    
     const newFont = this.typographyService.activeFont();
+    
     this.typographyService.getFonts().forEach((font) => {
       this.document.documentElement.classList.remove(font.cssClass);
     });
     this.document.documentElement.classList.add(newFont.cssClass);
+
+    this.document.documentElement.style.setProperty(
+      '--app-font-plain',
+      newFont.plainFamily
+    );
+    this.document.documentElement.style.setProperty(
+      '--app-font-brand',
+      newFont.brandFamily
+    );
   });
 
   private updateReducedMotionClass = effect(() => {

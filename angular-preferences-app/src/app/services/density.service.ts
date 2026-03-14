@@ -5,14 +5,14 @@ import { Density } from "../models/density.model";
     providedIn: 'root',
 })
 export class DensityService {
-
-    private readonly densities: Density[] = [
+    private readonly densities: Density[] =[
         { value: 0,  id: 'density-0', displayName: 'Comfortable (Default)' },
         { value: -2, id: 'density-2', displayName: 'Compact' }, 
         { value: -4, id: 'density-4', displayName: 'High Density' },
     ];
 
-    currentDensity = signal<Density>(this.densities[0]);
+    private readonly _currentDensity = signal<Density>(this.densities[0]);
+    public readonly currentDensity = this._currentDensity.asReadonly();
 
     getDensities(): Density[] {
         return this.densities;
@@ -20,6 +20,6 @@ export class DensityService {
 
     setDensity(value: number): void {
         const density = this.densities.find(d => d.value === value) ?? this.densities[0];
-        this.currentDensity.set(density);
+        this._currentDensity.set(density);
     }
 }

@@ -1,16 +1,15 @@
 import { Injectable, signal, effect, inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { FontConfig, FontSizeConfig } from '../models/typography.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TypographyService {
-  private document = inject(DOCUMENT);
 
   // --- Font Configuration ---
   private readonly availableFonts: FontConfig[] = [
-    {
+    // Default
+    { 
       id: 'roboto-opensans',
       displayName: 'Roboto / Open Sans',
       plainFamily: "'Roboto', sans-serif",
@@ -77,39 +76,14 @@ export class TypographyService {
   private readonly availableFontSizes: FontSizeConfig[] = [
     { id: 'x-small', displayName: 'Tiny', pixelValue: 12 },
     { id: 'small', displayName: 'Small', pixelValue: 14 },
-    { id: 'medium', displayName: 'Medium', pixelValue: 16 },
+    { id: 'medium', displayName: 'Medium', pixelValue: 16 }, // Default
     { id: 'large', displayName: 'Large', pixelValue: 18 },
     { id: 'x-large', displayName: 'Giant', pixelValue: 20 },
   ];
   public readonly defaultFontSize = this.availableFontSizes[2];
 
-  private readonly _activeFontSize = signal<FontSizeConfig>(
-    this.defaultFontSize,
-  );
+  private readonly _activeFontSize = signal<FontSizeConfig>(this.defaultFontSize);
   public readonly activeFontSize = this._activeFontSize.asReadonly();
-
-  constructor() {
-    effect(() => {
-      const font = this._activeFont();
-
-      this.document.body.style.setProperty(
-        '--app-font-plain',
-        font.plainFamily,
-      );
-      this.document.body.style.setProperty(
-        '--app-font-brand',
-        font.brandFamily,
-      );
-    });
-
-    effect(() => {
-      const size = this._activeFontSize();
-      this.document.documentElement.style.setProperty(
-        '--app-typography',
-        `${size.pixelValue}px`,
-      );
-    });
-  }
 
   // --- Methods ---
   public getFonts() {
