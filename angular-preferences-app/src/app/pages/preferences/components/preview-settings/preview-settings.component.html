@@ -10,9 +10,22 @@
   >
     <!-- Card Image -->
     <div card-image class="image-container">
+      <!-- Loading Spinner -->
+      @if (!isImageLoaded()) {
+        <div class="loading-overlay">
+          <mat-progress-spinner
+            mode="indeterminate"
+            diameter="40"
+          ></mat-progress-spinner>
+        </div>
+      }
+
+      <!-- The Image -->
       <img
         src="https://material.angular.io/assets/img/examples/shiba2.jpg"
         alt="Preview Image"
+        (load)="onImageLoad()"
+        [class.loaded]="isImageLoaded()"
       />
     </div>
 
@@ -22,7 +35,7 @@
       <strong>font</strong>, <strong>spacing</strong>, and
       <strong>corner roundness</strong> change instantly.
     </p>
-    
+
     <div class="dummy-form">
       <mat-form-field
         appearance="outline"

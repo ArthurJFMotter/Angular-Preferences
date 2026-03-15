@@ -1,17 +1,12 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import {
-  provideRouter,
-  withInMemoryScrolling,
-  withViewTransitions,
-} from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideSnackbarConfig } from './providers/snackbar.provider';
 import { provideModal } from './providers/modal.provider';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
+  providers:[
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
@@ -19,10 +14,10 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
+      // disable in DEV, manatin in PRODUCTION
       withViewTransitions({ skipInitialTransition: true }),
     ),
-    provideAnimations(),
-    provideAnimationsAsync(),
+    provideAnimationsAsync(), 
     provideModal(),
     provideSnackbarConfig({
       defaultDuration: 5000,
