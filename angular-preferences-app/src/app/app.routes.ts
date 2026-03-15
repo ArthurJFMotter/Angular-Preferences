@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component'; 
+import { PreferencesComponent } from './pages/preferences/preferences.component';
 
 export const routes: Routes =[
     // --- Eagerly loaded routes ---
@@ -12,10 +13,9 @@ export const routes: Routes =[
         path: 'home',
         component: HomeComponent, 
     },
-    // --- Lazy loaded routes ---
     {
         path: 'configurations',
-        loadComponent: () => import('./pages/preferences/preferences.component').then(c => c.PreferencesComponent),
+        component: PreferencesComponent, 
     },
     // Wildcard
     {
