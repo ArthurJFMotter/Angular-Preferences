@@ -12,12 +12,12 @@ export const routes: Routes =[
         path: 'home',
         component: HomeComponent, 
     },
-    // --- Lazzy loaded routes ---
+    // --- Lazy loaded routes ---
     {
         path: 'configurations',
         loadComponent: () => import('./pages/preferences/preferences.component').then(c => c.PreferencesComponent),
     },
-    // wildecard
+    // Wildcard
     {
         path: '**',
         redirectTo: ''

@@ -184,21 +184,3 @@ $duration-long: 400ms;
     }
   }
 }
-
-// --- Global View Transitions Kill Switch ---
-
-// OS-level
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-}
-
-// App-level
-html.reduced-motion::view-transition-group(*),
-html.reduced-motion::view-transition-old(*),
-html.reduced-motion::view-transition-new(*) {
-  animation: none !important;
-}
