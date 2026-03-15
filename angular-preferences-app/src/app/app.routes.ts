@@ -1,22 +1,19 @@
 import { Routes } from '@angular/router';
-import { PreferencesComponent } from './pages/preferences/preferences.component';
-import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes =[
     {
         path: '',
-        component: HomeComponent,
+        loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
         pathMatch: 'full'
     },
     {
         path: 'home',
-        component: HomeComponent,
+        loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
     },
     {
         path: 'configurations',
-        component: PreferencesComponent,
+        loadComponent: () => import('./pages/preferences/preferences.component').then(c => c.PreferencesComponent),
     },
-    // wildcard
     {
         path: '**',
         redirectTo: ''

@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
-      // disable in DEV, manatin in PRODUCTION
+      // disable in DEV, mantain in PRODUCTION
       withViewTransitions({ skipInitialTransition: true }),
     ),
     provideAnimationsAsync(), 
