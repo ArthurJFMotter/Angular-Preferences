@@ -1,6 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DynamicModalComponent } from '../components/dynamic-modal/dynamic-modal.component';
 import { ModalConfig } from '../models/modal.model';
 import { ThemeService } from './theme.service';
 
@@ -12,7 +11,7 @@ export class ModalService {
   private themeService = inject(ThemeService);
 
   // --- CORE GENERIC METHOD ---
-  openModal(config: ModalConfig) {
+  openModal<T>(component: Type<T>, config: ModalConfig) {
     const isReducedMotion = this.themeService.isReducedMotion();
 
     const dialogConfig: MatDialogConfig = {
@@ -23,12 +22,12 @@ export class ModalService {
       exitAnimationDuration: isReducedMotion ? '0ms' : undefined,
     };
 
-    return this.dialog.open(DynamicModalComponent, dialogConfig);
+    return this.dialog.open(component, dialogConfig);
   }
 
   // --- PRE-CONFIGURED APP MODALS ---
-  openDocumentationModal() {
-    return this.openModal({
+  openDocumentationModal<T>(component: Type<T>) {
+    return this.openModal(component, {
       title: 'Documentation',
       icon: 'menu_book',
       message:
@@ -44,8 +43,8 @@ export class ModalService {
     });
   }
 
-  openLicenseModal() {
-    return this.openModal({
+  openLicenseModal<T>(component: Type<T>) {
+    return this.openModal(component, {
       title: 'MIT License',
       icon: 'gavel',
       message:

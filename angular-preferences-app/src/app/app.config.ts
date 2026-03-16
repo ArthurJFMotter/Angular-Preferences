@@ -2,8 +2,8 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router'; // 👈 Removed withViewTransitions
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations'; 
-import { provideSnackbarConfig } from './providers/snackbar.provider';
-import { provideModal } from './providers/modal.provider';
+import { provideSnackbarConfig } from '../../projects/ng-preferences/src/lib/providers/snackbar.provider';
+import { provideModal } from '../../projects/ng-preferences/src/lib/providers/modal.provider';
 
 export const appConfig: ApplicationConfig = {
   providers:[

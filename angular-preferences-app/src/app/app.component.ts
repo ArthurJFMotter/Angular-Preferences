@@ -1,11 +1,12 @@
 import { Component, inject, SecurityContext } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { PreferencesService } from './services/preferences.service';
+import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PreferencesFabComponent } from './components/preferences-fab/preferences-fab.component';
-import { CommonModule } from '@angular/common';
-import { FooterComponent } from './components/footer/footer.component';
+
+import { PreferencesService } from 'ng-preferences';
 
 @Component({
   selector: 'app-root',

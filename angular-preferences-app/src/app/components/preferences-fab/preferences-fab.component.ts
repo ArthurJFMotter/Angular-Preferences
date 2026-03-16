@@ -5,9 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
-import { ThemeService } from '../../services/theme.service';
-import { PreferencesService } from '../../services/preferences.service';
-import { SnackbarService } from '../../services/snackbar.service';
+import { ThemeService } from 'ng-preferences';
+import { PreferencesService } from 'ng-preferences';
+import { SnackbarService } from 'ng-preferences';
+import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-preferences-fab',
@@ -36,7 +37,7 @@ export class PreferencesFabComponent {
 
   handleReset(): void {
     this.preferencesService.resetToDefaults();
-    this.snackbarService.info('Preferences have been reset to defaults.');
+    this.snackbarService.info(CustomSnackbarComponent,'Preferences have been reset to defaults.');
   }
 
   // Theme Mode: Light -> Dark -> Auto

@@ -6,8 +6,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
-import { ThemeService } from '../../../../services/theme.service';
-import { PreferencesService } from '../../../../services/preferences.service';
+import { ThemeService } from 'ng-preferences';
+import { PreferencesService } from 'ng-preferences';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';

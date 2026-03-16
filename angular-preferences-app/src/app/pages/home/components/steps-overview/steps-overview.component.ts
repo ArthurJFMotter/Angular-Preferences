@@ -8,7 +8,7 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { ThemeService } from '../../../../services/theme.service';
+import { ThemeService } from 'ng-preferences';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 interface Step {

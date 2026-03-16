@@ -1,0 +1,10 @@
+/*
+ * ng-preferences themes
+ */
+
+// Color themes
+@use './assets/themes/color-themes/index' as *;
+
+// Main themes
+@use './assets/themes/main-themes/light-themes' as *;
+@use './assets/themes/main-themes/dark-themes' as *;

@@ -6,8 +6,8 @@ import {
   MAT_SNACK_BAR_DATA,
   MatSnackBarRef,
 } from '@angular/material/snack-bar';
-import { SnackbarData } from '../../models/snackbar.model';
 import { SnackbarActionComponent } from './components/snackbar-action/snackbar-action.component';
+import { SnackbarData } from 'ng-preferences';
 
 @Component({
   selector: 'app-custom-snackbar',

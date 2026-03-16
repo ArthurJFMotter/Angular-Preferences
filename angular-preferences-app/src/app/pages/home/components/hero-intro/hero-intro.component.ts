@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ModalService } from '../../../../services/modal.service';
-import { RouterService } from '../../../../services/router.service';
+import { ModalService } from 'ng-preferences';
+import { RouterService } from 'ng-preferences';
+import { DynamicModalComponent } from '../../../../components/dynamic-modal/dynamic-modal.component';
 
 @Component({
   selector: 'app-hero-intro',
@@ -21,6 +22,6 @@ export class HeroIntroComponent {
   }
 
   openDocs() {
-    this.modalService.openDocumentationModal();
+    this.modalService.openDocumentationModal(DynamicModalComponent);
   }
 }

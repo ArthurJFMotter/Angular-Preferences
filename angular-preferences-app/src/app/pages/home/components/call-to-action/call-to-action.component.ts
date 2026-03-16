@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ModalService } from '../../../../services/modal.service';
-import { RouterService } from '../../../../services/router.service';
+import { ModalService } from 'ng-preferences';
+import { RouterService } from 'ng-preferences';
+import { DynamicModalComponent } from '../../../../components/dynamic-modal/dynamic-modal.component';
 
 @Component({
   selector: 'app-call-to-action',
@@ -20,6 +21,6 @@ export class CallToActionComponent {
   }
 
   openDocs() {
-    this.modalService.openDocumentationModal();
+    this.modalService.openDocumentationModal(DynamicModalComponent);
   }
 }

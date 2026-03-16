@@ -7,9 +7,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { ThemeService } from '../../../../services/theme.service';
-import { PreferencesService } from '../../../../services/preferences.service';
-import { ShapeService } from '../../../../services/shape.service';
+import { ThemeService } from 'ng-preferences';
+import { PreferencesService } from 'ng-preferences';
+import { ShapeService } from 'ng-preferences';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 

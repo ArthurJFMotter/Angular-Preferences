@@ -1,0 +1,7 @@
+// Forward all style files so they can be used with @use
+@forward 'variables';
+@forward 'utilities';
+@forward 'base';
+@forward 'motion';
+@forward 'shapes';
+@forward 'layouts';

@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { PreferencesService } from '../../../../services/preferences.service';
-import { DensityService } from '../../../../services/density.service';
-import { TypographyService } from '../../../../services/typography.service';
-import { ShapeService } from '../../../../services/shape.service';
+import { PreferencesService } from 'ng-preferences';
+import { DensityService } from 'ng-preferences';
+import { TypographyService } from 'ng-preferences';
+import { ShapeService } from 'ng-preferences';
 
 @Component({
   selector: 'app-interactive-playground',

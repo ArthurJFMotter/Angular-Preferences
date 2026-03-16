@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { RouterService } from '../../services/router.service';
-import { ModalService } from '../../services/modal.service';
+import { RouterService } from 'ng-preferences';
+import { ModalService } from 'ng-preferences';
+import { DynamicModalComponent } from '../dynamic-modal/dynamic-modal.component';
 
 @Component({
   selector: 'app-footer',
@@ -18,6 +19,6 @@ export class FooterComponent {
   }
 
   openLicense() {
-    this.modalService.openLicenseModal();
+    this.modalService.openLicenseModal(DynamicModalComponent);
   }
 }

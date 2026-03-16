@@ -10,9 +10,10 @@ import { AccessibilitySettingsComponent } from './components/accessibility-setti
 import { NotificationSettingsComponent } from './components/notification-settings/notification-settings.component';
 import { PreviewSettingsComponent } from './components/preview-settings/preview-settings.component';
 
-import { PreferencesService } from '../../services/preferences.service';
-import { SnackbarService } from '../../services/snackbar.service';
+import { PreferencesService } from 'ng-preferences';
+import { SnackbarService } from 'ng-preferences';
 import { MatCardModule } from '@angular/material/card';
+import { CustomSnackbarComponent } from '../../components/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-preferences',
@@ -38,6 +39,6 @@ export class PreferencesComponent {
 
   handleReset(): void {
     this.preferencesService.resetToDefaults();
-    this.snackbarService.info('Preferences have been reset to defaults.');
+    this.snackbarService.info(CustomSnackbarComponent, 'Preferences have been reset to defaults.');
   }
 }

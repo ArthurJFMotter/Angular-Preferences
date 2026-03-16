@@ -32,7 +32,6 @@ export class PreferencesService {
   private platformId = inject(PLATFORM_ID);
   private document = inject(DOCUMENT);
 
-  // Exposing the domain services so components can use them directly if needed
   public densityService = inject(DensityService);
   public themeService = inject(ThemeService);
   public typographyService = inject(TypographyService);
@@ -50,12 +49,8 @@ export class PreferencesService {
     if (isPlatformBrowser(this.platformId)) {
       this.initSystemListeners();
 
-      // 1. We load the preferences ONCE silently (without triggering saves)
       untracked(() => this.loadPreferences());
 
-      // 2. ✨ THE MAGIC AUTO-SAVE EFFECT ✨
-      // Because we read all these signals here, Angular tracks them automatically.
-      // If ANY of these signals change anywhere in the app, this effect fires and saves!
       effect(() => {
         this.savePreferences();
       });

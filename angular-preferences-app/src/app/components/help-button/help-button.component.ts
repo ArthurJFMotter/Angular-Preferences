@@ -2,9 +2,9 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SmartTooltipDirective } from '../../directives/smart-tooltip.directive';
-import { TooltipConfig } from '../../models/tooltip.model';
-import { PreferencesService } from '../../services/preferences.service';
+import { SmartTooltipDirective } from 'ng-preferences';
+import { TooltipConfig } from 'ng-preferences';
+import { PreferencesService } from 'ng-preferences';
 
 @Component({
   selector: 'app-help-button',

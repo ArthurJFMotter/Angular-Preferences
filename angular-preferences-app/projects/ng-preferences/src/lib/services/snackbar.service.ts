@@ -1,11 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Type } from '@angular/core';
 import {
   MatSnackBar,
   MatSnackBarConfig,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { CustomSnackbarComponent } from '../components/custom-snackbar/custom-snackbar.component';
 import {
   SnackbarData,
   SnackbarConfig,
@@ -24,7 +23,8 @@ export class SnackbarService {
   private snackBar = inject(MatSnackBar);
   private configService = inject(SnackbarConfigService);
 
-  public show(
+  public show<T>(
+    component: Type<T>,
     config: SnackbarConfig | string,
     type?: SnackbarType,
     action?: string,
@@ -55,7 +55,7 @@ export class SnackbarService {
       panelClass: ['app-notification-panel', `pos-${mergedConfig.placement}`],
     };
 
-    this.snackBar.openFromComponent(CustomSnackbarComponent, matConfig);
+    this.snackBar.openFromComponent(component, matConfig);
   }
 
   private normalizeConfig(
@@ -77,7 +77,6 @@ export class SnackbarService {
       action: config.action,
       duration: config.duration ?? this.configService.getDuration(config.type),
       icon: config.icon || this.configService.getIcon(config.type || 'info'),
-
       placement: config.placement ?? this.configService.getDefaultPlacement(),
       useLegacyStyle:
         config.useLegacyStyle ?? this.configService.shouldUseLegacyStyle(),
@@ -99,19 +98,39 @@ export class SnackbarService {
   }
 
   // Wrappers
-  public success(message: string, action?: string, duration?: number): void {
-    this.show({ message, type: 'success', action, duration });
+  public success<T>(
+    component: Type<T>,
+    message: string,
+    action?: string,
+    duration?: number,
+  ): void {
+    this.show(component, { message, type: 'success', action, duration });
   }
 
-  public error(message: string, action?: string, duration?: number): void {
-    this.show({ message, type: 'error', action, duration });
+  public error<T>(
+    component: Type<T>,
+    message: string,
+    action?: string,
+    duration?: number,
+  ): void {
+    this.show(component, { message, type: 'error', action, duration });
   }
 
-  public warning(message: string, action?: string, duration?: number): void {
-    this.show({ message, type: 'warning', action, duration });
+  public warning<T>(
+    component: Type<T>,
+    message: string,
+    action?: string,
+    duration?: number,
+  ): void {
+    this.show(component, { message, type: 'warning', action, duration });
   }
-  
-  public info(message: string, action?: string, duration?: number): void {
-    this.show({ message, type: 'info', action, duration });
+
+  public info<T>(
+    component: Type<T>,
+    message: string,
+    action?: string,
+    duration?: number,
+  ): void {
+    this.show(component, { message, type: 'info', action, duration });
   }
 }

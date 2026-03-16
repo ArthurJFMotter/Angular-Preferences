@@ -7,7 +7,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ModalAction, ModalConfig } from '../../models/modal.model';
+import { ModalAction, ModalConfig } from 'ng-preferences';
 
 @Component({
   selector: 'app-dynamic-modal',

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LivePreviewComponent } from './live-preview.component';
+import { NgPreferencesComponent } from './ng-preferences.component';
 
-describe('LivePreviewComponent', () => {
-  let component: LivePreviewComponent;
-  let fixture: ComponentFixture<LivePreviewComponent>;
+describe('NgPreferencesComponent', () => {
+  let component: NgPreferencesComponent;
+  let fixture: ComponentFixture<NgPreferencesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LivePreviewComponent]
+      imports: [NgPreferencesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LivePreviewComponent);
+    fixture = TestBed.createComponent(NgPreferencesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,11 +3,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { signal } from '@angular/core';
 
 import { PreferencesComponent } from './preferences.component';
-import { DensityService } from '../../services/density.service';
-import { TypographyService } from '../../services/typography.service';
-import { PreferencesService } from '../../services/preferences.service';
-import { ThemeService } from '../../services/theme.service';
-import { I18nService } from '../../services/i18n.service';
+import { DensityService } from '../../../../projects/ng-preferences/src/lib/services/density.service';
+import { TypographyService } from '../../../../projects/ng-preferences/src/lib/services/typography.service';
+import { PreferencesService } from '../../../../projects/ng-preferences/src/lib/services/preferences.service';
+import { ThemeService } from '../../../../projects/ng-preferences/src/lib/services/theme.service';
+import { I18nService } from '../../../../projects/ng-preferences/src/lib/services/i18n.service';
 
 describe('PreferencesComponent', () => {
   let component: PreferencesComponent;

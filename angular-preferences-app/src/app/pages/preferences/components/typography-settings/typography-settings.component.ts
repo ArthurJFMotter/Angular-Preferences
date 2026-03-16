@@ -8,10 +8,10 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-import { TypographyService } from '../../../../services/typography.service';
-import { DensityService } from '../../../../services/density.service';
-import { PreferencesService } from '../../../../services/preferences.service';
-import { FontSizeConfig } from '../../../../models/typography.model';
+import { TypographyService } from 'ng-preferences';
+import { DensityService } from 'ng-preferences';
+import { PreferencesService } from 'ng-preferences';
+import { FontSizeConfig } from 'ng-preferences';
 import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({

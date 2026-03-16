@@ -5,9 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // 👈 ADDED
-import { SnackbarService } from '../../../../services/snackbar.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SnackbarService } from 'ng-preferences';
 import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
+import { CustomSnackbarComponent } from '../../../../components/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-preview-settings',
@@ -35,18 +36,18 @@ export class PreviewSettingsComponent {
   }
 
   onPreviewSubmit() {
-    this.snackbarService.success('Project dashboard updated successfully!', 'VIEW');
+    this.snackbarService.success(CustomSnackbarComponent, 'Project dashboard updated successfully!', 'VIEW');
   }
 
   onPreviewCancel() {
-    this.snackbarService.info('Action cancelled. No changes were made.');
+    this.snackbarService.info(CustomSnackbarComponent, 'Action cancelled. No changes were made.');
   }
 
   onPreviewStatus() {
-    this.snackbarService.warning('All main systems operational', 'OK');
+    this.snackbarService.warning(CustomSnackbarComponent, 'All main systems operational', 'OK');
   }
 
   onPreviewAlert() {
-    this.snackbarService.error('Connection lost! Retrying...', 'RETRY');
+    this.snackbarService.error(CustomSnackbarComponent, 'Connection lost! Retrying...', 'RETRY');
   }
 }

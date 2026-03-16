@@ -8,8 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 
-import { ThemeService } from '../../../../services/theme.service';
-import { NotificationPlacement } from '../../../../models/preferences.model';
+import { ThemeService } from 'ng-preferences';
+import { NotificationPlacement } from 'ng-preferences';
 import { SettingsCardWrapperComponent } from '../settings-card-wrapper/settings-card-wrapper.component';
 
 @Component({
