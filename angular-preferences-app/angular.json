@@ -34,7 +34,8 @@
                 "input": "public",
                 "output": "/"
               },
-              "src/theme-loader.js"
+              "src/theme-loader.js",
+              "src/_redirects"
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
