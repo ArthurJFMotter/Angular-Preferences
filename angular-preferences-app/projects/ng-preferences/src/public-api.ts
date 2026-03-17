@@ -27,8 +27,3 @@ export * from './lib/models/typography.model';
 // --- PROVIDERS ---
 export * from './lib/providers/modal.provider';
 export * from './lib/providers/snackbar.provider';
-
-// --- STYLES ---
-// These exports are for documentation purposes
-// Import styles using: @import '~ng-preferences/styles';
-// Import themes using: @import '~ng-preferences/themes';

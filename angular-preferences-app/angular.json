@@ -26,19 +26,19 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              },
-              "src/_redirects",
-              "src/theme-loader.js",
-              {
-                "glob": "**/*",
                 "input": "projects/ng-preferences/src/assets",
-                "output": "/assets/ng-preferences"
-              }
+                "output": "/assets/"
+              },
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["src", "src/assets/styles", "node_modules"]
+              "includePaths": [
+                "src",
+                "projects/ng-preferences/src/assets/styles",
+                "projects/ng-preferences/src/assets"
+              ]
             },
             "scripts": []
           },

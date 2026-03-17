@@ -1,15 +1,24 @@
-/* Angular Material imports */
-@use '@angular/material' as mat;
+/* 1. Main Imports */
+@use "@angular/material" as mat;
 
-/* Import ng-preferences styles */
-@import '../projects/ng-preferences/src/styles';
-@import '../projects/ng-preferences/src/themes';
+/* These look inside projects/ng-preferences/src/assets/ */
+@use "themes/main-themes/light-themes";
+@use "themes/main-themes/dark-themes";
+@use "filters/filters";
+@use "typography/typography";
 
-/* For production (after building/publishing) - uncomment these lines */
-// @import '~ng-preferences/styles';
-// @import '~ng-preferences/themes';
+/* 2. Specific styles Imports */
+/* These look inside projects/ng-preferences/src/assets/styles/ */
+@use "base";
+@use "motion" as motion;
+@use "utilities";
+@use "variables";
 
-/* 3. app-specific styles */
-//:root {
-  /* custom CSS variables */
-//}
+/* 3. Override Imports */
+@use "overrides/button-overrides";
+@use "overrides/form-overrides";
+@use "overrides/modal-overrides";
+@use "overrides/ripple-overrides";
+@use "overrides/scroll-overrides";
+@use "overrides/shape-overrides";
+@use "overrides/snackbar-overrides";
