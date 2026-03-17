@@ -29,8 +29,12 @@
                 "input": "projects/ng-preferences/src/assets",
                 "output": "/assets/"
               },
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "/"
+              },
+              "src/theme-loader.js"
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
