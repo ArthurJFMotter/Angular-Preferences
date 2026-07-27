@@ -7,7 +7,6 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ModalAction, ModalConfig } from 'ng-preferences';
 
 @Component({
   selector: 'app-dynamic-modal',
@@ -17,11 +16,5 @@ import { ModalAction, ModalConfig } from 'ng-preferences';
   styleUrls: ['./dynamic-modal.component.scss'],
 })
 export class DynamicModalComponent {
-  public data: ModalConfig = inject(MAT_DIALOG_DATA);
-  private dialogRef = inject(MatDialogRef<DynamicModalComponent>);
 
-  handleAction(action: ModalAction): void {
-    action.action();
-    this.dialogRef.close();
-  }
 }

@@ -1,39 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import {
-  MAT_SNACK_BAR_DATA,
-  MatSnackBarRef,
-} from '@angular/material/snack-bar';
-import { SnackbarActionComponent } from './components/snackbar-action/snackbar-action.component';
-import { SnackbarData } from 'ng-preferences';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-custom-snackbar',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    SnackbarActionComponent,
-  ],
+  imports: [],
   templateUrl: './custom-snackbar.component.html',
-  styleUrls: ['./custom-snackbar.component.scss'],
+  styleUrl: './custom-snackbar.component.scss',
 })
 export class CustomSnackbarComponent {
-  public snackBarRef = inject(MatSnackBarRef);
-  public data = inject<SnackbarData>(MAT_SNACK_BAR_DATA);
 
-  getIcon(): string {
-    return this.data.icon || 'info';
-  }
-
-  handleAction(): void {
-    this.snackBarRef.dismissWithAction();
-  }
-
-  handleDismiss(): void {
-    this.snackBarRef.dismiss();
-  }
 }

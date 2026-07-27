@@ -9,14 +9,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      //"ng-preferences": [
-      //  "./dist/ng-preferences"
-      //],
-      "ng-preferences":[
-        "./projects/ng-preferences/src/public-api.ts"
-      ]
-    },
+    "paths": {},
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,

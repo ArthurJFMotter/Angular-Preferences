@@ -1,5 +1,0 @@
-@use "app/pages/preferences/preferences-shared" as shared;
-
-:host {
-  @include shared.settings-shared-styles;
-}

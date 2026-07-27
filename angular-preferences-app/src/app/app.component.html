@@ -6,8 +6,4 @@
 
 <app-footer></app-footer>
 
-@if (preferencesService.showFab()) {
-  <app-preferences-fab></app-preferences-fab>
-}
-
-<div [innerHTML]="safeFilters"></div>
+<app-preferences-fab></app-preferences-fab>

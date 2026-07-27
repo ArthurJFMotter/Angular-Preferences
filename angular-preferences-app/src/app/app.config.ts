@@ -1,9 +1,8 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router'; // 👈 Removed withViewTransitions
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations'; 
-import { provideSnackbarConfig } from '../../projects/ng-preferences/src/lib/providers/snackbar.provider';
-import { provideModal } from '../../projects/ng-preferences/src/lib/providers/modal.provider';
+import { providePreferences } from 'ng-material-preferences';
 
 export const appConfig: ApplicationConfig = {
   providers:[
@@ -17,12 +16,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAnimations(), 
     // Custom providers
-    provideModal(),
-    provideSnackbarConfig({
-      defaultDuration: 5000,
-      errorDuration: 8000,
-      defaultPlacement: 'top-center',
-      icons: { success: 'done', error: 'cancel' },
-    }),
+     providePreferences() 
   ],
 };
