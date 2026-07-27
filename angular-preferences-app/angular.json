@@ -26,6 +26,7 @@
             "assets": [
               {
                 "glob": "**/*",
+                "input": "src/assets", 
                 "output": "/assets/"
               },
               {
@@ -33,7 +34,6 @@
                 "input": "public",
                 "output": "/"
               },
-              "src/theme-loader.js",
               "src/_redirects"
             ],
             "styles": ["src/styles.scss"],
@@ -97,8 +97,7 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/_redirects",
-              "src/theme-loader.js"
+              "src/_redirects"
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
