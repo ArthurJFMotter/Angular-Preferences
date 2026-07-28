@@ -1,0 +1,73 @@
+<app-preferences-card
+  title="Typography"
+  subtitle="Fonts and legibility scales"
+  icon="text_fields"
+>
+  <div class="field-group">
+    <label>Heading Font</label>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <input
+        type="text"
+        matInput
+        [value]="prefs.headingFontFamily()"
+        (change)="prefs.setHeadingFontFamily($any($event.target).value)"
+        [matAutocomplete]="headingAuto"
+        placeholder="e.g. Oswald, serif"
+      />
+      <mat-autocomplete
+        #headingAuto="matAutocomplete"
+        (optionSelected)="prefs.setHeadingFontFamily($event.option.value)"
+      >
+        @for (font of fontOptions; track font.value) {
+          <mat-option [value]="font.value" [style.font-family]="font.value">{{
+            font.label
+          }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="field-group">
+    <label>Body Font</label>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <input
+        type="text"
+        matInput
+        [value]="prefs.bodyFontFamily()"
+        (change)="prefs.setBodyFontFamily($any($event.target).value)"
+        [matAutocomplete]="bodyAuto"
+        placeholder="e.g. Open Sans"
+      />
+      <mat-autocomplete
+        #bodyAuto="matAutocomplete"
+        (optionSelected)="prefs.setBodyFontFamily($event.option.value)"
+      >
+        @for (font of fontOptions; track font.value) {
+          <mat-option [value]="font.value" [style.font-family]="font.value">{{
+            font.label
+          }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="slider-group" style="margin-top: 16px">
+    <div class="slider-header">
+      <label>Size Scale</label><span>{{ prefs.fontScale() | percent }}</span>
+    </div>
+    <div class="slider-row">
+      <button mat-icon-button (click)="scaleDown()">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <mat-slider min="0.8" max="1.3" step="0.05" discrete
+        ><input
+          matSliderThumb
+          [ngModel]="prefs.fontScale()"
+          (ngModelChange)="prefs.setFontScale($event)"
+      /></mat-slider>
+      <button mat-icon-button (click)="scaleUp()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</app-preferences-card>

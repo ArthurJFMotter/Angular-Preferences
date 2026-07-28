@@ -1,0 +1,9 @@
+.pref-card {
+  height: 100%;
+}
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 16px;
+}

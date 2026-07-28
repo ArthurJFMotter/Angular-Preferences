@@ -1,0 +1,31 @@
+<app-preferences-card
+  title="Notifications"
+  subtitle="Alert positioning"
+  icon="notifications"
+>
+  <div class="field-group">
+    <label>Vertical Spawn</label>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-select
+        [value]="prefs.snackbarVPosition()"
+        (selectionChange)="prefs.setSnackbarVPosition($event.value)"
+      >
+        <mat-option value="top">Top</mat-option>
+        <mat-option value="bottom">Bottom</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="field-group">
+    <label>Horizontal Spawn</label>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-select
+        [value]="prefs.snackbarHPosition()"
+        (selectionChange)="prefs.setSnackbarHPosition($event.value)"
+      >
+        <mat-option value="start">Start (Left)</mat-option>
+        <mat-option value="center">Center</mat-option>
+        <mat-option value="end">End (Right)</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</app-preferences-card>

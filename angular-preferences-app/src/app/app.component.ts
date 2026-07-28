@@ -2,9 +2,9 @@ import { Component, inject, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { PreferencesFabComponent } from './components/preferences-fab/preferences-fab.component';
+//import { FooterComponent } from './shared/footer/footer.component';
+//import { NavbarComponent } from './shared/navbar/navbar.component';
+//import { PreferencesFabComponent } from './shared/preferences-fab/preferences-fab.component';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +12,9 @@ import { PreferencesFabComponent } from './components/preferences-fab/preference
   imports: [
     CommonModule,
     RouterOutlet,
-    FooterComponent,
-    NavbarComponent,
-    PreferencesFabComponent
+    //FooterComponent,
+    //NavbarComponent,
+    //PreferencesFabComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
