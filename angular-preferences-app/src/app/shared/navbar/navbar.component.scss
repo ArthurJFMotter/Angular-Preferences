@@ -1,0 +1,43 @@
+.app-navbar {
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  padding: 0 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+
+  h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+
+  a {
+    border-radius: var(--mat-sys-corner-medium);
+  }
+
+  .active-link {
+    background-color: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+  }
+
+  @media (max-width: 600px) {
+    span {
+      display: none;
+    } /* Hide text on mobile, just show icons */
+  }
+}

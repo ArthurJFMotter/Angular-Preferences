@@ -1,15 +1,13 @@
 <div class="dynamic-modal-container">
   <!-- Header -->
-  <h2 mat-dialog-title>
-    @if (data.icon) {
-      <mat-icon>{{ data.icon }}</mat-icon>
-    }
+  <h2 mat-dialog-title class="modal-title">
+    @if (data.icon) { <mat-icon color="primary">{{ data.icon }}</mat-icon> }
     {{ data.title }}
   </h2>
 
   <!-- Content -->
   <mat-dialog-content>
-    <p>{{ data.message }}</p>
+    <p class="modal-message">{{ data.message }}</p>
   </mat-dialog-content>
 
   <!-- Actions -->
@@ -19,26 +17,15 @@
     }
     
     @for (action of data.actions; track action.label) {
-      
-      <!-- Primary Action -->
       @if (action.isPrimary) {
-        <button 
-          mat-flat-button 
-          [color]="action.color || 'primary'"
-          (click)="handleAction(action)">
+        <button mat-flat-button [color]="action.color || 'primary'" (click)="handleAction(action)">
           {{ action.label }}
         </button>
-      } 
-      <!-- Secondary Action -->
-      @else {
-        <button 
-          mat-button 
-          [color]="action.color || 'primary'"
-          (click)="handleAction(action)">
+      } @else {
+        <button mat-button [color]="action.color || 'primary'" (click)="handleAction(action)">
           {{ action.label }}
         </button>
       }
-      
     }
   </mat-dialog-actions>
 </div>

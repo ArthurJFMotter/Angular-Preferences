@@ -1,13 +1,24 @@
 import { Component, inject } from '@angular/core';
-import { DynamicModalComponent } from '../dynamic-modal/dynamic-modal.component';
+import { ModalService } from '../../core/services/modal.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports:[],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  
+  private modals = inject(ModalService);
+
+  openExternalLink(url: string): void {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  openLicense(): void {
+    this.modals.alert(
+      'MIT License', 
+      'This project is open-source and free to use. Angular Prefs is designed to empower developers to build highly accessible applications.', 
+      'gavel'
+    ); 
+  }
 }

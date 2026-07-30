@@ -1,14 +1,24 @@
-<mat-toolbar>
-  <h1>Angular User Preferences</h1>
+<mat-toolbar class="app-navbar">
+  <div class="brand" routerLink="/">
+    <mat-icon color="primary">palette</mat-icon>
+    <h1>Angular User Preferences</h1>
+  </div>
 
   <span class="toolbar-spacer"></span>
-  
-  <button mat-button (click)="goToHome()">
-    <mat-icon>home</mat-icon>
-    <span>Home</span>
-  </button>
-  <button mat-button (click)="goToConfig()">
-    <mat-icon>settings</mat-icon>
-    <span>Configurations</span>
-  </button>
+
+  <div class="nav-actions">
+    <a
+      mat-button
+      routerLink="/"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </a>
+    <a mat-button routerLink="/preferences" routerLinkActive="active-link">
+      <mat-icon>settings</mat-icon>
+      <span>Configurations</span>
+    </a>
+  </div>
 </mat-toolbar>

@@ -2,8 +2,8 @@ import { Component, inject, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-//import { FooterComponent } from './shared/footer/footer.component';
-//import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 //import { PreferencesFabComponent } from './shared/preferences-fab/preferences-fab.component';
 
 @Component({
@@ -12,8 +12,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   imports: [
     CommonModule,
     RouterOutlet,
-    //FooterComponent,
-    //NavbarComponent,
+    FooterComponent,
+    NavbarComponent,
     //PreferencesFabComponent
   ],
   templateUrl: './app.component.html',
