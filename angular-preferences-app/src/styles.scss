@@ -2,3 +2,19 @@
 
 // Instantly wire up your snackbars, dialogs, and density fallback tokens:
 @include prefs.setup-theming();
+
+// Global styles
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
