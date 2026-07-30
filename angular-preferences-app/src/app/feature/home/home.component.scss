@@ -1,0 +1,8 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
+  min-height: 100vh;
+  font-family: var(--mat-sys-body-large-font);
+}

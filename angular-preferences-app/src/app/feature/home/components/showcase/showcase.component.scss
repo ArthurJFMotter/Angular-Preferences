@@ -1,0 +1,123 @@
+@use "../../home-shared";
+
+.showcase {
+  padding: 80px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.step-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.step-card .step-number {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface-variant);
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.step-card .step-text h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+.step-card .step-text p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--mat-sys-on-surface-variant);
+  line-height: 1.4;
+}
+.step-card:hover {
+  background: var(--mat-sys-surface-container-lowest);
+}
+.step-card.active {
+  background: var(--mat-sys-surface-container);
+  border-color: var(--mat-sys-outline-variant);
+}
+.step-card.active .step-number {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+.step-preview-container .mock-window {
+  min-height: 280px;
+  justify-content: center;
+}
+.step-preview-container .preview-label {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: #666;
+  font-weight: 600;
+}
+.ui-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+.ui-preview .mock-header {
+  width: 80%;
+  height: 24px;
+  background: #333;
+  border-radius: 4px;
+}
+.ui-preview .mock-content {
+  width: 80%;
+  display: flex;
+  gap: 16px;
+}
+.ui-preview .mock-card {
+  flex: 1;
+  height: 100px;
+  background: var(--mat-sys-primary-container);
+  border-radius: 8px;
+}
+.ui-preview .mock-lines {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+.ui-preview .line {
+  height: 12px;
+  background: #333;
+  border-radius: 4px;
+  width: 100%;
+}
+.ui-preview .line.short {
+  width: 60%;
+}

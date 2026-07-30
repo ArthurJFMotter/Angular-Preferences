@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TechMarqueeComponent } from './tech-marquee.component';
+import { FeaturesComponent } from './features.component';
 
-describe('TechMarqueeComponent', () => {
-  let component: TechMarqueeComponent;
-  let fixture: ComponentFixture<TechMarqueeComponent>;
+describe('FeaturesComponent', () => {
+  let component: FeaturesComponent;
+  let fixture: ComponentFixture<FeaturesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TechMarqueeComponent]
+      imports: [FeaturesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TechMarqueeComponent);
+    fixture = TestBed.createComponent(FeaturesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

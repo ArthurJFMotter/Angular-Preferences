@@ -1,22 +1,14 @@
-<section class="cta-container">
-  <div class="cta-content">
+<section class="cta-section">
+  <div class="cta-box">
     <h2>Ready to build truly adaptive interfaces?</h2>
     <p>Stop writing boilerplate SCSS and start empowering your users today.</p>
-
-    <div class="shared-action-group cta-action-alignment">
-      <button
-        mat-flat-button
-        color="primary"
-        class="cta-button"
-        (click)="goToConfig()"
+    <div class="hero-actions justify-center">
+      <button mat-flat-button color="primary" routerLink="/preferences">
+        <mat-icon>tune</mat-icon> Start Customizing
+      </button>
+      <a mat-stroked-button href="https://github.com" target="_blank"
+        ><mat-icon>description</mat-icon> Documentation</a
       >
-        <mat-icon>tune</mat-icon>
-        Start Customizing
-      </button>
-      <button mat-stroked-button class="cta-button" (click)="openDocs()">
-        <mat-icon>description</mat-icon>
-        Documentation
-      </button>
     </div>
   </div>
 </section>

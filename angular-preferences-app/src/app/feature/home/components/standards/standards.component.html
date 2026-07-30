@@ -1,0 +1,10 @@
+<section class="standards-bar">
+  <div class="standards-title">POWERED BY MODERN STANDARDS</div>
+  <div class="standards-list">
+    @for (std of standards; track std.text) {
+      <div class="standard-chip">
+        <mat-icon>{{ std.icon }}</mat-icon> {{ std.text }}
+      </div>
+    }
+  </div>
+</section>

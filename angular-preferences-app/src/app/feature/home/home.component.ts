@@ -1,28 +1,21 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatDividerModule } from '@angular/material/divider';
-
-import { HeroIntroComponent } from './components/hero-intro/hero-intro.component';
-import { InteractivePlaygroundComponent } from './components/interactive-playground/interactive-playground.component';
-import { StepsOverviewComponent } from './components/steps-overview/steps-overview.component';
-import { FeaturesGridComponent } from './components/features-grid/features-grid.component';
-import { TechMarqueeComponent } from './components/tech-marquee/tech-marquee.component';
 import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
+import { FeaturesComponent } from './components/features/features.component';
+import { HeroComponent } from './components/hero/hero.component';
+import { ShowcaseComponent } from './components/showcase/showcase.component';
+import { StandardsComponent } from './components/standards/standards.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule,
-    MatDividerModule,
-    HeroIntroComponent,
-    InteractivePlaygroundComponent,
-    StepsOverviewComponent,
-    FeaturesGridComponent,
-    TechMarqueeComponent,
-    CallToActionComponent
+    HeroComponent,
+    StandardsComponent,
+    ShowcaseComponent,
+    FeaturesComponent,
+    CallToActionComponent,
   ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {}

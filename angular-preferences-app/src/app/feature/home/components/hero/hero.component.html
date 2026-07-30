@@ -1,0 +1,61 @@
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>
+        Design that adapts to <span class="highlight-text">every user.</span>
+      </h1>
+      <p>
+        Static interfaces are a thing of the past. Empower your users with
+        granular control over contrast, density, typography and more.
+      </p>
+      <div class="hero-actions">
+        <button mat-flat-button color="primary" routerLink="/preferences">
+          <mat-icon>tune</mat-icon> Start Customizing
+        </button>
+        <a mat-stroked-button href="https://github.com" target="_blank"
+          ><mat-icon>description</mat-icon> Documentation</a
+        >
+      </div>
+    </div>
+
+    <div class="hero-graphic">
+      <div class="mock-window">
+        <div class="window-header">
+          <div class="dots">
+            <span class="dot red"></span><span class="dot yellow"></span
+            ><span class="dot green"></span>
+          </div>
+          <div class="title">app.config.ts</div>
+        </div>
+        <div class="window-body code-block">
+          <span class="badge"><mat-icon>bolt</mat-icon> Signals</span>
+          <code>
+            <span class="comment">// Zero-config engine boot</span><br />
+            <span class="keyword">export const</span> appConfig = &#123;<br />
+            &nbsp;&nbsp;providers: [<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;providePreferences(&#123;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="property"
+              >disableRemoteFonts</span
+            >: <span class="boolean">false</span>,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="property"
+              >storageKey</span
+            >: <span class="string">'app.prefs'</span><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&#125;)<br />
+            &nbsp;&nbsp;]<br />
+            &#125;;
+          </code>
+        </div>
+        <div class="window-footer">
+          <div class="status-item">
+            <mat-icon>brightness_auto</mat-icon> Auto
+          </div>
+          <div class="status-item"><mat-icon>tonality</mat-icon> Standard</div>
+          <div class="status-item">
+            <mat-icon>rounded_corner</mat-icon> Rounded
+          </div>
+          <div class="status-item"><mat-icon>format_size</mat-icon> Medium</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<section class="features">
+  <div class="features-grid">
+    @for (feature of features; track feature.title) {
+      <div class="feature-card">
+        <div class="feature-header">
+          <div class="icon-wrapper">
+            <mat-icon>{{ feature.icon }}</mat-icon>
+          </div>
+          <h3>{{ feature.title }}</h3>
+        </div>
+        <p>{{ feature.desc }}</p>
+      </div>
+    }
+  </div>
+</section>

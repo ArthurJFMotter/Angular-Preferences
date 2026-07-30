@@ -4,9 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-cta',
+  selector: 'app-hero',
+  standalone: true,
   imports: [RouterModule, MatButtonModule, MatIconModule],
-  templateUrl: './call-to-action.component.html',
-  styleUrl: './call-to-action.component.scss',
+  templateUrl: './hero.component.html',
+  styleUrl: './hero.component.scss',
 })
-export class CallToActionComponent {}
+export class HeroComponent {}
