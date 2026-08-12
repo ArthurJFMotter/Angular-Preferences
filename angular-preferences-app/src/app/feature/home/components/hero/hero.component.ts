@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ModalService } from '../../../../core/services/modal.service';
 
 @Component({
   selector: 'app-hero',
@@ -10,4 +11,10 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
 })
-export class HeroComponent {}
+export class HeroComponent {
+  private modals = inject(ModalService);
+
+  openDocs(): void {
+    this.modals.showDocs();
+  }
+}

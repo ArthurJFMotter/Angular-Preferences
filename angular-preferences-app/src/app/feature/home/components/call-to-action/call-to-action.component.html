@@ -6,9 +6,10 @@
       <button mat-flat-button color="primary" routerLink="/preferences">
         <mat-icon>tune</mat-icon> Start Customizing
       </button>
-      <a mat-stroked-button href="https://github.com" target="_blank"
-        ><mat-icon>description</mat-icon> Documentation</a
-      >
+
+      <button mat-stroked-button (click)="openDocs()">
+        <mat-icon>menu_book</mat-icon> Documentation
+      </button>
     </div>
   </div>
 </section>

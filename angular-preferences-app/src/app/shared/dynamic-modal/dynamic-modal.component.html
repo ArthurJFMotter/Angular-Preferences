@@ -8,10 +8,17 @@
   <!-- Content -->
   <mat-dialog-content>
     <p class="modal-message">{{ data.message }}</p>
+    
+    <!-- ADD THE PREVIEW BLOCK -->
+    @if (data.previewSnippet) {
+      <div class="modal-preview">
+        <code>{{ data.previewSnippet }}</code>
+      </div>
+    }
   </mat-dialog-content>
 
   <!-- Actions -->
-  <mat-dialog-actions align="end">
+  <mat-dialog-actions align="center">
     @if (data.showCloseButton !== false) {
       <button mat-button mat-dialog-close>Close</button>
     }
