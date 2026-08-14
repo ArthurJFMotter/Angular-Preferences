@@ -1,10 +1,19 @@
 <section class="standards-bar">
   <div class="standards-title">POWERED BY MODERN STANDARDS</div>
-  <div class="standards-list">
-    @for (std of standards; track std.text) {
-      <div class="standard-chip">
-        <mat-icon>{{ std.icon }}</mat-icon> {{ std.text }}
-      </div>
-    }
+  
+  <div class="marquee-container">
+    <!-- fade masks -->
+    <div class="fade-mask left"></div>
+    <div class="fade-mask right"></div>
+
+    <!-- continuous track -->
+    <div class="marquee-track">
+      @for (std of marqueeItems; track $index) {
+        <div class="standard-chip">
+          <mat-icon class="chip-icon">{{ std.icon }}</mat-icon>
+          <span class="chip-label">{{ std.text }}</span>
+        </div>
+      }
+    </div>
   </div>
 </section>

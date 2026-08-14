@@ -1,39 +1,104 @@
 .standards-bar {
-  padding: 32px 24px;
+  padding: 32px 0;
   border-top: 1px solid var(--mat-sys-outline-variant);
   border-bottom: 1px solid var(--mat-sys-outline-variant);
   background: var(--mat-sys-surface-container-lowest);
   text-align: center;
+  position: relative;
 }
+
 .standards-title {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 1px;
   color: var(--mat-sys-on-surface-variant);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
-.standards-list {
+
+/* --- THE MARQUEE --- */
+
+.marquee-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  max-width: 1000px;
-  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  .fade-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+
+    &.left {
+      left: 0;
+      background: linear-gradient(to right, var(--mat-sys-surface-container-lowest), transparent);
+    }
+
+    &.right {
+      right: 0;
+      background: linear-gradient(to left, var(--mat-sys-surface-container-lowest), transparent);
+    }
+  }
 }
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+
+  /* Apply dynamic motion scale to animation duration */
+  animation: scroll calc(40s * var(--theme-motion-scale, 1)) linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Freeze animation completely when library sets motion to Off */
+:host-context(html[data-theme-motion="off"]) .marquee-track {
+  animation-play-state: paused !important;
+}
+
+/* --- CHIP STYLES --- */
 .standard-chip {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: var(--mat-sys-surface-container);
+  
+  background-color: var(--mat-sys-surface-container);
   border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: 16px;
-  font-size: 0.8rem;
+  border-radius: var(--mat-sys-corner-full, 16px);
   color: var(--mat-sys-on-surface);
+  
+  font-size: 0.8rem;
+  user-select: none;
+  white-space: nowrap;
+
+  /* Inherit custom motion settings for hover states */
+  transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
+
+  .chip-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: var(--mat-sys-primary);
+  }
+
+  &:hover {
+    background-color: var(--mat-sys-surface-container-high);
+    border-color: var(--mat-sys-outline);
+  }
 }
-.standard-chip mat-icon {
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  color: var(--mat-sys-primary);
+
+/* --- ANIMATION MATH --- */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
