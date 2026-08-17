@@ -17,7 +17,7 @@
 .mock-window {
   background: var(--mat-sys-surface-container-high);
   border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: 12px;
+  border-radius: var(--mat-sys-corner-medium, 12px);
   overflow: hidden;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -131,7 +131,7 @@
     background: rgba(255, 193, 7, 0.15);
     color: #ffc107;
     padding: 4px 8px;
-    border-radius: 4px;
+    border-radius: var(--mat-sys-corner-extra-small, 4px);
     font-size: 0.7rem;
     font-family: sans-serif;
     font-weight: 600;

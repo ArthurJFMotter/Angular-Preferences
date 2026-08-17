@@ -29,7 +29,7 @@
   position: relative; /* Anchor for the progress bar */
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
+  border-radius: var(--mat-sys-corner-medium, 12px);
   border: 1px solid transparent;
   cursor: pointer;
   overflow: hidden;
@@ -81,6 +81,10 @@
     .step-number {
       background: var(--mat-sys-primary);
       color: var(--mat-sys-on-primary);
+    }
+
+    &:hover {
+      background: var(--mat-sys-surface-container-low);
     }
   }
 }
@@ -149,7 +153,7 @@
     width: 80%;
     height: 24px;
     background: #333;
-    border-radius: 4px;
+    border-radius: var(--mat-sys-corner-extra-small, 4px);
   }
   .mock-content {
     width: 80%;
@@ -160,7 +164,7 @@
     flex: 1;
     height: 100px;
     background: var(--mat-sys-primary-container);
-    border-radius: 8px;
+    border-radius: var(--mat-sys-corner-small, 8px);
   }
   .mock-lines {
     flex: 2;
@@ -172,7 +176,7 @@
   .line {
     height: 12px;
     background: #333;
-    border-radius: 4px;
+    border-radius: var(--mat-sys-corner-extra-small, 4px);
     width: 100%;
   }
   .line.short {

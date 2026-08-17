@@ -13,12 +13,17 @@
 .feature-card {
   background: var(--mat-sys-surface-container-low);
   border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: 16px;
+  border-radius: var(--mat-sys-corner-large, 16px);
   padding: 24px;
-  transition: transform 0.2s ease;
+
+  transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
 }
 .feature-card:hover {
+  border: 1px solid var(--mat-sys-outline);
+  box-shadow: 0 4px 8px var(--mat-sys-outline-variant);
+
   transform: translateY(-4px);
+  cursor: pointer;
 }
 .feature-header {
   display: flex;
@@ -29,7 +34,7 @@
 .feature-header .icon-wrapper {
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: var(--mat-sys-corner-small, 8px);
   background: var(--mat-sys-primary-container);
   color: var(--mat-sys-on-primary-container);
   display: flex;
