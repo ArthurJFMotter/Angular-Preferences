@@ -7,71 +7,111 @@
   width: 100%;
   box-sizing: border-box;
 }
+
 .showcase-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 48px;
   align-items: center;
-}
-@media (max-width: 768px) {
-  .showcase-grid {
+
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 }
+
 .steps-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .step-card {
+  position: relative; /* Anchor for the progress bar */
   display: flex;
-  gap: 16px;
-  padding: 16px;
+  flex-direction: column;
   border-radius: 12px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  overflow: hidden;
+
+  transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
+
+  .step-content {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--mat-sys-surface-container-high);
+    color: var(--mat-sys-on-surface-variant);
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .step-text h3 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .step-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--mat-sys-on-surface-variant);
+    line-height: 1.4;
+  }
+
+  &:hover {
+    background: var(--mat-sys-surface-container-lowest);
+  }
+
+  &.active {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+
+    .step-number {
+      background: var(--mat-sys-primary);
+      color: var(--mat-sys-on-primary);
+    }
+  }
 }
-.step-card .step-number {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--mat-sys-surface-container-high);
-  color: var(--mat-sys-on-surface-variant);
-  border-radius: 50%;
-  font-weight: 600;
-  font-size: 0.85rem;
-  flex-shrink: 0;
+
+/* --- CUSTOM PROGRESS BAR --- */
+.progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: transparent;
 }
-.step-card .step-text h3 {
-  margin: 0 0 4px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--mat-sys-on-surface);
+
+.step-card.active .progress-track {
+  background: var(--mat-sys-surface-container-highest);
 }
-.step-card .step-text p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--mat-sys-on-surface-variant);
-  line-height: 1.4;
-}
-.step-card:hover {
-  background: var(--mat-sys-surface-container-lowest);
-}
-.step-card.active {
-  background: var(--mat-sys-surface-container);
-  border-color: var(--mat-sys-outline-variant);
-}
-.step-card.active .step-number {
+
+.progress-fill {
+  height: 100%;
   background: var(--mat-sys-primary);
-  color: var(--mat-sys-on-primary);
+  width: 0%;
+  transition: width 50ms linear;
 }
+
+/* --- PREVIEW WINDOW --- */
 .step-preview-container .mock-window {
   min-height: 280px;
   justify-content: center;
 }
+
 .step-preview-container .preview-label {
   position: absolute;
   bottom: 16px;
@@ -81,43 +121,61 @@
   color: #666;
   font-weight: 600;
 }
+
+/* FADE ANIMATION */
+.fade-in {
+  animation: fadeIn calc(0.4s * var(--theme-motion-scale, 1)) ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .ui-preview {
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
   width: 100%;
-}
-.ui-preview .mock-header {
-  width: 80%;
-  height: 24px;
-  background: #333;
-  border-radius: 4px;
-}
-.ui-preview .mock-content {
-  width: 80%;
-  display: flex;
-  gap: 16px;
-}
-.ui-preview .mock-card {
-  flex: 1;
-  height: 100px;
-  background: var(--mat-sys-primary-container);
-  border-radius: 8px;
-}
-.ui-preview .mock-lines {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  justify-content: center;
-}
-.ui-preview .line {
-  height: 12px;
-  background: #333;
-  border-radius: 4px;
-  width: 100%;
-}
-.ui-preview .line.short {
-  width: 60%;
+
+  .mock-header {
+    width: 80%;
+    height: 24px;
+    background: #333;
+    border-radius: 4px;
+  }
+  .mock-content {
+    width: 80%;
+    display: flex;
+    gap: 16px;
+  }
+  .mock-card {
+    flex: 1;
+    height: 100px;
+    background: var(--mat-sys-primary-container);
+    border-radius: 8px;
+  }
+  .mock-lines {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+  }
+  .line {
+    height: 12px;
+    background: #333;
+    border-radius: 4px;
+    width: 100%;
+  }
+  .line.short {
+    width: 60%;
+  }
 }

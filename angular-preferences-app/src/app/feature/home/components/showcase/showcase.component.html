@@ -1,40 +1,72 @@
 <section class="showcase">
   <div class="showcase-grid">
     <div class="steps-list">
+      <!-- Step 1 -->
       <div
         class="step-card"
         [class.active]="activeStep() === 1"
-        (click)="activeStep.set(1)"
+        (click)="setStep(1)"
         matRipple
       >
-        <div class="step-number">1</div>
-        <div class="step-text">
-          <h3>Configure</h3>
-          <p>Adjust global settings for typography, color, and density.</p>
+        <div class="step-content">
+          <div class="step-number">1</div>
+          <div class="step-text">
+            <h3>Configure</h3>
+            <p>Adjust global settings for typography, color, and density.</p>
+          </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="progress-track">
+          <div
+            class="progress-fill"
+            [style.width.%]="activeStep() === 1 ? progress() : 0"
+          ></div>
         </div>
       </div>
+
+      <!-- Step 2 -->
       <div
         class="step-card"
         [class.active]="activeStep() === 2"
-        (click)="activeStep.set(2)"
+        (click)="setStep(2)"
         matRipple
       >
-        <div class="step-number">2</div>
-        <div class="step-text">
-          <h3>Preview</h3>
-          <p>Watch your components transform in real-time.</p>
+        <div class="step-content">
+          <div class="step-number">2</div>
+          <div class="step-text">
+            <h3>Preview</h3>
+            <p>Watch your components transform in real-time.</p>
+          </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="progress-track">
+          <div
+            class="progress-fill"
+            [style.width.%]="activeStep() === 2 ? progress() : 0"
+          ></div>
         </div>
       </div>
+
+      <!-- Step 3 -->
       <div
         class="step-card"
         [class.active]="activeStep() === 3"
-        (click)="activeStep.set(3)"
+        (click)="setStep(3)"
         matRipple
       >
-        <div class="step-number">3</div>
-        <div class="step-text">
-          <h3>Integrate</h3>
-          <p>Export your JSON config directly to your application.</p>
+        <div class="step-content">
+          <div class="step-number">3</div>
+          <div class="step-text">
+            <h3>Integrate</h3>
+            <p>Export your JSON config directly to your application.</p>
+          </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="progress-track">
+          <div
+            class="progress-fill"
+            [style.width.%]="activeStep() === 3 ? progress() : 0"
+          ></div>
         </div>
       </div>
     </div>
@@ -42,7 +74,7 @@
     <div class="step-preview-container">
       <div class="mock-window dark">
         @if (activeStep() === 1) {
-          <div class="window-body code-block">
+          <div class="window-body code-block fade-in">
             <code>
               <span class="keyword">const</span> userConfig = &#123;<br />
               &nbsp;&nbsp;<span class="property">theme</span>:
@@ -58,8 +90,9 @@
           </div>
           <div class="preview-label">GENERATED CONFIG</div>
         }
+
         @if (activeStep() === 2) {
-          <div class="window-body ui-preview">
+          <div class="window-body ui-preview fade-in">
             <div class="mock-header"></div>
             <div class="mock-content">
               <div class="mock-card"></div>
@@ -72,8 +105,9 @@
           </div>
           <div class="preview-label">LIVE PREVIEW</div>
         }
+
         @if (activeStep() === 3) {
-          <div class="window-body code-block">
+          <div class="window-body code-block fade-in">
             <code>
               <span class="comment">// Shareable Base64 string</span><br />
               <span class="keyword">const</span> encodedProfile =
