@@ -1,23 +1,104 @@
 @use "../../home-shared";
 
 .cta-section {
-  padding: 80px 24px;
-}
-.cta-box {
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
-  background: var(--mat-sys-surface-container-highest);
+}
+
+.cta-box {
+  background: var(--mat-sys-surface-container);
   border: 1px solid var(--mat-sys-outline-variant);
   border-radius: var(--mat-sys-corner-extra-large, 28px);
   padding: 48px 24px;
   text-align: center;
+
+  max-width: 800px;
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  transition: all calc(0.4s * var(--theme-motion-scale, 1)) ease;
+
+  &:hover{
+    background: var(--mat-sys-surface-container-low);
+  }
 }
+
+/* --- GRADIENT BLOBS --- */
+.cta-box::before,
+.cta-box::after {
+  content: "";
+  position: absolute;
+  width: 224px;
+  height: 224px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: all calc(0.6s * var(--theme-motion-scale, 1)) ease;
+}
+
+/* Left Blob (Primary Color) */
+.cta-box::before {
+  top: -100px;
+  left: -100px;
+  background: var(--mat-sys-primary);
+}
+
+/* Right Blob */
+.cta-box::after {
+  bottom: -100px;
+  right: -100px;
+  background: var(--mat-sys-tertiary, var(--mat-sys-secondary));
+}
+
+/* Hover State for Blobs (Fade in and float towards the center) */
+.cta-box:hover::before {
+  opacity: 0.25;
+  transform: translate(40px, 40px) scale(1.2);
+}
+.cta-box:hover::after {
+  opacity: 0.25;
+  transform: translate(-40px, -40px) scale(1.2);
+}
+
+/* Hover State for the Box itself */
+.cta-box:hover {
+  border-color: var(--mat-sys-outline);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* --- ANIMATED TEXT --- */
 .cta-box h2 {
   font-size: 2rem;
   font-weight: 800;
   margin: 0 0 16px;
+
+  /* Base text color */
   color: var(--mat-sys-on-surface);
+
+  transition: all calc(0.4s * var(--theme-motion-scale, 1)) ease;
 }
+
+/* Hover State for Text */
+.cta-box:hover h2 {
+  transform: scale(1.02);
+
+  background: linear-gradient(
+    90deg,
+    var(--mat-sys-primary),
+    var(--mat-sys-tertiary, var(--mat-sys-secondary))
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .cta-box p {
   font-size: 1.1rem;
   color: var(--mat-sys-on-surface-variant);
