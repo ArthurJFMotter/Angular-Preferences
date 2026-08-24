@@ -1,0 +1,49 @@
+@use "../../_home-shared.scss";
+
+.window-footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+  background: var(--mat-sys-surface-container);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+
+  .status-item {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: var(--mat-sys-corner-small, 8px);
+    padding: 8px 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    font-size: 0.65rem;
+    color: var(--mat-sys-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+
+    transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: inherit;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--mat-sys-surface-container-highest);
+      color: var(--mat-sys-on-surface);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="mock-window">
+  <div class="window-header">
+    <div class="dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <div class="title">app.config.ts</div>
+  </div>
+  
+  <div class="window-body code-block">
+    <span class="badge"><mat-icon>bolt</mat-icon> Signals</span>
+    <code>
+      <span class="comment">// Zero-config engine boot</span><br />
+      <span class="keyword">export const</span> appConfig = &#123;<br />
+      &nbsp;&nbsp;providers: [<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;providePreferences(&#123;<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="property">disableRemoteFonts</span>: <span class="boolean">false</span>,<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="property">storageKey</span>: <span class="string">'app.prefs'</span><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&#125;)<br />
+      &nbsp;&nbsp;]<br />
+      &#125;;
+    </code>
+  </div>
+  
+  <div class="window-footer">
+    <!-- Interactive Buttons! -->
+    <button class="status-item" (click)="cycleMode()" title="Cycle Theme Mode">
+      <mat-icon>{{ modeDisplay().icon }}</mat-icon> 
+      <span>{{ modeDisplay().text }}</span>
+    </button>
+    
+    <button class="status-item" (click)="cycleContrast()" title="Cycle Contrast">
+      <mat-icon>{{ contrastDisplay().icon }}</mat-icon> 
+      <span>{{ contrastDisplay().text }}</span>
+    </button>
+    
+    <button class="status-item" (click)="cycleShape()" title="Cycle Shape">
+      <mat-icon>{{ shapeDisplay().icon }}</mat-icon> 
+      <span>{{ shapeDisplay().text }}</span>
+    </button>
+    
+    <button class="status-item" (click)="cycleFont()" title="Cycle Typography Scale">
+      <mat-icon>{{ fontDisplay().icon }}</mat-icon> 
+      <span>{{ fontDisplay().text }}</span>
+    </button>
+  </div>
+</div>
