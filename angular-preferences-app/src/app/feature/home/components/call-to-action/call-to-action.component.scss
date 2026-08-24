@@ -2,20 +2,18 @@
 
 .cta-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;
 }
 
 .cta-box {
   background: var(--mat-sys-surface-container);
   border: 1px solid var(--mat-sys-outline-variant);
   border-radius: var(--mat-sys-corner-extra-large, 28px);
-  padding: 48px 24px;
+  padding: 4.5rem 4rem;
   text-align: center;
-
-  max-width: 800px;
-  width: 100%;
+  width: fit-content;
 
   position: relative;
   overflow: hidden;
@@ -23,7 +21,7 @@
 
   transition: all calc(0.4s * var(--theme-motion-scale, 1)) ease;
 
-  &:hover{
+  &:hover {
     background: var(--mat-sys-surface-container-low);
   }
 }

@@ -11,12 +11,57 @@
 .scroll-down-container {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 1.5rem;
-  max-width: 50dvw;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px; 
   width: 100%;
-  
-  @media (max-width: 768px) {
-    max-width: 100dvw;
+  box-sizing: border-box;
+
+  /* Target EVERY child component directly */
+  > * {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    
+    padding: 4rem 1.5rem;
+
+    @media (max-width: 768px) {
+          padding: 4rem 1rem;
+    }
+  }
+
+  > *:first-child {
+    padding-top: 6rem;
+    
+    @media (max-width: 768px) {
+      padding-top: 5rem;
+    }
+  }
+
+  > *:last-child {
+    padding-bottom: 6rem;
+    
+    @media (max-width: 768px) {
+      padding-bottom: 5rem;
+    }
+  }
+
+  /* 4. Automated Divider */
+  > *:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 24px; 
+    right: 24px;
+    height: 1px;
+    opacity: 0.6;
+    
+    background: linear-gradient(
+      90deg, 
+      transparent 0%, 
+      var(--mat-sys-outline-variant) 15%, 
+      var(--mat-sys-outline-variant) 85%, 
+      transparent 100%
+    );
   }
 }

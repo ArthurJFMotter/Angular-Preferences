@@ -1,11 +1,10 @@
 @use "../../home-shared";
 
 .showcase {
-  padding: 80px 24px;
-  max-width: 1000px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .showcase-grid {
