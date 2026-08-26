@@ -14,7 +14,6 @@
   align-items: center;
 
   @media (max-width: 768px) {
-    /* THE FIX: Reverses the layout on mobile so the Preview Window sits ON TOP of the controls! */
     display: flex;
     flex-direction: column-reverse;
     gap: 32px;
