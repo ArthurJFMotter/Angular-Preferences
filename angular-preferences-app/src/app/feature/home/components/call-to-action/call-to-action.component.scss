@@ -2,18 +2,21 @@
 
 .cta-section {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .cta-box {
   background: var(--mat-sys-surface-container);
   border: 1px solid var(--mat-sys-outline-variant);
   border-radius: var(--mat-sys-corner-extra-large, 28px);
-  padding: 4.5rem 4rem;
+  
+  padding: 4rem;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
   text-align: center;
-  width: fit-content;
 
   position: relative;
   overflow: hidden;
@@ -23,6 +26,10 @@
 
   &:hover {
     background: var(--mat-sys-surface-container-low);
+  }
+
+  @media (max-width: 600px) {
+    padding: 2.5rem 1.5rem;
   }
 }
 
@@ -41,21 +48,18 @@
   transition: all calc(0.6s * var(--theme-motion-scale, 1)) ease;
 }
 
-/* Left Blob (Primary Color) */
 .cta-box::before {
   top: -100px;
   left: -100px;
   background: var(--mat-sys-primary);
 }
 
-/* Right Blob */
 .cta-box::after {
   bottom: -100px;
   right: -100px;
   background: var(--mat-sys-tertiary, var(--mat-sys-secondary));
 }
 
-/* Hover State for Blobs (Fade in and float towards the center) */
 .cta-box:hover::before {
   opacity: 0.25;
   transform: translate(40px, 40px) scale(1.2);
@@ -65,7 +69,6 @@
   transform: translate(-40px, -40px) scale(1.2);
 }
 
-/* Hover State for the Box itself */
 .cta-box:hover {
   border-color: var(--mat-sys-outline);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -73,20 +76,17 @@
 
 /* --- ANIMATED TEXT --- */
 .cta-box h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
   font-weight: 800;
   margin: 0 0 16px;
-
-  /* Base text color */
+  line-height: 1.2;
   color: var(--mat-sys-on-surface);
 
   transition: all calc(0.4s * var(--theme-motion-scale, 1)) ease;
 }
 
-/* Hover State for Text */
 .cta-box:hover h2 {
   transform: scale(1.02);
-
   background: linear-gradient(
     90deg,
     var(--mat-sys-primary),
@@ -101,4 +101,26 @@
   font-size: 1.1rem;
   color: var(--mat-sys-on-surface-variant);
   margin: 0 0 32px;
+  line-height: 1.5;
+
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin: 0 0 24px;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    
+    button {
+      width: 100%;
+    }
+  }
 }

@@ -14,7 +14,10 @@
   align-items: center;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    /* THE FIX: Reverses the layout on mobile so the Preview Window sits ON TOP of the controls! */
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 32px;
   }
 }
 
@@ -110,19 +113,26 @@
 }
 
 /* --- PREVIEW WINDOW --- */
-.step-preview-container .mock-window {
-  min-height: 280px;
-  justify-content: center;
-}
+.step-preview-container {
+  width: 100%;
+  box-sizing: border-box;
 
-.step-preview-container .preview-label {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  font-size: 0.65rem;
-  letter-spacing: 1px;
-  color: #666;
-  font-weight: 600;
+  .mock-window { 
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 280px; 
+    justify-content: center; 
+  }
+  
+  .preview-label {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    color: var(--mat-sys-outline);
+    font-weight: 600;
+  }
 }
 
 /* FADE ANIMATION */

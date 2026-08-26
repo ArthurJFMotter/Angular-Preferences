@@ -20,34 +20,61 @@
   border-radius: var(--mat-sys-corner-medium, 12px);
   overflow: hidden;
   box-shadow: 0 16px 32px var(--mat-sys-surface-container-high);
-  display: flex; 
+  display: flex;
   flex-direction: column;
   position: relative;
+  text-align: left;
+
   transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
 
-  &:hover{
+  &:hover {
     border: 1px solid var(--mat-sys-outline);
     box-shadow: 0 16px 32px var(--mat-sys-surface-container-highest);
   }
 
   .window-header {
-    display: flex; align-items: center; padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
     background: var(--mat-sys-surface-container-highest);
     border-bottom: 1px solid var(--mat-sys-outline-variant);
 
     .dots {
-      display: flex; gap: 6px; margin-right: 16px;
+      display: flex;
+      gap: 6px;
+      margin-right: 16px;
       .dot {
-        width: 10px; height: 10px; border-radius: 50%;
-        &.red { background: var(--mat-sys-error, #ff5f56); }
-        &.yellow { background: var(--mat-sys-warning, #ffbd2e); }
-        &.green { background: var(--mat-sys-success, #27c93f); }
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        &.red {
+          background: var(--mat-sys-error, #ff5f56);
+        }
+        &.yellow {
+          background: var(--mat-sys-warning, #ffbd2e);
+        }
+        &.green {
+          background: var(--mat-sys-success, #27c93f);
+        }
       }
     }
-    .title { font-size: 0.75rem; font-family: monospace; color: var(--mat-sys-on-surface-variant); }
+    .title {
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: var(--mat-sys-on-surface-variant);
+    }
   }
 
-  .window-body { padding: 24px; position: relative; min-height: 200px; }
+  .window-body {
+    padding: 24px;
+    position: relative;
+    min-height: 200px;
+
+    @media (max-width: 600px) {
+      padding: 16px;
+      min-height: auto;
+    }
+  }
 
   .window-footer {
     display: flex;
@@ -55,32 +82,83 @@
     padding: 12px;
     background: var(--mat-sys-surface-container);
     border-top: 1px solid var(--mat-sys-outline-variant);
+
+    @media (max-width: 600px) {
+      padding: 8px 4px;
+    }
   }
 }
 
 /* --- SHARED CODE BLOCKS --- */
 .code-block {
-  font-family: 'Roboto Mono', monospace; 
-  font-size: 0.85rem; 
-  line-height: 1.6; 
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--mat-sys-on-surface);
 
-  .keyword { color: var(--mat-sys-primary); font-weight: 600; }
-  .string { color: var(--mat-sys-tertiary); }
-  .property { color: var(--mat-sys-secondary); }
-  .boolean { color: var(--mat-sys-error); font-weight: 600; }
-  .method { color: var(--mat-sys-primary); }
-  .comment { color: var(--mat-sys-outline); font-style: italic; }
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 600px) {
+    font-size: 0.75rem;
+  }
+
+  code {
+    display: block;
+    margin-top: 24px;
+  }
+  .keyword {
+    color: var(--mat-sys-primary);
+    font-weight: 600;
+  }
+  .string {
+    color: var(--mat-sys-tertiary);
+  }
+  .property {
+    color: var(--mat-sys-secondary);
+  }
+  .boolean {
+    color: var(--mat-sys-error);
+    font-weight: 600;
+  }
+  .method {
+    color: var(--mat-sys-primary);
+  }
+  .comment {
+    color: var(--mat-sys-outline);
+    font-style: italic;
+  }
 
   .badge {
-    position: absolute; top: 16px; right: 16px;
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--mat-sys-secondary-container); 
-    color: var(--mat-sys-on-secondary-container); 
-    padding: 4px 8px; 
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+    padding: 4px 8px;
     border-radius: var(--mat-sys-corner-extra-small, 4px);
-    font-size: 0.7rem; font-family: sans-serif; font-weight: 600;
-    
-    mat-icon { font-size: 14px; width: 14px; height: 14px; }
+    font-size: 0.7rem;
+    font-family: sans-serif;
+    font-weight: 600;
+
+    @media (max-width: 600px) {
+      top: 12px;
+      right: 12px;
+      padding: 2px 6px;
+      font-size: 0.65rem;
+    }
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
   }
 }

@@ -2,6 +2,10 @@
   padding: 1rem 0rem;
   text-align: center;
   position: relative;
+
+  @media (max-width: 600px) {
+    padding: 0rem;
+  }
 }
 
 .standards-title {
@@ -12,8 +16,7 @@
   margin-bottom: 24px;
 }
 
-/* --- THE MARQUEE --- */
-
+/* --- MARQUEE --- */
 .marquee-container {
   display: flex;
   position: relative;
@@ -30,7 +33,11 @@
 
     &.left {
       left: 0;
-      background: linear-gradient(to right, var(--mat-sys-surface), transparent);
+      background: linear-gradient(
+        to right,
+        var(--mat-sys-surface),
+        transparent
+      );
     }
 
     &.right {
@@ -45,7 +52,6 @@
   gap: 16px;
   width: max-content;
 
-  /* Apply dynamic motion scale to animation duration */
   animation: scroll calc(40s * var(--theme-motion-scale, 1)) linear infinite;
 
   &:hover {
@@ -53,7 +59,7 @@
   }
 }
 
-/* Freeze animation completely when library sets motion to Off */
+/* Freeze animation if motion = 0 (off) */
 :host-context(html[data-theme-motion="off"]) .marquee-track {
   animation-play-state: paused !important;
 }
@@ -64,17 +70,16 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  
+
   background-color: var(--mat-sys-surface-container);
   border: 1px solid var(--mat-sys-outline-variant);
   border-radius: var(--mat-sys-corner-full, 16px);
   color: var(--mat-sys-on-surface);
-  
+
   font-size: 0.8rem;
   user-select: none;
   white-space: nowrap;
 
-  /* Inherit custom motion settings for hover states */
   transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
 
   .chip-icon {
