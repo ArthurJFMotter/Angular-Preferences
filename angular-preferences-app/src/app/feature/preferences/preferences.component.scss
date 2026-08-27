@@ -57,23 +57,26 @@
     }
   }
 
-  /* Mobile Sidebar Transformation (Horizontal scrolling chips) */
+  /* Mobile Sidebar Transformation */
   @media (max-width: 900px) {
     position: static;
-    width: 100%;
+    
+    width: calc(100% + 32px); 
+    margin-left: -16px;
+    
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 
     .nav-menu {
       flex-direction: row;
       overflow-x: auto;
       gap: 8px;
-      padding-bottom: 8px; 
-
-      /* Hide scrollbar for a clean mobile look */
+      
+      padding: 0 16px 8px 16px; 
+      
       scrollbar-width: none;
       -ms-overflow-style: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
+      &::-webkit-scrollbar { display: none; }
 
       button {
         flex-shrink: 0;
@@ -81,7 +84,7 @@
         background: var(--mat-sys-surface-container);
         border: 1px solid var(--mat-sys-outline-variant);
         border-radius: var(--mat-sys-corner-full);
-
+        
         &.active {
           border-color: transparent;
         }

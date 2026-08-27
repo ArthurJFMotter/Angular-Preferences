@@ -1,4 +1,15 @@
-import { Component, inject, signal, computed, AfterViewInit, OnDestroy, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  computed,
+  AfterViewInit,
+  OnDestroy,
+  ElementRef,
+  QueryList,
+  ViewChildren,
+  HostListener,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,7 +42,6 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
 
   @ViewChildren('section') sections!: QueryList<ElementRef<HTMLElement>>;
 
-  // Dynamically generate the sidebar menu based on active domains
   readonly availableSections = computed(() => {
     const sections = [];
     if (this.prefs.hasColor) sections.push({ id: 'color', icon: 'palette', label: 'Color & Appearance' });
@@ -44,15 +54,19 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
 
   readonly activeSection = signal<string>('');
   private observer: IntersectionObserver | null = null;
+  
+  private isClickScrolling = false;
+  private scrollTimeout: any;
 
   ngAfterViewInit() {
-    // Set up the observer to highlight the sidebar link when a section scrolls into view
     this.observer = new IntersectionObserver((entries) => {
+      if (this.isClickScrolling) return;
+
       const visibleSection = entries.find(entry => entry.isIntersecting);
       if (visibleSection) {
         this.activeSection.set(visibleSection.target.id);
       }
-    }, { rootMargin: '-100px 0px -60% 0px' });
+    }, { rootMargin: '-120px 0px -40% 0px' });
 
     this.sections.forEach(sec => this.observer?.observe(sec.nativeElement));
     
@@ -63,13 +77,42 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.observer?.disconnect();
+    clearTimeout(this.scrollTimeout);
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (this.isClickScrolling) return;
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const innerHeight = window.innerHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+
+    if (scrollHeight <= innerHeight) return;
+
+    const isAtBottom = Math.ceil(scrollY + innerHeight) >= scrollHeight - 10;
+    
+    if (isAtBottom && scrollY > 0) {
+      const sections = this.availableSections();
+      if (sections.length > 0) {
+        this.activeSection.set(sections[sections.length - 1].id);
+      }
+    }
   }
 
   scrollTo(id: string) {
+    this.isClickScrolling = true;
+    this.activeSection.set(id); 
+
     const el = document.getElementById(id);
     if (el) {
       const behavior = this.prefs.motionScale() === 0 ? 'instant' : 'smooth';
       el.scrollIntoView({ behavior, block: 'start' });
     }
+
+    clearTimeout(this.scrollTimeout);
+    this.scrollTimeout = setTimeout(() => {
+      this.isClickScrolling = false;
+    }, 800);
   }
 }

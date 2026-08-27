@@ -16,7 +16,8 @@
   display: flex;
   flex-direction: row;
   gap: 16px;
-  
+  align-items: flex-end;
+
   .flex-field {
     flex: 1;
     display: flex;
@@ -27,13 +28,20 @@
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 16px;
+    align-items: stretch;
   }
 }
 
 .full-width-toggle {
   width: 100%;
+  height: 56px; 
+  box-sizing: border-box;
+
   mat-button-toggle {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
