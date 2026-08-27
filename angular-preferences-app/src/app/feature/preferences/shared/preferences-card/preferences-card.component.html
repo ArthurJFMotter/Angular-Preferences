@@ -1,10 +1,17 @@
-<mat-card appearance="outlined" class="pref-card">
-  <mat-card-header>
-    <mat-icon mat-card-avatar color="primary">{{ icon }}</mat-icon>
-    <mat-card-title>{{ title }}</mat-card-title>
-    <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
+<div class="pref-card">
+  
+  <header class="pref-header">
+    <div class="icon-wrapper">
+      <mat-icon>{{ icon }}</mat-icon>
+    </div>
+    <div class="text-wrapper">
+      <h3>{{ title }}</h3>
+      <p>{{ subtitle }}</p>
+    </div>
+  </header>
+
+  <div class="pref-content">
     <ng-content></ng-content>
-  </mat-card-content>
-</mat-card>
+  </div>
+
+</div>
