@@ -1,20 +1,41 @@
 <div class="preferences-page">
-  <header class="page-header">
-    <h1>Global Preferences</h1>
-    <p>Configure your workspace. Changes are saved automatically and applied instantly.</p>
-  </header>
+  <div class="settings-layout">
+    
+    <!-- STICKY SIDEBAR -->
+    <aside class="settings-sidebar">
+      <nav class="nav-menu">
+        @for (section of availableSections(); track section.id) {
+          <button mat-button 
+                  [class.active]="activeSection() === section.id"
+                  (click)="scrollTo(section.id)">
+            <mat-icon>{{ section.icon }}</mat-icon>
+            <span>{{ section.label }}</span>
+          </button>
+        }
+      </nav>
+    </aside>
 
-  <div class="cards-grid">
-    @if (prefs.hasColor) { <app-color-appearance/> }
-    @if (prefs.hasTypography) { <app-typography/> }
-    @if (prefs.hasLayout) { <app-interface-layout/> }
-    @if (prefs.hasNotifications) { <app-notifications/> }
-    @if (prefs.hasAccessibility) { <app-vision-filters/> }
-  </div>
+    <!-- CONTENT STACK -->
+    <main class="settings-content">
+      <header class="page-header">
+        <h1>Global Preferences</h1>
+        <p>Configure your workspace. Changes are saved automatically and applied instantly.</p>
+      </header>
 
-  <div class="page-footer">
-    <button mat-stroked-button color="warn" (click)="prefs.resetToDefaults()">
-      <mat-icon>restore</mat-icon> Reset All Preferences
-    </button>
+      <div class="cards-stack">
+        @if (prefs.hasColor) { <section #section id="color"><app-color-appearance/></section> }
+        @if (prefs.hasTypography) { <section #section id="typography"><app-typography/></section> }
+        @if (prefs.hasLayout) { <section #section id="layout"><app-interface-layout/></section> }
+        @if (prefs.hasNotifications) { <section #section id="notifications"><app-notifications/></section> }
+        @if (prefs.hasAccessibility) { <section #section id="accessibility"><app-vision-filters/></section> }
+      </div>
+
+      <div class="page-footer">
+        <button mat-stroked-button color="warn" (click)="prefs.resetToDefaults()">
+          <mat-icon>restore</mat-icon> Reset All Preferences
+        </button>
+      </div>
+    </main>
+
   </div>
 </div>

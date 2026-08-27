@@ -1,56 +1,158 @@
 .preferences-page {
-  padding: 32px;
-  max-width: 1400px;
+  padding: 48px 24px;
+  max-width: 1200px;
   margin: 0 auto;
   color: var(--mat-sys-on-surface);
+
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+  }
+}
+
+.settings-layout {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+/* --- SIDEBAR NAVIGATION --- */
+.settings-sidebar {
+  position: sticky;
+  top: 100px;
+  width: 260px;
+  flex-shrink: 0;
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    button {
+      justify-content: flex-start;
+      border-radius: var(--mat-sys-corner-medium);
+      color: var(--mat-sys-on-surface-variant);
+      padding: 12px 16px;
+      font-weight: 500;
+      transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
+
+      mat-icon {
+        margin-right: 12px;
+        color: inherit;
+      }
+
+      &:hover {
+        background: var(--mat-sys-surface-container-high);
+        color: var(--mat-sys-on-surface);
+      }
+
+      &.active {
+        background: var(--mat-sys-secondary-container);
+        color: var(--mat-sys-on-secondary-container);
+      }
+    }
+  }
+
+  /* Mobile Sidebar Transformation (Horizontal scrolling chips) */
+  @media (max-width: 900px) {
+    position: static;
+    width: 100%;
+
+    .nav-menu {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 8px; 
+
+      /* Hide scrollbar for a clean mobile look */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      button {
+        flex-shrink: 0;
+        white-space: nowrap;
+        background: var(--mat-sys-surface-container);
+        border: 1px solid var(--mat-sys-outline-variant);
+        border-radius: var(--mat-sys-corner-full);
+
+        &.active {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+/* --- CONTENT STACK --- */
+.settings-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; 
+  max-width: 800px; 
 }
 
 .page-header {
-  margin-bottom: 32px;
-  
+  margin-bottom: 48px;
+
   h1 {
-    font-size: 2rem;
-    font-weight: 500;
-    margin: 0 0 8px;
-    color: var(--mat-sys-primary);
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    color: var(--mat-sys-on-background);
   }
-  
+
   p {
+    font-size: 1.1rem;
     margin: 0;
+    line-height: 1.5;
     color: var(--mat-sys-on-surface-variant);
   }
-}
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 24px;
-  align-items: start;
-}
-
-.pref-card {
-  mat-card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 16px;
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
+    h1 {
+      font-size: 1.75rem;
+    }
+    p {
+      font-size: 1rem;
+    }
   }
-  
-  // Custom Menu panel override
-  ::ng-deep .custom-menu-panel {
-    max-width: none !important;
-    padding: 0 !important;
+}
+
+.cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  section {
+    scroll-margin-top: 100px;
   }
 }
 
 // Footer
 .page-footer {
-  margin-top: 48px;
+  margin-top: 64px;
   display: flex;
-  justify-content: center;
-  padding-bottom: 48px;
-  
+  justify-content: flex-start;
+  padding-bottom: 64px;
+
   button {
-    width: 240px;
+    width: auto;
+    padding: 0 32px;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    button {
+      width: 100%;
+    }
   }
 }
