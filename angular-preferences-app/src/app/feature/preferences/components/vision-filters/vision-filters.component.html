@@ -1,111 +1,81 @@
-<app-preferences-card
-  title="Vision Simulator"
-  subtitle="Accessibility audits"
-  icon="visibility"
->
-  <!-- CVD -->
+<app-preferences-card title="Vision Simulator" subtitle="Accessibility audits" icon="visibility">
+  
+  <!-- PREVIEW SECTION -->
+  <div class="vision-preview">
+    <img src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Vision simulator preview" class="preview-img">
+    
+    <!-- Pure color blocks to explicitly demonstrate Daltonization math -->
+    <div class="preview-swatches">
+      <div class="pure-swatch" style="background: #ff0000;" title="Pure Red"></div>
+      <div class="pure-swatch" style="background: #00ff00;" title="Pure Green"></div>
+      <div class="pure-swatch" style="background: #0000ff;" title="Pure Blue"></div>
+      <div class="pure-swatch" style="background: #ffff00;" title="Pure Yellow"></div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- CVD Selector -->
   <div class="field-group">
     <label>Color Deficiency</label>
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-select
-        [value]="prefs.cvd()"
-        (selectionChange)="prefs.setCvdMode($event.value)"
-      >
+      <mat-select [value]="prefs.cvd()" (selectionChange)="prefs.setCvdMode($event.value)">
         <mat-select-trigger>{{ getCvdLabel(prefs.cvd()) }}</mat-select-trigger>
         @for (option of cvdOptions; track option.value) {
           <mat-option [value]="option.value">
-            <div class="option-text">
-              <span>{{ option.label }}</span
-              ><small>{{ option.desc }}</small>
-            </div>
+            <div class="option-text"><span>{{ option.label }}</span><small>{{ option.desc }}</small></div>
           </mat-option>
         }
       </mat-select>
     </mat-form-field>
   </div>
 
-  @if (prefs.cvd() !== "none" && prefs.cvd() !== "achromatopsia") {
-    <div class="field-group" style="margin-top: -4px">
-      <mat-button-toggle-group
-        class="full-width-toggle"
-        [value]="prefs.cvdIntent()"
-        (change)="prefs.setCvdIntent($event.value)"
-      >
+  <!-- CVD Intent Toggle -->
+  @if (prefs.cvd() !== 'none' && prefs.cvd() !== 'achromatopsia') {
+    <div class="field-group" style="margin-top: -4px;">
+      <mat-button-toggle-group class="full-width-toggle" [value]="prefs.cvdIntent()" (change)="prefs.setCvdIntent($event.value)">
         <mat-button-toggle value="simulate">Simulate</mat-button-toggle>
         <mat-button-toggle value="compensate">Daltonize</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   }
 
-  @if (prefs.cvd() !== "none") {
-    <div class="slider-group" style="margin-top: 8px">
-      <div class="slider-header">
-        <label>Severity</label
-        ><span class="highlight">{{ prefs.cvdSeverity() }}%</span>
-      </div>
+  <!-- CVD Severity Slider -->
+  @if (prefs.cvd() !== 'none') {
+    <div class="slider-group" style="margin-top: 8px; margin-bottom: 16px;">
+      <div class="slider-header"><label>Severity</label><span class="highlight">{{ prefs.cvdSeverity() }}%</span></div>
       <div class="slider-row">
-        <button mat-icon-button (click)="decreaseCvdSeverity()">
-          <mat-icon>remove</mat-icon>
-        </button>
-        <mat-slider min="10" max="100" step="10" discrete
-          ><input
-            matSliderThumb
-            [ngModel]="prefs.cvdSeverity()"
-            (ngModelChange)="prefs.setCvdSeverity($event)"
-        /></mat-slider>
-        <button mat-icon-button (click)="increaseCvdSeverity()">
-          <mat-icon>add</mat-icon>
-        </button>
+        <button mat-icon-button (click)="decreaseCvdSeverity()"><mat-icon>remove</mat-icon></button>
+        <mat-slider min="10" max="100" step="10" discrete><input matSliderThumb [ngModel]="prefs.cvdSeverity()" (ngModelChange)="prefs.setCvdSeverity($event)" /></mat-slider>
+        <button mat-icon-button (click)="increaseCvdSeverity()"><mat-icon>add</mat-icon></button>
       </div>
     </div>
     <mat-divider></mat-divider>
   }
 
-  <!-- Screen Filter -->
-  <div
-    class="field-group"
-    [style.margin-top]="prefs.cvd() === 'none' ? '12px' : '0'"
-  >
+  <!-- Screen Filter Selector -->
+  <div class="field-group" [style.margin-top]="prefs.cvd() === 'none' ? '12px' : '0'">
     <label>Environmental Overlay</label>
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-select
-        [value]="prefs.screenFilter()"
-        (selectionChange)="prefs.setScreenFilter($event.value)"
-      >
-        <mat-select-trigger>{{
-          getScreenFilterLabel(prefs.screenFilter())
-        }}</mat-select-trigger>
+      <mat-select [value]="prefs.screenFilter()" (selectionChange)="prefs.setScreenFilter($event.value)">
+        <mat-select-trigger>{{ getScreenFilterLabel(prefs.screenFilter()) }}</mat-select-trigger>
         @for (option of screenFilterOptions; track option.value) {
           <mat-option [value]="option.value">
-            <div class="option-text">
-              <span>{{ option.label }}</span
-              ><small>{{ option.desc }}</small>
-            </div>
+            <div class="option-text"><span>{{ option.label }}</span><small>{{ option.desc }}</small></div>
           </mat-option>
         }
       </mat-select>
     </mat-form-field>
   </div>
 
-  @if (prefs.screenFilter() !== "none") {
+  <!-- Screen Filter Intensity Slider -->
+  @if (prefs.screenFilter() !== 'none') {
     <div class="slider-group" style="margin-top: 8px">
-      <div class="slider-header">
-        <label>Intensity</label
-        ><span class="highlight">{{ prefs.screenFilterIntensity() }}%</span>
-      </div>
+      <div class="slider-header"><label>Intensity</label><span class="highlight">{{ prefs.screenFilterIntensity() }}%</span></div>
       <div class="slider-row">
-        <button mat-icon-button (click)="decreaseScreenFilterIntensity()">
-          <mat-icon>remove</mat-icon>
-        </button>
-        <mat-slider min="10" max="100" step="10" discrete
-          ><input
-            matSliderThumb
-            [ngModel]="prefs.screenFilterIntensity()"
-            (ngModelChange)="prefs.setScreenFilterIntensity($event)"
-        /></mat-slider>
-        <button mat-icon-button (click)="increaseScreenFilterIntensity()">
-          <mat-icon>add</mat-icon>
-        </button>
+        <button mat-icon-button (click)="decreaseScreenFilterIntensity()"><mat-icon>remove</mat-icon></button>
+        <mat-slider min="10" max="100" step="10" discrete><input matSliderThumb [ngModel]="prefs.screenFilterIntensity()" (ngModelChange)="prefs.setScreenFilterIntensity($event)" /></mat-slider>
+        <button mat-icon-button (click)="increaseScreenFilterIntensity()"><mat-icon>add</mat-icon></button>
       </div>
     </div>
   }
