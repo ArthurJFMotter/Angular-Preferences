@@ -1,1 +1,29 @@
-@use "../../preferences-shared";
+@use "../../_preferences-shared.scss";
+
+.preview-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+
+  button {
+    flex: 1 1 auto;
+  }
+
+  .btn-success {
+    --mdc-filled-button-container-color: var(--mat-sys-success);
+    --mdc-filled-button-label-text-color: var(--mat-sys-on-success);
+  }
+  .btn-warning {
+    --mdc-filled-button-container-color: var(--mat-sys-warning);
+    --mdc-filled-button-label-text-color: var(--mat-sys-on-warning);
+  }
+  .btn-info {
+    --mdc-filled-button-container-color: var(--mat-sys-info);
+    --mdc-filled-button-label-text-color: var(--mat-sys-on-info);
+  }
+  .btn-error {
+    --mdc-filled-button-container-color: var(--mat-sys-error);
+    --mdc-filled-button-label-text-color: var(--mat-sys-on-error);
+  }
+}

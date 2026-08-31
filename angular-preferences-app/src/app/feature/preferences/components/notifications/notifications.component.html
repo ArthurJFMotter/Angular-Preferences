@@ -1,31 +1,65 @@
 <app-preferences-card
   title="Notifications"
-  subtitle="Alert positioning"
+  subtitle="Alert positioning and semantics"
   icon="notifications"
 >
-  <div class="field-group">
-    <label>Vertical Spawn</label>
-    <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-select
-        [value]="prefs.snackbarVPosition()"
-        (selectionChange)="prefs.setSnackbarVPosition($event.value)"
-      >
-        <mat-option value="top">Top</mat-option>
-        <mat-option value="bottom">Bottom</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <!-- POSITION DROPDOWNS -->
+  <div class="field-group row-group">
+    <div class="flex-field">
+      <label>Vertical Spawn</label>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-select
+          [value]="prefs.snackbarVPosition()"
+          (selectionChange)="updateVPosition($event.value)"
+        >
+          <mat-option value="top">Top</mat-option>
+          <mat-option value="bottom">Bottom</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex-field">
+      <label>Horizontal Spawn</label>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-select
+          [value]="prefs.snackbarHPosition()"
+          (selectionChange)="updateHPosition($event.value)"
+        >
+          <mat-option value="start">Start (Left)</mat-option>
+          <mat-option value="center">Center</mat-option>
+          <mat-option value="end">End (Right)</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- PREVIEW BUTTONS -->
   <div class="field-group">
-    <label>Horizontal Spawn</label>
-    <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-select
-        [value]="prefs.snackbarHPosition()"
-        (selectionChange)="prefs.setSnackbarHPosition($event.value)"
+    <label>Preview Semantic Alerts</label>
+    <div class="preview-buttons">
+      <button mat-stroked-button (click)="testAlert('default')">Default</button>
+      <button
+        mat-flat-button
+        class="btn-success"
+        (click)="testAlert('success')"
       >
-        <mat-option value="start">Start (Left)</mat-option>
-        <mat-option value="center">Center</mat-option>
-        <mat-option value="end">End (Right)</mat-option>
-      </mat-select>
-    </mat-form-field>
+        Success
+      </button>
+      <button
+        mat-flat-button
+        class="btn-warning"
+        (click)="testAlert('warning')"
+      >
+        Warning
+      </button>
+      <button mat-flat-button class="btn-info" (click)="testAlert('info')">
+        Info
+      </button>
+      <button mat-flat-button class="btn-error" (click)="testAlert('error')">
+        Error
+      </button>
+    </div>
   </div>
 </app-preferences-card>
