@@ -22,15 +22,21 @@
 .pref-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
-  margin-bottom: 28px; /* Breathing room before the form fields */
+  margin-bottom: 28px; 
+
+  .header-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 
   .icon-wrapper {
     width: 48px;
     height: 48px;
     border-radius: var(--mat-sys-corner-medium, 12px);
     
-    /* M3 Colored Block! */
     background: var(--mat-sys-primary-container);
     color: var(--mat-sys-on-primary-container);
     
@@ -70,6 +76,6 @@
 .pref-content {
   display: flex;
   flex-direction: column;
-  gap: 24px; /* Consistent spacing between the sliders/dropdowns */
+  gap: 24px;
   flex: 1;
 }

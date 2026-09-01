@@ -1,17 +1,21 @@
 <div class="pref-card">
-  
   <header class="pref-header">
-    <div class="icon-wrapper">
-      <mat-icon>{{ icon }}</mat-icon>
+    <div class="header-main">
+      <div class="icon-wrapper">
+        <mat-icon>{{ icon }}</mat-icon>
+      </div>
+      <div class="text-wrapper">
+        <h3>{{ title }}</h3>
+        <p>{{ subtitle }}</p>
+      </div>
     </div>
-    <div class="text-wrapper">
-      <h3>{{ title }}</h3>
-      <p>{{ subtitle }}</p>
+    
+    <div class="header-action">
+      <ng-content select="[card-action]"></ng-content>
     </div>
   </header>
 
   <div class="pref-content">
     <ng-content></ng-content>
   </div>
-
 </div>

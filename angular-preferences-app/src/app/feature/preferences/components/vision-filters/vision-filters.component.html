@@ -3,55 +3,83 @@
   subtitle="Accessibility audits"
   icon="visibility"
 >
-  <!-- INTERACTIVE PREVIEW SECTION -->
-  <div
-    class="vision-preview"
-    tabindex="0"
-    role="button"
-    [attr.aria-pressed]="isComparing()"
-    aria-label="Hold to compare with original image"
-    (mousedown)="startCompare()"
-    (mouseup)="stopCompare()"
-    (mouseleave)="stopCompare()"
-    (touchstart)="startCompare()"
-    (touchend)="stopCompare()"
-    (touchcancel)="stopCompare()"
-    (keydown.enter)="startCompare()"
-    (keydown.space)="startCompare()"
-    (keyup.enter)="stopCompare()"
-    (keyup.space)="stopCompare()"
+  <!-- IMAGE TOGGLE BUTTON -->
+  <button
+    mat-icon-button
+    card-action
+    (click)="showPreview.set(!showPreview())"
+    [matTooltip]="showPreview() ? 'Hide preview' : 'Show preview'"
   >
-    <div class="preview-badge" [class.active]="isComparing()">
-      <mat-icon>{{ isComparing() ? "visibility" : "visibility_off" }}</mat-icon>
-      <span>{{ isComparing() ? "Showing Original" : "Hold to compare" }}</span>
+    <mat-icon>{{ showPreview() ? "expand_less" : "expand_more" }}</mat-icon>
+  </button>
+
+  @if (showPreview()) {
+    <!-- INTERACTIVE PREVIEW SECTION -->
+    <div
+      class="vision-preview"
+      tabindex="0"
+      role="button"
+      [attr.aria-pressed]="isComparing()"
+      aria-label="Hold to compare with original image"
+      (mousedown)="startCompare()"
+      (mouseup)="stopCompare()"
+      (mouseleave)="stopCompare()"
+      (touchstart)="startCompare()"
+      (touchend)="stopCompare()"
+      (touchcancel)="stopCompare()"
+      (keydown.enter)="startCompare()"
+      (keydown.space)="startCompare()"
+      (keyup.enter)="stopCompare()"
+      (keyup.space)="stopCompare()"
+    >
+      <div class="preview-badge" [class.active]="isComparing()">
+        <mat-icon>{{
+          isComparing() ? "visibility" : "visibility_off"
+        }}</mat-icon>
+        <span>{{
+          isComparing() ? "Showing Original" : "Hold to compare"
+        }}</span>
+      </div>
+
+      <!-- IMAGE LOADER WRAPPER -->
+      <div class="img-wrapper">
+        @if (!imageLoaded()) {
+          <div class="img-loader">
+            <mat-spinner diameter="32"></mat-spinner>
+          </div>
+        }
+        <img
+          src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
+          alt="Vision simulator preview"
+          class="preview-img"
+          [class.loaded]="imageLoaded()"
+          (load)="imageLoaded.set(true)"
+        />
+      </div>
+
+      <!-- Labeled Reference Swatches -->
+      <div class="preview-swatches">
+        <div class="swatch-group">
+          <div class="pure-swatch" style="background: #ff0000"></div>
+          <small>Red</small>
+        </div>
+        <div class="swatch-group">
+          <div class="pure-swatch" style="background: #00ff00"></div>
+          <small>Green</small>
+        </div>
+        <div class="swatch-group">
+          <div class="pure-swatch" style="background: #0000ff"></div>
+          <small>Blue</small>
+        </div>
+        <div class="swatch-group">
+          <div class="pure-swatch" style="background: #ffff00"></div>
+          <small>Yellow</small>
+        </div>
+      </div>
     </div>
 
-    <img
-      src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
-      alt="Vision simulator preview"
-      class="preview-img"
-    />
-
-    <!-- Labeled Reference Swatches -->
-    <div class="preview-swatches">
-      <div class="swatch-group">
-        <div class="pure-swatch" style="background: #ff0000"></div>
-        <small>Red</small>
-      </div>
-      <div class="swatch-group">
-        <div class="pure-swatch" style="background: #00ff00"></div>
-        <small>Green</small>
-      </div>
-      <div class="swatch-group">
-        <div class="pure-swatch" style="background: #0000ff"></div>
-        <small>Blue</small>
-      </div>
-      <div class="swatch-group">
-        <div class="pure-swatch" style="background: #ffff00"></div>
-        <small>Yellow</small>
-      </div>
-    </div>
-  </div>
+    <mat-divider></mat-divider>
+  }
 
   <!-- TABBED CONTROLS -->
   <mat-tab-group dynamicHeight mat-stretch-tabs="false" class="vision-tabs">

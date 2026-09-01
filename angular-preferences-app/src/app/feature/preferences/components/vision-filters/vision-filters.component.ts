@@ -7,7 +7,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   PreferencesService,
   CVD_MODES,
@@ -27,7 +29,9 @@ import { PreferencesCardComponent } from '../../shared/preferences-card/preferen
     MatSliderModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
     MatTabsModule,
+    MatTooltipModule,
     PreferencesCardComponent,
   ],
   templateUrl: './vision-filters.component.html',
@@ -37,6 +41,10 @@ export class VisionFiltersComponent {
   readonly prefs = inject(PreferencesService);
   readonly cvdOptions = CVD_MODES;
   readonly screenFilterOptions = SCREEN_FILTERS;
+
+  // --- UI STATE ---
+  readonly showPreview = signal(false);
+  readonly imageLoaded = signal(false);
 
   // --- COMPARE LOGIC ---
   readonly isComparing = signal(false);
