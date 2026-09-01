@@ -1,7 +1,7 @@
 <app-preferences-card
   title="Vision Simulator"
   subtitle="Accessibility audits"
-  icon="visibility"
+  [icon]="showPreview() ? 'visibility' : 'visibility_off'"
 >
   <!-- IMAGE TOGGLE BUTTON -->
   <button
