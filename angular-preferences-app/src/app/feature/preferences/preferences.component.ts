@@ -20,6 +20,7 @@ import { InterfaceLayoutComponent } from './components/interface-layout/interfac
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { VisionFiltersComponent } from './components/vision-filters/vision-filters.component';
+import { ModalService } from '../../core/services/modal.service';
 
 @Component({
   selector: 'app-preferences',
@@ -39,37 +40,66 @@ import { VisionFiltersComponent } from './components/vision-filters/vision-filte
 })
 export class PreferencesComponent implements AfterViewInit, OnDestroy {
   readonly prefs = inject(PreferencesService);
+  private modals = inject(ModalService);
 
   @ViewChildren('section') sections!: QueryList<ElementRef<HTMLElement>>;
 
   readonly availableSections = computed(() => {
     const sections = [];
-    if (this.prefs.hasColor) sections.push({ id: 'color', icon: 'palette', label: 'Color & Appearance' });
-    if (this.prefs.hasTypography) sections.push({ id: 'typography', icon: 'text_fields', label: 'Typography' });
-    if (this.prefs.hasLayout) sections.push({ id: 'layout', icon: 'dashboard', label: 'Interface Layout' });
-    if (this.prefs.hasNotifications) sections.push({ id: 'notifications', icon: 'notifications', label: 'Notifications' });
-    if (this.prefs.hasAccessibility) sections.push({ id: 'accessibility', icon: 'visibility', label: 'Vision Simulator' });
+    if (this.prefs.hasColor)
+      sections.push({
+        id: 'color',
+        icon: 'palette',
+        label: 'Color & Appearance',
+      });
+    if (this.prefs.hasTypography)
+      sections.push({
+        id: 'typography',
+        icon: 'text_fields',
+        label: 'Typography',
+      });
+    if (this.prefs.hasLayout)
+      sections.push({
+        id: 'layout',
+        icon: 'dashboard',
+        label: 'Interface Layout',
+      });
+    if (this.prefs.hasNotifications)
+      sections.push({
+        id: 'notifications',
+        icon: 'notifications',
+        label: 'Notifications',
+      });
+    if (this.prefs.hasAccessibility)
+      sections.push({
+        id: 'accessibility',
+        icon: 'visibility',
+        label: 'Vision Simulator',
+      });
     return sections;
   });
 
   readonly activeSection = signal<string>('');
   private observer: IntersectionObserver | null = null;
-  
+
   private isClickScrolling = false;
   private scrollTimeout: any;
 
   ngAfterViewInit() {
-    this.observer = new IntersectionObserver((entries) => {
-      if (this.isClickScrolling) return;
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        if (this.isClickScrolling) return;
 
-      const visibleSection = entries.find(entry => entry.isIntersecting);
-      if (visibleSection) {
-        this.activeSection.set(visibleSection.target.id);
-      }
-    }, { rootMargin: '-120px 0px -40% 0px' });
+        const visibleSection = entries.find((entry) => entry.isIntersecting);
+        if (visibleSection) {
+          this.activeSection.set(visibleSection.target.id);
+        }
+      },
+      { rootMargin: '-120px 0px -40% 0px' },
+    );
 
-    this.sections.forEach(sec => this.observer?.observe(sec.nativeElement));
-    
+    this.sections.forEach((sec) => this.observer?.observe(sec.nativeElement));
+
     if (this.availableSections().length > 0) {
       this.activeSection.set(this.availableSections()[0].id);
     }
@@ -91,7 +121,7 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
     if (scrollHeight <= innerHeight) return;
 
     const isAtBottom = Math.ceil(scrollY + innerHeight) >= scrollHeight - 10;
-    
+
     if (isAtBottom && scrollY > 0) {
       const sections = this.availableSections();
       if (sections.length > 0) {
@@ -102,7 +132,7 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
 
   scrollTo(id: string) {
     this.isClickScrolling = true;
-    this.activeSection.set(id); 
+    this.activeSection.set(id);
 
     const el = document.getElementById(id);
     if (el) {
@@ -114,5 +144,24 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
     this.scrollTimeout = setTimeout(() => {
       this.isClickScrolling = false;
     }, 800);
+  }
+
+  confirmReset(): void {
+    this.modals
+      .confirmDanger(
+        'Reset All Preferences',
+        'Are you sure you want to restore everything to the factory defaults? All custom color palettes and settings will be lost.',
+        'restore',
+      )
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          this.prefs.resetToDefaults();
+
+          window.scrollTo({
+            top: 0,
+            behavior: this.prefs.motionScale() === 0 ? 'instant' : 'smooth',
+          });
+        }
+      });
   }
 }
