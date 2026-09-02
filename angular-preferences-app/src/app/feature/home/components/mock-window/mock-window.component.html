@@ -24,23 +24,22 @@
   </div>
   
   <div class="window-footer">
-    <!-- Interactive Buttons! -->
-    <button class="status-item" (click)="cycleMode()" title="Cycle Theme Mode">
+    <button class="status-item" (click)="cycleMode()" [disabled]="!prefs.hasColor" title="Cycle Theme Mode">
       <mat-icon>{{ modeDisplay().icon }}</mat-icon> 
       <span>{{ modeDisplay().text }}</span>
     </button>
     
-    <button class="status-item" (click)="cycleContrast()" title="Cycle Contrast">
+    <button class="status-item" (click)="cycleContrast()" [disabled]="!prefs.hasColor" title="Cycle Contrast">
       <mat-icon>{{ contrastDisplay().icon }}</mat-icon> 
       <span>{{ contrastDisplay().text }}</span>
     </button>
     
-    <button class="status-item" (click)="cycleShape()" title="Cycle Shape">
+    <button class="status-item" (click)="cycleShape()" [disabled]="!prefs.hasLayout" title="Cycle Shape">
       <mat-icon>{{ shapeDisplay().icon }}</mat-icon> 
       <span>{{ shapeDisplay().text }}</span>
     </button>
     
-    <button class="status-item" (click)="cycleFont()" title="Cycle Typography Scale">
+    <button class="status-item" (click)="cycleFont()" [disabled]="!prefs.hasTypography" title="Cycle Typography Scale">
       <mat-icon>{{ fontDisplay().icon }}</mat-icon> 
       <span>{{ fontDisplay().text }}</span>
     </button>

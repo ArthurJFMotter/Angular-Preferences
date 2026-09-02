@@ -56,5 +56,16 @@
     &:active {
       transform: translateY(0);
     }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+
+      &:hover, &:focus-visible {
+        background: transparent;
+        color: var(--mat-sys-on-surface-variant);
+        transform: translateY(0);
+      }
+    }
   }
 }
