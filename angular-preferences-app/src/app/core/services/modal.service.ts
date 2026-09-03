@@ -81,22 +81,21 @@ export class ModalService {
       title: 'Documentation',
       icon: 'menu_book',
       message: 'ng-material-preferences is fully documented on NPM. Here is a quick preview of the installation and zero-config setup:',
-      previewSnippet: `npm install ng-material-preferences\n\nimport { providePreferences } from 'ng-material-preferences';\n\nexport const appConfig = {\n  providers: [\n    providePreferences()\n  ]\n};`,
+      
+      previewSnippet: `npm install ng-material-preferences\n\nimport { providePreferences } from 'ng-material-preferences';\n\nexport const appConfig = {\n  providers: [\n    // Zero-config, or pass options for granular control\n    providePreferences({\n      disableRemoteFonts: true,\n      notifications: false // Tree-shake unused domains!\n    })\n  ]\n};`,
+      
       showCloseButton: true,
       actions: [
-        // { label: 'View on GitHub', value: 'github', color: 'primary' }, // future use
+        //{ label: 'View on GitHub', value: 'github', color: 'primary' },
         { label: 'View on NPM', value: 'npm', isPrimary: true, color: 'primary' }
       ]
     }, {
       width: '600px',
       ...config
     }).subscribe(result => {
-      /*
-      if (result === 'github') {
+      /*if (result === 'github') {
         window.open('https://github.com/your-username/ng-material-preferences', '_blank', 'noopener,noreferrer');
-      } else 
-        */
-      if (result === 'npm') {
+      } else */if (result === 'npm') {
         window.open('https://www.npmjs.com/package/ng-material-preferences', '_blank', 'noopener,noreferrer');
       }
     });
