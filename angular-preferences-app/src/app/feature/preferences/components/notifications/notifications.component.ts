@@ -35,12 +35,12 @@ export class NotificationsComponent {
 
   updateVPosition(val: MatSnackBarVerticalPosition) {
     this.prefs.setSnackbarVPosition(val);
-    this.notify.show('default', `Spawn position updated to ${val}.`);
+    this.notify.show('default', `Vertical spawn updated to ${val}.`);
   }
 
   updateHPosition(val: MatSnackBarHorizontalPosition) {
     this.prefs.setSnackbarHPosition(val);
-    this.notify.show('default', `Spawn position updated to ${val}.`);
+    this.notify.show('default', `Horizontal spawn updated to ${val}.`);
   }
 
   testAlert(type: NotificationType) {
@@ -52,6 +52,27 @@ export class NotificationsComponent {
       error: 'Error: Failed to communicate with server.',
     };
 
-    this.notify.show(type, messages[type]);
+    const actionLabels: Record<NotificationType, string | undefined> = {
+      default: undefined,
+      success: 'Undo',
+      warning: 'Retry',
+      info: 'Learn More',
+      error: 'Report',
+    };
+
+    const actionLabel = actionLabels[type];
+
+    const action = actionLabel
+      ? {
+          label: actionLabel,
+          actionFn: () => {
+            setTimeout(() => {
+              this.notify.show('default', `You clicked the "${actionLabel}" action!`, undefined, 2000);
+            }, 300);
+          },
+        }
+      : undefined;
+
+    this.notify.show(type, messages[type], action, 5000);
   }
 }
