@@ -7,23 +7,28 @@
   margin-top: 4px;
 
   button {
+    border: 1px solid;
     flex: 1 1 auto;
   }
 
   .btn-success {
-    --mdc-filled-button-container-color: var(--mat-sys-success);
-    --mdc-filled-button-label-text-color: var(--mat-sys-on-success);
+    background-color: var(--mat-sys-success-container) !important;
+    border-color: var(--mat-sys-success) !important;
+    color: var(--mat-sys-on-success-container) !important;
   }
   .btn-warning {
-    --mdc-filled-button-container-color: var(--mat-sys-warning);
-    --mdc-filled-button-label-text-color: var(--mat-sys-on-warning);
+    background-color: var(--mat-sys-warning-container) !important;
+    border-color: var(--mat-sys-warning) !important;
+    color: var(--mat-sys-on-warning-container) !important;
   }
   .btn-info {
-    --mdc-filled-button-container-color: var(--mat-sys-info);
-    --mdc-filled-button-label-text-color: var(--mat-sys-on-info);
+    background-color: var(--mat-sys-info-container) !important;
+    border-color: var(--mat-sys-info) !important;
+    color: var(--mat-sys-on-info-container) !important;
   }
   .btn-error {
-    --mdc-filled-button-container-color: var(--mat-sys-error);
-    --mdc-filled-button-label-text-color: var(--mat-sys-on-error);
+    background-color: var(--mat-sys-error-container) !important;
+    border-color: var(--mat-sys-error) !important;
+    color: var(--mat-sys-on-error-container) !important;
   }
 }
