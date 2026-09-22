@@ -4,57 +4,32 @@
   </button>
 </div>
 
-<!-- MAIN MENU -->
+<!-- MAIN MENU (Dynamically protected by Domain Gates!) -->
 <mat-menu #mainMenu="matMenu" yPosition="above" xPosition="before" class="quick-settings-menu">
   
   @if (prefs.hasColor) {
-    <button mat-menu-item [matMenuTriggerFor]="colorMenu">
-      <mat-icon>palette</mat-icon> Theme & Color
-    </button>
+    <button mat-menu-item [matMenuTriggerFor]="colorMenu.menu"><mat-icon>palette</mat-icon> Theme & Color</button>
+    <app-fab-color-menu #colorMenu></app-fab-color-menu>
   }
   
-  @if (prefs.hasTypography || prefs.hasLayout) {
-    <button mat-menu-item [matMenuTriggerFor]="layoutMenu">
-      <mat-icon>dashboard</mat-icon> Interface Scaling
-    </button>
+  @if (prefs.hasTypography) {
+    <button mat-menu-item [matMenuTriggerFor]="typeMenu.menu"><mat-icon>text_fields</mat-icon> Typography</button>
+    <app-fab-typography-menu #typeMenu></app-fab-typography-menu>
+  }
+
+  @if (prefs.hasLayout) {
+    <button mat-menu-item [matMenuTriggerFor]="layoutMenu.menu"><mat-icon>dashboard</mat-icon> Layout & Scaling</button>
+    <app-fab-layout-menu #layoutMenu></app-fab-layout-menu>
+  }
+
+  @if (prefs.hasNotifications) {
+    <button mat-menu-item [matMenuTriggerFor]="notifMenu.menu"><mat-icon>notifications</mat-icon> Notifications</button>
+    <app-fab-notifications-menu #notifMenu></app-fab-notifications-menu>
   }
 
   @if (prefs.hasAccessibility) {
-    <button mat-menu-item [matMenuTriggerFor]="visionMenu">
-      <mat-icon>visibility</mat-icon> Vision Simulator
-    </button>
+    <button mat-menu-item [matMenuTriggerFor]="accessMenu.menu"><mat-icon>visibility</mat-icon> Vision Simulator</button>
+    <app-fab-accessibility-menu #accessMenu></app-fab-accessibility-menu>
   }
-</mat-menu>
 
-<!-- SUBMENU: COLOR -->
-<mat-menu #colorMenu="matMenu">
-  <button mat-menu-item (click)="prefs.setMode('light')"><mat-icon>light_mode</mat-icon> Light Mode</button>
-  <button mat-menu-item (click)="prefs.setMode('dark')"><mat-icon>dark_mode</mat-icon> Dark Mode</button>
-  <button mat-menu-item (click)="prefs.setMode('auto')"><mat-icon>brightness_auto</mat-icon> System Auto</button>
-  <mat-divider></mat-divider>
-  <button mat-menu-item (click)="prefs.setContrastLevel(0)"><mat-icon>tonality</mat-icon> Standard Contrast</button>
-  <button mat-menu-item (click)="prefs.setContrastLevel(1)"><mat-icon>contrast</mat-icon> High Contrast</button>
-</mat-menu>
-
-<!-- SUBMENU: LAYOUT & TYPOGRAPHY -->
-<mat-menu #layoutMenu="matMenu">
-  @if (prefs.hasTypography) {
-    <button mat-menu-item (click)="prefs.setFontScale(0.85)"><mat-icon>text_decrease</mat-icon> Small Text</button>
-    <button mat-menu-item (click)="prefs.setFontScale(1)"><mat-icon>format_size</mat-icon> Standard Text</button>
-    <button mat-menu-item (click)="prefs.setFontScale(1.15)"><mat-icon>text_increase</mat-icon> Large Text</button>
-    <mat-divider></mat-divider>
-  }
-  @if (prefs.hasLayout) {
-    <button mat-menu-item (click)="prefs.setDensityScale(0)"><mat-icon>view_headline</mat-icon> Comfort Density</button>
-    <button mat-menu-item (click)="prefs.setDensityScale(-3)"><mat-icon>compress</mat-icon> Compact Density</button>
-  }
-</mat-menu>
-
-<!-- SUBMENU: VISION SIMULATOR -->
-<mat-menu #visionMenu="matMenu">
-  <button mat-menu-item (click)="prefs.setCvdMode('none')"><mat-icon>visibility</mat-icon> Normal Vision</button>
-  <mat-divider></mat-divider>
-  <button mat-menu-item (click)="prefs.setCvdMode('protanopia'); prefs.setCvdSeverity(100)"><mat-icon>color_lens</mat-icon> Protanopia</button>
-  <button mat-menu-item (click)="prefs.setCvdMode('deuteranopia'); prefs.setCvdSeverity(100)"><mat-icon>color_lens</mat-icon> Deuteranopia</button>
-  <button mat-menu-item (click)="prefs.setCvdMode('achromatopsia'); prefs.setCvdSeverity(100)"><mat-icon>gradient</mat-icon> Achromatopsia</button>
 </mat-menu>

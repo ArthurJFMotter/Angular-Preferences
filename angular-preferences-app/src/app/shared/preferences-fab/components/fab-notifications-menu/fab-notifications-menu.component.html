@@ -1,0 +1,26 @@
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="vMenu">
+    <mat-icon>vertical_align_center</mat-icon> Vertical Spawn
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="hMenu">
+    <mat-icon>align_horizontal_center</mat-icon> Horizontal Spawn
+  </button>
+</mat-menu>
+
+<mat-menu #vMenu="matMenu">
+  @for (v of vPositions; track v) {
+    <button mat-menu-item (click)="prefs.setSnackbarVPosition(v)">
+      <mat-icon>{{ prefs.snackbarVPosition() === v ? "check" : "" }}</mat-icon>
+      {{ v | titlecase }}
+    </button>
+  }
+</mat-menu>
+
+<mat-menu #hMenu="matMenu">
+  @for (h of hPositions; track h) {
+    <button mat-menu-item (click)="prefs.setSnackbarHPosition(h)">
+      <mat-icon>{{ prefs.snackbarHPosition() === h ? "check" : "" }}</mat-icon>
+      {{ h | titlecase }}
+    </button>
+  }
+</mat-menu>

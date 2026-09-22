@@ -1,0 +1,28 @@
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="cvdMenu">
+    <mat-icon>color_lens</mat-icon> Color Deficiency
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="screenMenu">
+    <mat-icon>layers</mat-icon> Screen Filter
+  </button>
+</mat-menu>
+
+<mat-menu #cvdMenu="matMenu">
+  @for (cvd of cvds; track cvd.value) {
+    <button mat-menu-item (click)="prefs.setCvdMode(cvd.value)">
+      <mat-icon>{{ prefs.cvd() === cvd.value ? "check" : "" }}</mat-icon>
+      {{ cvd.label }}
+    </button>
+  }
+</mat-menu>
+
+<mat-menu #screenMenu="matMenu">
+  @for (filter of filters; track filter.value) {
+    <button mat-menu-item (click)="prefs.setScreenFilter(filter.value)">
+      <mat-icon>{{
+        prefs.screenFilter() === filter.value ? "check" : ""
+      }}</mat-icon>
+      {{ filter.label }}
+    </button>
+  }
+</mat-menu>

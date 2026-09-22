@@ -1,0 +1,47 @@
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="modeMenu">
+    <mat-icon>brightness_6</mat-icon> Theme Mode
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="variantMenu">
+    <mat-icon>palette</mat-icon> Theme Variant
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="contrastMenu">
+    <mat-icon>contrast</mat-icon> Contrast
+  </button>
+</mat-menu>
+
+<mat-menu #modeMenu="matMenu">
+  @for (mode of modes; track mode) {
+    <button mat-menu-item (click)="prefs.setMode(mode)">
+      <mat-icon>{{ prefs.mode() === mode ? "check" : "" }}</mat-icon>
+      {{ mode | titlecase }}
+    </button>
+  }
+</mat-menu>
+
+<mat-menu #variantMenu="matMenu">
+  @for (variant of variants; track variant.value) {
+    <button mat-menu-item (click)="prefs.setVariant(variant.value)">
+      <mat-icon>{{
+        prefs.variant() === variant.value ? "check" : ""
+      }}</mat-icon>
+      {{ variant.label }}
+    </button>
+  }
+</mat-menu>
+
+<mat-menu #contrastMenu="matMenu">
+  <button mat-menu-item (click)="prefs.setAutoContrast(true)">
+    <mat-icon>{{ prefs.autoContrast() ? "check" : "" }}</mat-icon> Auto (OS)
+  </button>
+  @for (c of contrasts; track c.value) {
+    <button mat-menu-item (click)="setContrast(c.value)">
+      <mat-icon>{{
+        !prefs.autoContrast() && prefs.contrastLevel() === c.value
+          ? "check"
+          : ""
+      }}</mat-icon>
+      {{ c.label }}
+    </button>
+  }
+</mat-menu>
