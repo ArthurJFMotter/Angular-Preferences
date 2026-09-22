@@ -7,6 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
 } from '@angular/material/snack-bar';
 import { TitleCasePipe } from '@angular/common';
+import { NotificationService } from '../../../../core/services/notification.service';
 
 @Component({
   selector: 'app-fab-notifications-menu',
@@ -17,6 +18,8 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class FabNotificationsMenuComponent {
   readonly prefs = inject(PreferencesService);
+  private notify = inject(NotificationService);
+
   @ViewChild('menu', { static: true }) menu!: MatMenu;
 
   readonly vPositions: MatSnackBarVerticalPosition[] = ['top', 'bottom'];
@@ -25,4 +28,14 @@ export class FabNotificationsMenuComponent {
     'center',
     'end',
   ];
+
+  setVPosition(val: MatSnackBarVerticalPosition) {
+    this.prefs.setSnackbarVPosition(val);
+    this.notify.show('default', `Vertical spawn updated to ${val}.`);
+  }
+
+  setHPosition(val: MatSnackBarHorizontalPosition) {
+    this.prefs.setSnackbarHPosition(val);
+    this.notify.show('default', `Horizontal spawn updated to ${val}.`);
+  }
 }

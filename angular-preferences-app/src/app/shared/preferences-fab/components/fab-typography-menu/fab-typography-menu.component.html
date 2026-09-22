@@ -44,7 +44,7 @@
   @for (s of scales; track s.value) {
     <button mat-menu-item (click)="prefs.setFontScale(s.value)">
       <mat-icon>{{ prefs.fontScale() === s.value ? "check" : "" }}</mat-icon>
-      {{ s.label }} ({{ s.value * 100 }}%)
+      {{ s.label }} ({{ getPercentage(s.value) }}%)
     </button>
   }
 </mat-menu>

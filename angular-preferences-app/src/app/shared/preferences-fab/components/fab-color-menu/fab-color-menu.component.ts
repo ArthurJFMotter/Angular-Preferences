@@ -7,11 +7,12 @@ import {
   ThemeMode,
 } from 'ng-material-preferences';
 import { TitleCasePipe } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-fab-color-menu',
   standalone: true,
-  imports: [MatMenuModule, MatIconModule, TitleCasePipe],
+  imports: [MatDividerModule, MatMenuModule, MatIconModule, TitleCasePipe],
   templateUrl: './fab-color-menu.component.html',
   styleUrl: './fab-color-menu.component.scss',
 })

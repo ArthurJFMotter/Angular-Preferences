@@ -1,3 +1,4 @@
+<!-- Main Menu -->
 <mat-menu #menu="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="shapeMenu">
     <mat-icon>rounded_corner</mat-icon> Corner Radius
@@ -10,6 +11,7 @@
   </button>
 </mat-menu>
 
+<!-- Submenus -->
 <mat-menu #shapeMenu="matMenu">
   @for (s of shapes; track s.value) {
     <button mat-menu-item (click)="prefs.setShapeScale(s.value)">

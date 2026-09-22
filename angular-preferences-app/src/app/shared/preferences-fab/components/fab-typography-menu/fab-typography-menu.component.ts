@@ -21,4 +21,8 @@ export class FabTypographyMenuComponent {
     { label: 'Medium', value: 1 },
     { label: 'Small', value: 0.85 },
   ];
+
+  getPercentage(val: number): number {
+    return Math.round(val * 100);
+  }
 }

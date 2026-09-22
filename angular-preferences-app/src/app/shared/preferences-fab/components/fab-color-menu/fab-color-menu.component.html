@@ -8,6 +8,9 @@
   <button mat-menu-item [matMenuTriggerFor]="contrastMenu">
     <mat-icon>contrast</mat-icon> Contrast
   </button>
+  <button mat-menu-item [matMenuTriggerFor]="profileMenu">
+    <mat-icon>color_lens</mat-icon> Color Profile
+  </button>
 </mat-menu>
 
 <mat-menu #modeMenu="matMenu">
@@ -44,4 +47,26 @@
       {{ c.label }}
     </button>
   }
+</mat-menu>
+
+<mat-menu #profileMenu="matMenu">
+  @for (profile of prefs.savedProfiles(); track profile.id) {
+    <button mat-menu-item (click)="prefs.setScheme(profile.id)">
+      <mat-icon [style.color]="profile.colors.primary">
+        {{ prefs.scheme() === profile.id ? "check_circle" : "circle" }}
+      </mat-icon>
+      {{ profile.name }}
+    </button>
+  }
+
+  @if (prefs.savedProfiles().length > 0) {
+    <mat-divider></mat-divider>
+  }
+
+  <button mat-menu-item (click)="prefs.setScheme('custom')">
+    <mat-icon [style.color]="prefs.customColors().primary">
+      {{ prefs.scheme() === "custom" ? "check_circle" : "circle" }}
+    </mat-icon>
+    Custom Scratchpad
+  </button>
 </mat-menu>
