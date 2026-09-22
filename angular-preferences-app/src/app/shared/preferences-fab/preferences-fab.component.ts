@@ -1,26 +1,23 @@
-import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
-import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
+import { PreferencesService } from 'ng-material-preferences';
 
 @Component({
   selector: 'app-preferences-fab',
   standalone: true,
-  imports: [
-    CommonModule, 
-    MatButtonModule, 
-    MatIconModule, 
-    MatMenuModule, 
-    MatTooltipModule,
-    MatDividerModule
-  ],
+  imports: [MatButtonModule, MatIconModule, MatMenuModule, MatDividerModule],
   templateUrl: './preferences-fab.component.html',
-  styleUrls: ['./preferences-fab.component.scss']
+  styleUrl: './preferences-fab.component.scss'
 })
 export class PreferencesFabComponent {
- 
+  readonly prefs = inject(PreferencesService);
+
+  // Quick helper for toggling themes
+  cycleTheme() {
+    const current = this.prefs.mode();
+    this.prefs.setMode(current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light');
+  }
 }

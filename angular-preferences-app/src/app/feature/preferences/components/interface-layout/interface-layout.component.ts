@@ -5,8 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PreferencesService } from 'ng-material-preferences';
 import { PreferencesCardComponent } from '../../shared/preferences-card/preferences-card.component';
+import { AppUiStateService } from '../../../../core/services/app-ui-state.service';
 
 @Component({
   selector: 'app-interface-layout',
@@ -18,6 +20,7 @@ import { PreferencesCardComponent } from '../../shared/preferences-card/preferen
     MatButtonModule,
     MatDividerModule,
     MatSliderModule,
+    MatSlideToggleModule,
     PreferencesCardComponent,
   ],
   templateUrl: './interface-layout.component.html',
@@ -25,6 +28,7 @@ import { PreferencesCardComponent } from '../../shared/preferences-card/preferen
 })
 export class InterfaceLayoutComponent {
   readonly prefs = inject(PreferencesService);
+  readonly uiState = inject(AppUiStateService);
 
   scaleShapeUp() {
     const c = this.prefs.shapeScale();

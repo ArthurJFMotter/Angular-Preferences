@@ -1,0 +1,28 @@
+.fab-container {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  
+  /* Respect the library's motion settings! */
+  transition: transform calc(0.3s * var(--theme-motion-scale, 1)) cubic-bezier(0.4, 0, 0.2, 1);
+  animation: popIn calc(0.4s * var(--theme-motion-scale, 1)) cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Optional: Make the menu slightly rounded using library tokens */
+::ng-deep .quick-settings-menu {
+  border-radius: var(--mat-sys-corner-medium) !important;
+}

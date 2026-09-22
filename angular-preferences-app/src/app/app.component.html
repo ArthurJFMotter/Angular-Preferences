@@ -7,5 +7,9 @@
   </main>
 
   <app-footer></app-footer>
+
+  <!-- THE DYNAMIC FAB -->
+  @if (uiState.showQuickFab()) {
+    <app-preferences-fab></app-preferences-fab>
+  }
 </div>
-<!--<app-preferences-fab></app-preferences-fab>-->

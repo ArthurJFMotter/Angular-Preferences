@@ -68,4 +68,16 @@
       </button>
     </div>
   </div>
+
+  <div class="field-group row-group" style="margin-top: 8px">
+    <div class="flex-field">
+      <label>Quick Settings FAB</label>
+      <mat-slide-toggle
+        [checked]="uiState.showQuickFab()"
+        (change)="uiState.showQuickFab.set($event.checked)"
+      >
+        Show floating action button
+      </mat-slide-toggle>
+    </div>
+  </div>
 </app-preferences-card>
