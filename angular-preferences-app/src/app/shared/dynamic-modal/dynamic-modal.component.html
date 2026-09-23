@@ -22,12 +22,6 @@
     @if (localChecklist.length > 0) {
       <div
         class="modal-checklist"
-        style="
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          margin-top: 16px;
-        "
       >
         @for (item of localChecklist; track item.id) {
           <mat-checkbox [(ngModel)]="item.checked" [disabled]="!!item.disabled">
