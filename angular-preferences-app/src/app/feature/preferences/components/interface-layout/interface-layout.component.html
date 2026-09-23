@@ -68,41 +68,29 @@
       </button>
     </div>
   </div>
+  <mat-divider></mat-divider>
 
-  <div
-    class="field-group row-group"
-    style="margin-top: 8px; align-items: center"
-  >
-    <div
-      class="flex-field"
-      style="
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      "
-    >
-      <div>
-        <label style="display: block; margin-bottom: 8px"
-          >Quick Settings FAB</label
-        >
-        <mat-slide-toggle
-          [checked]="uiState.showQuickFab()"
-          (change)="uiState.showQuickFab.set($event.checked)"
-        >
-          Show floating action button
-        </mat-slide-toggle>
-      </div>
+  <!-- QUICK SETTINGS -->
+  <div class="settings-row">
+    <div class="settings-info">
+      <label>Quick Settings FAB</label>
+      <p>Enable a floating menu for instant access to your favorite domains.</p>
+    </div>
 
+    <div class="settings-actions">
       @if (uiState.showQuickFab()) {
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="openFabSettings()"
-          matTooltip="Customize FAB menus"
-        >
-          <mat-icon>settings</mat-icon>
+        <button mat-stroked-button color="primary" (click)="openFabSettings()">
+          <mat-icon>tune</mat-icon> Customize
         </button>
       }
+
+      <mat-slide-toggle
+        color="primary"
+        [checked]="uiState.showQuickFab()"
+        (change)="uiState.showQuickFab.set($event.checked)"
+        aria-label="Toggle Quick Settings FAB"
+      >
+      </mat-slide-toggle>
     </div>
   </div>
 </app-preferences-card>
