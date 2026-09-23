@@ -69,15 +69,40 @@
     </div>
   </div>
 
-  <div class="field-group row-group" style="margin-top: 8px">
-    <div class="flex-field">
-      <label>Quick Settings FAB</label>
-      <mat-slide-toggle
-        [checked]="uiState.showQuickFab()"
-        (change)="uiState.showQuickFab.set($event.checked)"
-      >
-        Show floating action button
-      </mat-slide-toggle>
+  <div
+    class="field-group row-group"
+    style="margin-top: 8px; align-items: center"
+  >
+    <div
+      class="flex-field"
+      style="
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      "
+    >
+      <div>
+        <label style="display: block; margin-bottom: 8px"
+          >Quick Settings FAB</label
+        >
+        <mat-slide-toggle
+          [checked]="uiState.showQuickFab()"
+          (change)="uiState.showQuickFab.set($event.checked)"
+        >
+          Show floating action button
+        </mat-slide-toggle>
+      </div>
+
+      @if (uiState.showQuickFab()) {
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="openFabSettings()"
+          matTooltip="Customize FAB menus"
+        >
+          <mat-icon>settings</mat-icon>
+        </button>
+      }
     </div>
   </div>
 </app-preferences-card>

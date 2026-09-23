@@ -9,6 +9,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PreferencesService } from 'ng-material-preferences';
 import { PreferencesCardComponent } from '../../shared/preferences-card/preferences-card.component';
 import { AppUiStateService } from '../../../../core/services/app-ui-state.service';
+import { ModalService } from '../../../../core/services/modal.service';
 
 @Component({
   selector: 'app-interface-layout',
@@ -29,6 +30,68 @@ import { AppUiStateService } from '../../../../core/services/app-ui-state.servic
 export class InterfaceLayoutComponent {
   readonly prefs = inject(PreferencesService);
   readonly uiState = inject(AppUiStateService);
+  private modals = inject(ModalService);
+
+  openFabSettings() {
+    const current = this.uiState.fabMenus();
+
+    this.modals
+      .open<any[]>({
+        title: 'Customize Quick Settings',
+        icon: 'tune',
+        message:
+          'Select which preference domains appear in the floating action button menu.',
+        showCloseButton: false,
+        checklist: [
+          {
+            id: 'color',
+            label: 'Theme & Color',
+            checked: current['color'],
+            disabled: !this.prefs.hasColor,
+          },
+          {
+            id: 'typography',
+            label: 'Typography',
+            checked: current['typography'],
+            disabled: !this.prefs.hasTypography,
+          },
+          {
+            id: 'layout',
+            label: 'Interface Scaling',
+            checked: current['layout'],
+            disabled: !this.prefs.hasLayout,
+          },
+          {
+            id: 'notifications',
+            label: 'Notifications',
+            checked: current['notifications'],
+            disabled: !this.prefs.hasNotifications,
+          },
+          {
+            id: 'accessibility',
+            label: 'Vision Simulator',
+            checked: current['accessibility'],
+            disabled: !this.prefs.hasAccessibility,
+          },
+        ],
+        actions: [
+          { label: 'Cancel' },
+          {
+            label: 'Save',
+            returnsChecklist: true,
+            isPrimary: true,
+            color: 'primary',
+          },
+        ],
+      })
+      .subscribe((result) => {
+        if (result) {
+          const nextState = { ...current };
+          result.forEach((r: any) => (nextState[r.id] = r.checked));
+          this.uiState.fabMenus.set(nextState);
+        }
+      });
+  }
 
   scaleShapeUp() {
     const c = this.prefs.shapeScale();
