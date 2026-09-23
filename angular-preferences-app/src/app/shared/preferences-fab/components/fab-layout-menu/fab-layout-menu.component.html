@@ -1,40 +1,14 @@
-<!-- Main Menu -->
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="shapeMenu">
-    <mat-icon>rounded_corner</mat-icon> Corner Radius
+<mat-menu #menu="matMenu" class="cycle-menu">
+  <button mat-menu-item (click)="cycleShape($event)">
+    <mat-icon>rounded_corner</mat-icon> <span class="label">Corner Radius</span>
+    <span class="value">{{ shapeName() }}</span>
   </button>
-  <button mat-menu-item [matMenuTriggerFor]="densityMenu">
-    <mat-icon>compress</mat-icon> Density
+  <button mat-menu-item (click)="cycleDensity($event)">
+    <mat-icon>compress</mat-icon> <span class="label">Density</span>
+    <span class="value">{{ densityName() }}</span>
   </button>
-  <button mat-menu-item [matMenuTriggerFor]="motionMenu">
-    <mat-icon>animation</mat-icon> Motion
+  <button mat-menu-item (click)="cycleMotion($event)">
+    <mat-icon>animation</mat-icon> <span class="label">Motion</span>
+    <span class="value">{{ motionName() }}</span>
   </button>
-</mat-menu>
-
-<!-- Submenus -->
-<mat-menu #shapeMenu="matMenu">
-  @for (s of shapes; track s.value) {
-    <button mat-menu-item (click)="prefs.setShapeScale(s.value)">
-      <mat-icon>{{ prefs.shapeScale() === s.value ? "check" : "" }}</mat-icon>
-      {{ s.label }}
-    </button>
-  }
-</mat-menu>
-
-<mat-menu #densityMenu="matMenu">
-  @for (d of densities; track d.value) {
-    <button mat-menu-item (click)="prefs.setDensityScale(d.value)">
-      <mat-icon>{{ prefs.densityScale() === d.value ? "check" : "" }}</mat-icon>
-      {{ d.label }}
-    </button>
-  }
-</mat-menu>
-
-<mat-menu #motionMenu="matMenu">
-  @for (m of motions; track m.value) {
-    <button mat-menu-item (click)="prefs.setMotionScale(m.value)">
-      <mat-icon>{{ prefs.motionScale() === m.value ? "check" : "" }}</mat-icon>
-      {{ m.label }}
-    </button>
-  }
 </mat-menu>

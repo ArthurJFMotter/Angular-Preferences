@@ -1,50 +1,15 @@
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="headingMenu">
-    <mat-icon>title</mat-icon> Heading Font
+<mat-menu #menu="matMenu" class="cycle-menu">
+  <button mat-menu-item (click)="cycleFontFamily($event)">
+    <mat-icon>font_download</mat-icon>
+    <span class="label">Font Family</span>
+    <span class="value" [style.font-family]="prefs.headingFontFamily()">{{
+      fontName()
+    }}</span>
   </button>
-  <button mat-menu-item [matMenuTriggerFor]="bodyMenu">
-    <mat-icon>subject</mat-icon> Body Font
+
+  <button mat-menu-item (click)="cycleFontScale($event)">
+    <mat-icon>format_size</mat-icon>
+    <span class="label">Font Scale</span>
+    <span class="value">{{ scaleName() }}</span>
   </button>
-  <button mat-menu-item [matMenuTriggerFor]="scaleMenu">
-    <mat-icon>format_size</mat-icon> Font Scale
-  </button>
-</mat-menu>
-
-<mat-menu #headingMenu="matMenu">
-  @for (font of fonts; track font.value) {
-    <button
-      mat-menu-item
-      (click)="prefs.setHeadingFontFamily(font.value)"
-      [style.font-family]="font.value"
-    >
-      <mat-icon>{{
-        prefs.headingFontFamily() === font.value ? "check" : ""
-      }}</mat-icon>
-      {{ font.label }}
-    </button>
-  }
-</mat-menu>
-
-<mat-menu #bodyMenu="matMenu">
-  @for (font of fonts; track font.value) {
-    <button
-      mat-menu-item
-      (click)="prefs.setBodyFontFamily(font.value)"
-      [style.font-family]="font.value"
-    >
-      <mat-icon>{{
-        prefs.bodyFontFamily() === font.value ? "check" : ""
-      }}</mat-icon>
-      {{ font.label }}
-    </button>
-  }
-</mat-menu>
-
-<mat-menu #scaleMenu="matMenu">
-  @for (s of scales; track s.value) {
-    <button mat-menu-item (click)="prefs.setFontScale(s.value)">
-      <mat-icon>{{ prefs.fontScale() === s.value ? "check" : "" }}</mat-icon>
-      {{ s.label }} ({{ getPercentage(s.value) }}%)
-    </button>
-  }
 </mat-menu>
