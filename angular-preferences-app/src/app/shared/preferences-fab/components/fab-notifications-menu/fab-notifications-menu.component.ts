@@ -2,17 +2,12 @@ import { Component, ViewChild, inject } from '@angular/core';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { PreferencesService } from 'ng-material-preferences';
-import {
-  MatSnackBarVerticalPosition,
-  MatSnackBarHorizontalPosition,
-} from '@angular/material/snack-bar';
-import { TitleCasePipe } from '@angular/common';
 import { NotificationService } from '../../../../core/services/notification.service';
 
 @Component({
   selector: 'app-fab-notifications-menu',
   standalone: true,
-  imports: [MatMenuModule, MatIconModule, TitleCasePipe],
+  imports: [MatMenuModule, MatIconModule],
   templateUrl: './fab-notifications-menu.component.html',
   styleUrl: './fab-notifications-menu.component.scss',
 })
@@ -22,20 +17,23 @@ export class FabNotificationsMenuComponent {
 
   @ViewChild('menu', { static: true }) menu!: MatMenu;
 
-  readonly vPositions: MatSnackBarVerticalPosition[] = ['top', 'bottom'];
-  readonly hPositions: MatSnackBarHorizontalPosition[] = [
-    'start',
-    'center',
-    'end',
-  ];
+  cycleVPosition(e: Event) {
+    e.stopPropagation();
+    const current = this.prefs.snackbarVPosition();
+    const nextV = current === 'bottom' ? 'top' : 'bottom';
 
-  setVPosition(val: MatSnackBarVerticalPosition) {
-    this.prefs.setSnackbarVPosition(val);
-    this.notify.show('default', `Vertical spawn updated to ${val}.`);
+    this.prefs.setSnackbarVPosition(nextV);
+    this.notify.show('default', `Vertical spawn updated to ${nextV}.`);
   }
 
-  setHPosition(val: MatSnackBarHorizontalPosition) {
-    this.prefs.setSnackbarHPosition(val);
-    this.notify.show('default', `Horizontal spawn updated to ${val}.`);
+  cycleHPosition(e: Event) {
+    e.stopPropagation();
+    const positions: any[] = ['start', 'center', 'end'];
+    const current = this.prefs.snackbarHPosition();
+    const nextIdx = (positions.indexOf(current) + 1) % positions.length;
+    const nextH = positions[nextIdx];
+
+    this.prefs.setSnackbarHPosition(nextH);
+    this.notify.show('default', `Horizontal spawn updated to ${nextH}.`);
   }
 }

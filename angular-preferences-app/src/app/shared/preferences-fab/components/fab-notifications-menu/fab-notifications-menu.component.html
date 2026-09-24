@@ -1,26 +1,13 @@
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="vMenu">
-    <mat-icon>vertical_align_center</mat-icon> Vertical Spawn
+<mat-menu #menu="matMenu" class="cycle-menu">
+  <button mat-menu-item (click)="cycleVPosition($event)">
+    <mat-icon>vertical_align_center</mat-icon>
+    <span class="label">Vertical Spawn</span>
+    <span class="value">{{ prefs.snackbarVPosition() }}</span>
   </button>
-  <button mat-menu-item [matMenuTriggerFor]="hMenu">
-    <mat-icon>align_horizontal_center</mat-icon> Horizontal Spawn
+
+  <button mat-menu-item (click)="cycleHPosition($event)">
+    <mat-icon>align_horizontal_center</mat-icon>
+    <span class="label">Horizontal Spawn</span>
+    <span class="value">{{ prefs.snackbarHPosition() }}</span>
   </button>
-</mat-menu>
-
-<mat-menu #vMenu="matMenu">
-  @for (v of vPositions; track v) {
-    <button mat-menu-item (click)="setVPosition(v)">
-      <mat-icon>{{ prefs.snackbarVPosition() === v ? "check" : "" }}</mat-icon>
-      {{ v | titlecase }}
-    </button>
-  }
-</mat-menu>
-
-<mat-menu #hMenu="matMenu">
-  @for (h of hPositions; track h) {
-    <button mat-menu-item (click)="setHPosition(h)">
-      <mat-icon>{{ prefs.snackbarHPosition() === h ? "check" : "" }}</mat-icon>
-      {{ h | titlecase }}
-    </button>
-  }
 </mat-menu>

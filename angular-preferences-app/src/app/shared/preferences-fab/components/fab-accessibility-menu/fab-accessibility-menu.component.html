@@ -1,27 +1,32 @@
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="cvdMenu">
-    <mat-icon>color_lens</mat-icon> Color Deficiency
-  </button>
-  <button mat-menu-item [matMenuTriggerFor]="screenMenu">
-    <mat-icon>layers</mat-icon> Screen Filter
-  </button>
-</mat-menu>
-
-<mat-menu #cvdMenu="matMenu">
+<mat-menu #menu="matMenu" class="vision-menu">
+  <!-- CVD -->
+  <div class="menu-group-header">Color Deficiency</div>
   @for (cvd of cvds; track cvd.value) {
-    <button mat-menu-item (click)="prefs.setCvdMode(cvd.value)">
-      <mat-icon>{{ prefs.cvd() === cvd.value ? "check" : "" }}</mat-icon>
+    <button mat-menu-item (click)="selectCvd($event, cvd.value)">
+      <mat-icon [class.active-icon]="prefs.cvd() === cvd.value">
+        {{
+          prefs.cvd() === cvd.value
+            ? "radio_button_checked"
+            : "radio_button_unchecked"
+        }}
+      </mat-icon>
       {{ cvd.label }}
     </button>
   }
-</mat-menu>
 
-<mat-menu #screenMenu="matMenu">
+  <mat-divider></mat-divider>
+
+  <!-- Environment -->
+  <div class="menu-group-header">Environmental Filter</div>
   @for (filter of filters; track filter.value) {
-    <button mat-menu-item (click)="prefs.setScreenFilter(filter.value)">
-      <mat-icon>{{
-        prefs.screenFilter() === filter.value ? "check" : ""
-      }}</mat-icon>
+    <button mat-menu-item (click)="selectFilter($event, filter.value)">
+      <mat-icon [class.active-icon]="prefs.screenFilter() === filter.value">
+        {{
+          prefs.screenFilter() === filter.value
+            ? "radio_button_checked"
+            : "radio_button_unchecked"
+        }}
+      </mat-icon>
       {{ filter.label }}
     </button>
   }

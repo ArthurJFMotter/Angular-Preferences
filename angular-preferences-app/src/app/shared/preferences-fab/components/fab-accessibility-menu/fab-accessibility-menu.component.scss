@@ -1,0 +1,18 @@
+@use "../../preferences-fab-shared";
+
+.menu-group-header {
+  padding: 8px 16px 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.active-icon {
+  color: var(--mat-sys-primary);
+}
+
+::ng-deep .vision-menu {
+  max-height: 400px;
+}
