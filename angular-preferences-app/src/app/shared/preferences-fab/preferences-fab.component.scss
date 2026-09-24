@@ -1,22 +1,66 @@
 .fab-container {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
   z-index: 1000;
-  
-  transition: transform calc(0.3s * var(--theme-motion-scale, 1)) cubic-bezier(0.4, 0, 0.2, 1);
-  animation: popIn calc(0.4s * var(--theme-motion-scale, 1)) cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Retain popping animations, but snapping corners doesn't transition to prevent dragging across screen */
+  transition: transform calc(0.3s * var(--theme-motion-scale, 1))
+    cubic-bezier(0.4, 0, 0.2, 1);
+  animation: popIn calc(0.4s * var(--theme-motion-scale, 1))
+    cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* The 4 safe corners */
+  &.pos-bottom-end {
+    bottom: 32px;
+    right: 32px;
+    top: auto;
+    left: auto;
+  }
+  &.pos-bottom-start {
+    bottom: 32px;
+    left: 32px;
+    top: auto;
+    right: auto;
+  }
+  &.pos-top-end {
+    top: 96px;
+    right: 32px;
+    bottom: auto;
+    left: auto;
+  }
+  &.pos-top-start {
+    top: 96px;
+    left: 32px;
+    bottom: auto;
+    right: auto;
+  }
 
   &:hover {
     transform: scale(1.05);
   }
-  
+
   &:active {
     transform: scale(0.95);
   }
 }
 
+.fallback-menu {
+  padding: 16px;
+  text-align: center;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8rem;
+}
+
 @keyframes popIn {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+::ng-deep .quick-settings-menu {
+  border-radius: var(--mat-sys-corner-medium) !important;
 }

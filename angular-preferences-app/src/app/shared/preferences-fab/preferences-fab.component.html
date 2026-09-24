@@ -1,42 +1,66 @@
-<div class="fab-container">
-  <button mat-fab color="primary" [matMenuTriggerFor]="mainMenu" aria-label="Quick Settings">
+<div class="fab-container" [class]="'pos-' + activeCorner()">
+  <button
+    mat-fab
+    color="primary"
+    [matMenuTriggerFor]="mainMenu"
+    (menuOpened)="onMenuOpened()"
+    (menuClosed)="onMenuClosed()"
+    aria-label="Quick Settings"
+  >
     <mat-icon>tune</mat-icon>
   </button>
 </div>
 
 <!-- MAIN MENU -->
-<mat-menu #mainMenu="matMenu" yPosition="above" xPosition="before" class="quick-settings-menu">
-  
-  @if (prefs.hasColor && uiState.fabMenus()['color']) {
-    <button mat-menu-item [matMenuTriggerFor]="colorMenu.menu"><mat-icon>palette</mat-icon> Theme & Color</button>
+<mat-menu
+  #mainMenu="matMenu"
+  [yPosition]="menuY()"
+  [xPosition]="menuX()"
+  class="quick-settings-menu"
+>
+  @if (prefs.hasColor && uiState.fabMenus()["color"]) {
+    <button mat-menu-item [matMenuTriggerFor]="colorMenu.menu">
+      <mat-icon>palette</mat-icon> Theme & Color
+    </button>
     <app-fab-color-menu #colorMenu></app-fab-color-menu>
   }
-  
-  @if (prefs.hasTypography && uiState.fabMenus()['typography']) {
-    <button mat-menu-item [matMenuTriggerFor]="typeMenu.menu"><mat-icon>text_fields</mat-icon> Typography</button>
+
+  @if (prefs.hasTypography && uiState.fabMenus()["typography"]) {
+    <button mat-menu-item [matMenuTriggerFor]="typeMenu.menu">
+      <mat-icon>text_fields</mat-icon> Typography
+    </button>
     <app-fab-typography-menu #typeMenu></app-fab-typography-menu>
   }
 
-  @if (prefs.hasLayout && uiState.fabMenus()['layout']) {
-    <button mat-menu-item [matMenuTriggerFor]="layoutMenu.menu"><mat-icon>dashboard</mat-icon> Layout & Scaling</button>
+  @if (prefs.hasLayout && uiState.fabMenus()["layout"]) {
+    <button mat-menu-item [matMenuTriggerFor]="layoutMenu.menu">
+      <mat-icon>dashboard</mat-icon> Layout & Scaling
+    </button>
     <app-fab-layout-menu #layoutMenu></app-fab-layout-menu>
   }
 
-  @if (prefs.hasNotifications && uiState.fabMenus()['notifications']) {
-    <button mat-menu-item [matMenuTriggerFor]="notifMenu.menu"><mat-icon>notifications</mat-icon> Notifications</button>
+  @if (prefs.hasNotifications && uiState.fabMenus()["notifications"]) {
+    <button mat-menu-item [matMenuTriggerFor]="notifMenu.menu">
+      <mat-icon>notifications</mat-icon> Notifications
+    </button>
     <app-fab-notifications-menu #notifMenu></app-fab-notifications-menu>
   }
 
-  @if (prefs.hasAccessibility && uiState.fabMenus()['accessibility']) {
-    <button mat-menu-item [matMenuTriggerFor]="accessMenu.menu"><mat-icon>visibility</mat-icon> Vision Simulator</button>
+  @if (prefs.hasAccessibility && uiState.fabMenus()["accessibility"]) {
+    <button mat-menu-item [matMenuTriggerFor]="accessMenu.menu">
+      <mat-icon>visibility</mat-icon> Vision Simulator
+    </button>
     <app-fab-accessibility-menu #accessMenu></app-fab-accessibility-menu>
   }
 
   <!-- Fallback -->
-  @if (!uiState.fabMenus()['color'] && !uiState.fabMenus()['typography'] && !uiState.fabMenus()['layout'] && !uiState.fabMenus()['notifications'] && !uiState.fabMenus()['accessibility']) {
-    <div style="padding: 16px; text-align: center; color: var(--mat-sys-on-surface-variant); font-size: 0.8rem;">
-      No menus selected.
-    </div>
+  @if (
+    !uiState.fabMenus()["color"] &&
+    !uiState.fabMenus()["typography"] &&
+    !uiState.fabMenus()["layout"] &&
+    !uiState.fabMenus()["notifications"] &&
+    !uiState.fabMenus()["accessibility"]
+  ) {
+    <div class="fallback-menu">No menus selected.</div>
   }
-
 </mat-menu>
