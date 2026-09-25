@@ -41,6 +41,29 @@
   &:active {
     transform: scale(0.95);
   }
+
+  /* --- MOBILE POLISH --- */
+  /* Tuck the FAB closer to the edges so it doesn't block main content on tiny screens */
+  @media (max-width: 600px) {
+    &.pos-bottom-end {
+      bottom: 16px;
+      right: 16px;
+    }
+    &.pos-bottom-start {
+      bottom: 16px;
+      left: 16px;
+    }
+
+    /* Slightly higher top margin on mobile to account for compact navbars */
+    &.pos-top-end {
+      top: 80px;
+      right: 16px;
+    }
+    &.pos-top-start {
+      top: 80px;
+      left: 16px;
+    }
+  }
 }
 
 .fallback-menu {

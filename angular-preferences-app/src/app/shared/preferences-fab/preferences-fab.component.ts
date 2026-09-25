@@ -45,7 +45,7 @@ export class PreferencesFabComponent {
     return `${safeV}-${safeH}`; // e.g., 'top-start', 'bottom-end'
   });
 
-  readonly activeCorner = signal<string>('top-end');
+  readonly activeCorner = signal<string>(this.desiredCorner());
 
   // Dynamically orient the menu so it opens inward instead of off-screen!
   readonly menuY = computed<'above' | 'below'>(() =>
