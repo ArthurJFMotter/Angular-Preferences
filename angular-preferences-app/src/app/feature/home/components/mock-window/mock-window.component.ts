@@ -1,6 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { PreferencesService, ThemeMode } from 'ng-material-preferences';
+import { 
+  PreferencesService, 
+  ThemeMode, 
+  CONTRAST_SCALE, 
+  SHAPE_SCALE, 
+  FONT_SCALE 
+} from 'ng-material-preferences';
 
 @Component({
   selector: 'app-mock-window',
@@ -12,7 +18,7 @@ import { PreferencesService, ThemeMode } from 'ng-material-preferences';
 export class MockWindowComponent {
   readonly prefs = inject(PreferencesService);
 
-  // --- 1. THEME MODE CYCLE ---
+  // --- THEME MODE CYCLE ---
   private modes: ThemeMode[] = ['auto', 'light', 'dark'];
   
   cycleMode() {
@@ -30,79 +36,96 @@ export class MockWindowComponent {
     return { icon: 'brightness_auto', text: 'Auto' };
   });
 
-  // --- 2. CONTRAST CYCLE ---
-  private contrastSteps: (number | 'auto')[] = ['auto', 0, 0.5, 1, -1, -0.5];
-  
+  // --- CONTRAST CYCLE ---
   cycleContrast() {
     if (!this.prefs.hasColor) return;
     
+    const presets = CONTRAST_SCALE.presets.map(p => p.value);
+    const steps: (number | 'auto')[] = ['auto', ...presets];
+    
     const current = this.prefs.autoContrast() ? 'auto' : this.prefs.contrastLevel();
-    const idx = this.contrastSteps.indexOf(current);
-    const next = this.contrastSteps[(idx + 1) % this.contrastSteps.length];
+    const idx = steps.indexOf(current);
+    const next = steps[(idx + 1) % steps.length];
     
     if (next === 'auto') {
       this.prefs.setAutoContrast(true);
     } else {
       this.prefs.setAutoContrast(false);
-      this.prefs.setContrastLevel(next);
+      this.prefs.setContrastLevel(next as number);
     }
   }
   
   contrastDisplay = computed(() => {
     if (!this.prefs.hasColor) return { icon: 'block', text: 'Disabled' };
     if (this.prefs.autoContrast()) return { icon: 'hdr_auto', text: 'Auto' };
+    
     const c = this.prefs.contrastLevel();
-    if (c >= 1) return { icon: 'contrast', text: 'High' };
-    if (c === 0.5) return { icon: 'brightness_medium', text: 'Medium' };
-    if (c <= -1) return { icon: 'exposure_neg_1', text: 'Reduced' };
-    if (c === -0.5) return { icon: 'brightness_low', text: 'Low' };
-    return { icon: 'tonality', text: 'Standard' };
+    const match = CONTRAST_SCALE.presets.reduce((prev, curr) => 
+      Math.abs(curr.value - c) < Math.abs(prev.value - c) ? curr : prev
+    );
+
+    let icon = 'tonality';
+    if (match.value >= 1) icon = 'contrast';
+    else if (match.value === 0.5) icon = 'brightness_medium';
+    else if (match.value <= -1) icon = 'exposure_neg_1';
+    else if (match.value === -0.5) icon = 'brightness_low';
+    
+    return { icon, text: match.label };
   });
 
-  // --- 3. SHAPE / CORNER RADIUS CYCLE ---
-  private shapes = [1, 2, 3, 0]; // Rounded, Extra Round, Pill, Sharp
-  
+  // --- SHAPE / CORNER RADIUS CYCLE ---
   cycleShape() {
     if (!this.prefs.hasLayout) return;
     const current = this.prefs.shapeScale();
+    const presets = SHAPE_SCALE.presets;
     
-    const idx = this.shapes.reduce((closest, val, i) =>
-      Math.abs(val - current) < Math.abs(this.shapes[closest] - current) ? i : closest, 0);
+    const idx = presets.reduce((closest, val, i) =>
+      Math.abs(val.value - current) < Math.abs(presets[closest].value - current) ? i : closest, 0);
       
-    const nextIdx = (idx + 1) % this.shapes.length;
-    this.prefs.setShapeScale(this.shapes[nextIdx]);
+    const nextIdx = (idx + 1) % presets.length;
+    this.prefs.setShapeScale(presets[nextIdx].value);
   }
   
   shapeDisplay = computed(() => {
     if (!this.prefs.hasLayout) return { icon: 'block', text: 'Disabled' };
+    
     const s = this.prefs.shapeScale();
-    if (s <= 0.25) return { icon: 'square', text: 'Sharp' };
-    if (s >= 2.5) return { icon: 'circle', text: 'Pill' };
-    if (s >= 1.5) return { icon: 'rounded_corner', text: 'Extra Round' };
-    return { icon: 'rounded_corner', text: 'Rounded' };
+    const match = SHAPE_SCALE.presets.reduce((prev, curr) => 
+      Math.abs(curr.value - s) < Math.abs(prev.value - s) ? curr : prev
+    );
+    
+    let icon = 'rounded_corner';
+    if (match.value <= 0) icon = 'square';
+    if (match.value >= 3) icon = 'circle';
+    
+    return { icon, text: match.label };
   });
 
-  // --- 4. TYPOGRAPHY / FONT SCALE CYCLE ---
-  private scales = [1, 1.15, 1.3, 0.85]; // Medium, Large, X-Large, Small
-  
+  // --- TYPOGRAPHY / FONT SCALE CYCLE ---
   cycleFont() {
     if (!this.prefs.hasTypography) return;
     const current = this.prefs.fontScale();
+    const presets = FONT_SCALE.presets;
     
-    const idx = this.scales.reduce((closest, val, i) =>
-      Math.abs(val - current) < Math.abs(this.scales[closest] - current) ? i : closest, 0);
+    const idx = presets.reduce((closest, val, i) =>
+      Math.abs(val.value - current) < Math.abs(presets[closest].value - current) ? i : closest, 0);
       
-    const nextIdx = (idx + 1) % this.scales.length;
-    this.prefs.setFontScale(this.scales[nextIdx]);
+    const nextIdx = (idx + 1) % presets.length;
+    this.prefs.setFontScale(presets[nextIdx].value);
   }
   
   fontDisplay = computed(() => {
     if (!this.prefs.hasTypography) return { icon: 'block', text: 'Disabled' };
-    const s = this.prefs.fontScale();
     
-    if (s >= 1.25) return { icon: 'text_increase', text: 'X-Large' }; 
-    if (s >= 1.1) return { icon: 'text_increase', text: 'Large' };
-    if (s < 1) return { icon: 'text_decrease', text: 'Small' };
-    return { icon: 'format_size', text: 'Medium' };
+    const s = this.prefs.fontScale();
+    const match = FONT_SCALE.presets.reduce((prev, curr) => 
+      Math.abs(curr.value - s) < Math.abs(prev.value - s) ? curr : prev
+    );
+    
+    let icon = 'format_size';
+    if (match.value >= 1.15) icon = 'text_increase';
+    if (match.value < 1) icon = 'text_decrease';
+    
+    return { icon, text: match.label }; 
   });
 }
