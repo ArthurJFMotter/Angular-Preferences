@@ -3,74 +3,38 @@
   subtitle="Shapes, density, and motion"
   icon="dashboard"
 >
-  <div class="slider-group">
-    <div class="slider-header">
-      <label>Corner Radius</label
-      ><span>{{ prefs.shapeScale() | percent }}</span>
-    </div>
-    <div class="slider-row">
-      <button mat-icon-button (click)="scaleShapeDown()">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <mat-slider min="0" max="3" step="0.25" discrete
-        ><input
-          matSliderThumb
-          [ngModel]="prefs.shapeScale()"
-          (ngModelChange)="prefs.setShapeScale($event)"
-      /></mat-slider>
-      <button mat-icon-button (click)="scaleShapeUp()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </div>
+  <app-preference-slider 
+    label="Corner Radius:" 
+    [value]="prefs.shapeScale()" 
+    [scale]="shapeScale" 
+    [displayValue]="(prefs.shapeScale() * 100).toFixed(0) + '%'"
+    (valueChange)="prefs.setShapeScale($event)">
+  </app-preference-slider>
 
   <mat-divider></mat-divider>
 
-  <div class="slider-group">
-    <div class="slider-header">
-      <label>Density</label><span>{{ prefs.densityScale() }}</span>
-    </div>
-    <div class="slider-row">
-      <button mat-icon-button (click)="scaleDensityDown()">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <mat-slider min="-3" max="0" step="1" discrete
-        ><input
-          matSliderThumb
-          [ngModel]="prefs.densityScale()"
-          (ngModelChange)="prefs.setDensityScale($event)"
-      /></mat-slider>
-      <button mat-icon-button (click)="scaleDensityUp()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </div>
+  <app-preference-slider 
+    label="Density:" 
+    [value]="prefs.densityScale()" 
+    [scale]="densityScale" 
+    [displayValue]="prefs.densityScale().toString()"
+    (valueChange)="prefs.setDensityScale($event)">
+  </app-preference-slider>
 
   <mat-divider></mat-divider>
 
-  <div class="slider-group">
-    <div class="slider-header">
-      <label>Motion</label
-      ><span class="highlight">{{ formatMotion(prefs.motionScale()) }}</span>
-    </div>
-    <div class="slider-row">
-      <button mat-icon-button (click)="decreaseMotion()">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <mat-slider min="0" max="1" step="0.5" discrete
-        ><input
-          matSliderThumb
-          [ngModel]="prefs.motionScale()"
-          (ngModelChange)="prefs.setMotionScale($event)"
-      /></mat-slider>
-      <button mat-icon-button (click)="increaseMotion()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </div>
+  <app-preference-slider 
+    label="Motion:" 
+    [value]="prefs.motionScale()" 
+    [scale]="motionScale" 
+    [displayValue]="motionName()"
+    [highlight]="true"
+    (valueChange)="prefs.setMotionScale($event)">
+  </app-preference-slider>
+
   <mat-divider></mat-divider>
 
-  <!-- QUICK SETTINGS -->
+  <!-- QUICK SETTINGS FAB CONTROLS -->
   <div class="settings-row">
     <div class="settings-info">
       <label>Quick Settings FAB</label>

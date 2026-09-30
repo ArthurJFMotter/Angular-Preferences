@@ -78,70 +78,39 @@
     </div>
 
     <div class="flex-field">
-      <label>Theme Variant</label>
-      <mat-form-field appearance="outline" subscriptSizing="dynamic">
-        <mat-select
-          [value]="prefs.variant()"
-          (selectionChange)="prefs.setVariant($event.value)"
-        >
-          <mat-select-trigger>{{
-            getVariantLabel(prefs.variant())
-          }}</mat-select-trigger>
-          @for (variant of variantOptions; track variant.value) {
-            <mat-option [value]="variant.value">
-              <div class="option-text">
-                <span>{{ variant.label }}</span
-                ><small>{{ variant.desc }}</small>
-              </div>
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+      <app-preference-select
+        label="Theme Variant"
+        [value]="prefs.variant()"
+        [options]="variantOptions"
+        (valueChange)="prefs.setVariant($event)"
+      >
+      </app-preference-select>
     </div>
   </div>
 
   <mat-divider></mat-divider>
 
   <!-- Contrast -->
-  <div class="slider-group">
-    <div class="slider-header">
-      <label
-        >Contrast:
-        <span class="highlight">{{
-          formatContrast(prefs.contrastLevel())
-        }}</span></label
-      >
+  <div style="margin-top: 8px">
+    <app-preference-slider
+      label="Contrast"
+      [value]="prefs.contrastLevel()"
+      [scale]="contrastScale"
+      [displayValue]="contrastName()"
+      [disabled]="prefs.autoContrast()"
+      [highlight]="true"
+      (valueChange)="prefs.setContrastLevel($event)"
+    >
       <mat-slide-toggle
+        header-action
         [checked]="prefs.autoContrast()"
         (change)="prefs.setAutoContrast($event.checked)"
-        ><small>Auto (OS)</small></mat-slide-toggle
       >
-    </div>
-    <div
-      class="slider-row"
-      [style.opacity]="prefs.autoContrast() ? '0.4' : '1'"
-    >
-      <button
-        mat-icon-button
-        (click)="decreaseContrast()"
-        [disabled]="prefs.autoContrast()"
-      >
-        <mat-icon>remove</mat-icon>
-      </button>
-      <mat-slider min="-1" max="1" step="0.5" discrete
-        ><input
-          matSliderThumb
-          [ngModel]="prefs.contrastLevel()"
-          (ngModelChange)="prefs.setContrastLevel($event)"
-          [disabled]="prefs.autoContrast()"
-      /></mat-slider>
-      <button
-        mat-icon-button
-        (click)="increaseContrast()"
-        [disabled]="prefs.autoContrast()"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
+        <span
+          style="font-size: 0.75rem; color: var(--mat-sys-on-surface-variant)"
+          >Auto (OS)</span
+        >
+      </mat-slide-toggle>
+    </app-preference-slider>
   </div>
 </app-preferences-card>

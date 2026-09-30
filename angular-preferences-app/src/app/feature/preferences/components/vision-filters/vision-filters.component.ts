@@ -1,12 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -14,40 +10,48 @@ import {
   PreferencesService,
   CVD_MODES,
   SCREEN_FILTERS,
+  CVD_SEVERITY_SCALE,
+  SCREEN_FILTER_INTENSITY_SCALE,
 } from 'ng-material-preferences';
+
 import { PreferencesCardComponent } from '../../shared/preferences-card/preferences-card.component';
+import { PreferenceSelectComponent } from '../../../../shared/preference-select/preference-select.component';
+import { PreferenceSliderComponent } from '../../../../shared/preference-slider/preference-slider.component';
 
 @Component({
   selector: 'app-vision-filters',
   standalone: true,
   imports: [
-    FormsModule,
     MatButtonToggleModule,
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
-    MatSliderModule,
-    MatSelectModule,
-    MatFormFieldModule,
     MatProgressSpinnerModule,
     MatTabsModule,
     MatTooltipModule,
     PreferencesCardComponent,
+    PreferenceSliderComponent,
+    PreferenceSelectComponent,
   ],
   templateUrl: './vision-filters.component.html',
   styleUrl: './vision-filters.component.scss',
 })
 export class VisionFiltersComponent {
   readonly prefs = inject(PreferencesService);
+
+  // Select Arrays   
   readonly cvdOptions = CVD_MODES;
   readonly screenFilterOptions = SCREEN_FILTERS;
+
+  // Slider Scales
+  readonly cvdSeverityScale = CVD_SEVERITY_SCALE;
+  readonly screenFilterIntensityScale = SCREEN_FILTER_INTENSITY_SCALE;
 
   // --- UI STATE ---
   readonly showPreview = signal(false);
   readonly imageLoaded = signal(false);
-
-  // --- COMPARE LOGIC ---
   readonly isComparing = signal(false);
+
   private savedCvdSeverity = 100;
   private savedScreenIntensity = 50;
 
@@ -55,7 +59,6 @@ export class VisionFiltersComponent {
     if (this.isComparing()) return;
     this.isComparing.set(true);
 
-    // Save current state and temporarily disable filters
     this.savedCvdSeverity = this.prefs.cvdSeverity();
     this.savedScreenIntensity = this.prefs.screenFilterIntensity();
     this.prefs.setCvdSeverity(0);
@@ -66,21 +69,17 @@ export class VisionFiltersComponent {
     if (!this.isComparing()) return;
     this.isComparing.set(false);
 
-    // Restore filters
     this.prefs.setCvdSeverity(this.savedCvdSeverity);
     this.prefs.setScreenFilterIntensity(this.savedScreenIntensity);
   }
 
- // --- DYNAMIC CONFUSION PAIR TEXT ---
+  // --- DYNAMIC CONFUSION PAIR TEXT ---
   readonly confusionText = computed(() => {
     const mode = this.prefs.cvd();
     const sev = this.prefs.cvdSeverity();
     const intent = this.prefs.cvdIntent();
 
-    if (mode === 'none' || sev === 0) {
-      return 'Vision is currently unmodified.';
-    }
-
+    if (mode === 'none' || sev === 0) return 'Vision is currently unmodified.';
     if (intent === 'compensate' && mode !== 'achromatopsia') {
       return 'Daltonization is active. Colors are being mathematically shifted to force contrast.';
     }
@@ -103,9 +102,8 @@ export class VisionFiltersComponent {
     const filter = this.prefs.screenFilter();
     const intensity = this.prefs.screenFilterIntensity();
 
-    if (filter === 'none' || intensity === 0) {
+    if (filter === 'none' || intensity === 0)
       return 'Environmental filters are currently off.';
-    }
 
     switch (filter) {
       case 'blur':
@@ -124,31 +122,4 @@ export class VisionFiltersComponent {
         return '';
     }
   });
-
-  // --- HELPERS ---
-  getCvdLabel(value: string) {
-    return this.cvdOptions.find((v) => v.value === value)?.label || value;
-  }
-  getScreenFilterLabel(value: string) {
-    return (
-      this.screenFilterOptions.find((v) => v.value === value)?.label || value
-    );
-  }
-
-  increaseCvdSeverity() {
-    const c = this.prefs.cvdSeverity();
-    if (c < 100) this.prefs.setCvdSeverity(c + 10);
-  }
-  decreaseCvdSeverity() {
-    const c = this.prefs.cvdSeverity();
-    if (c > 10) this.prefs.setCvdSeverity(c - 10);
-  }
-  increaseScreenFilterIntensity() {
-    const c = this.prefs.screenFilterIntensity();
-    if (c < 100) this.prefs.setScreenFilterIntensity(c + 10);
-  }
-  decreaseScreenFilterIntensity() {
-    const c = this.prefs.screenFilterIntensity();
-    if (c > 10) this.prefs.setScreenFilterIntensity(c - 10);
-  }
 }

@@ -1,28 +1,33 @@
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { PercentPipe } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { PreferencesService } from 'ng-material-preferences';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import {
+  PreferencesService,
+  SHAPE_SCALE,
+  DENSITY_SCALE,
+  MOTION_SCALE,
+} from 'ng-material-preferences';
 import { PreferencesCardComponent } from '../../shared/preferences-card/preferences-card.component';
+
 import { AppUiStateService } from '../../../../core/services/app-ui-state.service';
 import { ModalService } from '../../../../core/services/modal.service';
+import { PreferenceSliderComponent } from '../../../../shared/preference-slider/preference-slider.component';
 
 @Component({
   selector: 'app-interface-layout',
   standalone: true,
   imports: [
-    FormsModule,
-    PercentPipe,
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
-    MatSliderModule,
     MatSlideToggleModule,
+    MatTooltipModule,
     PreferencesCardComponent,
+    PreferenceSliderComponent,
   ],
   templateUrl: './interface-layout.component.html',
   styleUrl: './interface-layout.component.scss',
@@ -31,6 +36,18 @@ export class InterfaceLayoutComponent {
   readonly prefs = inject(PreferencesService);
   readonly uiState = inject(AppUiStateService);
   private modals = inject(ModalService);
+
+  // Scales
+  readonly shapeScale = SHAPE_SCALE;
+  readonly densityScale = DENSITY_SCALE;
+  readonly motionScale = MOTION_SCALE;
+
+  // Label fetch
+  readonly motionName = computed(
+    () =>
+      this.motionScale.presets.find((m) => m.value === this.prefs.motionScale())
+        ?.label || 'Normal',
+  );
 
   openFabSettings() {
     const current = this.uiState.fabMenus();
@@ -91,33 +108,5 @@ export class InterfaceLayoutComponent {
           this.uiState.fabMenus.set(nextState);
         }
       });
-  }
-
-  scaleShapeUp() {
-    const c = this.prefs.shapeScale();
-    if (c < 3) this.prefs.setShapeScale(Math.round((c + 0.25) * 100) / 100);
-  }
-  scaleShapeDown() {
-    const c = this.prefs.shapeScale();
-    if (c > 0) this.prefs.setShapeScale(Math.round((c - 0.25) * 100) / 100);
-  }
-  scaleDensityUp() {
-    const c = this.prefs.densityScale();
-    if (c < 0) this.prefs.setDensityScale(c + 1);
-  }
-  scaleDensityDown() {
-    const c = this.prefs.densityScale();
-    if (c > -3) this.prefs.setDensityScale(c - 1);
-  }
-  increaseMotion() {
-    const c = this.prefs.motionScale();
-    if (c < 1) this.prefs.setMotionScale(c + 0.5);
-  }
-  decreaseMotion() {
-    const c = this.prefs.motionScale();
-    if (c > 0) this.prefs.setMotionScale(c - 0.5);
-  }
-  formatMotion(value: number) {
-    return value === 0 ? 'Off' : value === 0.5 ? 'Fast' : 'Normal';
   }
 }

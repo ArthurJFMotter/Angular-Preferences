@@ -41,7 +41,6 @@
         }}</span>
       </div>
 
-      <!-- IMAGE LOADER WRAPPER -->
       <div class="img-wrapper">
         @if (!imageLoaded()) {
           <div class="img-loader">
@@ -57,7 +56,6 @@
         />
       </div>
 
-      <!-- Labeled Reference Swatches -->
       <div class="preview-swatches">
         <div class="swatch-group">
           <div class="pure-swatch" style="background: #ff0000"></div>
@@ -77,7 +75,6 @@
         </div>
       </div>
     </div>
-
     <mat-divider></mat-divider>
   }
 
@@ -86,36 +83,21 @@
     <!-- TAB 1: COLOR DEFICIENCY -->
     <mat-tab label="Color Deficiency">
       <div class="tab-content">
-        <!-- Dynamic Callout -->
         <div class="confusion-callout">
           <mat-icon>info</mat-icon>
           <p>{{ confusionText() }}</p>
         </div>
 
-        <div class="field-group">
-          <label>Deficiency Overlay</label>
-          <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <mat-select
-              [value]="prefs.cvd()"
-              (selectionChange)="prefs.setCvdMode($event.value)"
-            >
-              <mat-select-trigger>{{
-                getCvdLabel(prefs.cvd())
-              }}</mat-select-trigger>
-              @for (option of cvdOptions; track option.value) {
-                <mat-option [value]="option.value">
-                  <div class="option-text">
-                    <span>{{ option.label }}</span
-                    ><small>{{ option.desc }}</small>
-                  </div>
-                </mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
+        <app-preference-select
+          label="Deficiency Overlay"
+          [value]="prefs.cvd()"
+          [options]="cvdOptions"
+          (valueChange)="prefs.setCvdMode($event)"
+        >
+        </app-preference-select>
 
         @if (prefs.cvd() !== "none" && prefs.cvd() !== "achromatopsia") {
-          <div class="field-group">
+          <div class="field-row" style="margin-top: -4px">
             <mat-button-toggle-group
               class="full-width-toggle"
               [value]="prefs.cvdIntent()"
@@ -130,26 +112,15 @@
         }
 
         @if (prefs.cvd() !== "none") {
-          <div class="slider-group">
-            <div class="slider-header">
-              <label>Severity</label
-              ><span class="highlight">{{ prefs.cvdSeverity() }}%</span>
-            </div>
-            <div class="slider-row">
-              <button mat-icon-button (click)="decreaseCvdSeverity()">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <mat-slider min="10" max="100" step="10" discrete
-                ><input
-                  matSliderThumb
-                  [ngModel]="prefs.cvdSeverity()"
-                  (ngModelChange)="prefs.setCvdSeverity($event)"
-              /></mat-slider>
-              <button mat-icon-button (click)="increaseCvdSeverity()">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </div>
+          <app-preference-slider
+            label="Severity:"
+            [value]="prefs.cvdSeverity()"
+            [scale]="cvdSeverityScale"
+            [displayValue]="prefs.cvdSeverity() + '%'"
+            [highlight]="true"
+            (valueChange)="prefs.setCvdSeverity($event)"
+          >
+          </app-preference-slider>
         }
       </div>
     </mat-tab>
@@ -157,57 +128,29 @@
     <!-- TAB 2: ENVIRONMENT -->
     <mat-tab label="Environment">
       <div class="tab-content">
-        <!-- Dynamic Callout -->
         <div class="confusion-callout">
           <mat-icon>info</mat-icon>
           <p>{{ environmentText() }}</p>
         </div>
 
-        <div class="field-group">
-          <label>Environmental Overlay</label>
-          <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <mat-select
-              [value]="prefs.screenFilter()"
-              (selectionChange)="prefs.setScreenFilter($event.value)"
-            >
-              <mat-select-trigger>{{
-                getScreenFilterLabel(prefs.screenFilter())
-              }}</mat-select-trigger>
-              @for (option of screenFilterOptions; track option.value) {
-                <mat-option [value]="option.value">
-                  <div class="option-text">
-                    <span>{{ option.label }}</span
-                    ><small>{{ option.desc }}</small>
-                  </div>
-                </mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
+        <app-preference-select
+          label="Environmental Overlay"
+          [value]="prefs.screenFilter()"
+          [options]="screenFilterOptions"
+          (valueChange)="prefs.setScreenFilter($event)"
+        >
+        </app-preference-select>
 
         @if (prefs.screenFilter() !== "none") {
-          <div class="slider-group" style="margin-top: 8px">
-            <div class="slider-header">
-              <label>Intensity</label
-              ><span class="highlight"
-                >{{ prefs.screenFilterIntensity() }}%</span
-              >
-            </div>
-            <div class="slider-row">
-              <button mat-icon-button (click)="decreaseScreenFilterIntensity()">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <mat-slider min="10" max="100" step="10" discrete
-                ><input
-                  matSliderThumb
-                  [ngModel]="prefs.screenFilterIntensity()"
-                  (ngModelChange)="prefs.setScreenFilterIntensity($event)"
-              /></mat-slider>
-              <button mat-icon-button (click)="increaseScreenFilterIntensity()">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </div>
+          <app-preference-slider
+            label="Intensity:"
+            [value]="prefs.screenFilterIntensity()"
+            [scale]="screenFilterIntensityScale"
+            [displayValue]="prefs.screenFilterIntensity() + '%'"
+            [highlight]="true"
+            (valueChange)="prefs.setScreenFilterIntensity($event)"
+          >
+          </app-preference-slider>
         }
       </div>
     </mat-tab>

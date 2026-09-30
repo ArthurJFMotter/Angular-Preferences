@@ -1,0 +1,40 @@
+<div class="slider-group">
+  <div class="slider-header">
+    <!-- LEFT SIDE: Label and Value -->
+    <div class="header-left">
+      <label>{{ label }}</label>
+      @if (displayValue !== undefined) {
+        <span [class.highlight]="highlight">{{ displayValue }}</span>
+      }
+    </div>
+
+    <!-- RIGHT SIDE: Projected Actions (Like Auto Toggles) -->
+    <div class="header-right">
+      <ng-content select="[header-action]"></ng-content>
+    </div>
+  </div>
+
+  <div class="slider-row" [style.opacity]="disabled ? '0.4' : '1'">
+    <button mat-icon-button (click)="decrease()" [disabled]="disabled">
+      <mat-icon>remove</mat-icon>
+    </button>
+
+    <mat-slider
+      [min]="scale.min"
+      [max]="scale.max"
+      [step]="scale.step"
+      discrete
+    >
+      <input
+        matSliderThumb
+        [ngModel]="value"
+        (ngModelChange)="onValueChange($event)"
+        [disabled]="disabled"
+      />
+    </mat-slider>
+
+    <button mat-icon-button (click)="increase()" [disabled]="disabled">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
