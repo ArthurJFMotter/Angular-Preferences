@@ -1,0 +1,49 @@
+<div class="settings-panel">
+  <header class="settings-header">
+    <h2 class="settings-title">Preferences</h2>
+    <button mat-icon-button (click)="closeDrawer.emit()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <div class="settings-content">
+    @if (prefs.hasColor) {
+      <app-drawer-color />
+      <mat-divider></mat-divider>
+    }
+
+    @if (prefs.hasTypography) {
+      <app-drawer-typography />
+      <mat-divider></mat-divider>
+    }
+
+    @if (prefs.hasLayout) {
+      <app-drawer-layout />
+      <mat-divider></mat-divider>
+    }
+
+    @if (prefs.hasNotifications) {
+      <app-drawer-notifications />
+      <mat-divider></mat-divider>
+    }
+
+    @if (prefs.hasAccessibility) {
+      <app-drawer-accessibility />
+      <mat-divider></mat-divider>
+    }
+
+    <!-- GLOBAL RESET -->
+    <div class="global-reset-wrapper">
+      <button
+        mat-stroked-button
+        color="warn"
+        class="full-width"
+        (click)="confirmReset()"
+      >
+        <mat-icon>restore</mat-icon> Reset all preferences
+      </button>
+    </div>
+  </div>
+</div>

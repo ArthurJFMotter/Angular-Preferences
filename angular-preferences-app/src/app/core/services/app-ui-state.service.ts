@@ -1,16 +1,13 @@
 import { Injectable, signal, effect } from '@angular/core';
 
+export type WidgetMode = 'fab' | 'drawer' | 'none';
+
 @Injectable({ providedIn: 'root' })
 export class AppUiStateService {
-  readonly showQuickFab = signal<boolean>(true);
+  readonly widgetMode = signal<WidgetMode>('fab');
   
-  // Tracks which domains to show in the FAB
   readonly fabMenus = signal<Record<string, boolean>>({
-    color: true,
-    typography: true,
-    layout: true,
-    notifications: true,
-    accessibility: true
+    color: true, typography: true, layout: true, notifications: true, accessibility: true
   });
 
   constructor() {
@@ -18,14 +15,17 @@ export class AppUiStateService {
       const saved = localStorage.getItem('app-ui-state');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed.showQuickFab !== undefined) this.showQuickFab.set(parsed.showQuickFab);
+        if (parsed.widgetMode !== undefined) this.widgetMode.set(parsed.widgetMode);
+        //backward compatibility
+        else if (parsed.showQuickFab !== undefined) this.widgetMode.set(parsed.showQuickFab ? 'fab' : 'none');
+        
         if (parsed.fabMenus) this.fabMenus.set(parsed.fabMenus);
       }
     } catch {}
 
     effect(() => {
       localStorage.setItem('app-ui-state', JSON.stringify({
-        showQuickFab: this.showQuickFab(),
+        widgetMode: this.widgetMode(),
         fabMenus: this.fabMenus()
       }));
     });

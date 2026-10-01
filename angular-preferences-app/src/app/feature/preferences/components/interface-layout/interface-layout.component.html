@@ -34,27 +34,29 @@
 
   <mat-divider></mat-divider>
 
-  <!-- QUICK SETTINGS FAB CONTROLS -->
+  <!-- WIDGET SELECTOR -->
   <div class="settings-row">
     <div class="settings-info">
-      <label>Quick Settings FAB</label>
-      <p>Enable a floating menu for instant access to your favorite domains.</p>
+      <label>Quick Access Widget</label>
+      <p>Choose how to access preferences across the app.</p>
     </div>
 
-    <div class="settings-actions">
-      @if (uiState.showQuickFab()) {
-        <button mat-stroked-button color="primary" (click)="openFabSettings()">
-          <mat-icon>tune</mat-icon> Customize
+    <div class="settings-actions" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+      
+      <mat-button-toggle-group 
+        color="primary" 
+        [value]="uiState.widgetMode()" 
+        (change)="uiState.widgetMode.set($event.value)">
+        <mat-button-toggle value="fab" matTooltip="Floating Button"><mat-icon>add_circle</mat-icon></mat-button-toggle>
+        <mat-button-toggle value="drawer" matTooltip="Side Drawer"><mat-icon>vertical_split</mat-icon></mat-button-toggle>
+        <mat-button-toggle value="none" matTooltip="Hidden"><mat-icon>visibility_off</mat-icon></mat-button-toggle>
+      </mat-button-toggle-group>
+
+      @if (uiState.widgetMode() === 'fab') {
+        <button mat-button color="primary" (click)="openFabSettings()" style="margin-right: -8px;">
+          <mat-icon>tune</mat-icon> Customize FAB
         </button>
       }
-
-      <mat-slide-toggle
-        color="primary"
-        [checked]="uiState.showQuickFab()"
-        (change)="uiState.showQuickFab.set($event.checked)"
-        aria-label="Toggle Quick Settings FAB"
-      >
-      </mat-slide-toggle>
     </div>
   </div>
 </app-preferences-card>

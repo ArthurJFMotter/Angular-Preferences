@@ -1,15 +1,33 @@
-<div class="app-layout">
-  <app-navbar></app-navbar>
+<mat-sidenav-container class="app-container" [@.disabled]="animationsDisabled">
+  <!-- DRAWER -->
+  <mat-sidenav
+    #settingsDrawer
+    mode="over"
+    position="end"
+    class="settings-drawer"
+  >
+    <app-preferences-side-drawer
+      (closeDrawer)="settingsDrawer.close()"
+    ></app-preferences-side-drawer>
+  </mat-sidenav>
 
-  <main class="app-main">
-    <!-- Pages will render here -->
-    <router-outlet></router-outlet>
-  </main>
+  <mat-sidenav-content class="main-content">
+    <div class="app-layout">
+      <!-- NAVBAR -->
+      <app-navbar [drawer]="settingsDrawer"></app-navbar>
 
-  <app-footer></app-footer>
+      <!-- MAIN PAGE -->
+      <main class="app-main">
+        <router-outlet></router-outlet>
+      </main>
 
-  <!-- THE DYNAMIC FAB -->
-  @if (uiState.showQuickFab()) {
-    <app-preferences-fab></app-preferences-fab>
-  }
-</div>
+      <!-- FOOTER -->
+      <app-footer></app-footer>
+
+      <!-- FAB -->
+      @if (uiState.widgetMode() === "fab") {
+        <app-preferences-fab></app-preferences-fab>
+      }
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

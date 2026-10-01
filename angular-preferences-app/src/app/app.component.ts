@@ -2,11 +2,13 @@ import { Component, HostBinding, inject, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { PreferencesService } from 'ng-material-preferences';
 import { PreferencesFabComponent } from './shared/preferences-fab/preferences-fab.component';
 import { AppUiStateService } from './core/services/app-ui-state.service';
+import { PreferencesSideDrawerComponent } from './shared/preferences-side-drawer/preferences-side-drawer.component';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +16,11 @@ import { AppUiStateService } from './core/services/app-ui-state.service';
   imports: [
     CommonModule,
     RouterOutlet,
+    MatSidenavModule,
     FooterComponent,
     NavbarComponent,
-    PreferencesFabComponent
+    PreferencesFabComponent,
+    PreferencesSideDrawerComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

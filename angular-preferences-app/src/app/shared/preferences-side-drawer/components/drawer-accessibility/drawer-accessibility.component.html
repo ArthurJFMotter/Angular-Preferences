@@ -1,0 +1,58 @@
+<div class="settings-section">
+  <div class="section-title">Vision Simulator</div>
+
+  <app-preference-select
+    label="Color Deficiency"
+    [value]="prefs.cvd()"
+    [options]="cvdOptions"
+    (valueChange)="prefs.setCvdMode($event)"
+  >
+  </app-preference-select>
+
+  @if (prefs.cvd() !== "none" && prefs.cvd() !== "achromatopsia") {
+    <div class="field-row" style="margin-top: 4px; margin-bottom: 12px">
+      <mat-button-toggle-group
+        class="full-width-toggle"
+        [value]="prefs.cvdIntent()"
+        (change)="prefs.setCvdIntent($event.value)"
+      >
+        <mat-button-toggle value="simulate">Simulate</mat-button-toggle>
+        <mat-button-toggle value="compensate">Daltonize</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  }
+
+  @if (prefs.cvd() !== "none") {
+    <app-preference-slider
+      label="Severity"
+      [value]="prefs.cvdSeverity()"
+      [scale]="cvdScale"
+      [displayValue]="prefs.cvdSeverity() + '%'"
+      [highlight]="true"
+      (valueChange)="prefs.setCvdSeverity($event)"
+    >
+    </app-preference-slider>
+  }
+
+  <div [style.margin-top]="prefs.cvd() === 'none' ? '12px' : '0'">
+    <app-preference-select
+      label="Environmental Overlay"
+      [value]="prefs.screenFilter()"
+      [options]="filterOptions"
+      (valueChange)="prefs.setScreenFilter($event)"
+    >
+    </app-preference-select>
+  </div>
+
+  @if (prefs.screenFilter() !== "none") {
+    <app-preference-slider
+      label="Intensity"
+      [value]="prefs.screenFilterIntensity()"
+      [scale]="filterScale"
+      [displayValue]="prefs.screenFilterIntensity() + '%'"
+      [highlight]="true"
+      (valueChange)="prefs.setScreenFilterIntensity($event)"
+    >
+    </app-preference-slider>
+  }
+</div>

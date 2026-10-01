@@ -16,6 +16,7 @@ import { PreferencesCardComponent } from '../../shared/preferences-card/preferen
 import { AppUiStateService } from '../../../../core/services/app-ui-state.service';
 import { ModalService } from '../../../../core/services/modal.service';
 import { PreferenceSliderComponent } from '../../../../shared/preference-slider/preference-slider.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-interface-layout',
@@ -23,6 +24,7 @@ import { PreferenceSliderComponent } from '../../../../shared/preference-slider/
   imports: [
     MatIconModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatDividerModule,
     MatSlideToggleModule,
     MatTooltipModule,
