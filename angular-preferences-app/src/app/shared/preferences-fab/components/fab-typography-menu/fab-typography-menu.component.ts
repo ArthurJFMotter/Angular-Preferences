@@ -1,7 +1,11 @@
 import { Component, ViewChild, computed, inject } from '@angular/core';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { PreferencesService, FONT_OPTIONS } from 'ng-material-preferences';
+import {
+  PreferencesService,
+  FONT_OPTIONS,
+  FONT_SCALE,
+} from 'ng-material-preferences';
 
 @Component({
   selector: 'app-fab-typography-menu',
@@ -13,15 +17,17 @@ import { PreferencesService, FONT_OPTIONS } from 'ng-material-preferences';
 export class FabTypographyMenuComponent {
   readonly prefs = inject(PreferencesService);
   @ViewChild('menu', { static: true }) menu!: MatMenu;
-  
-  private scales = [1, 1.15, 1.3, 0.85];
 
+  readonly scales = FONT_SCALE.presets;
+
+  // --- CYCLERS ---
   cycleFontFamily(e: Event) {
     e.stopPropagation();
     const idx = FONT_OPTIONS.findIndex(
       (f) => f.value === this.prefs.headingFontFamily(),
     );
-    const next = FONT_OPTIONS[(idx + 1) % FONT_OPTIONS.length].value;
+    const next =
+      FONT_OPTIONS[(Math.max(idx, 0) + 1) % FONT_OPTIONS.length].value;
     this.prefs.setHeadingFontFamily(next);
     this.prefs.setBodyFontFamily(next);
   }
@@ -31,14 +37,16 @@ export class FabTypographyMenuComponent {
     const current = this.prefs.fontScale();
     const idx = this.scales.reduce(
       (closest, val, i) =>
-        Math.abs(val - current) < Math.abs(this.scales[closest] - current)
+        Math.abs(val.value - current) <
+        Math.abs(this.scales[closest].value - current)
           ? i
           : closest,
       0,
     );
-    this.prefs.setFontScale(this.scales[(idx + 1) % this.scales.length]);
+    this.prefs.setFontScale(this.scales[(idx + 1) % this.scales.length].value);
   }
 
+  // --- DISPLAYS ---
   fontName = computed(
     () =>
       FONT_OPTIONS.find((f) => f.value === this.prefs.headingFontFamily())
@@ -46,9 +54,8 @@ export class FabTypographyMenuComponent {
   );
   scaleName = computed(() => {
     const s = this.prefs.fontScale();
-    if (s >= 1.25) return 'X-Large';
-    if (s >= 1.1) return 'Large';
-    if (s < 1) return 'Small';
-    return 'Medium';
+    return this.scales.reduce((prev, curr) =>
+      Math.abs(curr.value - s) < Math.abs(prev.value - s) ? curr : prev,
+    ).label;
   });
 }

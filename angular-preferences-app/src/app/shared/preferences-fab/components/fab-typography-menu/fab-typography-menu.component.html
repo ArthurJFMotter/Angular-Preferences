@@ -1,15 +1,12 @@
 <mat-menu #menu="matMenu" class="cycle-menu">
   <button mat-menu-item (click)="cycleFontFamily($event)">
-    <mat-icon>font_download</mat-icon>
-    <span class="label">Font Family</span>
+    <mat-icon>font_download</mat-icon> <span class="label">Font Family</span>
     <span class="value" [style.font-family]="prefs.headingFontFamily()">{{
       fontName()
     }}</span>
   </button>
-
   <button mat-menu-item (click)="cycleFontScale($event)">
-    <mat-icon>format_size</mat-icon>
-    <span class="label">Font Scale</span>
+    <mat-icon>format_size</mat-icon> <span class="label">Font Scale</span>
     <span class="value">{{ scaleName() }}</span>
   </button>
 </mat-menu>
