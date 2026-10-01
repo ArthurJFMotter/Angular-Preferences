@@ -4,14 +4,21 @@
   border-radius: var(--mat-sys-corner-large, 16px);
   padding: 24px;
   height: 100%;
+
+  width: 100%;
   box-sizing: border-box;
-  
+  min-width: 0;
+  overflow-x: hidden;
+
   display: flex;
   flex-direction: column;
-  
   transition: all calc(0.2s * var(--theme-motion-scale, 1)) ease;
 
-    &:hover {
+  @media (max-width:420px) {
+    max-width: 95dvw;
+  }
+
+  &:hover {
     border: 1px solid var(--mat-sys-outline);
     box-shadow: 0 4px 8px var(--mat-sys-outline-variant);
 
@@ -24,7 +31,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 28px; 
+  margin-bottom: 28px;
 
   .header-main {
     display: flex;
@@ -36,10 +43,10 @@
     width: 48px;
     height: 48px;
     border-radius: var(--mat-sys-corner-medium, 12px);
-    
+
     background: var(--mat-sys-primary-container);
     color: var(--mat-sys-on-primary-container);
-    
+
     display: flex;
     align-items: center;
     justify-content: center;

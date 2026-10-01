@@ -4,11 +4,15 @@
   gap: 4px;
   margin-top: 8px;
 }
+
 .slider-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
+
 .header-left {
   display: flex;
   align-items: center;
@@ -27,12 +31,18 @@
 .header-left span.highlight {
   color: var(--mat-sys-primary);
 }
+
 .slider-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 -8px;
+  margin: 0;
+  padding: 0 4px;
 }
+
 mat-slider {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
 }
