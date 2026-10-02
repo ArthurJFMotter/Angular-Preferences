@@ -2,7 +2,7 @@
   <div class="section-title">Interface</div>
 
   <app-preference-slider
-    label="Corner Radius"
+    label="Corner Radius:"
     [value]="prefs.shapeScale()"
     [scale]="shapeScale"
     [displayValue]="prefs.shapeScale() | percent"
@@ -11,7 +11,7 @@
   </app-preference-slider>
 
   <app-preference-slider
-    label="Density"
+    label="Density:"
     [value]="prefs.densityScale()"
     [scale]="densityScale"
     [displayValue]="prefs.densityScale().toString()"
@@ -20,7 +20,7 @@
   </app-preference-slider>
 
   <app-preference-slider
-    label="Motion"
+    label="Motion:"
     [value]="prefs.motionScale()"
     [scale]="motionScale"
     [displayValue]="motionName()"

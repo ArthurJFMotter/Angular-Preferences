@@ -24,7 +24,7 @@
 
   @if (prefs.cvd() !== "none") {
     <app-preference-slider
-      label="Severity"
+      label="Severity:"
       [value]="prefs.cvdSeverity()"
       [scale]="cvdScale"
       [displayValue]="prefs.cvdSeverity() + '%'"
@@ -46,7 +46,7 @@
 
   @if (prefs.screenFilter() !== "none") {
     <app-preference-slider
-      label="Intensity"
+      label="Intensity:"
       [value]="prefs.screenFilterIntensity()"
       [scale]="filterScale"
       [displayValue]="prefs.screenFilterIntensity() + '%'"

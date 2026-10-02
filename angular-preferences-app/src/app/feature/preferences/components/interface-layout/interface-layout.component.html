@@ -3,60 +3,88 @@
   subtitle="Shapes, density, and motion"
   icon="dashboard"
 >
-  <app-preference-slider 
-    label="Corner Radius:" 
-    [value]="prefs.shapeScale()" 
-    [scale]="shapeScale" 
+  <app-preference-slider
+    label="Corner Radius:"
+    [value]="prefs.shapeScale()"
+    [scale]="shapeScale"
     [displayValue]="(prefs.shapeScale() * 100).toFixed(0) + '%'"
-    (valueChange)="prefs.setShapeScale($event)">
+    (valueChange)="prefs.setShapeScale($event)"
+  >
   </app-preference-slider>
 
   <mat-divider></mat-divider>
 
-  <app-preference-slider 
-    label="Density:" 
-    [value]="prefs.densityScale()" 
-    [scale]="densityScale" 
+  <app-preference-slider
+    label="Density:"
+    [value]="prefs.densityScale()"
+    [scale]="densityScale"
     [displayValue]="prefs.densityScale().toString()"
-    (valueChange)="prefs.setDensityScale($event)">
+    (valueChange)="prefs.setDensityScale($event)"
+  >
   </app-preference-slider>
 
   <mat-divider></mat-divider>
 
-  <app-preference-slider 
-    label="Motion:" 
-    [value]="prefs.motionScale()" 
-    [scale]="motionScale" 
+  <app-preference-slider
+    label="Motion:"
+    [value]="prefs.motionScale()"
+    [scale]="motionScale"
     [displayValue]="motionName()"
     [highlight]="true"
-    (valueChange)="prefs.setMotionScale($event)">
+    (valueChange)="prefs.setMotionScale($event)"
+  >
   </app-preference-slider>
 
   <mat-divider></mat-divider>
 
-  <!-- WIDGET SELECTOR -->
+  <!-- QUICK ACCESS WIDGET -->
   <div class="settings-row">
     <div class="settings-info">
       <label>Quick Access Widget</label>
       <p>Choose how to access preferences across the app.</p>
     </div>
 
-    <div class="settings-actions" style="flex-direction: column; align-items: flex-end; gap: 8px;">
-      
-      <mat-button-toggle-group 
-        color="primary" 
-        [value]="uiState.widgetMode()" 
-        (change)="uiState.widgetMode.set($event.value)">
-        <mat-button-toggle value="fab" matTooltip="Floating Button"><mat-icon>add_circle</mat-icon></mat-button-toggle>
-        <mat-button-toggle value="drawer" matTooltip="Side Drawer"><mat-icon>vertical_split</mat-icon></mat-button-toggle>
-        <mat-button-toggle value="none" matTooltip="Hidden"><mat-icon>visibility_off</mat-icon></mat-button-toggle>
-      </mat-button-toggle-group>
-
-      @if (uiState.widgetMode() === 'fab') {
-        <button mat-button color="primary" (click)="openFabSettings()" style="margin-right: -8px;">
-          <mat-icon>tune</mat-icon> Customize FAB
+    <div class="settings-actions">
+      <!-- FAB Settings -->
+      @if (uiState.widgetMode() === "fab") {
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="openFabSettings()"
+          matTooltip="Customize FAB menus"
+        >
+          <mat-icon>tune</mat-icon> Customize
         </button>
       }
+
+      <!-- Drawer Settings -->
+      @if (uiState.widgetMode() === "drawer") {
+        <button
+          mat-stroked-button
+          color="primary"
+          disabled
+          matTooltip="Backdrop & Position options coming soon!"
+        >
+          <mat-icon>settings</mat-icon> Options
+        </button>
+      }
+
+      <!-- 3-way Mode Toggle -->
+      <mat-button-toggle-group
+        color="primary"
+        [value]="uiState.widgetMode()"
+        (change)="uiState.widgetMode.set($event.value)"
+      >
+        <mat-button-toggle value="fab" matTooltip="Floating Button"
+          ><mat-icon>add_circle</mat-icon></mat-button-toggle
+        >
+        <mat-button-toggle value="drawer" matTooltip="Side Drawer"
+          ><mat-icon>vertical_split</mat-icon></mat-button-toggle
+        >
+        <mat-button-toggle value="none" matTooltip="Page only (Hidden)"
+          ><mat-icon>visibility_off</mat-icon></mat-button-toggle
+        >
+      </mat-button-toggle-group>
     </div>
   </div>
 </app-preferences-card>
