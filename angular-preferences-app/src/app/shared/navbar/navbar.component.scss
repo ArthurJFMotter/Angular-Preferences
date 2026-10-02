@@ -1,7 +1,22 @@
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 100; 
+  display: block;
+  
+  transition: transform calc(0.3s * var(--theme-motion-scale, 1)) cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+
+  &.navbar-hidden {
+    transform: translateY(-100%);
+  }
+}
+
 .app-navbar {
-  background-color: var(--mat-sys-surface-container-low);
+  background-color: var(--mat-sys-surface-container);
   color: var(--mat-sys-on-surface);
   border-bottom: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   padding: 0 24px;
 }
 
