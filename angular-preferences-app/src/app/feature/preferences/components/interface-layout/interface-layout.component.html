@@ -62,8 +62,8 @@
         <button
           mat-stroked-button
           color="primary"
-          disabled
-          matTooltip="Backdrop & Position options coming soon!"
+          (click)="openDrawerSettings()"
+          matTooltip="Customize Drawer"
         >
           <mat-icon>settings</mat-icon> Options
         </button>

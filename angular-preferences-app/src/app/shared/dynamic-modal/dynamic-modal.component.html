@@ -30,6 +30,33 @@
         }
       </div>
     }
+
+    <!-- SELECTS -->
+    @if (localSelects.length > 0) {
+      <div class="modal-selects" style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+        @for (sel of localSelects; track sel.id) {
+          <div>
+            <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px;">{{ sel.label }}</label>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic" style="width: 100%;">
+              <mat-select [(ngModel)]="sel.value">
+                @for (opt of sel.options; track opt.value) {
+                  <mat-option [value]="opt.value">{{ opt.label }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- TOGGLES -->
+    @if (localToggles.length > 0) {
+      <div class="modal-toggles" style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
+        @for (tog of localToggles; track tog.id) {
+          <mat-slide-toggle [(ngModel)]="tog.checked" color="primary">{{ tog.label }}</mat-slide-toggle>
+        }
+      </div>
+    }
   </mat-dialog-content>
 
   <!-- Actions -->

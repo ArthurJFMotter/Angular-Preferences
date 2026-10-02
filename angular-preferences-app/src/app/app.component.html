@@ -1,11 +1,15 @@
-<mat-sidenav-container class="app-container">
-  
+<mat-sidenav-container
+  class="app-container"
+  [hasBackdrop]="uiState.drawerConfig().hasBackdrop"
+>
   <!-- DRAWER -->
   <mat-sidenav
     #settingsDrawer
-    mode="over"
-    position="end"
+    [mode]="uiState.drawerConfig().mode"
+    [position]="uiState.drawerConfig().position"
     class="settings-drawer"
+    [class.is-start]="uiState.drawerConfig().position === 'start'"
+    [class.is-end]="uiState.drawerConfig().position === 'end'"
   >
     <app-preferences-side-drawer
       (closeDrawer)="settingsDrawer.close()"

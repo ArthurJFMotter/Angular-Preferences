@@ -55,7 +55,7 @@ export class InterfaceLayoutComponent {
     const current = this.uiState.fabMenus();
 
     this.modals
-      .open<any[]>({
+      .open<any>({
         title: 'Customize Quick Settings',
         icon: 'tune',
         message:
@@ -97,7 +97,65 @@ export class InterfaceLayoutComponent {
           { label: 'Cancel' },
           {
             label: 'Save',
-            returnsChecklist: true,
+            returnsPayload: true,
+            isPrimary: true,
+            color: 'primary',
+          }, // changed to returnsPayload
+        ],
+      })
+      .subscribe((result) => {
+        if (result && result.checklist) {
+          // Extract checklist from payload
+          const nextState = { ...current };
+          result.checklist.forEach((r: any) => (nextState[r.id] = r.checked));
+          this.uiState.fabMenus.set(nextState);
+        }
+      });
+  }
+
+  openDrawerSettings() {
+    const current = this.uiState.drawerConfig();
+
+    this.modals
+      .open<any>({
+        title: 'Drawer Options',
+        icon: 'vertical_split',
+        message:
+          'Configure how the side drawer behaves and renders on the screen.',
+        showCloseButton: false,
+        selects: [
+          {
+            id: 'mode',
+            label: 'Sidenav Mode',
+            value: current.mode,
+            options: [
+              { label: 'Over (Floats over content)', value: 'over' },
+              { label: 'Push (Pushes content aside)', value: 'push' },
+              { label: 'Side (Sits side-by-side)', value: 'side' },
+            ],
+          },
+          {
+            id: 'position',
+            label: 'Position',
+            value: current.position,
+            options: [
+              { label: 'Start (Left)', value: 'start' },
+              { label: 'End (Right)', value: 'end' },
+            ],
+          },
+        ],
+        toggles: [
+          {
+            id: 'backdrop',
+            label: 'Has Backdrop',
+            checked: current.hasBackdrop,
+          },
+        ],
+        actions: [
+          { label: 'Cancel' },
+          {
+            label: 'Save',
+            returnsPayload: true,
             isPrimary: true,
             color: 'primary',
           },
@@ -105,9 +163,16 @@ export class InterfaceLayoutComponent {
       })
       .subscribe((result) => {
         if (result) {
-          const nextState = { ...current };
-          result.forEach((r: any) => (nextState[r.id] = r.checked));
-          this.uiState.fabMenus.set(nextState);
+          // Map the payload back to the config
+          const mode = result.selects.find((s: any) => s.id === 'mode').value;
+          const position = result.selects.find(
+            (s: any) => s.id === 'position',
+          ).value;
+          const hasBackdrop = result.toggles.find(
+            (t: any) => t.id === 'backdrop',
+          ).checked;
+
+          this.uiState.drawerConfig.set({ mode, position, hasBackdrop });
         }
       });
   }

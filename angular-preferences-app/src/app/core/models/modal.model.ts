@@ -1,4 +1,8 @@
 // --- INTERFACES ---
+export interface ModalSelectOption { label: string; value: any; }
+export interface ModalSelect { id: string; label: string; value: any; options: ModalSelectOption[]; }
+export interface ModalToggle { id: string; label: string; checked: boolean; }
+
 export interface ModalChecklistOption {
   id: string;
   label: string;
@@ -11,7 +15,7 @@ export interface ModalAction {
   value?: any;
   color?: 'primary' | 'accent' | 'warn';
   isPrimary?: boolean;
-  returnsChecklist?: boolean;
+  returnsPayload?: boolean; 
 }
 
 export interface ModalData {
@@ -21,5 +25,7 @@ export interface ModalData {
   icon?: string;
   showCloseButton?: boolean;
   checklist?: ModalChecklistOption[];
+  selects?: ModalSelect[]; 
+  toggles?: ModalToggle[]; 
   actions?: ModalAction[];
 }
