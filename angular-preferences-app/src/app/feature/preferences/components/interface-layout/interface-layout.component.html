@@ -45,46 +45,57 @@
     </div>
 
     <div class="settings-actions">
+      <!-- 3-way Mode Toggle -->
+      <mat-button-toggle-group
+        class="full-width-toggle mode-toggle"
+        color="primary"
+        [value]="uiState.widgetMode()"
+        (change)="uiState.widgetMode.set($event.value)"
+      >
+        <mat-button-toggle value="fab" matTooltip="Floating Button">
+          <mat-icon>add_circle</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="drawer" matTooltip="Side Drawer">
+          <mat-icon>vertical_split</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="none" matTooltip="Page only (Hidden)">
+          <mat-icon>visibility_off</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
       <!-- FAB Settings -->
       @if (uiState.widgetMode() === "fab") {
         <button
+          class="customize-btn"
           mat-stroked-button
           color="primary"
           (click)="openFabSettings()"
           matTooltip="Customize FAB menus"
         >
-          <mat-icon>tune</mat-icon> Customize
+          <mat-icon>tune</mat-icon> Customize FAB
         </button>
       }
 
       <!-- Drawer Settings -->
       @if (uiState.widgetMode() === "drawer") {
         <button
+          class="customize-btn"
           mat-stroked-button
           color="primary"
           (click)="openDrawerSettings()"
           matTooltip="Customize Drawer"
         >
-          <mat-icon>settings</mat-icon> Options
+          <mat-icon>settings</mat-icon> Drawer Options
         </button>
       }
 
-      <!-- 3-way Mode Toggle -->
-      <mat-button-toggle-group
-        color="primary"
-        [value]="uiState.widgetMode()"
-        (change)="uiState.widgetMode.set($event.value)"
-      >
-        <mat-button-toggle value="fab" matTooltip="Floating Button"
-          ><mat-icon>add_circle</mat-icon></mat-button-toggle
-        >
-        <mat-button-toggle value="drawer" matTooltip="Side Drawer"
-          ><mat-icon>vertical_split</mat-icon></mat-button-toggle
-        >
-        <mat-button-toggle value="none" matTooltip="Page only (Hidden)"
-          ><mat-icon>visibility_off</mat-icon></mat-button-toggle
-        >
-      </mat-button-toggle-group>
+      <!-- Omission message -->
+      @if (uiState.widgetMode() === "none") {
+        <div class="info-sticker">
+          <mat-icon>info</mat-icon> 
+          Quick settings are disabled
+        </div>
+      }
     </div>
   </div>
 </app-preferences-card>

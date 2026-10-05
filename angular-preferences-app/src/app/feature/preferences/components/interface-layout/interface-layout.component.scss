@@ -1,1 +1,19 @@
 @use "../../preferences-shared";
+
+.info-sticker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--mat-sys-info-container) !important;
+  border: 1px dashed var(--mat-sys-info) !important;
+  border-radius: var(--mat-sys-corner-small, 8px);
+  color: var(--mat-sys-on-info-container) !important;
+
+  padding: 0 16px;
+  height: 40px;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+  order: 1;
+}

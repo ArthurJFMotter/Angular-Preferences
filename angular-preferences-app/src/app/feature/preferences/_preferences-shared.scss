@@ -100,6 +100,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    flex: 1;
 
     label {
       font-size: 0.95rem;
@@ -120,17 +121,37 @@
     align-items: center;
     gap: 16px;
     flex-shrink: 0;
+
+    .customize-btn {
+      width: fit-content;
+      min-width: 160px;
+      order: 1;
+    }
+    .mode-toggle {
+      order: 2;
+    }
   }
 
+  // --- MOBILE STYLES ---
   @media (max-width: 600px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 
     .settings-actions {
       width: 100%;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 8px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      margin-top: 12px;
+
+      .mode-toggle {
+        order: 1;
+      }
+      .customize-btn {
+        order: 2;
+        width: 100%;
+        height: 48px;
+      }
     }
   }
 }
