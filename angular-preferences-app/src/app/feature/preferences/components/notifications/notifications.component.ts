@@ -16,10 +16,8 @@ import {
   MatSnackBarVerticalPosition,
   MatSnackBarHorizontalPosition,
 } from '@angular/material/snack-bar';
-import {
-  NotificationService,
-  NotificationType,
-} from '../../../../core/services/notification.service';
+import { NotificationService } from '../../../../core/services/notification.service';
+import { NotificationType } from '../../../../core/models/notification.model';
 
 @Component({
   selector: 'app-notifications',
@@ -38,7 +36,7 @@ export class NotificationsComponent {
   readonly prefs = inject(PreferencesService);
   readonly notify = inject(NotificationService);
 
-   // Constants
+  // Constants
   readonly vPositions = SNACKBAR_V_POSITIONS;
   readonly hPositions = SNACKBAR_H_POSITIONS;
 

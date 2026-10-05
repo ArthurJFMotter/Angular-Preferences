@@ -1,12 +1,7 @@
 import { Injectable, signal, effect } from '@angular/core';
+import { DrawerConfig } from '../models/drawer.model';
 
 export type WidgetMode = 'fab' | 'drawer' | 'none';
-
-export interface DrawerConfig {
-  mode: 'over' | 'push' | 'side';
-  position: 'start' | 'end';
-  hasBackdrop: boolean;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AppUiStateService {

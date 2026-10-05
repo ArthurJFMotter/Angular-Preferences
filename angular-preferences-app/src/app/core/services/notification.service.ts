@@ -2,25 +2,11 @@ import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PreferencesService } from 'ng-material-preferences';
 import { CustomSnackbarComponent } from '../../shared/custom-snackbar/custom-snackbar.component';
-
-export type NotificationType =
-  | 'default'
-  | 'success'
-  | 'warning'
-  | 'info'
-  | 'error';
-
-export interface NotificationAction {
-  label: string;
-  actionFn: () => void;
-}
-
-export interface NotificationData {
-  message: string;
-  type: NotificationType;
-  icon?: string;
-  action?: NotificationAction;
-}
+import {
+  NotificationType,
+  NotificationAction,
+  NotificationData,
+} from '../models/notification.model';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {

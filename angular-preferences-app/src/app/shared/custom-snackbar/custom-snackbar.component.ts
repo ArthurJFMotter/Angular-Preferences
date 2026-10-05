@@ -5,7 +5,7 @@ import {
 } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { NotificationData } from '../../core/services/notification.service';
+import { NotificationData } from '../../core/models/notification.model';
 
 @Component({
   selector: 'app-custom-snackbar',
