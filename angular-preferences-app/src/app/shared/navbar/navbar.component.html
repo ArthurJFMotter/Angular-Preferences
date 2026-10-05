@@ -1,4 +1,11 @@
 <mat-toolbar class="app-navbar">
+    <!-- Drawer Trigger -->
+    @if (uiState.widgetMode() === "drawer") {
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
+
   <div class="brand" routerLink="/">
     <mat-icon color="primary">palette</mat-icon>
     <h1>User Preferences</h1>
@@ -22,11 +29,6 @@
       <span>Configurations</span>
     </a>
 
-    <!-- Drawer Trigger -->
-    @if (uiState.widgetMode() === "drawer") {
-      <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu_open</mat-icon>
-      </button>
-    }
+  
   </div>
 </mat-toolbar>
