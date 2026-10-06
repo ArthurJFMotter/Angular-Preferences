@@ -2,16 +2,12 @@
   height: 100dvh;
   background-color: var(--mat-sys-background);
 
+  /* --- scoped overrides --- */
   ::ng-deep {
-    .mat-sidenav,
-    .mat-sidenav-content {
-      transition:
-        transform calc(400ms * var(--theme-motion-scale, 1))
-          cubic-bezier(0.25, 0.8, 0.25, 1),
-        margin-left calc(400ms * var(--theme-motion-scale, 1))
-          cubic-bezier(0.25, 0.8, 0.25, 1),
-        margin-right calc(400ms * var(--theme-motion-scale, 1))
-          cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    .mat-drawer-transition .mat-sidenav,
+    .mat-drawer-transition .mat-sidenav-content,
+    .mat-drawer-transition .mat-drawer-backdrop {
+      transition-duration: calc(400ms * var(--theme-motion-scale, 1) + 1ms) !important;
     }
   }
 }
@@ -25,7 +21,7 @@
 
   @media (max-width: 420px) {
     border-radius: 0px !important;
-  }*
+  }
 
   &.is-end {
     border-left: 1px solid var(--mat-sys-outline-variant) !important;
