@@ -37,21 +37,37 @@
   flex: 1 1 auto;
 }
 
+.drawer-trigger {
+  &.start {
+    order: -1;
+    margin-left: -8px;
+    margin-right: 8px;
+
+    &.is-open mat-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.end {
+    order: 10;
+    margin-left: 8px;
+    margin-right: -8px;
+
+    &.is-open mat-icon {
+      transform: rotate(360deg);
+    }
+  }
+
+  mat-icon {
+    transition: transform calc(0.3s * var(--theme-motion-scale, 1))
+      cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 8px;
-
-  .drawer-trigger {
-    &.start {
-      margin-left: -8px;
-      margin-right: 8px;
-    }
-    &.end {
-      margin-left: 8px;
-      margin-right: -8px;
-    }
-  }
 
   .desktop-nav {
     display: flex;

@@ -6,6 +6,7 @@ import {
   OnDestroy,
   signal,
   HostBinding,
+  computed,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,6 +39,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private scrollDispatcher = inject(ScrollDispatcher);
 
   @Input({ required: true }) drawer!: MatSidenav;
+
+  readonly isDrawerMode = computed(
+    () => this.uiState.widgetMode() === 'drawer',
+  );
+  readonly drawerPos = computed(() => this.uiState.drawerConfig().position);
+  readonly drawerIcon = computed(() => 'menu');
 
   private scrollSub!: Subscription;
   private lastScrollY = 0;
