@@ -1,10 +1,10 @@
 :host {
   position: sticky;
   top: 0;
-  z-index: 100; 
+  z-index: 100;
   display: block;
-  
-  transition: transform calc(0.3s * var(--theme-motion-scale, 1)) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform calc(0.3s * var(--theme-motion-scale, 1))
+    cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 
   &.navbar-hidden {
@@ -39,35 +39,58 @@
 
 .nav-actions {
   display: flex;
+  align-items: center;
   gap: 8px;
 
-  a {
-    border-radius: var(--mat-sys-corner-medium);
-  }
-
-  .active-link {
-    background-color: var(--mat-sys-secondary-container);
-    color: var(--mat-sys-on-secondary-container);
-  }
-
-  @media (max-width: 600px) {
-    a {
-      min-width: 0;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--mat-sys-corner-medium, 12px);
+  .drawer-trigger {
+    &.start {
+      margin-left: -8px;
+      margin-right: 8px;
     }
+    &.end {
+      margin-left: 8px;
+      margin-right: -8px;
+    }
+  }
 
-    span {
+  .desktop-nav {
+    display: flex;
+    gap: 8px;
+
+    a {
+      border-radius: var(--mat-sys-corner-medium);
+    }
+    .active-link {
+      background-color: var(--mat-sys-secondary-container);
+      color: var(--mat-sys-on-secondary-container);
+    }
+  }
+
+  /* Hidden on Desktop */
+  .mobile-nav {
+    display: none;
+  }
+
+  /* Mobile Transformation */
+  @media (max-width: 600px) {
+    .desktop-nav {
       display: none;
     }
-
-    mat-icon {
-      margin: 0;
+    .mobile-nav {
+      display: flex;
     }
+
+    .brand h1 {
+      font-size: 1rem;
+    }
+  }
+}
+
+::ng-deep .mat-mdc-menu-item.active-link {
+  background-color: var(--mat-sys-secondary-container) !important;
+  color: var(--mat-sys-on-secondary-container) !important;
+
+  mat-icon {
+    color: inherit !important;
   }
 }
