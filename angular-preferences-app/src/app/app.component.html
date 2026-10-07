@@ -5,11 +5,11 @@
   <!-- DRAWER -->
   <mat-sidenav
     #settingsDrawer
-    [mode]="uiState.drawerConfig().mode"
-    [position]="uiState.drawerConfig().position"
+    [mode]="uiState.safeDrawerConfig().mode"
+    [position]="uiState.safeDrawerConfig().position"
     class="settings-drawer"
-    [class.is-start]="uiState.drawerConfig().position === 'start'"
-    [class.is-end]="uiState.drawerConfig().position === 'end'"
+    [class.is-start]="uiState.safeDrawerConfig().position === 'start'"
+    [class.is-end]="uiState.safeDrawerConfig().position === 'end'"
   >
     <app-preferences-side-drawer
       (closeDrawer)="settingsDrawer.close()"

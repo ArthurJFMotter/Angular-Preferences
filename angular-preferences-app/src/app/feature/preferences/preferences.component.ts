@@ -21,6 +21,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { TypographyComponent } from './components/typography/typography.component';
 import { VisionFiltersComponent } from './components/vision-filters/vision-filters.component';
 import { ModalService } from '../../core/services/modal.service';
+import { AppUiStateService } from '../../core/services/app-ui-state.service';
 
 @Component({
   selector: 'app-preferences',
@@ -40,6 +41,7 @@ import { ModalService } from '../../core/services/modal.service';
 })
 export class PreferencesComponent implements AfterViewInit, OnDestroy {
   readonly prefs = inject(PreferencesService);
+  public uiState = inject(AppUiStateService);
   private modals = inject(ModalService);
 
   @ViewChildren('section') sections!: QueryList<ElementRef<HTMLElement>>;
@@ -144,24 +146,5 @@ export class PreferencesComponent implements AfterViewInit, OnDestroy {
     this.scrollTimeout = setTimeout(() => {
       this.isClickScrolling = false;
     }, 800);
-  }
-
-  confirmReset(): void {
-    this.modals
-      .confirmDanger(
-        'Reset All Preferences',
-        'Are you sure you want to restore everything to the factory defaults? All custom color palettes and settings will be lost.',
-        'restore',
-      )
-      .subscribe((confirmed) => {
-        if (confirmed) {
-          this.prefs.resetToDefaults();
-
-          window.scrollTo({
-            top: 0,
-            behavior: this.prefs.motionScale() === 0 ? 'instant' : 'smooth',
-          });
-        }
-      });
   }
 }

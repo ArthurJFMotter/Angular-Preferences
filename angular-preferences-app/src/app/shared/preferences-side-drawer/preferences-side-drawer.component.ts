@@ -10,6 +10,7 @@ import { DrawerTypographyComponent } from './components/drawer-typography/drawer
 import { DrawerAccessibilityComponent } from './components/drawer-accessibility/drawer-accessibility.component';
 import { DrawerNotificationsComponent } from './components/drawer-notifications/drawer-notifications.component';
 import { ModalService } from '../../core/services/modal.service';
+import { AppUiStateService } from '../../core/services/app-ui-state.service';
 
 @Component({
   selector: 'app-preferences-side-drawer',
@@ -29,19 +30,7 @@ import { ModalService } from '../../core/services/modal.service';
 })
 export class PreferencesSideDrawerComponent {
   readonly prefs = inject(PreferencesService);
-  private modals = inject(ModalService);
+  public uiState = inject(AppUiStateService);
 
   @Output() closeDrawer = new EventEmitter<void>();
-
-  confirmReset(): void {
-    this.modals
-      .confirmDanger(
-        'Reset All Preferences',
-        'Are you sure you want to restore everything to the factory defaults?',
-        'restore',
-      )
-      .subscribe((confirmed) => {
-        if (confirmed) this.prefs.resetToDefaults();
-      });
-  }
 }

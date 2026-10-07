@@ -1,7 +1,6 @@
 import { Component, HostBinding, inject, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';

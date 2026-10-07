@@ -115,13 +115,15 @@ export class InterfaceLayoutComponent {
 
   openDrawerSettings() {
     const current = this.uiState.drawerConfig();
+    const isMobile = this.uiState.isMobile()?.matches;
 
     this.modals
       .open<any>({
         title: 'Drawer Options',
         icon: 'vertical_split',
-        message:
-          'Configure how the side drawer behaves and renders on the screen.',
+        message: isMobile
+          ? 'Configure how the side drawer behaves on large screens. (Note: On mobile, the drawer is locked to "Over" mode with a backdrop).'
+          : 'Configure how the side drawer behaves and renders on the screen.',
         showCloseButton: false,
         selects: [
           {
