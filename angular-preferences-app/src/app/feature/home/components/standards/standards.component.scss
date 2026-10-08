@@ -73,7 +73,7 @@
 
   background-color: var(--mat-sys-surface-container);
   border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: var(--mat-sys-corner-full, 16px);
+    border-radius: var(--mat-sys-corner-extra-large) !important;
   color: var(--mat-sys-on-surface);
 
   font-size: 0.8rem;

@@ -29,7 +29,7 @@ export class NotificationService {
         : 'center',
       verticalPosition: this.prefs.hasNotifications
         ? this.prefs.snackbarVPosition()
-        : 'bottom',
+        : 'top',
 
       panelClass: type !== 'default' ? [`snackbar-${type}`] : undefined,
     });
