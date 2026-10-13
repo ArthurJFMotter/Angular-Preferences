@@ -1,4 +1,5 @@
-@use 'ng-material-preferences/src/styles/theming' as prefs;
+//@use 'ng-material-preferences/src/styles/theming' as prefs;   // iminent deprecation
+@use 'ng-material-preferences/styles/theming' as prefs;
 
 // Instantly wire up your snackbars, dialogs, and density fallback tokens:
 @include prefs.setup-theming();
